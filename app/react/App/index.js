@@ -12,13 +12,14 @@ import { Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import { hot } from 'react-hot-loader/root';
-import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import HomePage from '../HomePage/Loadable';
+import FeaturePage from '../FeaturePage/Loadable';
+import NotFoundPage from '../NotFoundPage/Loadable';
+import LoginContainer from '../login/Loadable'
 
 // Header and Footer
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import Header from '../Header';
+import Footer from '../Footer';
 
 import GlobalStyle from '../../global-styles';
 
@@ -35,6 +36,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+        <Route path='/login' component={LoginContainer}/>
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
