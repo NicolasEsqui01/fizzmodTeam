@@ -6,12 +6,17 @@ export const Container = styled.div`
   flex-direction: row;
   width: 100%;
   height: 100vh;
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
 `;
 
 export const LIzquierdo = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   @media ${device.tablet} {
     width: 100%;
     background-color: #16232d;
@@ -115,11 +120,33 @@ export const Orders = styled.div`
   }
 `;
 
+
 export const Indicadores = styled.div`
+  display: flex;
+  margin-top: 40px;
+  margin-bottom: 35px;
   @media ${device.tablet} {
   }
   @media ${device.laptop} {
   }
+`;
+
+export const Icos24 = styled.div` 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 19px;
+    text-align: center;
+`;
+  
+export const Box = styled.div`
+ 
 `;
 
 export const Puntos = styled.div`
@@ -129,17 +156,3 @@ export const Puntos = styled.div`
   }
 `;
 
-// Oval, Indicadores, Puntos
-
-/* const size = {
-    mobile: '425px',
-    tablet: '768px',
-  }
-  
-  
-  export const device = {
-    mobile: `(max-width: ${size.mobile})`,
-    tablet:`(max-width: ${size.tablet})`,
-    laptop: `(min-width: ${size.tablet})`,
-  
-  }; */
