@@ -15,12 +15,13 @@ import { hot } from 'react-hot-loader/root';
 import HomePage from '../HomePage/Loadable';
 import FeaturePage from '../FeaturePage/Loadable';
 import NotFoundPage from '../NotFoundPage/Loadable';
-import LoginContainer from '../login/Loadable'
+import LoginContainer from '../login/Loadable';
+import InicioContainer from '../Inicio/InicioContainer';
 
 // Header and Footer
-import Header from '../Header';
+/* import Header from '../Header';
 import Footer from '../Footer';
-
+ */
 import GlobalStyle from '../../global-styles';
 
 function App() {
@@ -32,14 +33,15 @@ function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <Header />
+      {/*       <Header /> */}
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
-        <Route path='/login' component={LoginContainer}/>
+        <Route path="/login" component={LoginContainer} />
+        <Route path="/inicio" component={InicioContainer} />
         <Route path="" component={NotFoundPage} />
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
       <GlobalStyle />
     </div>
   );
