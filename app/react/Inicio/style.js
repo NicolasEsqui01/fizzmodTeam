@@ -7,6 +7,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
 `;
+// Izquierdo
 
 export const LIzquierdo = styled.div`
   display: flex;
@@ -19,16 +20,6 @@ export const LIzquierdo = styled.div`
   @media ${device.laptop} {
     width: 40%;
     background-color: #16232d;
-  }
-`;
-
-export const LDerecho = styled.div`
-  @media ${device.tablet} {
-    display: none;
-  }
-  @media ${device.laptop} {
-    background-color: #e8eaf6;
-    width: 60%;
   }
 `;
 
@@ -115,6 +106,52 @@ export const Orders = styled.div`
   }
 `;
 
+// DERECHO
+
+export const LDerecho = styled.div`
+  @media ${device.tablet} {
+    display: none;
+  }
+  @media ${device.laptop} {
+    background-color: #e8eaf6;
+    width: 60%;
+  }
+`;
+
+export const OrdeneHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  background-color: #ffffff;
+`;
+export const ONuevas = styled.h1`
+  height: 14px;
+  margin-left: 100px;
+  width: 200px;
+  color: #273947;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 14px;
+  text-align: center;
+`;
+export const PrePickeadas = styled.h1`
+  margin-right: 80px;
+  height: 14px;
+  width: 200px;
+  color: #939598;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 14px;
+  text-align: center;
+`;
+
 export const Indicadores = styled.div`
   @media ${device.tablet} {
   }
@@ -132,14 +169,14 @@ export const Puntos = styled.div`
 // Oval, Indicadores, Puntos
 
 /* const size = {
-    mobile: '425px',
-    tablet: '768px',
-  }
+  mobile: '425px',
+  tablet: '768px',
+}
+
+
+export const device = {
+  mobile: `(max-width: ${size.mobile})`,
+  tablet:`(max-width: ${size.tablet})`,
+  laptop: `(min-width: ${size.tablet})`,
   
-  
-  export const device = {
-    mobile: `(max-width: ${size.mobile})`,
-    tablet:`(max-width: ${size.tablet})`,
-    laptop: `(min-width: ${size.tablet})`,
-  
-  }; */
+}; */

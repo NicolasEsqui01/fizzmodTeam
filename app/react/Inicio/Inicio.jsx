@@ -10,7 +10,11 @@ import {
   Pickers,
   Qty,
   Orders,
+  OrdeneHeader,
+  ONuevas,
+  PrePickeadas,
 } from './style';
+import OrdersContainer from '../Orders/OrdersContainer';
 
 export default () => (
   <Container>
@@ -25,6 +29,13 @@ export default () => (
       <Indicadores></Indicadores>
       <Puntos></Puntos>
     </LIzquierdo>
-    <LDerecho>Derecho</LDerecho>
+    <LDerecho>
+      <OrdeneHeader>
+        <ONuevas>ORDENES NUEVAS</ONuevas>
+        <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
+      </OrdeneHeader>
+
+      <OrdersContainer />
+    </LDerecho>
   </Container>
 );
