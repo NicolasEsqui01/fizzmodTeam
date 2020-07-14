@@ -17,19 +17,9 @@ export const Container = styled.div`
   }
 `;
 
-export const LIzquierdo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media ${device.tablet} {
-    width: 100%;
-    background-color: #16232d;
-  }
-  @media ${device.laptop} {
-    width: 40%;
-    background-color: #16232d;
-  }
-`;
+export const InicioB = styled.div``;
+
+export const InicioA = styled.div``;
 
 export const Oval = styled.div`
   display: flex;
