@@ -4,21 +4,23 @@ import Login from './Login'
 
 const LoginContainer = () =>{
 
-    const [input , setInput ] = useState({});
+    const [email, setEmail ] = useState({});
+    const [password, setPassword ] = useState({});
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        setInput({
-            [event.target[0].name]:''
-        })
+        console.log({email, password})
     };
 
     const handleChange = (event) =>{
-        setInput({[event.target.name]:event.target.value})
+        switch(event.target.name){
+            case 'email' : setEmail({[event.target.name]:event.target.value})
+            case 'password' : setPassword({[event.target.name]:event.target.value})
+        }
     };
 
     return (
-        <Login handleSubmit={handleSubmit} handleChange={handleChange} valor={input.codigo}/>
+        <Login handleSubmit={handleSubmit} handleChange={handleChange} valor={email , password}/>
     )
 };
 
