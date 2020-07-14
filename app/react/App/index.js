@@ -14,10 +14,9 @@ import { Helmet } from 'react-helmet-async';
 import { hot } from 'react-hot-loader/root';
 // import NotFoundPage from '../NotFoundPage/Loadable';
 import LoginContainer from '../login/Loadable'
-
+import InicioContainer from '../Inicio/InicioContainer';
 // Header and Footer
 import Footer from '../Footer';
-
 import GlobalStyle from '../../global-styles';
 
 function App() {
@@ -31,9 +30,10 @@ function App() {
       </Helmet>
       <Switch>
         <Route path='/login' component={LoginContainer}/>
+        <Route path="/inicio" component={InicioContainer} />
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
       <GlobalStyle />
     </div>
   );
