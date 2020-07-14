@@ -170,3 +170,4 @@ export const LDerecho = styled.div`
     width: 60%;
   }
 `;
+
