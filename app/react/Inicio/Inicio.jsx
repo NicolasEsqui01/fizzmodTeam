@@ -10,12 +10,18 @@ import {
   Pickers,
   Qty,
   Orders,
-  OrdeneHeader,
+  OrdenHeader,
+  OrdenFooter,
   ONuevas,
   PrePickeadas,
   Icos24,
+  ImgH,
+  DivJ,
+  DivP,
+  Button,
 } from './style';
 import box from '../../images/24x24/box.svg';
+import slashBox from '../../images/24x24/box_slash.svg';
 import OrdersContainer from '../Orders/OrdersContainer';
 
 export default () => (
@@ -38,12 +44,22 @@ export default () => (
       <Puntos></Puntos>
     </LIzquierdo>
     <LDerecho>
-      <OrdeneHeader>
-        <ONuevas>ORDENES NUEVAS</ONuevas>
-        <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
-      </OrdeneHeader>
+      <OrdenHeader>
+        <DivJ>
+          <ImgH src={box} />
+          <ONuevas>ORDENES NUEVAS</ONuevas>
+        </DivJ>
+        <DivP>
+          <ImgH src={slashBox} />
+          <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
+        </DivP>
+      </OrdenHeader>
 
       <OrdersContainer />
+
+      <OrdenFooter>
+        <Button>Comenzar</Button>
+      </OrdenFooter>
     </LDerecho>
   </Container>
 );

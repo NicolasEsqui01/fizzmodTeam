@@ -153,22 +153,31 @@ export const LDerecho = styled.div`
   @media ${device.laptop} {
     background-color: #e8eaf6;
     width: 60%;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
-export const OrdeneHeader = styled.div`
+export const OrdenHeader = styled.div`
   display: flex;
-  justify-content: center;
   justify-content: space-around;
   align-items: center;
   height: 80px;
   width: 100%;
   background-color: #ffffff;
 `;
+
+export const OrdenFooter = styled.div`
+  margin-top: 400px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+`;
+
 export const ONuevas = styled.h1`
   height: 14px;
-  margin-left: 100px;
-  width: 200px;
+  width: 80%;
   color: #273947;
   font-family: Roboto;
   font-size: 20px;
@@ -180,7 +189,7 @@ export const ONuevas = styled.h1`
 export const PrePickeadas = styled.h1`
   margin-right: 80px;
   height: 14px;
-  width: 200px;
+  width: 60%;
   color: #939598;
   font-family: Roboto;
   font-size: 20px;
@@ -188,4 +197,35 @@ export const PrePickeadas = styled.h1`
   letter-spacing: 0;
   line-height: 14px;
   text-align: center;
+`;
+
+export const ImgH = styled.img`
+  height: 60px;
+  width: 60px;
+`;
+
+// div controles
+
+export const DivJ = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const DivP = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Button = styled.button`
+  height: 60%;
+  width: 50%;
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 250%;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #1db779;
 `;
