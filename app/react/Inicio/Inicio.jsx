@@ -13,7 +13,9 @@ import {
   OrdeneHeader,
   ONuevas,
   PrePickeadas,
+  Icos24,
 } from './style';
+import box from '../../images/24x24/box.svg';
 import OrdersContainer from '../Orders/OrdersContainer';
 
 export default () => (
@@ -26,7 +28,13 @@ export default () => (
           <Orders>ORDENES</Orders>
         </OvalInt>
       </Oval>
-      <Indicadores></Indicadores>
+      <Indicadores>
+        <Icos24>
+          <img src={box} alt="Caja" />
+          <p>7</p>
+          <p>X PICKER</p>
+        </Icos24>
+      </Indicadores>
       <Puntos></Puntos>
     </LIzquierdo>
     <LDerecho>
