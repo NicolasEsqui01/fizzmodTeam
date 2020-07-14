@@ -20,12 +20,17 @@ import {
   Button,
   Label,
   Input,
-  TagA
+  TagA,
+  DivInput,
+  DivInput1,
+  DivInput2,
+  DivInput3,
 } from './style';
 
 import logoJanis from '../../images/logo_janis.svg';
 
 export default ({ handleSubmit, handleChange, valor }) => {
+  console.log(valor)
   return (
     <DivContenedor>
       <DivImage>
@@ -43,15 +48,29 @@ export default ({ handleSubmit, handleChange, valor }) => {
             <H1>Connect to janis</H1>
             <H3>Enter your data</H3>
           </DivTitle>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <FormInput>
               <SubInput>
                   <Label>Email</Label>
-                  <Input type='text'/>
+                  <DivInput>
+                    <DivInput1>
+                      <DivInput2>
+                        <DivInput3></DivInput3>
+                        <Input type='text' name='email' onChange={handleChange}/>
+                      </DivInput2>
+                    </DivInput1>
+                  </DivInput>
               </SubInput>
               <SubInput>
                   <Label>Password</Label>
-                  <Input type='password'/>
+                  <DivInput>
+                    <DivInput1>
+                      <DivInput2>
+                        <DivInput3></DivInput3>
+                        <Input type='password' name='password' onChange={handleChange}/>
+                      </DivInput2>
+                    </DivInput1>
+                  </DivInput>
               </SubInput>
             </FormInput>
             <FormButtom>
@@ -67,11 +86,3 @@ export default ({ handleSubmit, handleChange, valor }) => {
   );
 };
 
-{
-  /* <form onSubmit={handleSubmit}>
-                <label>Codigo Manual</label>
-                <br/>
-                <input type="text" name='codigo' placeholder='ingresar el codigo' onChange={handleChange} value={valor}/>
-                <input type="submit" value="ingresar"/>
-</form> */
-}
