@@ -1,11 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../utils/mediaQuerys';
 
-export const Logos = styled.img`
-  width: 35px;
-  height: 35px;
-`;
-
 export const Container = styled.div`
 @media ${device.tablet} {
   display: flex;
@@ -23,7 +18,80 @@ export const Container = styled.div`
     font-family: 'Roboto', sans-serif;
   }
 `;
-// Izquierdo
+
+export const Logos = styled.img`
+  width: 35px;
+  height: 35px;
+`;
+
+export const LogoStad = styled.img`
+  width: 20px;
+  height: 20px;
+`;
+
+export const ContUser = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin-left: 45px;
+  margin-right: 45px;
+  margin-top: 65px;
+  @media ${device.tablet} {
+    margin-bottom: 35px;
+    width: 230px;
+    height: 230px;
+  }
+  @media ${device.laptop} {
+    margin-bottom: 85px;
+    width: 300px;
+    height: 300px;
+  }
+`;
+
+export const ContNumGreen = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #74C655;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left:10px;
+  padding-right:10px;
+`;
+
+export const ContNumRed = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #FF4343;
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left: 10px;
+  padding-right: 10px;
+`;
+
+
+
+export const LogoUser = styled.img`
+  margin-top: 15px;
+  margin-bottom: 35px;
+  height: 200px;
+  width: 200px;
+  background-color: #273947;
+  border-radius: 50%;
+  padding: 25px;
+  @media ${device.tablet} {
+    width: 200px;
+    height: 200px;
+  }
+  @media ${device.laptop} {
+    width: 270px;
+    height: 270px;
+  }
+`
 
 export const InicioA = styled.div``;
 export const InicioB = styled.div``;
@@ -73,6 +141,21 @@ export const OvalInt = styled.div`
   }
 `;
 
+export const Line = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #273947;
+  color: #d0d3e3;
+  margin:0px;
+  width: 90%;
+  margin-left:auto;
+  margin-right:auto;
+  `;
+
+
 export const Pickers = styled.div`
   height: 14px;
   color: #d0d3e3;
@@ -112,12 +195,12 @@ export const PNames = styled.div`
 `;
 
 export const PNumbers = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   letter-spacing: 0;
   line-height: 19px;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 7px;
   margin-bottom: 15px;
 `;
 
@@ -129,16 +212,75 @@ export const Orders = styled.div`
   letter-spacing: 0;
   line-height: 16px;
   text-align: center;
+  font-weight: 100;
   @media ${device.laptop} {
     font-size: 22px;
   }
 `;
 
+export const SubTitle = styled.div`
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 17px;
+  margin-top:45px;
+  text-align: center;
+  @media ${device.laptop} {
+    font-size: 19px;
+    margin-top:20%;
+  }
+`;
+
+export const Item = styled.div`
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 12px;
+  text-align: center;
+  margin-left: 10px;
+  @media ${device.laptop} {
+    font-size: 14px;
+  }
+`;
+
+export const Time = styled.div`
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 21px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-weight: bolder;
+  @media ${device.laptop} {
+    font-size: 19px;
+  }
+`;
+
+export const Percentage = styled.div`
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 17px;
+  text-align: center;
+  @media ${device.laptop} {
+    font-size: 19px;
+  }
+`;
+
+
 export const Indicadores = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-top: 40px;
+  margin-top: 70px;
   margin-bottom: 35px;
+  @media ${device.tablet} {
+  }
+  @media ${device.laptop} {
+  }
+`;
+
+export const EstadTiempo = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 15px;
   @media ${device.tablet} {
   }
   @media ${device.laptop} {
@@ -171,8 +313,29 @@ export const Puntos = styled.div`
   }
 `;
 
+export const Icos24Hor = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: Roboto;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 19px;
+  text-align: center;
 
-// DERECHO
+  @media ${device.tablet} {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+
+  @media ${device.laptop} {
+    margin-right: 27px;
+    margin-left: 27px;
+  }
+`;
+
 export const LDerecho = styled.div`
 @media ${device.laptop} {
   background-color: #e8eaf6;
@@ -284,4 +447,5 @@ export const Button = styled.button`
 `;
 
   
+
 

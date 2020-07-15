@@ -4,6 +4,9 @@ import fondoImag from '../../images/Janis-login-image.jpg'
 export const DivContenedor = styled.div`
   background-color: white;
   display: flex;
+  @media screen and (max-width: 1023px){
+    flex-direction: column;
+  }
 `;
 export const DivImage = styled.div`
   display: flex;
@@ -15,6 +18,11 @@ export const DivImage = styled.div`
   height: 100vh;
   width: 36vw;
   background-image: url('${fondoImag}');
+  @media screen and (max-width: 1023px){
+    width: 100vw;
+    height: 180px;
+    background-size: 100%;
+    background-position: center center;
 `;
 
 export const DivLogoSuperior = styled.div`
@@ -23,12 +31,20 @@ export const DivLogoSuperior = styled.div`
   -webkit-box-pack: justify;
   justify-content: space-between;
   height: 35vh;
+  @media screen and (max-width: 1023px){
+    height: 70%;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
 `;
 
 export const DivCuadrado = styled.div`
   background-color: rgb(41, 121, 255);
   height: 13px;
   width: 150px;
+  @media screen and (max-width: 1023px){
+    height: 8px;
+    width: 70px;
+    margin-bottom: 24px;
 `;
 
 export const DivLogoImg = styled.div`
@@ -39,7 +55,10 @@ export const DivLogoImg = styled.div`
   display: flex;
   align-items: center;
   padding: 20px;
-`;
+  @media screen and (max-width: 1023px){
+    height: 70px;
+    width: 70px;
+  `;
 
 export const Image = styled.img`
   height: 106px;
@@ -69,13 +88,24 @@ export const DivForm = styled.div`
    height: 480px;
 `;
 
-export const DivTitle = styled.div``;
+export const DivTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 1023px){
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 39px;
+}
+`;
 export const H1 = styled.h1`
   color: rgb(39, 57, 71);
   font-family: Roboto, sans-serif;
-  font-size: 26px;
-  font-weight: 500;
+  //font-size: 26px;
+  font-weight: bold;
   line-height: 36px;
+  @media screen and (max-width:1023){
+    margin-top:20px;
+  }
 `;
 
 export const H3 = styled.h3`
@@ -85,6 +115,9 @@ export const H3 = styled.h3`
   line-height: 15px;
   font-weight: normal;
   margin-bottom: 20px;
+  @media screen and (max-width:1023){
+    margin-top:6px;
+  }
 `;
 export const Form = styled.form`
   display: block;
@@ -132,6 +165,14 @@ export const DivInput3 = styled.div`
 export const FormButtom = styled.div`
   display: flex;
   flex-direction:column;
+  @media screen and (max-width: 1023px){
+    align-self: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 100%;}
 `;
 
 export const Forgot = styled.div`
@@ -148,21 +189,26 @@ export const Forgot = styled.div`
 export const Button = styled.button`
   background-color: rgb(41, 121, 255);
   color: rgb(255, 255, 255);
+  font-family: Roboto, sans-serif;
   border-radius: 50px;
   border: 1px solid rgb(41, 121, 255);
-  width: 100px;
+  width: 135px;
   display: flex;
   -webkit-box-align: center;
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  height: 36px;
+  height: 42px;
   cursor: pointer;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: bold;
   position: relative;
   z-index: 0;
   padding: 0px 16px;
+  @media screen and (max-width: 1023px){
+    margin-bottom: 18px;
+    width: 160px;
+    height: 42px;}
 `;
 
 export const TagA = styled.a`
@@ -172,6 +218,7 @@ export const TagA = styled.a`
 
 export const Label = styled.label`
   font-size: 13px;
+  font-family: Roboto, sans-serif;
   flex-shrink: 0;
   color: rgb(147, 149, 152);
   width: 100%;
