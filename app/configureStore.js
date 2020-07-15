@@ -1,18 +1,22 @@
+/**
+ * Create the store with dynamic reducers
+ */
+import thunk from 'redux-thunk';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { routerMiddleware } from 'connected-react-router';
-import { createInjectorsEnhancer, forceReducerReload } from 'redux-injectors';
+import { forceReducerReload } from 'redux-injectors';
 import createReducer from './reducers';
-import thunk from 'redux-thunk'
 
 export default function configureAppStore(initialState = {}, history) {
-
-  const middlewares = [routerMiddleware(history), thunk];
+  // Create the store with two middlewares
+  // 1. sagaMiddleware: Makes redux-sagas work
+  // 2. routerMiddleware: Syncs the location/URL path to the state
+  const middlewares = [thunk, routerMiddleware(history)];
 
   const store = configureStore({
     reducer: createReducer(),
     preloadedState: initialState,
     middleware: [...getDefaultMiddleware(), ...middlewares],
-    createReducer
   });
 
   // Make reducers hot reloadable, see http://mxs.is/googmo

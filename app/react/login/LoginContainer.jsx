@@ -1,41 +1,43 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Login from './Login'
+import Login from './Login';
+import { setLogin as funcionDeLogin } from '../../action/login';
 
-const LoginContainer = () =>{
+const LoginContainer = ({setLogin}) => {
+  const [input, setInput] = useState({});
 
-    const [email, setEmail ] = useState({});
-    const [password, setPassword ] = useState({});
-
-    const handleSubmit = (event) =>{
-        event.preventDefault();
-        console.log({email, password})
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = {
+      email: event.target[0].value,
+      password: event.target[1].value,
     };
+    setLogin(data);
+  };
 
-    const handleChange = (event) =>{
-        switch(event.target.name){
-            case 'email' : setEmail({[event.target.name]:event.target.value})
-            case 'password' : setPassword({[event.target.name]:event.target.value})
-        }
-    };
+  const handleChange = (event) => {
+    setInput({ [event.target.name]: event.target.value });
+  };
 
-    return (
-        <Login handleSubmit={handleSubmit} handleChange={handleChange} valor={email , password}/>
-    )
+  return (
+    <Login
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      valor={input}
+    />
+  );
 };
 
-
-const mapStateToProps = (state) =>{
-    return {
-
-    };
+const mapStateToProps = (state) => {
+  return {
+    user: state.loginReducer.user,
+  };
 };
 
-const mapDispatchToProps = (dispatch) =>{
-    return {
-
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setLogin: (obj) => dispatch(funcionDeLogin(obj)),
+  };
 };
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(LoginContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

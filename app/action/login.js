@@ -1,9 +1,11 @@
 import axios from "axios";
 
-const getSession = (id) => ({
-  type: "GET_SESSION",
-  list,
-});
+const Login = (auth) => {
+    return {
+        type: "USER_LOGING",
+        auth,
+    }
+}
 
 const headers = {
     headers:{
@@ -13,11 +15,12 @@ const headers = {
     }
 }
 
-export const fetchSession = (id) => (dispatch) => {
-  return axios
-    .get(`https://picking.janisdev.in/api/session/${id}`, headers)
-    .then((list) => {
-      console.log("SESSION LISTA DEVUELTA DE BACKEND: ", list)
-      dispatch(getSession(list))}
-      );
-};
+
+export const setLogin = (obj) => {
+    console.log('entrando por una vex')
+    return dispatch => {
+        console.log('hola')
+        return axios.post("https://id.janis.in/api/login", obj , headers)
+            .then((token) => dispatch(Login(token)))
+    }
+} 

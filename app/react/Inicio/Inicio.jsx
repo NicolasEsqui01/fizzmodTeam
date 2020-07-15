@@ -49,7 +49,7 @@ import clockRed from '../../images/clock-red.svg';
 import triangleWhite from '../../images/triangle_circle_white.svg';
 import '../common/styles/main.scss';
 
-export default () => (
+export default ({session}) => (
   <Container>
     <Carousel
       className="sliderInicio"
