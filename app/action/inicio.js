@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const getSession = (id) => ({
-  type: "GET_SESSION",
-  list,
+const getSessions = (sessions) => ({
+  type: "GET_SESSIONS",
+  sessions,
 });
 
 const headers = {
@@ -13,11 +13,13 @@ const headers = {
     }
 }
 
-export const fetchSession = (id) => (dispatch) => {
+export const fetchSessions = (token) => (dispatch) => {
+  console.log("POR MANDAR EL AXIOS CON TOKEN: ", token)
   return axios
-    .get(`https://picking.janisdev.in/api/session/${id}`, headers)
+    .get(`https://picking.janis.in/api/session/${token}`, headers)
     .then((list) => {
       console.log("SESSION LISTA DEVUELTA DE BACKEND: ", list)
-      dispatch(getSession(list))}
+      dispatch(getSessions(list))}
       );
 };
+  

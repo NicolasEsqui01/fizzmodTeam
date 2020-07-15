@@ -20,7 +20,7 @@ export const setLogin = (obj) => {
     console.log('entrando por una vex')
     return dispatch => {
         console.log('hola')
-        return axios.post("https://id.janis.in/api/login", obj , headers)
-            .then((token) => dispatch(Login(token)))
+        return axios.post("https://id.janis.in/api/login", obj, headers)
+            .then((token) => dispatch(Login(token.data)))
     }
 } 
