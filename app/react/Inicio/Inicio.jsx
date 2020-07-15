@@ -11,7 +11,15 @@ import {
   Pickers,
   Qty,
   Orders,
+  OrdenHeader,
+  OrdenFooter,
+  ONuevas,
+  PrePickeadas,
   Icos24,
+  ImgH,
+  DivJ,
+  DivP,
+  Button,
   Icos24Hor,
   PNames,
   PNumbers,
@@ -28,6 +36,9 @@ import {
   ContNumGreen,
   ContNumRed
 } from './style';
+import box from '../../images/box.svg';
+import slashBox from '../../images/box_slash.svg';
+import OrdersContainer from '../Orders/OrdersContainer';
 import boxGreen from '../../images/boxGreen.svg';
 import down from '../../images/chevron_downWhite.svg';
 import up from '../../images/chevron_upWhite.svg';
@@ -98,6 +109,24 @@ export default () => (
         </EstadTiempo>
       </InicioB>
     </Carousel>
-    <LDerecho>Derecho</LDerecho>
+    <hr></hr>
+    <LDerecho>
+    <OrdenHeader>
+        <DivJ>
+          <ImgH src={box} />
+          <ONuevas>ORDENES NUEVAS</ONuevas>
+        </DivJ>
+        <DivP>
+          <ImgH src={slashBox} />
+          <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
+        </DivP>
+      </OrdenHeader>
+
+      <OrdersContainer />
+
+      <OrdenFooter>
+        <Button>Comenzar</Button>
+      </OrdenFooter>
+    </LDerecho>
   </Container>
 );
