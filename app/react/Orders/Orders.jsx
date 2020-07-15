@@ -25,7 +25,8 @@ import snow from '../../images/snowflakeCelest.svg';
 import substitute from '../../images/substitute.svg';
 import store from '../../images/store.svg';
 
-export default () => (
+
+export default ({sessions}) => (
   <>
     <ListOrdenes>
       <Img src={box} />
