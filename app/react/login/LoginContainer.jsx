@@ -1,41 +1,44 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Login from './Login'
+import { setLogin } from "../../action/login"
 
-const LoginContainer = () =>{
+const LoginContainer = () => {
 
-    const [email, setEmail ] = useState({});
-    const [password, setPassword ] = useState({});
+    const [input, setInput] = useState({});
 
-    const handleSubmit = (event) =>{
+    const handleSubmit = (event) => {
         event.preventDefault();
-        console.log({email, password})
+        console.log(setLogin, "ESTE ES SEEEETLOGIN")
+        const data = {
+            email: event.target[0].value,
+            password: event.target[1].value
+        }
+        setLogin(data);
     };
 
-    const handleChange = (event) =>{
-        switch(event.target.name){
-            case 'email' : setEmail({[event.target.name]:event.target.value})
-            case 'password' : setPassword({[event.target.name]:event.target.value})
-        }
+    const handleChange = (event) => {
+        setInput({ [event.target.name]: event.target.value })
     };
 
     return (
-        <Login handleSubmit={handleSubmit} handleChange={handleChange} valor={email , password}/>
+        <Login handleSubmit={handleSubmit} handleChange={handleChange} valor={input} />
     )
 };
 
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
+    console.log(state, "ESTADOOOO")
     return {
 
     };
 };
 
-const mapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
     return {
-
+        setLogin: (obj) => dispatch(setLogin(obj))
     };
 };
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(LoginContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
