@@ -5,6 +5,7 @@
  * code.
  */
 
+
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
@@ -13,7 +14,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
@@ -28,14 +28,6 @@ import 'file-loader?name=.htaccess!./.htaccess';
 
 import { HelmetProvider } from 'react-helmet-async';
 import configureStore from './configureStore';
-
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-});
 
 // Create redux store with history
 const initialState = {};

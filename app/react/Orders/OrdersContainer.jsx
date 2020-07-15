@@ -1,17 +1,16 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import Orders from './Orders';
-import FindingSessions from '../../action/Orders'
+import {FindingSessions} from '../../action/Orders'
 
-const OrdersContainer = ({FindingSessions, listSessions}) =>{
+const OrdersContainer = ({findingSessions, listSessions}) =>{
 
 useEffect(()=>{
   
-    FindingSessions()
+    findingSessions()
   
 },[])
 
-const
 
 return(
 <Orders 
@@ -26,7 +25,7 @@ const mapStateToProps = function (state, ownProps){
 
     return({
 
-    listSessions: state.order.sessions
+    listSessions: state.OrderReducer.sessions
 
     })
 
@@ -36,7 +35,7 @@ const mapDispatchToProps = function (dispatch, ownProps){
   
     return({
 
-    FindingSessions: ()=> {dispatch(FindingSessions())}
+    findingSessions: ()=> {dispatch(FindingSessions())}
 
     })
     
