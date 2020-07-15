@@ -1,7 +1,6 @@
 /**
  * Create the store with dynamic reducers
  */
-
 import thunk from 'redux-thunk';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { routerMiddleware } from 'connected-react-router';
