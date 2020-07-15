@@ -1,10 +1,11 @@
 const initialState = {
-    user: {},
+    auth: {},
 }
+
 export default (state = initialState, action) => {
     switch (action.type) {
         case "USER_LOGING":
-            return { ...state, user: action.userLoger }
+            return { ...state, auth: action.auth }
         default: return state
     }
 }
