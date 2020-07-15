@@ -4,24 +4,23 @@ import Inicio from './Inicio';
 import { fetchSessions } from "../../action/inicio";
 
 const mapStateToProps = (state, ownProps) => {
-console.log("ESTADO: ", state)
   return {
-    sessionId: state.loginReducer.auth,  //VERIFICAR NOMBRE DEL ESTADO
-    session: state.inicioReducer.session
+    sessionId: state.loginReducer.user,  //VERIFICAR NOMBRE DEL ESTADO
+    session: state.inicioReducer.sessions
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
  	return {
- 		getSessionById: (id) => dispatch(fetchSessions(id)),
+ 		getSessions: () => dispatch(fetchSessions()),
  	}
 };
 
-const InicioContainer = ({sessionId, session, getSessionById}) => {
+const InicioContainer = ({sessionId, session, getSessions}) => {
 
-	// useEffect(()=>{
-	// 	getSessionById(sessionId)
-	// },[])
+	useEffect(()=>{
+		getSessions()
+	},[])
 
 	return (
 		<Inicio session={session}></Inicio>

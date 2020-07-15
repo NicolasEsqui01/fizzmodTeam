@@ -17,10 +17,14 @@ const headers = {
 
 
 export const setLogin = (obj) => {
-    console.log('entrando por una vex')
     return dispatch => {
-        console.log('hola')
-        return axios.post("https://id.janis.in/api/login", obj, headers)
-            .then((token) => dispatch(Login(token.data)))
+        return axios.post("https://id.janis.in/api/login", obj , headers)
+            .then((res) => {
+                dispatch(Login(res.data))
+            })
     }
-} 
+}
+
+export const setRecuperarPassword = (obj) =>{
+    return axios.post('https://id.janis.in/api/password-recovery', obj)
+};

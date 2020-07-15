@@ -49,10 +49,12 @@ import clockRed from '../../images/clock-red.svg';
 import triangleWhite from '../../images/triangle_circle_white.svg';
 import '../common/styles/main.scss';
 
-export default ({session}) => (
+export default ({session}) => {
+  {console.log("SESSION: ", session)}
+  return (
   <Container>
     <Carousel
-      className="sliderInicio"
+      className="sliderInicio"  
       isRTL
       itemsToShow={1}
       transitionMs={500}
@@ -63,7 +65,7 @@ export default ({session}) => (
         <Oval>
           <OvalInt>
             <Pickers>4 PICKERS</Pickers>
-            <Qty>28</Qty>
+            <Qty>{session.data.length}</Qty>
             <Orders>ORDENES</Orders>
           </OvalInt>
         </Oval>
@@ -129,4 +131,4 @@ export default ({session}) => (
       </OrdenFooter>
     </LDerecho>
   </Container>
-);
+)};
