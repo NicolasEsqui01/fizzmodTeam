@@ -47,11 +47,6 @@
       "git add --force"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
   },
@@ -78,6 +73,7 @@
     "react": "16.13.1",
     "react-app-polyfill": "1.0.6",
     "react-dom": "16.13.1",
+    "react-elastic-carousel": "0.6.4",
     "react-helmet-async": "1.0.6",
     "react-hot-loader": "4.12.21",
     "react-is": "16.13.1",

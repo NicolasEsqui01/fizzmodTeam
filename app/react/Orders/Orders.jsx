@@ -18,12 +18,12 @@ import {
   Marca2,
   Info,
 } from './style';
-import box from '../../images/24x24/box.svg';
-import waves from '../../images/24x24/waves.svg';
-import balance from '../../images/24x24/balance.svg';
-import snow from '../../images/24x24/snowflake.svg';
-import substitute from '../../images/24x24/substitute.svg';
-import store from '../../images/24x24/store.svg';
+import box from '../../images/boxWhite.svg';
+import waves from '../../images/wavesCelest.svg';
+import balance from '../../images/balanceCelest.svg';
+import snow from '../../images/snowflakeCelest.svg';
+import substitute from '../../images/substitute.svg';
+import store from '../../images/store.svg';
 
 export default () => (
   <>

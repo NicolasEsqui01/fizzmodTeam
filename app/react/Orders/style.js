@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../utils/mediaQuerys';
 
 export const ListOrdenes = styled.div`
   margin-left: 5%;
@@ -11,6 +12,11 @@ export const ListOrdenes = styled.div`
   background-color: #ffffff;
 `;
 export const Numero = styled.h1`
+@media ${device.tablet} {
+  
+  font-size: 120%;
+ 
+}
   margin-top: 5%;
   height: 20px;
   width: 100%;
@@ -24,6 +30,10 @@ export const Numero = styled.h1`
 
 // Logos
 export const Img = styled.img`
+@media ${device.tablet} {
+  height: 10%;
+  width: 10%;
+}
   margin-top: 3%;
   margin-left: 10%;
   height: 10%;
@@ -33,6 +43,10 @@ export const Img = styled.img`
   padding: 7px;
 `;
 export const ImgP = styled.img`
+@media ${device.tablet} {
+  height: 70%;
+  margin-left: 10%;
+}
   margin-left: 3%;
   margin-right: 5%;
   height: 80%;
@@ -52,6 +66,10 @@ export const DivT = styled.div`
 `;
 
 export const DivP = styled.div`
+@media ${device.tablet} {
+  flex-direction: column;
+  aling-content: center;
+}
   display: flex;
   margin-top: 5%;
   flex-direction: row;
@@ -103,10 +121,15 @@ export const Text = styled.div`
 `;
 
 export const Peso = styled.div`
+@media ${device.tablet} {
+  width: 70%;
+  height: 50px;
+  margin: 5px;
+}
   margin-right: 3%;
   box-sizing: border-box;
   height: 80px;
-  width: 15%;
+  width: 20%;
   border: 1px solid #d5d7db;
   border-radius: 3px;
   background-color: #ffffff;
@@ -116,10 +139,15 @@ export const Peso = styled.div`
 `;
 
 export const Frio = styled.div`
+@media ${device.tablet} {
+  width: 70%;
+  height: 50px;
+  margin: 5px;
+}
   margin-right: 3%;
   box-sizing: border-box;
   height: 80px;
-  width: 15%;
+  width: 20%;
   border: 1px solid #d5d7db;
   border-radius: 3px;
   background-color: #ffffff;
@@ -129,10 +157,15 @@ export const Frio = styled.div`
 `;
 
 export const Aire = styled.div`
+@media ${device.tablet} {
+  width: 70%;
+  height: 50px;
+  margin: 5px;
+}
   margin-right: 3%;
   box-sizing: border-box;
   height: 80px;
-  width: 15%;
+  width: 20%;
   border: 1px solid #d5d7db;
   border-radius: 3px;
   background-color: #ffffff;
@@ -142,6 +175,12 @@ export const Aire = styled.div`
 `;
 
 export const Marca = styled.div`
+@media ${device.tablet} {
+  width: 90%;
+  height: 50px;
+  margin: 5px;
+}
+
   box-sizing: border-box;
   height: 80px;
   width: 95%;
@@ -152,6 +191,11 @@ export const Marca = styled.div`
   align-items: center;
 `;
 export const Marca2 = styled.div`
+@media ${device.tablet} {
+  width: 90%;
+  height: 50px;
+  margin: 5px;
+}
   box-sizing: border-box;
   height: 80px;
   width: 95%;
@@ -164,6 +208,9 @@ export const Marca2 = styled.div`
 `;
 
 export const Info = styled.div`
+@media ${device.tablet} {
+  font-size: 100%;
+}
   height: 30px;
   width: 60%;
   color: #273947;

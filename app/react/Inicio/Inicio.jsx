@@ -1,11 +1,11 @@
 import React from 'react';
+import Carousel from 'react-elastic-carousel';
 import {
   Container,
-  LIzquierdo,
+  InicioA,
   LDerecho,
   Oval,
   Indicadores,
-  Puntos,
   OvalInt,
   Pickers,
   Qty,
@@ -19,32 +19,84 @@ import {
   DivJ,
   DivP,
   Button,
+  PNames,
+  PNumbers,
+  Logos,
 } from './style';
-import box from '../../images/24x24/box.svg';
-import slashBox from '../../images/24x24/box_slash.svg';
+import box from '../../images/box.svg';
+import slashBox from '../../images/box_slash.svg';
 import OrdersContainer from '../Orders/OrdersContainer';
+import boxGreen from '../../images/boxGreen.svg';
+import clockRed from '../../images/clock-red.svg';
+import triangleWhite from '../../images/triangle_circle_white.svg';
+import '../common/styles/main.scss';
 
 export default () => (
   <Container>
-    <LIzquierdo>
-      <Oval>
-        <OvalInt>
-          <Pickers>4 PICKERS</Pickers>
-          <Qty>28</Qty>
-          <Orders>ORDENES</Orders>
-        </OvalInt>
-      </Oval>
-      <Indicadores>
-        <Icos24>
-          <img src={box} alt="Caja" />
-          <p>7</p>
-          <p>X PICKER</p>
-        </Icos24>
-      </Indicadores>
-      <Puntos></Puntos>
-    </LIzquierdo>
+    <Carousel
+      className="sliderInicio"
+      isRTL
+      itemsToShow={1}
+      transitionMs={500}
+      showArrows={false}
+      focusOnSelect
+    >
+      <InicioA>
+        <Oval>
+          <OvalInt>
+            <Pickers>4 PICKERS</Pickers>
+            <Qty>28</Qty>
+            <Orders>ORDENES</Orders>
+          </OvalInt>
+        </Oval>
+        <Indicadores>
+          <Icos24>
+            <Logos src={boxGreen} />
+            <PNumbers>7</PNumbers>
+            <PNames>X PICKER</PNames>
+          </Icos24>
+          <Icos24>
+            <Logos src={clockRed} />
+            <PNumbers>7</PNumbers>
+            <PNames>X ORDEN</PNames>
+          </Icos24>
+          <Icos24>
+            <Logos src={triangleWhite} />
+            <PNumbers>7</PNumbers>
+            <PNames>X ORDEN</PNames>
+          </Icos24>
+        </Indicadores>
+      </InicioA>
+      <InicioA>
+        <Oval>
+          <OvalInt>
+            <Pickers>4 PICKERS</Pickers>
+            <Qty>28</Qty>
+            <Orders>ORDENES</Orders>
+          </OvalInt>
+        </Oval>
+        <Indicadores>
+          <Icos24>
+            <Logos src={boxGreen} />
+            <PNumbers>7</PNumbers>
+            <PNames>X PICKER</PNames>
+          </Icos24>
+          <Icos24>
+            <Logos src={clockRed} />
+            <PNumbers>7</PNumbers>
+            <PNames>X ORDEN</PNames>
+          </Icos24>
+          <Icos24>
+            <Logos src={triangleWhite} />
+            <PNumbers>7</PNumbers>
+            <PNames>X ORDEN</PNames>
+          </Icos24>
+        </Indicadores>
+      </InicioA>
+    </Carousel>
+    <hr></hr>
     <LDerecho>
-      <OrdenHeader>
+    <OrdenHeader>
         <DivJ>
           <ImgH src={box} />
           <ONuevas>ORDENES NUEVAS</ONuevas>
