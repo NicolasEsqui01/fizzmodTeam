@@ -33,10 +33,10 @@ export default ({sessions}) => (
     <ListOrdenes>
       <Img src={box} />
       <DivN>
-        <Numero>Nro. 43782599043789</Numero>
+       <Numero>Nro.{sessions.data[0].id}</Numero>
         <DivT>
           <Text>
-            <Num>86</Num> Items/
+            <Num>{sessions.data[0].totalItems}</Num> Items/
           </Text>
           <Text>
             <Num>16</Num> min

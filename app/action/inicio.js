@@ -13,11 +13,12 @@ const headers = {
         'janis-client': 'plataforma5-2020'
       }
 }
-
-export const fetchSessions = (token) => (dispatch) => {
+                         //token
+export const fetchSessions = () => (dispatch) => {
   console.log('llegamos a este axios')
+  //`https://picking.janis.in/api/session/${token}`
   return axios
-    .get(`https://picking.janis.in/api/session/${token}`, headers)
+    .get(`https://picking.janis.in/api/session`, headers)
     .then((list) => {
       console.log("SESSION LISTA DEVUELTA DE BACKEND: ", list)
       dispatch(getSessions(list))}

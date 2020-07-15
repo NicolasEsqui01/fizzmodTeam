@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import {
   DivContenedor,
   DivImage,
@@ -28,7 +29,6 @@ import {
 } from './style';
 
 import logoJanis from '../../images/logo_janis.svg';
-import { Link } from 'react-router-dom'
 
 export default ({ handleSubmit, handleChange }) => {
   return (
@@ -44,6 +44,7 @@ export default ({ handleSubmit, handleChange }) => {
       </DivImage>
       <DivContectForm>
         <DivForm>
+          <Forgot>hola</Forgot>
           <DivTitle>
             <H1>Connect to janis</H1>
             <H3>Enter your data</H3>
@@ -56,27 +57,13 @@ export default ({ handleSubmit, handleChange }) => {
                   <DivInput1>
                     <DivInput2>
                       <DivInput3></DivInput3>
-                      <Input type='text' name='email' onChange={handleChange} />
-                    </DivInput2>
-                  </DivInput1>
-                </DivInput>
-              </SubInput>
-              <SubInput>
-                <Label>Password</Label>
-                <DivInput>
-                  <DivInput1>
-                    <DivInput2>
-                      <DivInput3></DivInput3>
-                      <Input type='password' name='password' onChange={handleChange} />
+                      <Input type="text" name="email" onChange={handleChange} />
                     </DivInput2>
                   </DivInput1>
                 </DivInput>
               </SubInput>
             </FormInput>
             <FormButtom>
-              <Forgot>  
-                <Link to='/forgotPassword' style={{textDecoration:'none'}}><TagA href='#'>Forgot Password</TagA> </Link>
-              </Forgot>
               <Button>Enter</Button>
             </FormButtom>
           </Form>

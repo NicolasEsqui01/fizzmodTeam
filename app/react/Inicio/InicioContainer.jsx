@@ -13,14 +13,14 @@ console.log("ESTADO: ", state)
 
 const mapDispatchToProps = (dispatch, ownProps) => {
  	return {
- 		getSessionById: () => dispatch(fetchSessions()),
+ 		getSessions: () => dispatch(fetchSessions()),
  	}
 };
 
-const InicioContainer = ({sessionId, session, getSessionById}) => {
+const InicioContainer = ({sessionId, session, getSessions}) => {
 
 	 useEffect(()=>{
-	 	getSessionById(sessionId)
+	 	getSessions()
 	},[])
 
 	return (
