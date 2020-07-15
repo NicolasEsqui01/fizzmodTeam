@@ -51,26 +51,26 @@ export default ({ handleSubmit, handleChange, valor }) => {
           <Form onSubmit={handleSubmit}>
             <FormInput>
               <SubInput>
-                  <Label>Email</Label>
-                  <DivInput>
-                    <DivInput1>
-                      <DivInput2>
-                        <DivInput3></DivInput3>
-                        <Input type='text' name='email' onChange={handleChange}/>
-                      </DivInput2>
-                    </DivInput1>
-                  </DivInput>
+                <Label>Email</Label>
+                <DivInput>
+                  <DivInput1>
+                    <DivInput2>
+                      <DivInput3></DivInput3>
+                      <Input type='text' name='email' onChange={handleChange} />
+                    </DivInput2>
+                  </DivInput1>
+                </DivInput>
               </SubInput>
               <SubInput>
-                  <Label>Password</Label>
-                  <DivInput>
-                    <DivInput1>
-                      <DivInput2>
-                        <DivInput3></DivInput3>
-                        <Input type='password' name='password' onChange={handleChange}/>
-                      </DivInput2>
-                    </DivInput1>
-                  </DivInput>
+                <Label>Password</Label>
+                <DivInput>
+                  <DivInput1>
+                    <DivInput2>
+                      <DivInput3></DivInput3>
+                      <Input type='password' name='password' onChange={handleChange} />
+                    </DivInput2>
+                  </DivInput1>
+                </DivInput>
               </SubInput>
             </FormInput>
             <FormButtom>
