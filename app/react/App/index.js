@@ -16,6 +16,7 @@ import { hot } from 'react-hot-loader/root';
 import LoginContainer from '../login/Loadable'
 import InicioContainer from '../Inicio/InicioContainer';
 // Header and Footer
+import Navbar from "../Navbar/NavbarContainer";
 import Footer from '../Footer';
 import GlobalStyle from '../../global-styles';
 
@@ -28,6 +29,7 @@ function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
+      <Navbar/>
       <Switch>
         <Route path='/login' component={LoginContainer}/>
         <Route path="/inicio" component={InicioContainer} />
