@@ -15,12 +15,16 @@ const headers = {
 }
 
 export const fetchSessions = () => (dispatch) => {
-  console.log("POR MANDAR EL AXIOS CON TOKEN: ")
   return axios
     .get(`https://picking.janis.in/api/session`, headers)
     .then((list) => {
-      console.log("SESSION LISTA DEVUELTA DE BACKEND: ", list)
-      dispatch(getSessions(list))}
+      dispatch(getSessions(list.data))}
       );
 };
+
+// export const buscarPeliculas = function (nombre) {
+//     return function (dispatch, getState) {
+//       axios.get(`http://www.omdbapi.com/?apikey=20dac387&s=${nombre}`)
   
+
+// Sebas ID 5f0ca78b6cda968edcf7b5e5

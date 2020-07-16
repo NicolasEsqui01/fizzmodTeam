@@ -23,7 +23,7 @@ const InicioContainer = ({sessionId, session, getSessions}) => {
 	},[])
 
 	return (
-		<Inicio session={session}></Inicio>
+		<Inicio sessions={session}></Inicio>
 		)
 };
 
