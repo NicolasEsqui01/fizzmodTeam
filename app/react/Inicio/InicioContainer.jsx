@@ -1,29 +1,61 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import { connect } from 'react-redux';
 import Inicio from './Inicio';
-import { fetchSessions } from "../../action/inicio";
+import { fetchSessions, DamePermiso ,ChangePending, ChangePicked  /* fetchSessionsPicked */} from "../../action/inicio";
+
 
 const mapStateToProps = (state, ownProps) => {
+	
   return {
     sessionId: state.loginReducer.user,  //VERIFICAR NOMBRE DEL ESTADO
-    session: state.inicioReducer.sessions
+	session: state.inicioReducer.sessions,
+	
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
  	return {
- 		getSessions: () => dispatch(fetchSessions()),
+		 getSessions: () => dispatch(fetchSessions()),
+		 getPermiso: () => dispatch(DamePermiso()),
+	     sessionsPending: ()=> dispatch(ChangePending()),
+		 sessionsPicked: ()=>dispatch(ChangePicked()), 
  	}
 };
 
-const InicioContainer = ({sessionId, session, getSessions}) => {
+const InicioContainer = ({sessionId, session, getSessions, getPermiso, sessionsPending, sessionsPicked }) => {
+
+
+	const [status, setStatus] = useState('pending')
 
 	useEffect(()=>{
 		getSessions()
 	},[])
 
+	const setPermiso = ()=>{
+      
+	  getPermiso()
+	  
+	}
+	 const setPending = ()=>{
+      console.log('estamos aqui')
+		sessionsPending()
+	}
+
+	const setPicked = ()=>{
+		console.log('ESTAMOS AQUI')
+		sessionsPicked()
+		
+	}
+	 
+
 	return (
-		<Inicio sessions={session}></Inicio>
+		<Inicio
+		 sessions={session}
+		 cambio={setPermiso}
+		 status={status}
+		 getSessionPicked ={setPicked}
+		 getSessionPending ={setPending}  
+		 ></Inicio>
 		)
 };
 

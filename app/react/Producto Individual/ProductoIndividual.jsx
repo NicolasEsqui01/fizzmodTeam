@@ -9,7 +9,7 @@ import ImagenProdu from "../../images/carne.png";
 import ImagenBarrita from "../../images/barrita.png";
 import ImagenGlobo1 from "../../images/globoUno.png";
 import ImagenGlobo2 from "../../images/globoDos.png";
-import Item3 from "../../images/item3.png";
+import Item3 from "../../images/Item3.png";
 import Stock from "../../images/stock.png";
 
 
