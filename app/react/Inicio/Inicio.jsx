@@ -49,10 +49,12 @@ import clockRed from '../../images/clock-red.svg';
 import triangleWhite from '../../images/triangle_circle_white.svg';
 import '../common/styles/main.scss';
 
-export default ({session}) => (
+export default ({session, cambio, getSessionPending, getSessionPicked  , status}) => {
+
+  return (
   <Container>
     <Carousel
-      className="sliderInicio"
+      className="sliderInicio"  
       isRTL
       itemsToShow={1}
       transitionMs={500}
@@ -113,20 +115,18 @@ export default ({session}) => (
     <LDerecho>
     <OrdenHeader>
         <DivJ>
-          <ImgH src={box} />
-          <ONuevas>ORDENES NUEVAS</ONuevas>
+        <ONuevas onClick={getSessionPending}  ><ImgH src={box} />ORDENES NUEVAS</ONuevas>
         </DivJ>
         <DivP>
-          <ImgH src={slashBox} />
-          <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
+        <PrePickeadas onClick={getSessionPicked}  > <ImgH src={slashBox} />PRE-PRICKEADAS</PrePickeadas>
         </DivP>
       </OrdenHeader>
 
-      <OrdersContainer />
+      <OrdersContainer status = {status}/>
 
       <OrdenFooter>
-        <Button>Comenzar</Button>
+        <Button onClick = {cambio}>Comenzar</Button>
       </OrdenFooter>
     </LDerecho>
   </Container>
-);
+)};
