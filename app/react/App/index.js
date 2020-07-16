@@ -15,6 +15,7 @@ import { hot } from 'react-hot-loader/root';
 // import NotFoundPage from '../NotFoundPage/Loadable';
 import LoginContainer from '../login/Loadable'
 import InicioContainer from '../Inicio/InicioContainer';
+import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 // Header and Footer
 import Navbar from "../Navbar/NavbarContainer";
@@ -34,6 +35,7 @@ function App() {
       <Switch>
         <Route path='/login' component={LoginContainer}/>
         <Route path="/inicio" component={InicioContainer} />
+        <Route path="/productoindividual" component={ProductoIndividual}/>
         <Route path="/forgotPassword" component={ForgotPassword}/>
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
