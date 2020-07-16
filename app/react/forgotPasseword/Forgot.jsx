@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import {
   DivContenedor,
   DivImage,
@@ -17,20 +16,20 @@ import {
   FormInput,
   SubInput,
   FormButtom,
-  Forgot,
   Button,
   Label,
   Input,
-  TagA,
   DivInput,
   DivInput1,
   DivInput2,
   DivInput3,
+  LabelForgot,
+  Span
 } from './style';
 
 import logoJanis from '../../images/logo_janis.svg';
 
-export default ({ handleSubmit, handleChange }) => {
+export default ({ handleSubmit, handleChange, boolen ,valor}) => {
   return (
     <DivContenedor>
       <DivImage>
@@ -43,31 +42,47 @@ export default ({ handleSubmit, handleChange }) => {
         <DivLogoLetras>janis</DivLogoLetras>
       </DivImage>
       <DivContectForm>
-        <DivForm>
-          <Forgot>hola</Forgot>
+        {boolen ? (
           <DivTitle>
+            <LabelForgot>Forgot Password</LabelForgot>
             <H1>Connect to janis</H1>
-            <H3>Enter your data</H3>
+            <H3>Email sent <LabelForgot>{valor.email}</LabelForgot></H3>
+            <H3>Check your email</H3>
           </DivTitle>
-          <Form onSubmit={handleSubmit}>
-            <FormInput>
-              <SubInput>
-                <Label>Email</Label>
-                <DivInput>
-                  <DivInput1>
-                    <DivInput2>
-                      <DivInput3></DivInput3>
-                      <Input type="text" name="email" onChange={handleChange} />
-                    </DivInput2>
-                  </DivInput1>
-                </DivInput>
-              </SubInput>
-            </FormInput>
-            <FormButtom>
-              <Button>Enter</Button>
-            </FormButtom>
-          </Form>
-        </DivForm>
+        ) : (
+          <DivForm>
+            <DivTitle>
+              <LabelForgot>Forgot Password</LabelForgot>
+              <H1>Connect to janis</H1>
+              <H3>Enter your data</H3>
+            </DivTitle>
+            <Form onSubmit={handleSubmit}>
+              <FormInput>
+                <SubInput>
+                  <Label colors={valor.email}>Email</Label>
+                  <DivInput>
+                    <DivInput1>
+                      <DivInput2>
+                        <DivInput3></DivInput3>
+                        <Input
+                          colors={valor.email}
+                          type="text"
+                          name="email"
+                          onChange={handleChange}
+                        />
+                        {valor.email === '' ? <Span>In required</Span> : null}
+                      </DivInput2>
+                    </DivInput1>
+                  </DivInput>
+                </SubInput>
+                <SubInput></SubInput>
+              </FormInput>
+              <FormButtom>
+                <Button>Enter</Button>
+              </FormButtom>
+            </Form>
+          </DivForm>
+        )}
       </DivContectForm>
     </DivContenedor>
   );
