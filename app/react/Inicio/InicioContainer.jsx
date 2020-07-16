@@ -1,7 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import Inicio from './Inicio';
+import { fetchSessions } from "../../action/inicio";
 
-const InicioContainer = () => <Inicio></Inicio>;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    sessionId: state.loginReducer.user,  //VERIFICAR NOMBRE DEL ESTADO
+    session: state.inicioReducer.sessions
+  };
+};
 
-export default connect(null, null)(InicioContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+ 	return {
+ 		getSessions: () => dispatch(fetchSessions()),
+ 	}
+};
+
+const InicioContainer = ({sessionId, session, getSessions}) => {
+
+	useEffect(()=>{
+		getSessions()
+	},[])
+
+	return (
+		<Inicio sessions={session}></Inicio>
+		)
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(InicioContainer);
+

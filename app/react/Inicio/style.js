@@ -354,6 +354,10 @@ export const LDerecho = styled.div`
 `;
 
 export const OrdenHeader = styled.div`
+@media ${device.tablet} {
+  
+  height: 7%;
+}
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -363,11 +367,14 @@ export const OrdenHeader = styled.div`
 `;
 
 export const OrdenFooter = styled.div`
-  margin-top: 20%;
+@media ${device.tablet} {
+  margin-top: 10%;
+}
+  margin-top: 5%;
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 200px;
+  height: 150px;
 `;
 
 export const ONuevas = styled.h1`

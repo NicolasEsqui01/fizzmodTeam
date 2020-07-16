@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import { device } from '../../utils/mediaQuerys';
 
 export const ListOrdenes = styled.div`
+@media ${device.tablet} {
+  
+  height: 50%;
+ 
+}
   margin-left: 5%;
   margin-right: 5%;
   display: flex;
@@ -80,6 +85,17 @@ export const DivS = styled.div`
   margin-top: 5%;
   flex-direction: row;
 `;
+
+export const DivScroll = styled.div`
+@media ${device.tablet} {
+  
+  height: 90%;
+ 
+}
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+`
 
 //
 
@@ -209,7 +225,7 @@ export const Marca2 = styled.div`
 
 export const Info = styled.div`
 @media ${device.tablet} {
-  font-size: 100%;
+  font-size: 11px;
 }
   height: 30px;
   width: 60%;

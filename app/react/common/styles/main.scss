@@ -11,6 +11,7 @@ body {
 .rec-dot {
     margin-left: 7px !important;
     margin-right: 7px !important;
+    margin-top:0px !important;
     background-color: white !important;
 	@media only screen and (min-width : 769px) {
 	margin-top: 70px !important;
@@ -33,8 +34,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom:40px !important;
   @media only screen and (max-width : 768px) {
   	width: 100%;
+    height: 95vh;
 	background-color: #16232d;
   }
   @media only screen and (min-width : 769px) {
