@@ -50,7 +50,7 @@ const InicioContainer = ({sessionId, session, getSessions, getPermiso, sessionsP
 
 	return (
 		<Inicio
-		 session={session}
+		 sessions={session}
 		 cambio={setPermiso}
 		 status={status}
 		 getSessionPicked ={setPicked}

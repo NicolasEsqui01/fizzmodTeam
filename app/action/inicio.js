@@ -39,23 +39,6 @@ export const fetchSessions = () => (dispatch) => {
       );
 };
 
-/* export const fetchSessionsPicked = () => (dispatch) => {
-  return axios
-    .get('https://picking.janis.in/api/session', headers)
-    .then((list) => {
-      dispatch(getSessions(list.data))}
-      );
-}; */
-
-/* export const fetchSessionsPending = () => (dispatch) => {
-  return axios
-    .get('https://picking.janis.in/api/session', headers)
-    .then((list) => {
-      dispatch(getSessions(list.data))}
-      );
-};
-   */
-
 export const DamePermiso = () => dispatch =>{
   return dispatch(setPermiso())
 }
