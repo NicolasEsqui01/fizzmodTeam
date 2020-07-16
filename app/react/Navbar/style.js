@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavCont = styled.div`
 width: 100%;
-height: 46px;
+height: 10%;
 background-color: #273947;
 diplay: flex;
 align-items: center;

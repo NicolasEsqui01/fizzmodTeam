@@ -50,8 +50,7 @@ import triangleWhite from '../../images/triangle_circle_white.svg';
 import '../common/styles/main.scss';
 import moment from 'moment';
 
-export default ({sessions}) => {
-  {/*console.log("sessions!!!!", sessions)*/}
+export default ({sessions ,cambio, getSessionPending, getSessionPicked  , status}) => {
   let picked=0;
   let picking=0;
   let pending=0;
@@ -78,8 +77,7 @@ export default ({sessions}) => {
   tiempoPromedioOrden= (tiempoPorOrden/=length)
   countProdPorOrden = countProdPorOrden.reduce((previous, current) => current += previous);
   tiempoPromedioPorProducto= Math.round((countProdPorOrden/=length)*10)/10;
-  {/*console.log("tiempoPromedioOrden",tiempoPromedioOrden)*/}
-  {/*console.log("tiempoPromedioPorProducto",tiempoPromedioPorProducto)*/}
+
   }
   return (
   <Container>
@@ -146,19 +144,17 @@ export default ({sessions}) => {
     <LDerecho>
     <OrdenHeader>
         <DivJ>
-          <ImgH src={box} />
-          <ONuevas>ORDENES NUEVAS</ONuevas>
+        <ONuevas onClick={getSessionPending}  ><ImgH src={box} />ORDENES NUEVAS</ONuevas>
         </DivJ>
         <DivP>
-          <ImgH src={slashBox} />
-          <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
+        <PrePickeadas onClick={getSessionPicked}  > <ImgH src={slashBox} />PRE-PRICKEADAS</PrePickeadas>
         </DivP>
       </OrdenHeader>
 
-      <OrdersContainer />
+      <OrdersContainer status = {status}/>
 
       <OrdenFooter>
-        <Button>Comenzar</Button>
+        <Button onClick = {cambio}>Comenzar</Button>
       </OrdenFooter>
     </LDerecho>
   </Container>

@@ -25,91 +25,63 @@ import balance from '../../images/balanceCelest.svg';
 import snow from '../../images/snowflakeCelest.svg';
 import substitute from '../../images/substitute.svg';
 import store from '../../images/store.svg';
+import { element } from 'prop-types';
 
 
-export default ({sessions}) => (
+export default ({sessions, permiso, status}) =>  {
+  //element.startPickingTime - element.endPickingTime
+  return(
   <>
+
   <DivScroll>
-    <ListOrdenes>
-      <Img src={box} />
-      <DivN>
-        <Numero>Nro. 43782599043789</Numero>
-        <DivT>
-          <Text>
-            <Num>86</Num> Items/
-          </Text>
-          <Text>
-            <Num>16</Num> min
-          </Text>
-        </DivT>
-        <DivP>
-          <Peso>
-            <ImgP src={balance} />
-            <NumP>23</NumP>
-          </Peso>
-          <Frio>
-            <ImgP src={snow} />
-            <NumP>23</NumP>
-          </Frio>
-          <Aire>
-            <ImgP src={waves} />
-            <NumP>23</NumP>
-          </Aire>
-        </DivP>
-        <DivS>
-          <Marca>
-            <ImgP src={substitute} />
-            <Info>= Marca, = Gramage</Info>
-          </Marca>
-        </DivS>
-        <DivS>
-          <Marca2>
-            <ImgP src={store} />
-            <Info>Retiro por tienda</Info>
-          </Marca2>
-        </DivS>
-      </DivN>
-    </ListOrdenes>
-    <ListOrdenes>
-      <Img src={box} />
-      <DivN>
-        <Numero>Nro. 43782599043789</Numero>
-        <DivT>
-          <Text>
-            <Num>86</Num> Items/
-          </Text>
-          <Text>
-            <Num>16</Num> min
-          </Text>
-        </DivT>
-        <DivP>
-          <Peso>
-            <ImgP src={balance} />
-            <NumP>23</NumP>
-          </Peso>
-          <Frio>
-            <ImgP src={snow} />
-            <NumP>23</NumP>
-          </Frio>
-          <Aire>
-            <ImgP src={waves} />
-            <NumP>23</NumP>
-          </Aire>
-        </DivP>
-        <DivS>
-          <Marca>
-            <ImgP src={substitute} />
-            <Info>= Marca, = Gramage</Info>
-          </Marca>
-        </DivS>
-        <DivS>
-          <Marca2>
-            <ImgP src={store} />
-            <Info>Retiro por tienda</Info>
-          </Marca2>
-        </DivS>
-      </DivN>
-    </ListOrdenes>
+    {
+    
+    sessions.filter(e => e.status === status).map(element =>{ 
+     
+ return (
+ <ListOrdenes key={element.id} permitir={permiso}>
+ <Img src={box} />
+ <DivN>
+  <Numero>Nro.{element.id} </Numero>
+   <DivT>
+     <Text>
+    <Num>{element.totalItems}</Num> Items/
+     </Text>
+     <Text>
+       <Num>16</Num> min
+     </Text>
+   </DivT>
+   <DivP>
+     <Peso>
+       <ImgP src={balance} />
+       <NumP>23</NumP>
+     </Peso>
+     <Frio>
+       <ImgP src={snow} />
+       <NumP>23</NumP>
+     </Frio>
+     <Aire>
+       <ImgP src={waves} />
+       <NumP>23</NumP>
+     </Aire>
+   </DivP>
+   <DivS>
+     <Marca>
+       <ImgP src={substitute} />
+       <Info>= Marca, = Gramage</Info>
+     </Marca>
+   </DivS>
+   <DivS>
+     <Marca2>
+       <ImgP src={store} />
+       <Info>Retiro por tienda</Info>
+     </Marca2>
+   </DivS>
+ </DivN>
+</ListOrdenes>
+
+)}  )}
+    
     </DivScroll>
   </>
-);
+)};

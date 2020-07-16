@@ -12,7 +12,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
+  height: 96vh;
   @import url('https://fonts.googleapis.com/css?family=Roboto');
   body {
     font-family: 'Roboto', sans-serif;
@@ -356,12 +356,12 @@ export const LDerecho = styled.div`
 export const OrdenHeader = styled.div`
 @media ${device.tablet} {
   
-  height: 7%;
+  height: 60px
 }
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 15%;
+  height: 10%;
   width: 100%;
   background-color: #ffffff;
 `;
@@ -377,12 +377,13 @@ export const OrdenFooter = styled.div`
   height: 150px;
 `;
 
-export const ONuevas = styled.h1`
+export const ONuevas = styled.button`
 @media ${device.tablet} {
   font-size: 15px;
+  height: 50px;
 }
-  height: 14px;
-  width: 80%;
+  height: 95px;
+  width:100%;
   color: #273947;
   font-family: Roboto;
   font-size: 120%;
@@ -390,21 +391,28 @@ export const ONuevas = styled.h1`
   letter-spacing: 0;
   line-height: 14px;
   text-align: center;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  
 `;
-export const PrePickeadas = styled.h1`
+export const PrePickeadas = styled.button`
 @media ${device.tablet} {
   font-size: 15px;
+  height: 50px;
+
 }
- 
-  height: 14px;
-  width: 80%;
-  color: #939598;
+  height: 95px;
+  width:100%;
+  color: #273947;
   font-family: Roboto;
   font-size: 120%;
   font-weight: bold;
   letter-spacing: 0;
   line-height: 14px;
   text-align: center;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  
 `;
 
 export const ImgH = styled.img`
