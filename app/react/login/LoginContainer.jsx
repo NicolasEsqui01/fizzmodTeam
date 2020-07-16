@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Login from './Login';
 import { setLogin as funcionDeLogin } from '../../action/login';
+import history from '../../utils/history'
 
 const LoginContainer = ({setLogin}) => {
   const [input, setInput] = useState({});
@@ -12,7 +13,9 @@ const LoginContainer = ({setLogin}) => {
       email: event.target[0].value,
       password: event.target[1].value,
     };
-    setLogin(data);
+    setLogin(data).then(() =>{
+      return history.push('/inicio')
+    });
   };
 
   const handleChange = (event) => {
