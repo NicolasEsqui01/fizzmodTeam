@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Inicio from './Inicio';
 import { fetchSessions, DamePermiso ,fetchPickers, ChangePending, ChangePicked } from "../../action/inicio";
 
-const mapStateToProps = (state, ownProps) => {
+	t mapStateToProps = (state, ownProps) => {
 	
   return {
     sessionId: state.loginReducer.user,  //VERIFICAR NOMBRE DEL ESTADO

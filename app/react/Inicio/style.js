@@ -39,7 +39,6 @@ export const ContUser = styled.div`
   margin-top: 65px;
   @media ${device.tablet} {
     margin-bottom: 35px;
-    width: 230px;
     height: 230px;
   }
   @media ${device.laptop} {
