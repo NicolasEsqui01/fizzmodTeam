@@ -6,7 +6,7 @@ import { device } from '../../utils/mediaQuerys';
 export const ListOrdenes = styled.div`
 @media ${device.tablet} {
   
-  height: 8%;
+  height: 450px;
  
 }
  
@@ -18,7 +18,7 @@ export const ListOrdenes = styled.div`
   width: 90%;
   border-radius: 3px;
   background-color: #ffffff;
-  &:hover{${props => props.permitir? 'border: 4px solid #1db779 ':null}}
+  &:hover{border: 4px solid #1db779 }
 `;
 //${props => props.permitir? 'border: 1px solid #1db779 ':null}
 export const Numero = styled.h1`

@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import fondoImag from '../../images/Janis-login-image.jpg'
+import { device } from '../../utils/mediaQuerys';
+
 
 export const DivContenedor = styled.div`
   background-color: white;
   display: flex;
+  height:100%;
   @media screen and (max-width: 1023px){
     flex-direction: column;
+
   }
 `;
 export const DivImage = styled.div`
@@ -68,6 +72,11 @@ export const Image = styled.img`
 export const DivLogoLetras = styled.div``;
 
 export const DivContectForm = styled.div`
+
+@media ${device.tablet} {
+  margin-top: 100px;
+}
+
    display: flex;
    flex-direction: column;
    -webkit-box-pack: center;
@@ -243,6 +252,7 @@ export const Input = styled.input`
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   border-bottom: ${props => props.colors === '' ? '1px solid rgb(255, 67, 67)' : '1px solid rgb(213, 215, 219)' };
   border-radius: 0px;
+  outline:none;
 `;
 
 export const ErrorLabel = styled.label`

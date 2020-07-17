@@ -382,7 +382,7 @@ export const ONuevas = styled.button`
   font-size: 15px;
   height: 50px;
 }
-  height: 95px;
+  height: 100%;
   width:100%;
   color: #273947;
   font-family: Roboto;
@@ -393,6 +393,8 @@ export const ONuevas = styled.button`
   text-align: center;
   background-color: #ffffff;
   border: 2px solid #ffffff;
+  border-bottom:${props => props.status === 'pending' ?  '4px solid #273947' : null};
+  outline:none;
   
 `;
 export const PrePickeadas = styled.button`
@@ -401,7 +403,7 @@ export const PrePickeadas = styled.button`
   height: 50px;
 
 }
-  height: 95px;
+  height: 100%;
   width:100%;
   color: #273947;
   font-family: Roboto;
@@ -412,6 +414,8 @@ export const PrePickeadas = styled.button`
   text-align: center;
   background-color: #ffffff;
   border: 2px solid #ffffff;
+  border-bottom:${props => props.status === 'picked' ?  '4px solid #273947' : null};
+  outline:none;
   
 `;
 
@@ -459,6 +463,7 @@ export const Button = styled.button`
   text-align: center;
   border-radius: 3px;
   background-color: #1db779;
+  
 `;
 
   
