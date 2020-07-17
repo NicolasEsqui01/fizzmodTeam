@@ -8,13 +8,14 @@
  */
 
 import React from 'react';
-import { Switch, Route , Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import { hot } from 'react-hot-loader/root';
 // import NotFoundPage from '../NotFoundPage/Loadable';
 import LoginContainer from '../login/Loadable'
 import InicioContainer from '../Inicio/InicioContainer';
+//import SearchContainer from "../search/SearchContainer"
 // Header and Footer
 import Navbar from "../Navbar/NavbarContainer";
 import Footer from '../Footer';
@@ -29,10 +30,11 @@ function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <Navbar/>
+      <Navbar />
       <Switch>
-        <Route path='/login' component={LoginContainer}/>
+        <Route path='/login' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
+        {/*<Route path="/search" component={SearchContainer} />*/}
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       {/* <Footer /> */}
