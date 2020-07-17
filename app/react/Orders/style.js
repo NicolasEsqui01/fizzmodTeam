@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import { device } from '../../utils/mediaQuerys';
 
+
+
 export const ListOrdenes = styled.div`
 @media ${device.tablet} {
   
-  height: 50%;
+  height: 450px;
  
 }
+ 
   margin-left: 5%;
   margin-right: 5%;
   display: flex;
@@ -15,11 +18,13 @@ export const ListOrdenes = styled.div`
   width: 90%;
   border-radius: 3px;
   background-color: #ffffff;
+  &:hover{border: 4px solid #1db779 }
 `;
+//${props => props.permitir? 'border: 1px solid #1db779 ':null}
 export const Numero = styled.h1`
 @media ${device.tablet} {
   
-  font-size: 120%;
+  font-size: 100%;
  
 }
   margin-top: 5%;
@@ -36,13 +41,13 @@ export const Numero = styled.h1`
 // Logos
 export const Img = styled.img`
 @media ${device.tablet} {
-  height: 10%;
-  width: 10%;
+  height: 40px;
+  width: 40px;
 }
   margin-top: 3%;
-  margin-left: 10%;
-  height: 10%;
-  width: 5%;
+  margin-left: 5%;
+  height: 60px;
+  width: 60px;
   background-color: #273947;
   border-radius: 50px;
   padding: 7px;
@@ -60,6 +65,7 @@ export const ImgP = styled.img`
 
 // Div de control
 export const DivN = styled.div`
+
   display: flex;
   flex-direction: column;
   margin-left: 5%;
@@ -127,11 +133,11 @@ export const Text = styled.div`
   display: flex;
   flex-direction: row;
   height: 16px;
-  width: 80px;
+  width: 100px;
   color: #d5d7db;
   font-family: Roboto;
   font-size: 20px;
-  letter-spacing: 0;
+  letter-spacing: 1px;
   line-height: 16px;
   color: #d5d7db;
 `;

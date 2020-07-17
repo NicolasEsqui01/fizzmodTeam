@@ -50,8 +50,7 @@ import triangleWhite from '../../images/triangle_circle_white.svg';
 import '../common/styles/main.scss';
 import moment from 'moment';
 
-export default ({sessions, pickers}) => {
-  {/*console.log("sessions!!!!", sessions)*/}
+export default ({sessions ,pickers, cambio, getSessionPending, getSessionPicked  , status}) => {
   let picked=0;
   let picking=0;
   let pending=0;
@@ -145,19 +144,17 @@ export default ({sessions, pickers}) => {
     <LDerecho>
     <OrdenHeader>
         <DivJ>
-          <ImgH src={box} />
-          <ONuevas>ORDENES NUEVAS</ONuevas>
+        <ONuevas onClick={getSessionPending} status = {status}  ><ImgH src={box} />ORDENES NUEVAS</ONuevas>
         </DivJ>
         <DivP>
-          <ImgH src={slashBox} />
-          <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
+        <PrePickeadas onClick={getSessionPicked} status = {status} > <ImgH src={slashBox} />PRE-PRICKEADAS</PrePickeadas>
         </DivP>
       </OrdenHeader>
 
-      <OrdersContainer />
+      <OrdersContainer/>
 
       <OrdenFooter>
-        <Button>Comenzar</Button>
+        <Button onClick = {cambio}>Comenzar</Button>
       </OrdenFooter>
     </LDerecho>
   </Container>

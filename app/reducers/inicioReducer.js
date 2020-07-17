@@ -1,7 +1,10 @@
 const intialState = {
   sessions: [],
-  pickers: []
-}
+  pickers: [],
+  permiso: false,
+  status:'pending'
+};
+
 
 export default function reducer(state = intialState, action) {
   switch (action.type) {
@@ -9,6 +12,12 @@ export default function reducer(state = intialState, action) {
       return { ...state, sessions: action.sessions };
     case "GET_PICKERS":
       return { ...state, pickers: action.pickers };
+    case "GET_PERMISO":
+      return { ...state, permiso: action.permiso };
+    case "SET_STATUS":
+      return { ...state, status: action.status };
+    case "SET_STATUS2":
+      return { ...state, status: action.status };
     default: return state;
   }
 }
