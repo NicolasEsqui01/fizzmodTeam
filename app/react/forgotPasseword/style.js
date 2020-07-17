@@ -108,6 +108,8 @@ export const H1 = styled.h1`
   }
 `;
 
+
+
 export const H3 = styled.h3`
   color: rgb(147, 149, 152);
   font-family: Roboto, sans-serif;
@@ -177,7 +179,7 @@ export const FormButtom = styled.div`
 
 export const Forgot = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   height: 16px;
   color: rgb(41, 121, 255);
   font-family: Roboto, sans-serif;
@@ -220,13 +222,12 @@ export const Label = styled.label`
   font-size: 13px;
   font-family: Roboto, sans-serif;
   flex-shrink: 0;
-  color: rgb(147, 149, 152);
+  color: ${props => props.colors === '' ? 'rgb(255, 67, 67)' : 'rgb(147, 149, 152)'};
   width: 100%;
   line-height: 16px;
 `;
 export const Input = styled.input`
   box-shadow: white 0px 0px 0px 30px inset;
-  min-width: 400px;
   height: 30px;
   border-top-width: initial;
   border-right-width: initial;
@@ -241,6 +242,26 @@ export const Input = styled.input`
   border-style: none none solid;
   border-image: initial;
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  border-bottom: 1px solid rgb(213, 215, 219);
+  border-bottom: ${props => props.colors === '' ? '1px solid rgb(255, 67, 67)' : '1px solid rgb(213, 215, 219)' };
   border-radius: 0px;
 `;
+
+export const LabelForgot = styled.label`
+  color: rgb(41, 121, 255);
+  text-transform: uppercase;
+  height: 11px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.77px;
+  line-height: 11px;
+  @media screen and (max-width:1023){
+    margin-top:10px;
+  }  
+`
+export const Span = styled.span`
+  color: rgb(255, 67, 67);
+  font-size: 12px;
+  line-height: 14px;
+  transform: translateY(-6px);
+  word-break: break-word;
+`

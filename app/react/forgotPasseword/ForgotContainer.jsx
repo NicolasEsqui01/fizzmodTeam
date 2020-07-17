@@ -1,18 +1,24 @@
-import React , {useState} from 'react';
+import React , {useState , useEffect} from 'react';
 import {connect} from 'react-redux';
 import Forgot from './Forgot'
-import {setRecuperarPassword} from '../../action/login'
+import {setRecuperarPassword as RecuperarPassword} from '../../action/login'
 
-const ForgotContainer = ({setRecuperarPassword}) =>{
+const ForgotContainer = ({setPassword}) =>{
 
-    const [email, setEmail] = useState({}) 
+    const [email, setEmail] = useState({});
+    const [boolen , setBoolen] = useState(false);
+
+    // useEffect(() =>{
+    // },[boolen])
 
     const handleSubmit = (event) =>{
         event.preventDefault();
         const data = {
             email:event.target[0].value
         }
-        setRecuperarPassword(data)
+        setPassword(data).then(()=>{
+            return setBoolen(!boolen)
+        })
     };
 
     const handleChange = (event) =>{
@@ -20,20 +26,20 @@ const ForgotContainer = ({setRecuperarPassword}) =>{
     } 
 
     return (
-        <Forgot handleSubmit={handleSubmit} handleChange={handleChange} />
+        <Forgot handleSubmit={handleSubmit} handleChange={handleChange} boolen={boolen} valor={email}/>
     )
 };
 
-const MapStateToProps = (state) =>{
+const mapStateToProps = (state) =>{
     return {
 
     }
 };
 
-const MapDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) => {
     return {
-        setRecuperarPassword : (obj) => dispatch(setRecuperarPassword(obj))
+        setPassword : (obj) => dispatch(RecuperarPassword(obj))
     }
 };
 
-export default connect (MapStateToProps,MapDispatchToProps)(ForgotContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(ForgotContainer);
