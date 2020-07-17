@@ -5,6 +5,11 @@ const getSessions = (sessions) => ({
   sessions,
 });
 
+const getPickers = (pickers) => ({
+  type: "GET_PICKERS",
+  pickers,
+});
+
 const headers = {
     headers:{
         'Content-Type': 'application/json',
@@ -22,9 +27,10 @@ export const fetchSessions = () => (dispatch) => {
       );
 };
 
-// export const buscarPeliculas = function (nombre) {
-//     return function (dispatch, getState) {
-//       axios.get(`http://www.omdbapi.com/?apikey=20dac387&s=${nombre}`)
-  
-
-// Sebas ID 5f0ca78b6cda968edcf7b5e5
+export const fetchPickers = () => (dispatch) => {
+  return axios
+    .get(`https://picking.janis.in/api/picker`, headers)
+    .then((list) => {
+      dispatch(getPickers(list.data))}
+      );
+};
