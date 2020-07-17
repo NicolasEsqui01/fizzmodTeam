@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     sessionId: state.loginReducer.user,  //VERIFICAR NOMBRE DEL ESTADO
 	session: state.inicioReducer.sessions,
+	status: state.inicioReducer.status
 	
   };
 };
@@ -22,10 +23,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
  	}
 };
 
-const InicioContainer = ({sessionId, session, getSessions, getPermiso, sessionsPending, sessionsPicked }) => {
+const InicioContainer = ({sessionId, session, getSessions, getPermiso, sessionsPending, sessionsPicked, status }) => {
 
 
-	const [status, setStatus] = useState('pending')
+
 
 	useEffect(()=>{
 		getSessions()

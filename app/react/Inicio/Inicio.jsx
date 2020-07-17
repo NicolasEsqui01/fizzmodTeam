@@ -144,14 +144,14 @@ export default ({sessions ,cambio, getSessionPending, getSessionPicked  , status
     <LDerecho>
     <OrdenHeader>
         <DivJ>
-        <ONuevas onClick={getSessionPending}  ><ImgH src={box} />ORDENES NUEVAS</ONuevas>
+        <ONuevas onClick={getSessionPending} status = {status}  ><ImgH src={box} />ORDENES NUEVAS</ONuevas>
         </DivJ>
         <DivP>
-        <PrePickeadas onClick={getSessionPicked}  > <ImgH src={slashBox} />PRE-PRICKEADAS</PrePickeadas>
+        <PrePickeadas onClick={getSessionPicked} status = {status} > <ImgH src={slashBox} />PRE-PRICKEADAS</PrePickeadas>
         </DivP>
       </OrdenHeader>
 
-      <OrdersContainer status = {status}/>
+      <OrdersContainer/>
 
       <OrdenFooter>
         <Button onClick = {cambio}>Comenzar</Button>

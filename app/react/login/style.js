@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import fondoImag from '../../images/Janis-login-image.jpg'
 
+
 export const DivContenedor = styled.div`
   background-color: white;
   display: flex;
