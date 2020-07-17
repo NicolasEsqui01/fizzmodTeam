@@ -5,6 +5,11 @@ const getSessions = (sessions) => ({
   sessions,
 });
 
+const getPickers = (pickers) => ({
+  type: "GET_PICKERS",
+  pickers,
+});
+
 const setPermiso = ()=>({
   type: "GET_PERMISO",
   permiso : true
@@ -13,13 +18,13 @@ const setPermiso = ()=>({
 const StatusPending = ()=>({
   type: "SET_STATUS",
   status: 'pending'
-
 })
+
 const StatusPicked = ()=>({
   type: "SET_STATUS2",
   status: 'picked'
-
 })
+
 
 const headers = {
     headers:{
@@ -39,16 +44,23 @@ export const fetchSessions = () => (dispatch) => {
       );
 };
 
+export const fetchPickers = () => (dispatch) => {
+  return axios
+    .get(`https://picking.janis.in/api/picker`, headers)
+    .then((list) => {
+      dispatch(getPickers(list.data))}
+      );
+};
+
 export const DamePermiso = () => dispatch =>{
   return dispatch(setPermiso())
 }
 
 export const ChangePending = () => dispatch =>{
-  console.log('PENDING')
   return dispatch(StatusPending())
 }
 
 export const ChangePicked = () => dispatch =>{
-  console.log('PICKED')
   return dispatch(StatusPicked())
 }
+

@@ -228,7 +228,6 @@ export const Label = styled.label`
 `;
 export const Input = styled.input`
   box-shadow: white 0px 0px 0px 30px inset;
-  min-width: 400px;
   height: 30px;
   border-top-width: initial;
   border-right-width: initial;
