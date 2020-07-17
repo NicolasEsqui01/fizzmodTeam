@@ -229,7 +229,7 @@ export const Label = styled.label`
   font-size: 13px;
   font-family: Roboto, sans-serif;
   flex-shrink: 0;
-  color: rgb(147, 149, 152);
+  color: ${props => props.colors === '' ? 'rgb(255, 67, 67)' : 'rgb(147, 149, 152)'};
   width: 100%;
   line-height: 16px;
 `;
@@ -250,7 +250,23 @@ export const Input = styled.input`
   border-style: none none solid;
   border-image: initial;
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  border-bottom: 1px solid rgb(213, 215, 219);
+  border-bottom: ${props => props.colors === '' ? '1px solid rgb(255, 67, 67)' : '1px solid rgb(213, 215, 219)' };
   border-radius: 0px;
   outline:none;
 `;
+
+export const ErrorLabel = styled.label`
+  color: rgb(241, 59, 112);
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 16px;
+`
+
+export const Span = styled.span`
+  color: rgb(255, 67, 67);
+  font-size: 12px;
+  line-height: 14px;
+  transform: translateY(-6px);
+  word-break: break-word;
+`
