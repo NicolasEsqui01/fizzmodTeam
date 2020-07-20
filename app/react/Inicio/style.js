@@ -339,14 +339,13 @@ export const LDerecho = styled.div`
 @media ${device.laptop} {
   background-color: #e8eaf6;
   width: 60%;
-
   display: flex;
   flex-direction: column;
 }
 @media ${device.tablet} {
   background-color: #e8eaf6;
   width: 100%;
-
+  height:90%;
   display: flex;
   flex-direction: column;
 }
