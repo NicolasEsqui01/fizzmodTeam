@@ -27,7 +27,6 @@ const StatusPicked = ()=>({
   status: 'picked'
 })
 
-
 export const fetchSessions = () => (dispatch) => {
   return axios
     .get('https://picking.janis.in/api/session', headers())
