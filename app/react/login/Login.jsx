@@ -25,12 +25,21 @@ import {
   DivInput1,
   DivInput2,
   DivInput3,
+  ErrorLabel,
+  Span,
 } from './style';
 
 import logoJanis from '../../images/logo_janis.svg';
+import { Link } from 'react-router-dom';
 
-export default ({ handleSubmit, handleChange, valor }) => {
-  console.log(valor)
+export default ({
+  handleSubmit,
+  handleChange,
+  error,
+  mensaje,
+  valCampos,
+  valor,
+}) => {
   return (
     <DivContenedor>
       <DivImage>
@@ -47,35 +56,52 @@ export default ({ handleSubmit, handleChange, valor }) => {
           <DivTitle>
             <H1>Connect to janis</H1>
             <H3>Enter your data</H3>
+            {error ? <ErrorLabel>{mensaje}</ErrorLabel> : null}
           </DivTitle>
           <Form onSubmit={handleSubmit}>
-            <FormInput>
-              <SubInput>
-                <Label>Email</Label>
-                <DivInput>
-                  <DivInput1>
-                    <DivInput2>
-                      <DivInput3></DivInput3>
-                      <Input type='text' name='email' onChange={handleChange} />
-                    </DivInput2>
-                  </DivInput1>
-                </DivInput>
-              </SubInput>
-              <SubInput>
-                <Label>Password</Label>
-                <DivInput>
-                  <DivInput1>
-                    <DivInput2>
-                      <DivInput3></DivInput3>
-                      <Input type='password' name='password' onChange={handleChange} />
-                    </DivInput2>
-                  </DivInput1>
-                </DivInput>
-              </SubInput>
+            <FormInput >
+                <SubInput>
+                  <Label colors={valor.email}>Email</Label>
+                  <DivInput>
+                    <DivInput1>
+                      <DivInput2>
+                        <DivInput3></DivInput3>
+                        <Input
+                          colors={valor.email}
+                          type="email"
+                          name="email"
+                          onChange={handleChange}
+                          value={valor.email}
+                        />
+                        {valor.email === '' ? <Span>In required</Span> : null}
+                      </DivInput2>
+                    </DivInput1>
+                  </DivInput>
+                </SubInput>
+                <SubInput>
+                  <Label colors={valor.password}>Password</Label>
+                  <DivInput>
+                    <DivInput1>
+                      <DivInput2>
+                        <DivInput3></DivInput3>
+                        <Input
+                          colors={valor.password}
+                          type="password"
+                          name="password"
+                          onChange={handleChange}
+                          value={valor.password}
+                        />
+                        {valor.password === '' ? <Span>In required</Span> : null}
+                      </DivInput2>
+                    </DivInput1>
+                  </DivInput>
+                </SubInput>
             </FormInput>
             <FormButtom>
               <Forgot>
-                <TagA href='#'>Forgot Password</TagA>
+                <Link to="/forgotPassword" style={{ textDecoration: 'none' }}>
+                  <TagA href="#">Forgot Password</TagA>{' '}
+                </Link>
               </Forgot>
               <Button>Enter</Button>
             </FormButtom>
@@ -85,4 +111,3 @@ export default ({ handleSubmit, handleChange, valor }) => {
     </DivContenedor>
   );
 };
-

@@ -1,15 +1,11 @@
 import styled from 'styled-components';
 import fondoImag from '../../images/Janis-login-image.jpg'
-import { device } from '../../utils/mediaQuerys';
-
 
 export const DivContenedor = styled.div`
   background-color: white;
   display: flex;
-  height:100%;
   @media screen and (max-width: 1023px){
     flex-direction: column;
-
   }
 `;
 export const DivImage = styled.div`
@@ -72,11 +68,6 @@ export const Image = styled.img`
 export const DivLogoLetras = styled.div``;
 
 export const DivContectForm = styled.div`
-
-@media ${device.tablet} {
-  margin-top: 100px;
-}
-
    display: flex;
    flex-direction: column;
    -webkit-box-pack: center;
@@ -116,6 +107,8 @@ export const H1 = styled.h1`
     margin-top:20px;
   }
 `;
+
+
 
 export const H3 = styled.h3`
   color: rgb(147, 149, 152);
@@ -186,7 +179,7 @@ export const FormButtom = styled.div`
 
 export const Forgot = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   height: 16px;
   color: rgb(41, 121, 255);
   font-family: Roboto, sans-serif;
@@ -251,17 +244,20 @@ export const Input = styled.input`
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   border-bottom: ${props => props.colors === '' ? '1px solid rgb(255, 67, 67)' : '1px solid rgb(213, 215, 219)' };
   border-radius: 0px;
-  outline:none;
 `;
 
-export const ErrorLabel = styled.label`
-  color: rgb(241, 59, 112);
-  font-family: Roboto, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 16px;
+export const LabelForgot = styled.label`
+  color: rgb(41, 121, 255);
+  text-transform: uppercase;
+  height: 11px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.77px;
+  line-height: 11px;
+  @media screen and (max-width:1023){
+    margin-top:10px;
+  }  
 `
-
 export const Span = styled.span`
   color: rgb(255, 67, 67);
   font-size: 12px;

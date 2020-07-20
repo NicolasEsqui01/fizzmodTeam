@@ -12,7 +12,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100vh;
+  height: 96vh;
   @import url('https://fonts.googleapis.com/css?family=Roboto');
   body {
     font-family: 'Roboto', sans-serif;
@@ -39,7 +39,6 @@ export const ContUser = styled.div`
   margin-top: 65px;
   @media ${device.tablet} {
     margin-bottom: 35px;
-    width: 230px;
     height: 230px;
   }
   @media ${device.laptop} {
@@ -354,28 +353,36 @@ export const LDerecho = styled.div`
 `;
 
 export const OrdenHeader = styled.div`
+@media ${device.tablet} {
+  
+  height: 60px
+}
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 15%;
+  height: 10%;
   width: 100%;
   background-color: #ffffff;
 `;
 
 export const OrdenFooter = styled.div`
-  margin-top: 20%;
+@media ${device.tablet} {
+  margin-top: 10%;
+}
+  margin-top: 5%;
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 200px;
+  height: 150px;
 `;
 
-export const ONuevas = styled.h1`
+export const ONuevas = styled.button`
 @media ${device.tablet} {
   font-size: 15px;
+  height: 50px;
 }
-  height: 14px;
-  width: 80%;
+  height: 100%;
+  width:100%;
   color: #273947;
   font-family: Roboto;
   font-size: 120%;
@@ -383,21 +390,32 @@ export const ONuevas = styled.h1`
   letter-spacing: 0;
   line-height: 14px;
   text-align: center;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  border-bottom:${props => props.status === 'pending' ?  '4px solid #273947' : null};
+  outline:none;
+  
 `;
-export const PrePickeadas = styled.h1`
+export const PrePickeadas = styled.button`
 @media ${device.tablet} {
   font-size: 15px;
+  height: 50px;
+
 }
- 
-  height: 14px;
-  width: 80%;
-  color: #939598;
+  height: 100%;
+  width:100%;
+  color: #273947;
   font-family: Roboto;
   font-size: 120%;
   font-weight: bold;
   letter-spacing: 0;
   line-height: 14px;
   text-align: center;
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  border-bottom:${props => props.status === 'picked' ?  '4px solid #273947' : null};
+  outline:none;
+  
 `;
 
 export const ImgH = styled.img`
@@ -444,6 +462,7 @@ export const Button = styled.button`
   text-align: center;
   border-radius: 3px;
   background-color: #1db779;
+  
 `;
 
   

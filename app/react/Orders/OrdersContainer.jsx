@@ -1,7 +1,44 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import Orders from './Orders';
+import {fetchSessions} from '../../action/inicio'
 
-const OrdersContainer = () => <Orders></Orders>;
+const OrdersContainer = ({ findingSessions , listSessions, permiso, status}) =>{
 
-export default connect(null, null)(OrdersContainer);
+ useEffect(()=>{
+  
+    findingSessions()
+  
+},[status]) 
+
+
+return(
+<Orders 
+  sessions = {listSessions}
+  permiso = {permiso}
+  status= {status}
+
+/>)
+
+};
+
+const mapStateToProps = function (state, ownProps){
+    return({
+    listSessions: state.inicioReducer.sessions,
+    permiso : state.inicioReducer.permiso,
+    status: state.inicioReducer.status
+    })
+
+};
+
+const mapDispatchToProps = function (dispatch, ownProps){
+  
+    return({
+
+     findingSessions: ()=> {dispatch(fetchSessions())} 
+
+    })
+    
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrdersContainer);

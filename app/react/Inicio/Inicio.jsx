@@ -48,11 +48,41 @@ import user from '../../images/user_closed.svg';
 import clockRed from '../../images/clock-red.svg';
 import triangleWhite from '../../images/triangle_circle_white.svg';
 import '../common/styles/main.scss';
+import moment from 'moment';
 
-export default () => (
+export default ({sessions ,pickers, cambio, getSessionPending, getSessionPicked  , status}) => {
+  let picked=0;
+  let picking=0;
+  let pending=0;
+  let tiempoPorOrden=[];
+  let countProdPorOrden=[];
+  function hourIndexToTime(num) {
+    return ('0' + Math.floor(num) % 24).slice(-2) + ':' + ((num % 1)*60 + '0').slice(0, 2);   
+  }
+  for (let i=0; i<sessions.length;i++){
+    if (sessions[i].status === "picked") {
+      picked += 1
+      var start = moment(sessions[i].startPickingTime);
+      var end = moment(sessions[i].endPickingTime);
+      let duration = moment.duration(end.diff(start)).asMinutes();
+      tiempoPorOrden.push(duration);
+      countProdPorOrden.push(sessions[i].items.length)
+    } else if (sessions[i].status === "picking") picking += 1;
+    else if (sessions[i].status === "pending") pending += 1;
+  }
+  let tiempoPromedioOrden = 0;
+  let tiempoPromedioPorProducto = 0;
+  if(tiempoPorOrden.length>0){
+  let length = tiempoPorOrden.length
+  tiempoPorOrden = tiempoPorOrden.reduce((previous, current) => current += previous);
+  tiempoPromedioOrden= parseInt((tiempoPorOrden/=length)* 10, 10) / 10;
+  countProdPorOrden = countProdPorOrden.reduce((previous, current) => current += previous);
+  tiempoPromedioPorProducto= Math.round((countProdPorOrden/=tiempoPorOrden)*10)/10;
+  }
+  return (
   <Container>
     <Carousel
-      className="sliderInicio"
+      className="sliderInicio"  
       isRTL
       itemsToShow={1}
       transitionMs={500}
@@ -62,26 +92,27 @@ export default () => (
       <InicioA>
         <Oval>
           <OvalInt>
-            <Pickers>4 PICKERS</Pickers>
-            <Qty>28</Qty>
-            <Orders>ORDENES</Orders>
+            <Pickers>{pickers.length} PICKERS</Pickers>
+            <Qty>{sessions.length}</Qty> { sessions.length==0 ? ( <Orders>NOTHING YET...</Orders> )
+            :  sessions.length===1 ?  ( <Orders>ORDEN</Orders> )
+            : (  <Orders>ORDENES</Orders> )}
           </OvalInt>
         </Oval>
         <Indicadores>
           <Icos24>
-            <Logos src={boxGreen} alt="box"/>
-            <PNumbers>7</PNumbers>
-            <PNames>X PICKER</PNames>
+            <Logos src={triangleWhite} alt="triangle"/>
+            <PNumbers>{pending}</PNumbers>
+            <PNames>X ORDEN</PNames>
           </Icos24>
           <Icos24>
             <Logos src={clockRed} alt="clock"/>
-            <PNumbers>7</PNumbers>
+            <PNumbers>{picking}</PNumbers>
             <PNames>X ORDEN</PNames>
           </Icos24>
           <Icos24>
-            <Logos src={triangleWhite} alt="triangle"/>
-            <PNumbers>7</PNumbers>
-            <PNames>X ORDEN</PNames>
+            <Logos src={boxGreen} alt="box"/>
+            <PNumbers>{picked}</PNumbers>
+            <PNames>X PICKER</PNames>
           </Icos24>
         </Indicadores>
       </InicioA>
@@ -94,7 +125,7 @@ export default () => (
           <Icos24Hor>
             <Logos src={clockWhite} alt="clock" />
             <Item>TIEMPO POR PRODUCTO</Item>
-            <Time>"1,6</Time>
+            {tiempoPromedioPorProducto !==0 ? <Time>''{tiempoPromedioPorProducto}</Time> : <Time>0</Time>}
             <ContNumGreen><Percentage>7%</Percentage><LogoStad src={down} alt="clock" /></ContNumGreen>
           </Icos24Hor>
         </EstadTiempo>
@@ -103,7 +134,7 @@ export default () => (
           <Icos24Hor>
             <Logos src={squareWhite} alt="clock" />
             <Item>TIEMPO POR ORDEN</Item>
-            <Time>"1,6</Time>
+            {tiempoPromedioOrden !==0 ? <Time>''{tiempoPromedioOrden}</Time> : <Time>0</Time>}
             <ContNumRed><Percentage>7%</Percentage><LogoStad src={up} alt="clock" /></ContNumRed>
           </Icos24Hor>
         </EstadTiempo>
@@ -113,20 +144,18 @@ export default () => (
     <LDerecho>
     <OrdenHeader>
         <DivJ>
-          <ImgH src={box} />
-          <ONuevas>ORDENES NUEVAS</ONuevas>
+        <ONuevas onClick={getSessionPending} status = {status}  ><ImgH src={box} />ORDENES NUEVAS</ONuevas>
         </DivJ>
         <DivP>
-          <ImgH src={slashBox} />
-          <PrePickeadas>PRE-PRICKEADAS</PrePickeadas>
+        <PrePickeadas onClick={getSessionPicked} status = {status} > <ImgH src={slashBox} />PRE-PRICKEADAS</PrePickeadas>
         </DivP>
       </OrdenHeader>
 
-      <OrdersContainer />
+      <OrdersContainer/>
 
       <OrdenFooter>
-        <Button>Comenzar</Button>
+        <Button onClick = {cambio}>Comenzar</Button>
       </OrdenFooter>
     </LDerecho>
   </Container>
-);
+)};
