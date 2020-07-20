@@ -11,10 +11,9 @@ const headers = {
   headers: {
     'Content-Type': 'application/json',
     'janis-api-key': 'Bearer',
-    'janis-api-secret':
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMGRiZTg4NmNkYTk2OGVkYzMwMDgxOCIsImNsaWVudENvZGUiOiJwbGF0YWZvcm1hNS0yMDIwIiwiaXNEZXYiOmZhbHNlLCJleHAiOjE1OTUwMDEwOTYsImlhdCI6MTU5NDgyODI5Nn0.iMIiWM0axLUrZbnhcrbnbHhX_lBLO-gocavequcZw7Y',
-  },
-};
+    'janis-api-secret': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMGNhNzhiNmNkYTk2OGVkY2Y3YjVlNSIsImNsaWVudENvZGUiOiJwbGF0YWZvcm1hNS0yMDIwIiwiaXNEZXYiOmZhbHNlLCJleHAiOjE1OTUwMjEyODksImlhdCI6MTU5NDg0ODQ4OX0.Pl06DCoXx9N4b-heZZHnxnw15EQD9_rTw2mIfmvR1J0'
+  }
+}
 
 export const setLogin = (obj) => {
   return (dispatch) => {
