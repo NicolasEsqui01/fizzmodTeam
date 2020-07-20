@@ -1,11 +1,12 @@
 const initialState = {
-    auth: {},
+    token: {},
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case "USER_LOGING":
-            return { ...state, auth: action.auth }
+            localStorage.setItem('token', action.token.auth)
+            return { ...state, token: action.token}
         default: return state
     }
 }

@@ -1,4 +1,6 @@
 import axios from "axios";
+import { headers } from '../headers'
+
 
 const getSessions = (sessions) => ({
   type: "GET_SESSIONS",
@@ -25,27 +27,17 @@ const StatusPicked = ()=>({
   status: 'picked'
 })
 
-
-const headers = {
-    headers:{
-        'Content-Type': 'application/json',
-        'janis-api-key' : 'Bearer',
-        'janis-client': 'plataforma5-2020',
-        'janis-api-secret': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMGNhNzhiNmNkYTk2OGVkY2Y3YjVlNSIsImNsaWVudENvZGUiOiJwbGF0YWZvcm1hNS0yMDIwIiwiaXNEZXYiOmZhbHNlLCJleHAiOjE1OTUwMjEyODksImlhdCI6MTU5NDg0ODQ4OX0.Pl06DCoXx9N4b-heZZHnxnw15EQD9_rTw2mIfmvR1J0'
-      }
-  }
-
 export const fetchSessions = () => (dispatch) => {
   return axios
-    .get('https://picking.janis.in/api/session', headers)
+    .get('https://picking.janis.in/api/session', headers())
     .then((list) => {
       dispatch(getSessions(list.data))}
-      );
+    );
 };
 
 export const fetchPickers = () => (dispatch) => {
   return axios
-    .get(`https://picking.janis.in/api/picker`, headers)
+    .get(`https://picking.janis.in/api/picker`, headers())
     .then((list) => {
       dispatch(getPickers(list.data))}
       );

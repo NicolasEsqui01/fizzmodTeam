@@ -207,6 +207,7 @@ export const Button = styled.button`
   position: relative;
   z-index: 0;
   padding: 0px 16px;
+  outline:none;
   @media screen and (max-width: 1023px){
     margin-bottom: 18px;
     width: 160px;
@@ -244,6 +245,7 @@ export const Input = styled.input`
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   border-bottom: ${props => props.colors === '' ? '1px solid rgb(255, 67, 67)' : '1px solid rgb(213, 215, 219)' };
   border-radius: 0px;
+  outline:none;
 `;
 
 export const LabelForgot = styled.label`
