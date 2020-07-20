@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import {
   ListOrdenes,
   Numero,
@@ -25,10 +26,10 @@ import balance from '../../images/balanceCelest.svg';
 import snow from '../../images/snowflakeCelest.svg';
 import substitute from '../../images/substitute.svg';
 import store from '../../images/store.svg';
-import { element } from 'prop-types';
 
 
-export default ({sessions, permiso, status}) =>  {
+
+export default ({sessions, permiso, status, cambio}) =>  {
   //element.startPickingTime - element.endPickingTime
   return(
   <>
@@ -39,7 +40,7 @@ export default ({sessions, permiso, status}) =>  {
     sessions.filter(e => e.status === status).map(element =>{ 
      
  return (
- <ListOrdenes key={element.id} permitir={permiso}>
+   <ListOrdenes key={element.id} permitir={permiso} onClick ={cambio}>
  <Img src={box} />
  <DivN>
   <Numero>Nro.{element.id} </Numero>
@@ -79,6 +80,7 @@ export default ({sessions, permiso, status}) =>  {
    </DivS>
  </DivN>
 </ListOrdenes>
+
 
 )}  )}
     

@@ -18,9 +18,9 @@ export const ListOrdenes = styled.div`
   width: 90%;
   border-radius: 3px;
   background-color: #ffffff;
-  &:hover{border: 4px solid #1db779 }
+  &:active{border: 4px solid #1db779 }
 `;
-//${props => props.permitir? 'border: 1px solid #1db779 ':null}
+//${props => props.permitir? 'border: 1px solid #1db779 ':null} &:active{border: 4px solid #1db779 }
 export const Numero = styled.h1`
 @media ${device.tablet} {
   

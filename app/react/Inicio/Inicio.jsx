@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import Carousel from 'react-elastic-carousel';
 import {
   Container,
@@ -154,7 +155,7 @@ export default ({sessions ,cambio, getSessionPending, getSessionPicked  , status
       <OrdersContainer/>
 
       <OrdenFooter>
-        <Button onClick = {cambio}>Comenzar</Button>
+      <Button> <Link to = './productoindividual'> Comenzar </Link></Button>
       </OrdenFooter>
     </LDerecho>
   </Container>

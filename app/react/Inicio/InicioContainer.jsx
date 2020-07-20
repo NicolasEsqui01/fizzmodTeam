@@ -25,18 +25,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
 const InicioContainer = ({sessionId, session, getSessions, getPermiso, sessionsPending, sessionsPicked, status }) => {
 
-
+const [id, setId] = useState('')
 
 
 	useEffect(()=>{
 		getSessions()
 	},[])
 
-	const setPermiso = ()=>{
-      
-	  getPermiso()
-	  
-	}
+	
 	 const setPending = ()=>{
       console.log('estamos aqui')
 		sessionsPending()
@@ -52,7 +48,6 @@ const InicioContainer = ({sessionId, session, getSessions, getPermiso, sessionsP
 	return (
 		<Inicio
 		 sessions={session}
-		 cambio={setPermiso}
 		 status={status}
 		 getSessionPicked ={setPicked}
 		 getSessionPending ={setPending}  

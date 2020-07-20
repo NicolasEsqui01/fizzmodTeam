@@ -26,7 +26,7 @@ const headers = {
         'Content-Type': 'application/json',
         'janis-api-key' : 'Bearer',
         'janis-client': 'plataforma5-2020',
-        'janis-api-secret' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMGRiZTg4NmNkYTk2OGVkYzMwMDgxOCIsImNsaWVudENvZGUiOiJwbGF0YWZvcm1hNS0yMDIwIiwiaXNEZXYiOmZhbHNlLCJleHAiOjE1OTUwMDEwOTYsImlhdCI6MTU5NDgyODI5Nn0.iMIiWM0axLUrZbnhcrbnbHhX_lBLO-gocavequcZw7Y',
+        'janis-api-secret' :  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMGRiZTg4NmNkYTk2OGVkYzMwMDgxOCIsImNsaWVudENvZGUiOiJwbGF0YWZvcm1hNS0yMDIwIiwiaXNEZXYiOmZhbHNlLCJleHAiOjE1OTU0NDM2NzEsImlhdCI6MTU5NTI3MDg3MX0.4Lva4JTtq-g2cAzuQSyg_bTwANs7SWYyAbvellg_Pfw',
 
       }
 }
