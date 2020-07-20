@@ -39,7 +39,6 @@ export const ContUser = styled.div`
   margin-top: 65px;
   @media ${device.tablet} {
     margin-bottom: 35px;
-    width: 230px;
     height: 230px;
   }
   @media ${device.laptop} {
@@ -340,14 +339,13 @@ export const LDerecho = styled.div`
 @media ${device.laptop} {
   background-color: #e8eaf6;
   width: 60%;
-
   display: flex;
   flex-direction: column;
 }
 @media ${device.tablet} {
   background-color: #e8eaf6;
   width: 100%;
-
+  height:90%;
   display: flex;
   flex-direction: column;
 }

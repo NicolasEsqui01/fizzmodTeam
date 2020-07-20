@@ -29,7 +29,6 @@ return(
 };
 
 const mapStateToProps = function (state, ownProps){
-    console.log(state.inicioReducer.permiso)
     return({
     listSessions: state.inicioReducer.sessions,
     permiso : state.inicioReducer.permiso,

@@ -4,12 +4,15 @@ Container,
 LIzquierdo,
 LDerecho
 } from './style'
+import Navbar from '../Navbar/NavbarContainer';
 
 
 export default ()=>{
 
 
 return(
+    <>
+    <Navbar /> 
     <Container>
     <LIzquierdo>
 Lado izquierdo
@@ -23,6 +26,8 @@ lado derecho
 
 
     </Container>
+
+    </>
 
 )
 

@@ -1,27 +1,17 @@
 import axios from 'axios';
 
-const Login = (auth) => {
+const Login = (token) => {
   return {
     type: 'USER_LOGING',
-    auth,
+    token,
   };
-};
-
-const headers = {
-  headers: {
-    'Content-Type': 'application/json',
-    'janis-api-key': 'Bearer',
-    'janis-api-secret':
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMGRiZTg4NmNkYTk2OGVkYzMwMDgxOCIsImNsaWVudENvZGUiOiJwbGF0YWZvcm1hNS0yMDIwIiwiaXNEZXYiOmZhbHNlLCJleHAiOjE1OTUwMDg0OTYsImlhdCI6MTU5NDgzNTY5Nn0.pSu8Cl75O8B4pxwh0dGzC_PAzOp-_WiAyIobSiXHxOc',
-  },
 };
 
 export const setLogin = (obj) => {
   return (dispatch) => {
     return axios
-      .post('https://id.janis.in/api/login', obj, headers)
+      .post('https://id.janis.in/api/login', obj)
       .then((res) => {
-          console.log(res)
         dispatch(Login(res.data));
       })
       .catch(err =>{
