@@ -18,8 +18,6 @@ import InicioContainer from '../Inicio/InicioContainer';
 import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 // Header and Footer
-import Navbar from "../Navbar/NavbarContainer";
-import Footer from '../Footer';
 import GlobalStyle from '../../global-styles';
 
 function App() {
@@ -31,7 +29,6 @@ function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <Navbar/>
       <Switch>
         <Route path='/login' component={LoginContainer}/>
         <Route path="/inicio" component={InicioContainer} />
@@ -39,7 +36,6 @@ function App() {
         <Route path="/forgotPassword" component={ForgotPassword}/>
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
-      {/* <Footer /> */}
       <GlobalStyle />
     </div>
   );
