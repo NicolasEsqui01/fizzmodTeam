@@ -271,6 +271,19 @@ height: auto;
 `;
 
 
+export const ImgAmarilla = styled.img`
+@media ${device.tablet} {
+  height: auto;
+  width: 50px;
+}
+  height: auto;
+  width: 60px;
+  background-color: #FFEB3B;
+  border-radius: 50px;
+  padding: 6px;
+  margin-top:5px;
+`;
+
 /////media query/////
 export const ImgH = styled.img`
 @media ${device.tablet} {
@@ -518,6 +531,14 @@ font-size: 19px;
 font-weight: bold;
 letter-spacing: 0;
 line-height: 18px;
+`;
+
+export const ContFlechitas = styled.div`
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
 `;
 
 export const FlechitaDesplegable = styled.img`

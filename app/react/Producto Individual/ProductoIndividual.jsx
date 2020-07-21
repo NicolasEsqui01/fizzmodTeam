@@ -1,5 +1,5 @@
 import React from "react";
-import { ContGral, ContMarca, ContInfo, ContDer, ContStock, Header, Cuadro, Img, Marca, Gramaje, ColDerecha, ColIzq, ColuIconos, IconoNum, IconoNumDos, StockLetras, StockCien, Cont, FotoProd, DivFoto, DivGlobos, ImagenGlobo, ImgH, MarcaH1, Descri, Tachado, Precio, ContBarras, BarritasCont, Barritas, CodProdu, ImgBarrita, ImBalanza, PesoProdu, ContImagenes, CuadritoUno, PesoCuadro, CuadritoDos, ImgBalanzasUno, ImgBalanzasMas, Instrucciones, RecuadroCantidadNormal, H1Cantidad, H1CantidadNum, FlechitaDesplegable, DivImageStock, BotonesNormal, Botones, OmitirNormal, CruzOmitir, TecladoManual, Omitir, Teclado, Siguiente, PlusCircle, CuadroGrill,ContainerGrillCuadros,NumCuadrados,Sup,Percentage  } from "./style";
+import { ContGral, ContMarca, ContInfo, ContDer, ContStock, Header, Cuadro, Img, Marca, Gramaje, ColDerecha, ColIzq, ColuIconos, IconoNum, IconoNumDos, StockLetras, StockCien, Cont, FotoProd, DivFoto, DivGlobos, ImagenGlobo, ImgH, MarcaH1, Descri, Tachado, Precio, ContBarras, BarritasCont, Barritas, CodProdu, ImgBarrita, ImBalanza, PesoProdu, ContImagenes, CuadritoUno, PesoCuadro, CuadritoDos, ImgBalanzasUno, ImgBalanzasMas, Instrucciones, RecuadroCantidadNormal, H1Cantidad, H1CantidadNum, FlechitaDesplegable, DivImageStock, BotonesNormal, Botones, OmitirNormal, CruzOmitir, TecladoManual, Omitir, Teclado, Siguiente, PlusCircle, CuadroGrill,ContainerGrillCuadros,NumCuadrados,Sup,Percentage, ContFlechitas, ImgAmarilla } from "./style";
 import Sustituto from "../../images/substitute.svg";
 import Plus from "../../images/plus_circle.svg";
 import BarCode from "../../images/bar_code.svg";
@@ -33,35 +33,30 @@ export default ()=>{
             </Header>
             <Cont>
                 <ColIzq>
-                    
                     <ColuIconos>
                     <Sup>
-                            <ContainerGrillCuadros>
-                                <CuadroGrill/>
-                                <CuadroGrill/>
-                            </ContainerGrillCuadros>
-                            <ContainerGrillCuadros>
-                                <CuadroGrill className="bkgColor"/>
-                                <CuadroGrill/>
-                            </ContainerGrillCuadros>
-                            <ContainerGrillCuadros>
-                                <CuadroGrill/>
-                                <CuadroGrill/>
-                            </ContainerGrillCuadros>
+                        <ContainerGrillCuadros>
+                         <CuadroGrill/>
+                         <CuadroGrill/>
+                        </ContainerGrillCuadros>
+                        <ContainerGrillCuadros>
+                          <CuadroGrill className="bkgColor"/>
+                          <CuadroGrill/>
+                        </ContainerGrillCuadros>
+                        <ContainerGrillCuadros>
+                        <CuadroGrill/>
+                        <CuadroGrill/>
+                        </ContainerGrillCuadros>
                             <NumCuadrados>3</NumCuadrados>
                         </Sup>
-                    
                     </ColuIconos>    
-                    
                     <DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>
                 </ColIzq>
-
                 <ColDerecha>
                 <div>
                 <DivGlobos>
-                    
-                    <ImgH src={bubble} />
-                    <ImgH src={bubbleExc} />
+                    <ImgAmarilla src={bubble} />
+                    <ImgAmarilla src={bubbleExc} />
                 </DivGlobos>
                 <div>
                 <MarcaH1>SANCOR</MarcaH1>
@@ -75,18 +70,15 @@ export default ()=>{
                     <Barritas src= {BarCode}/>
                     </BarritasCont>
                     <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
-                    
-                   
                 </ContBarras>
                 <ContImagenes>
-                    
-                      
                     <RecuadroCantidadNormal>
                          <H1Cantidad>Cantidad</H1Cantidad>
                          <H1CantidadNum>6</H1CantidadNum>
-                         
-                         <FlechitaDesplegable src={flechaDesplegableAbajo}/>
-                         <FlechitaDesplegable src={flechaDesplegableArriba}/>
+                         <ContFlechitas>
+                            <FlechitaDesplegable src={flechaDesplegableArriba}/>
+                            <FlechitaDesplegable src={flechaDesplegableAbajo}/>
+                         </ContFlechitas>
                     </RecuadroCantidadNormal>
                      <DivImageStock>
                      <ContStock>
@@ -94,9 +86,7 @@ export default ()=>{
                             <StockCien>+100</StockCien>
                         </ContStock>
                     </DivImageStock>
-                     
                 </ContImagenes>
-
                   <Botones>
                     <Omitir>OMITIR</Omitir>
                     <Teclado src ={TecladoIcono}/>
@@ -106,7 +96,6 @@ export default ()=>{
                 </ColDerecha>            
             </Cont> 
             </ContGral>     
-            
 ///////////////////// hasta acá producto individual normal /////////////////////////////////////
     )
 }
@@ -156,8 +145,8 @@ export default ()=>{
         //                     </ContInfo>
         //                 </ContDer>
         //                 <DivGlobos>
-        //                     <ImagenGlobo src = {bubble}/>
-        //                     <ImagenGlobo src = {bubbleExc}/>
+        //                     <imarilla src = {bubble}/>
+        //                     <ImgAmarilla src = {bubbleExc}/>
         //                 </DivGlobos>
         //             </ContMarca>
         //             <ContBarras>
