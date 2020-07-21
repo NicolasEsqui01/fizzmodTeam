@@ -7,6 +7,12 @@
 
 import React from 'react';
 
+const img ={
+  'width':'100%',
+  'height':'30%'
+};
+
+
 export default function NotFound() {
-  return <h1>Page NotFound</h1>;
+  return <img style={img} src='https://wpsites.net/wp-content/uploads/2018/08/404-error-template-genesis.png'/>
 }
