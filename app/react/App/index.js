@@ -20,6 +20,7 @@ import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 // Header and Footer
 import GlobalStyle from '../../global-styles';
+import SessionConteniner from '../SessionIndividual/SessionConteniner';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
       <Switch>
         <Route path='/login' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
-        {/*<Route path="/search" component={SearchContainer} />*/}
+        <Route path="/session" component={SessionConteniner} />
         <Route path="/productoindividual" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
         {/* <Route exact path="" component={NotFoundPage} /> */}

@@ -1,9 +1,9 @@
 import React,{useEffect} from 'react';
 import { connect } from 'react-redux';
 import Orders from './Orders';
-import {fetchSessions} from '../../action/inicio'
+import {fetchSessions, DamePermiso} from '../../action/inicio'
 
-const OrdersContainer = ({ findingSessions , listSessions, permiso, status}) =>{
+const OrdersContainer = ({ findingSessions , listSessions, permiso, status,  getPermiso}) =>{
 
  useEffect(()=>{
   
@@ -11,13 +11,19 @@ const OrdersContainer = ({ findingSessions , listSessions, permiso, status}) =>{
   
 },[status]) 
 
+const setPermiso = ()=>{
+      
+    getPermiso()
+    
+  }
+
 
 return(
 <Orders 
   sessions = {listSessions}
   permiso = {permiso}
   status= {status}
-
+  cambio={setPermiso}
 />)
 
 };
@@ -26,7 +32,8 @@ const mapStateToProps = function (state, ownProps){
     return({
     listSessions: state.inicioReducer.sessions,
     permiso : state.inicioReducer.permiso,
-    status: state.inicioReducer.status
+    status: state.inicioReducer.status,
+   
     })
 
 };
@@ -35,7 +42,8 @@ const mapDispatchToProps = function (dispatch, ownProps){
   
     return({
 
-     findingSessions: ()=> {dispatch(fetchSessions())} 
+     findingSessions: ()=> dispatch(fetchSessions()), 
+     getPermiso: () => dispatch(DamePermiso()),
 
     })
     
