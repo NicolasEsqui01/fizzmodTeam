@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { device } from '../../utils/mediaQuerys';
+
 
 ///////// HEADER ////////////////
 export const Header = styled.div`
@@ -155,6 +157,21 @@ width: 70px;
 
 `;
 
+
+/////media query/////
+export const ImgH = styled.img`
+@media ${device.tablet} {
+  
+  height: 40px;
+  width: 40px;
+ 
+}
+  height: 60px;
+  width: 60px;
+`;
+
+
+
 //////////// MARCA Y DESCRIPCION ///////////////
 export const MarcaH1 = styled.h1`
   padding-top: 35px;  
@@ -284,7 +301,7 @@ export const ContImagenes = styled.div`
     flex-direction: row;
     width:100%;
     text-align: center;
-    align-items: center;
+    align-items: flex-end;
 `;
 
 export const CuadritoUno = styled.div`
@@ -349,7 +366,7 @@ line-height: 16px;
 `;
 
 
-/////////// RECUADRO CON CANTIDAD PRODUCTO NORMAL ///////////
+/////////// RECUADRO CON CANTIDAD PRODUCTO NORMAL Y STOCK///////////
 
 export const RecuadroCantidadNormal = styled.div`
   margin-top: 5%;  
@@ -361,8 +378,45 @@ export const RecuadroCantidadNormal = styled.div`
   border-radius: 3px;
   background-color: #FFFFFF;
   align-items: center;
-  justify-content: center;  
+  //justify-content: center;  
 `;
+
+export const H1Cantidad = styled.h1`
+  height: 16px;
+  margin-left: 10%;
+  color: #939598;
+  font-family: Roboto;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 16px;
+`;
+
+export const H1CantidadNum = styled.h1`
+
+height: 18px;
+margin-left: 10%;
+//width: 9px;
+color: #939598;
+font-family: Roboto;
+font-size: 19px;
+font-weight: bold;
+letter-spacing: 0;
+line-height: 18px;
+`;
+
+export const FlechitaDesplegable = styled.img`
+  margin-left: 28%;  
+  height: 20px;
+  width: 20px;
+`;
+
+export const DivImageStock = styled.div`
+margin-left: 10%;
+display: flex;
+flex-direction: column;
+`;
+
+
 
 /////////// FILA BOTONES DE ABAJO PRODUCTO NORMAL ///////////
 export const BotonesNormal = styled.div`
@@ -376,7 +430,8 @@ export const BotonesNormal = styled.div`
 `;
 
 
-export const OmitirNormal = styled.button`
+export const OmitirNormal = styled.div`
+  display: flex;  
   height: 53px;
   width: 140px;
   border-radius: 3px;
@@ -391,6 +446,14 @@ export const OmitirNormal = styled.button`
   text-align: center;
   margin-right: 2px;
   margin-left: 2px;
+  align-items: center;
+  justify-content: center;
+  
+`;
+
+export const CruzOmitir = styled.img`
+  height: 35px;
+  width: 35px;
 `;
 
 export const TecladoManual = styled.button`
@@ -407,6 +470,7 @@ export const TecladoManual = styled.button`
   line-height: 21px;
   text-align: center;
   margin-left: 4px;
+  margin-right: 10%;
 `;
 
 /////////// FILA BOTONES DE ABAJO PROD. PESABLE ////////////
