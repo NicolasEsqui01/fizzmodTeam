@@ -270,6 +270,21 @@ height: auto;
 }
 `;
 
+
+/////media query/////
+export const ImgH = styled.img`
+@media ${device.tablet} {
+  
+  height: 40px;
+  width: 40px;
+ 
+}
+  height: 60px;
+  width: 60px;
+`;
+
+
+
 //////////// MARCA Y DESCRIPCION ///////////////
 export const MarcaH1 = styled.h1`
   margin-top:15px;
@@ -406,11 +421,15 @@ export const ContImagenes = styled.div`
     display: flex;
     flex-direction: row;
     text-align: center;
+<<<<<<< HEAD
     align-items: center;
     @media ${device.mobile} {
     justify-content:space-around;
     margin-top: 7px;
   } 
+=======
+    align-items: flex-end;
+>>>>>>> 19ae48ac52a3f68e75306385d41d5d90b211620b
 `;
 
 export const CuadritoUno = styled.div`
@@ -470,7 +489,7 @@ font-size: 16px;
 `;
 
 
-/////////// RECUADRO CON CANTIDAD PRODUCTO NORMAL ///////////
+/////////// RECUADRO CON CANTIDAD PRODUCTO NORMAL Y STOCK///////////
 
 export const RecuadroCantidadNormal = styled.div`
   margin-top: 5%;  
@@ -482,8 +501,45 @@ export const RecuadroCantidadNormal = styled.div`
   border-radius: 3px;
   background-color: #FFFFFF;
   align-items: center;
-  justify-content: center;  
+  //justify-content: center;  
 `;
+
+export const H1Cantidad = styled.h1`
+  height: 16px;
+  margin-left: 10%;
+  color: #939598;
+  font-family: Roboto;
+  font-size: 17px;
+  letter-spacing: 0;
+  line-height: 16px;
+`;
+
+export const H1CantidadNum = styled.h1`
+
+height: 18px;
+margin-left: 10%;
+//width: 9px;
+color: #939598;
+font-family: Roboto;
+font-size: 19px;
+font-weight: bold;
+letter-spacing: 0;
+line-height: 18px;
+`;
+
+export const FlechitaDesplegable = styled.img`
+  margin-left: 28%;  
+  height: 20px;
+  width: 20px;
+`;
+
+export const DivImageStock = styled.div`
+margin-left: 10%;
+display: flex;
+flex-direction: column;
+`;
+
+
 
 /////////// FILA BOTONES DE ABAJO PRODUCTO NORMAL ///////////
 export const BotonesNormal = styled.div`
@@ -494,7 +550,8 @@ export const BotonesNormal = styled.div`
 `;
 
 
-export const OmitirNormal = styled.button`
+export const OmitirNormal = styled.div`
+  display: flex;  
   height: 53px;
   width: 140px;
   border-radius: 3px;
@@ -509,6 +566,14 @@ export const OmitirNormal = styled.button`
   text-align: center;
   margin-right: 2px;
   margin-left: 2px;
+  align-items: center;
+  justify-content: center;
+  
+`;
+
+export const CruzOmitir = styled.img`
+  height: 35px;
+  width: 35px;
 `;
 
 export const TecladoManual = styled.button`
@@ -525,6 +590,7 @@ export const TecladoManual = styled.button`
   line-height: 21px;
   text-align: center;
   margin-left: 4px;
+  margin-right: 10%;
 `;
 
 /////////// FILA BOTONES DE ABAJO PROD. PESABLE ////////////
@@ -586,12 +652,4 @@ export const PlusCircle = styled.img`
   width: 53px;
   margin-right: 2px;
   margin-left: 2px;
-`;
-
-
-export const ImgH = styled.img`
-@media ${device.tablet} {
-  
-}
-
 `;
