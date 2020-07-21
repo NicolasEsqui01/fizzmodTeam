@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from '../../utils/mediaQuerys';
 
 ///////// HEADER ////////////////
 export const Header = styled.div`
@@ -25,11 +26,11 @@ margin-right: auto;
 
 export const Marca = styled.h1`
 height: 21px;
-  width: 69px;
-  color: #273947;
-  font-family: Roboto;
-  font-size: 18px;
-  letter-spacing: 0;
+width: 69px;
+color: #273947;
+font-family: Roboto;
+font-size: 18px;
+letter-spacing: 0;
   line-height: 21px;
   text-align: right;
   margin-right: 7px;
@@ -48,12 +49,24 @@ height: 21px;
 `;
 
 /////////// CONTENEDOR ////////////////
-export const Cont = styled.div`
+
+export const ContGral = styled.div`
 width: 100%;
 height: 100vh;
+`;
+
+export const Cont = styled.div`
+width: 100%;
+height: auto;
 display: flex;
 align-items: center;
 justify-content: center;
+flex-direction: row;
+margin-top:70px;
+@media ${device.mobile} {
+  flex-direction: column;
+  margin-top:20px;
+}
 `;
 
 ////// LADO IZQUIERDO /////////////
@@ -61,40 +74,88 @@ justify-content: center;
 export const ColIzq = styled.div`
     display: flex;    
     width: 50%;
-    height: 100%;
+    height: auto;
     flex-direction: row; 
+    justify-content: center;
+    @media ${device.mobile} {
+    width: 90%;
+}
 `;
+
+export const CuadroGrill = styled.div`
+  display: flex;    
+  width: 50%;
+  height: auto;
+  flex-direction: row;
+  border: 1px solid #939598;
+  border-radius:10%;
+  margin: 4px 6px 4px 0px;
+`
+
+export const ContainerGrillCuadros = styled.div`
+  display: flex;    
+  width: 60%;
+  height: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  box-sizing: border-box;
+`
+
+export const NumCuadrados = styled.div`
+  display: flex;    
+  width: 50%;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 3px solid #A27BDB;
+  font-size: 25px;
+  color: #273947;
+  font-family: Roboto;
+  font-weight: 900;
+  letter-spacing: 0;
+  @media ${device.mobile} {
+  font-size: 20px;
+  height: 30px;
+}
+  
+`
 
 ////// FOTO PRODUCTO ////////////////
 export const DivFoto = styled.div`
-    margin-top: 35px;
-    display: flex;
-    width: 80%;
-   
-    flex-direction: column;
-    height: 70%;
-    float: right;
-       
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  height: auto;
+  float: right;
+  @media ${device.laptop} {
+  max-width: 450px;
+  width: 70%;
+  }  
 `;
 
 export const FotoProd = styled.img`
-height: 100%;
+height: auto;
 width: 100%;
 `;
 
 ///////// COLUMNA IZQ CON ICONOS ///////////////
 export const ColuIconos = styled.div`
-padding-top: 35px;
-height: 100%;
-width: 20%;
+height: auto;
+width: 15%;
 display: flex;
 float: left;
 flex-direction: column;
-//justify-content: space-around;
+text-align:-webkit-center;
+justify-content:space-between;
+@media ${device.mobile} {
+  width: 22%;
+  justify-content:space-around;
+}
 `;
 
 export const IconoNum = styled.img`
-
   margin-left: auto;
   margin-right: auto;  
   height: 20%;
@@ -109,6 +170,19 @@ display: flex;
 flex-direction: column;
 `;
 
+export const ContInfo = styled.div`
+display: flex;
+flex-direction: column;
+@media ${device.mobile} {
+  flex-direction: row;
+  align-items:center;
+}
+`;
+
+export const ContDer = styled.div`
+width: 75%;
+`;
+
 export const StockLetras = styled.div`
   margin-left: auto;
   margin-right: auto;  
@@ -121,139 +195,190 @@ export const StockLetras = styled.div`
   text-align: center;
 `;
 
-export const StockCien = styled.img`
-  height: 43px;
-  width: 67px;
+export const ContStock = styled.div`
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  color:#1DB779;
+  @media ${device.mobile} {
+  font-size: 14px;
+}
 `;
+
+export const StockCien = styled.div`
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 1px solid #1DB779;
+  color:#1DB779;
+  padding: 3px 10px 3px 10px;
+  @media ${device.mobile} {
+    font-size: 15px;
+    padding: 1px 5px 1px 5px;
+}
+`;
+
+export const Sup = styled.div``;
 
 //////// LADO DERECHO ///////////////////
 export const ColDerecha = styled.div`
     display: flex;    
     width: 50%;
-    height: 100%;
+    height: auto;
     flex-direction: column;
-    
+    @media ${device.mobile} {
+    width: 90%;
+}
 `;
 
 export const DivGrande = styled.div`
 
 `;
 
+export const ContMarca = styled.div`
+display:flex;
+display:row;
+@media ${device.mobile} {
+    display: column;
+    align-items:center;
+}
+`;
+
 //////////// COLUMNA CON ICONOS GLOBOS ////////////
 export const DivGlobos = styled.div`
-padding-top: 35px;
+margin-top: 20px;
 display: flex;
 float: right;
 flex-direction: column;
-width: 20%;
+width: 25%;
 align-items: center;
+@media ${device.mobile} {
+margin-top: 15px;
+}
 `;
 
 export const ImagenGlobo = styled.img`
 height: 68px;
 width: 70px;
-
+@media ${device.mobile} {
+width: 65%;
+height: auto;
+}
 `;
 
 //////////// MARCA Y DESCRIPCION ///////////////
 export const MarcaH1 = styled.h1`
-  padding-top: 35px;  
-  padding-left: 4%;
-  height: 15px;
-  width: 100%;
+  margin-top:15px;
   color: #2979FF;
   font-family: Roboto;
   font-size: 20px;
   letter-spacing: 0;
   line-height: 15px;
+  @media ${device.mobile} {
+  margin-top:15px;
+  margin-bottom:15px;
+  font-size: 15px;
+  height: 2px;
+  width:50%;
+}
 
 `;
 
 export const Descri = styled.div`
-  padding-top: 20px;
-  padding-left: 4%;  
-  height: 48px;
-  width: 600px;
+  margin-top:20px
   color: #939598;
   font-family: Roboto;
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 25px;
+  @media ${device.mobile} {
+  font-size: 15px;
+  margin-top:10px
+}
 `;
 
 
 ///////////// PRECIOS ////////////////////
 export const Tachado = styled.div`
-padding-top: 50px;
-padding-left: 20px;  
-height: 14px;
-width: 100%;
+margin-top: 20px;
 color: #939598;
 font-family: Roboto;
 font-size: 15px;
 font-weight: 300;
 letter-spacing: 0;
 line-height: 14px;
+text-decoration: line-through;
+@media ${device.mobile} {
+  width:50%;
+  margin-top: 0px;
+}
 `;
 
-export const Precio = styled.h1`
-  padding-top: 10px;
-  padding-left: 20px; 
-  height: 21px;
-  width: 100%;
+export const Precio = styled.div`
+  margin-top: 20px;
   color: #2979FF;
   font-family: Roboto;
   font-size: 25px;
   font-weight: bold;
-  letter-spacing: 0;
-  line-height: 21px;
+  @media ${device.mobile} {
+  font-size: 20px;
+  width:50%;
+  margin-top: 0px;
+}
 `;
 
 /////////////// FILA CON CODIGO DE BARRAS, CODIGO Y PESO ///////////////
 export const ContBarras = styled.div`
 display:flex;
-padding-top: 5%;
-width:100%;
 flex-direction: row;
-padding-left: 2%;
-//justify-content: space-around;
-//align-items: center;
-
-  
+margin-top:15px;
+align-items:center;
+@media ${device.mobile} {
+margin-top:0px;
+justify-content: space-between;
+}
 `;
 
 export const BarritasCont = styled.div`
-
 height: 25px;
 width: 48px;
+@media ${device.mobile} {
+width: 15%;
+height: auto;
+}
 `
 
 export const Barritas = styled.img`
-
 height: 100%;
-width: 100%;
-
+width: auto;
 `;
 
 export const CodProdu = styled.div`
-    
-  height: 29px;
-  //width: 350px;
   color: #273947;
   font-family: Roboto;
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 0;
   line-height: 19px;
-
-   
+  margin-right:25px;
+  @media ${device.mobile} {
+  width: 30%;
+  height: auto;
+  font-size: 15px;
+  margin-right:0px;
+  } 
 `;
 
 export const ImgBarrita = styled.img`
-margin-left: 3%;
-Width: 25px;
-Height: 27px;
+border-right:1px solid;
+margin-right: 5px;
+margin-left: 5px;
+height: 30px;
 
 `;
 
@@ -266,7 +391,6 @@ width: 26px;
 export const PesoProdu = styled.div`
   margin-left: 3%;  
   height: 18px;
-  //width: 63px;
   color: #273947;
   font-family: Roboto;
   font-size: 19px;
@@ -278,13 +402,15 @@ export const PesoProdu = styled.div`
 
 /////////// FILA CON ICONOS DE PESO ///////////////
 export const ContImagenes = styled.div`
-    padding-top: 3%;
-    padding-left: 20px; 
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
-    width:100%;
     text-align: center;
     align-items: center;
+    @media ${device.mobile} {
+    justify-content:space-around;
+    margin-top: 7px;
+  } 
 `;
 
 export const CuadritoUno = styled.div`
@@ -337,15 +463,10 @@ width: 34px;
 `;
 ///////// COLOCA EL PRODUCTO SOBRE LA BALANZA //////////////
 export const Instrucciones = styled.h1`
-padding-top: 2%;
-padding-left: 20px; 
-//height: 18px;
-width: 523px;
+margin-top: 15px;
 color: #273947;
 font-family: Roboto;
 font-size: 16px;
-letter-spacing: 0;
-line-height: 16px;
 `;
 
 
@@ -366,13 +487,10 @@ export const RecuadroCantidadNormal = styled.div`
 
 /////////// FILA BOTONES DE ABAJO PRODUCTO NORMAL ///////////
 export const BotonesNormal = styled.div`
-
-    display: flex;
-    padding-top: 10%;
-    padding-left: 20px; 
-    flex-direction: row;
-    width:100%;
-    text-align: center;      
+  display: flex;
+  margin-top: 15px;
+  flex-direction: row;
+  text-align: center;    
 `;
 
 
@@ -412,10 +530,8 @@ export const TecladoManual = styled.button`
 /////////// FILA BOTONES DE ABAJO PROD. PESABLE ////////////
 export const Botones = styled.div`
     display: flex;
-    padding-top: 2%;
-    padding-left: 20px; 
+    margin-top: 15px;
     flex-direction: row;
-    width:100%;
     text-align: center;      
 `;
 
@@ -465,9 +581,17 @@ export const Siguiente = styled.button`
   margin-left: 2px;
   `;
 
-  export const PlusCircle = styled.img`
+export const PlusCircle = styled.img`
   height: 53px;
   width: 53px;
   margin-right: 2px;
   margin-left: 2px;
-  `;
+`;
+
+
+export const ImgH = styled.img`
+@media ${device.tablet} {
+  
+}
+
+`;
