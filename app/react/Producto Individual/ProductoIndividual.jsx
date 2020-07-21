@@ -17,13 +17,15 @@ import Item3 from "../../images/Item3.png";
 import Stock from "../../images/stock.png";
 import TecladoIcono from "../../images/tecladoIcono.png";
 import '../common/styles/main.scss';
+import Navbar from '../Navbar/NavbarContainer'; 
 
 export default ()=>{
     return (
 
-       // <Navbar /> 
+       
 /////////////////////////////// vista producto normal ////////////////////////////////////////       
             <ContGral>
+                <Navbar /> 
             <Header>
                 <Cuadro>
                 <div><Img src={Sustituto}/></div> 
