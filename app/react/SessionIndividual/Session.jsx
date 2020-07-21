@@ -3,6 +3,21 @@ import {
 Container,
 LIzquierdo,
 LDerecho,
+ContainerIzquierdo,
+ParteSuperior,
+IconoCanasta,
+DivA,
+Div1,
+IconoOrden,
+TitleOrden,
+NumeroOrden,
+ParteInferior,
+Pedidos,
+ImageBox,
+ImageTriangle,
+TitlePedidos,
+BorderNumeroPedido,
+NumeroPedidos,
 HeaderDiv,
 Text,
 DivScroll,
@@ -23,10 +38,12 @@ Num2,
 Ean,
 Cantidad,
 } from './style'
+
+import box from '../../images/box.svg';
+import triangleCircle from '../../images/triangle_circle.svg';
 import Navbar from '../Navbar/NavbarContainer';
 import basket from '../../images/basket.svg';
 import scanner from '../../images/scanner.svg';
-import box from '../../images/box.svg';
 import substitute from '../../images/substitute.svg';
 import waves from '../../images/wavesCelest.svg';
 import balance from '../../images/balance.svg';
@@ -35,21 +52,52 @@ import snow from '../../images/snowflakeCelest.svg';
 
 export default ()=>{
     const prueba = [1,2,3,4,5,6,7,8,9,10]
+    return (
+        <>
+            <Navbar />
+            <Container>
+                <LIzquierdo>
+                    <ContainerIzquierdo>
+                        <ParteSuperior>
+                            <IconoCanasta>
+                                <DivA>
+                                    <Div1></Div1>
+                                    <Div1></Div1>
+                                </DivA>
+                                <DivA>
+                                    <Div1></Div1>
+                                    <Div1></Div1>
+                                </DivA>
+
+                            </IconoCanasta>
+                            <IconoOrden>
+                                <TitleOrden>Ronda</TitleOrden>
+                                <NumeroOrden>NRO.837289</NumeroOrden>
+                            </IconoOrden>
+                        </ParteSuperior>
+                    </ContainerIzquierdo>
+                    <ParteInferior>
+                        <Pedidos>
+                            <ImageBox src={box} />
+                            <TitlePedidos>Pedidos</TitlePedidos>
+                            <BorderNumeroPedido>
+                                <NumeroPedidos>6</NumeroPedidos>
+                            </BorderNumeroPedido>
+                        </Pedidos>
+                        <Pedidos>
+                            <ImageTriangle src={triangleCircle} />
+                            <TitlePedidos>Productos</TitlePedidos>
+                            <BorderNumeroPedido>
+                                <NumeroPedidos>6</NumeroPedidos>
+                            </BorderNumeroPedido>
+                        </Pedidos>
+
+                    </ParteInferior>
 
 
-return(
-    <>
-    <Navbar /> 
-    <Container>
-    <LIzquierdo>
-Lado izquierdo
 
-    </LIzquierdo>
-
-
-
-    <LDerecho>
-
+                </LIzquierdo>
+                <LDerecho>
   <HeaderDiv>
 <Text>PRODUCTOS</Text>
 <Text>CANTIDAD</Text>
@@ -94,10 +142,10 @@ Lado izquierdo
 
     </LDerecho>
 
-</Container>
+            </Container>
 
-    </>
+        </>
 
-)
+    )
 
 }

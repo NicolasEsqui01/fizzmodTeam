@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Carousel from 'react-elastic-carousel';
 import {
   Container,
@@ -95,117 +95,117 @@ export default ({
   }
   return (
     <>
-      { getToken === null ?  (
-        <NotFoundPage /> 
+      {getToken === null ? (
+        <NotFoundPage />
       ) : (
-        <>
-          <Navbar />  
-          <Container>
-            <Carousel
-              className="sliderInicio"
-              isRTL
-              itemsToShow={1}
-              transitionMs={500}
-              showArrows={false}
-              focusOnSelect
-            >
-              <InicioA>
-                <Oval>
-                  <OvalInt>
-                    <Pickers>{pickers.length} PICKERS</Pickers>
-                    <Qty>{sessions.length}</Qty>{' '}
-                    {sessions.length == 0 ? (
-                      <Orders>NOTHING YET...</Orders>
-                    ) : sessions.length === 1 ? (
-                      <Orders>ORDEN</Orders>
-                    ) : (
-                      <Orders>ORDENES</Orders>
-                    )}
-                  </OvalInt>
-                </Oval>
-                <Indicadores>
-                  <Icos24>
-                    <Logos src={triangleWhite} alt="triangle" />
-                    <PNumbers>{pending}</PNumbers>
-                    <PNames>X ORDEN</PNames>
-                  </Icos24>
-                  <Icos24>
-                    <Logos src={clockRed} alt="clock" />
-                    <PNumbers>{picking}</PNumbers>
-                    <PNames>X ORDEN</PNames>
-                  </Icos24>
-                  <Icos24>
-                    <Logos src={boxGreen} alt="box" />
-                    <PNumbers>{picked}</PNumbers>
-                    <PNames>X PICKER</PNames>
-                  </Icos24>
-                </Indicadores>
-              </InicioA>
-              <InicioB>
-                <SubTitle>MIS ESTADÍSTICAS</SubTitle>
-                <ContUser>
-                  <LogoUser src={user} alt="user" />
-                </ContUser>
-                <EstadTiempo>
-                  <Icos24Hor>
-                    <Logos src={clockWhite} alt="clock" />
-                    <Item>TIEMPO POR PRODUCTO</Item>
-                    {tiempoPromedioPorProducto !== 0 ? (
-                      <Time>''{tiempoPromedioPorProducto}</Time>
-                    ) : (
-                      <Time>0</Time>
-                    )}
-                    <ContNumGreen>
-                      <Percentage>7%</Percentage>
-                      <LogoStad src={down} alt="clock" />
-                    </ContNumGreen>
-                  </Icos24Hor>
-                </EstadTiempo>
-                <Line></Line>
-                <EstadTiempo>
-                  <Icos24Hor>
-                    <Logos src={squareWhite} alt="clock" />
-                    <Item>TIEMPO POR ORDEN</Item>
-                    {tiempoPromedioOrden !== 0 ? (
-                      <Time>''{tiempoPromedioOrden}</Time>
-                    ) : (
-                      <Time>0</Time>
-                    )}
-                    <ContNumRed>
-                      <Percentage>7%</Percentage>
-                      <LogoStad src={up} alt="clock" />
-                    </ContNumRed>
-                  </Icos24Hor>
-                </EstadTiempo>
-              </InicioB>
-            </Carousel>
-            <hr></hr>
-            <LDerecho>
-              <OrdenHeader>
-                <DivJ>
-                  <ONuevas onClick={getSessionPending} status={status}>
-                    <ImgH src={box} />
+          <>
+            <Navbar />
+            <Container>
+              <Carousel
+                className="sliderInicio"
+                isRTL
+                itemsToShow={1}
+                transitionMs={500}
+                showArrows={false}
+                focusOnSelect
+              >
+                <InicioA>
+                  <Oval>
+                    <OvalInt>
+                      <Pickers>{pickers.length} PICKERS</Pickers>
+                      <Qty>{sessions.length}</Qty>{' '}
+                      {sessions.length == 0 ? (
+                        <Orders>NOTHING YET...</Orders>
+                      ) : sessions.length === 1 ? (
+                        <Orders>ORDEN</Orders>
+                      ) : (
+                            <Orders>ORDENES</Orders>
+                          )}
+                    </OvalInt>
+                  </Oval>
+                  <Indicadores>
+                    <Icos24>
+                      <Logos src={triangleWhite} alt="triangle" />
+                      <PNumbers>{pending}</PNumbers>
+                      <PNames>X ORDEN</PNames>
+                    </Icos24>
+                    <Icos24>
+                      <Logos src={clockRed} alt="clock" />
+                      <PNumbers>{picking}</PNumbers>
+                      <PNames>X ORDEN</PNames>
+                    </Icos24>
+                    <Icos24>
+                      <Logos src={boxGreen} alt="box" />
+                      <PNumbers>{picked}</PNumbers>
+                      <PNames>X PICKER</PNames>
+                    </Icos24>
+                  </Indicadores>
+                </InicioA>
+                <InicioB>
+                  <SubTitle>MIS ESTADÍSTICAS</SubTitle>
+                  <ContUser>
+                    <LogoUser src={user} alt="user" />
+                  </ContUser>
+                  <EstadTiempo>
+                    <Icos24Hor>
+                      <Logos src={clockWhite} alt="clock" />
+                      <Item>TIEMPO POR PRODUCTO</Item>
+                      {tiempoPromedioPorProducto !== 0 ? (
+                        <Time>''{tiempoPromedioPorProducto}</Time>
+                      ) : (
+                          <Time>0</Time>
+                        )}
+                      <ContNumGreen>
+                        <Percentage>7%</Percentage>
+                        <LogoStad src={down} alt="clock" />
+                      </ContNumGreen>
+                    </Icos24Hor>
+                  </EstadTiempo>
+                  <Line></Line>
+                  <EstadTiempo>
+                    <Icos24Hor>
+                      <Logos src={squareWhite} alt="clock" />
+                      <Item>TIEMPO POR ORDEN</Item>
+                      {tiempoPromedioOrden !== 0 ? (
+                        <Time>''{tiempoPromedioOrden}</Time>
+                      ) : (
+                          <Time>0</Time>
+                        )}
+                      <ContNumRed>
+                        <Percentage>7%</Percentage>
+                        <LogoStad src={up} alt="clock" />
+                      </ContNumRed>
+                    </Icos24Hor>
+                  </EstadTiempo>
+                </InicioB>
+              </Carousel>
+              <hr></hr>
+              <LDerecho>
+                <OrdenHeader>
+                  <DivJ>
+                    <ONuevas onClick={getSessionPending} status={status}>
+                      <ImgH src={box} />
                     ORDENES NUEVAS
                   </ONuevas>
-                </DivJ>
-                <DivP>
-                  <PrePickeadas onClick={getSessionPicked} status={status}>
-                    {' '}
-                    <ImgH src={slashBox} />
+                  </DivJ>
+                  <DivP>
+                    <PrePickeadas onClick={getSessionPicked} status={status}>
+                      {' '}
+                      <ImgH src={slashBox} />
                     PRE-PRICKEADAS
                   </PrePickeadas>
-                </DivP>
-              </OrdenHeader>
+                  </DivP>
+                </OrdenHeader>
 
-              <OrdersContainer />
+                <OrdersContainer />
 
-              <OrdenFooter>
-              <Button> <Link to = './productoindividual'> Comenzar </Link></Button>
-              </OrdenFooter>
-            </LDerecho>
-          </Container>
-        </>
-      )}
+                <OrdenFooter>
+                  <Button> <Link to='./productoindividual'> Comenzar </Link></Button>
+                </OrdenFooter>
+              </LDerecho>
+            </Container>
+          </>
+        )}
     </>
   );
 };
