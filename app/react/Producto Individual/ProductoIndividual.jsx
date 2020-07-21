@@ -20,156 +20,83 @@ import TecladoIcono from "../../images/tecladoIcono.png";
 
 export default ()=>{
     return (
-        //////// vista producto normal //////////
-        <div>
-            <Header>
-                <Cuadro>
-                <div><Img src={Sustituto}/></div> 
-                <div><Marca> = Marca, </Marca></div>
-                <div><Gramaje> = Gramaje </Gramaje></div>
-                </Cuadro>
-            </Header>
-            <Cont>
-            <ColIzq>
-                
-                <ColuIconos>
-                <IconoNum src={Item3}/>
-                
-                </ColuIconos>    
-                
-                <DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>
-            </ColIzq>
-            
-            <ColDerecha>
-            <div>
-            <DivGlobos>
-                
-                <ImgH src={bubble} />
-                <ImgH src={bubbleExc} />
-            </DivGlobos>
-            <div>
-            <MarcaH1>SANCOR</MarcaH1>
-            <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
-            <Tachado>$100.000,00</Tachado>
-            <Precio>$100.000,00</Precio>
-            </div>
-            </div>
-            <ContBarras>
-                <BarritasCont>
-                <Barritas src= {BarCode}/>
-                </BarritasCont>
-                <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
-                
-               
-            </ContBarras>
-            <ContImagenes>
-                
-                  
-                <RecuadroCantidadNormal>
-                     <H1Cantidad>Cantidad</H1Cantidad>
-                     <H1CantidadNum>6</H1CantidadNum>
-                     
-                     <FlechitaDesplegable src={flechaDesplegable}/>
-                     
-                </RecuadroCantidadNormal>
-                 <DivImageStock>
-                    <StockLetras>Stock</StockLetras>
-                    <StockCien src={Stock}/>
-                </DivImageStock>
-                 
-            </ContImagenes>
-            
-              <Botones>
-                <Omitir>OMITIR</Omitir>
-                <Teclado src ={TecladoIcono}/>
-                <Siguiente>SIGUIENTE</Siguiente>
-                <PlusCircle src = {Plus}></PlusCircle>
-            </Botones>  
-           
-             
-            </ColDerecha>            
-            </Cont>      
-        </div>
-
-
+        
 
     )
 }
 
-
 /*
-////// vista producto pesable: //////////
+/////////////////////////////// vista producto normal ////////////////////////////////////////
 <div>
-            <Header>
-                <Cuadro>
-                <div><Img src={Sustituto}/></div> 
-                <div><Marca> = Marca, </Marca></div>
-                <div><Gramaje> = Gramaje </Gramaje></div>
-                </Cuadro>
-            </Header>
-            <Cont>
-            <ColIzq>
-                
-                <ColuIconos>
-                <IconoNum src={Item3}/>
-                 <IconoNumDos>
-                    <StockLetras>Stock</StockLetras>
-                    <StockCien src={Stock}/>
-                </IconoNumDos> 
-                </ColuIconos>    
-                 <DivFoto><FotoProd src ={ImagenProdu}/></DivFoto> 
-                
-            </ColIzq>
-            
-            <ColDerecha>
-            <div>
-            <DivGlobos>
-                
-                <ImgH src={bubble} />
-                <ImgH src={bubbleExc} />
-            </DivGlobos>
-            <div>
-            <MarcaH1>SANCOR</MarcaH1>
-            <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
-            <Tachado>$100.000,00</Tachado>
-            <Precio>$100.000,00</Precio>
-            </div>
-            </div>
-            <ContBarras>
-                <BarritasCont>
-                <Barritas src= {BarCode}/>
-                </BarritasCont>
-                <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
-                
-                <ImgBarrita src= {ImagenBarrita}/>
-                <ImBalanza src={ImagenBalanza}/>
-                <PesoProdu>20,00 Kgs</PesoProdu>  
-            </ContBarras>
-            <ContImagenes>
-                 <CuadritoUno>
-                    <ImgBalanzasUno src={ImagenBalanza}/>
-                    <PesoCuadro>0,00 kgs.</PesoCuadro>
-                </CuadritoUno>
-                <CuadritoDos>
-                <ImgBalanzasMas src={ImagenBalanzaMas}/>
-                </CuadritoDos>  
-                  
-                
-                 
-            </ContImagenes>
-              <Instrucciones>Coloca el producto sobre la balanza</Instrucciones> 
-              <Botones>
-                <Omitir>OMITIR</Omitir>
-                <Teclado src ={TecladoIcono}/>
-                <Siguiente>SIGUIENTE</Siguiente>
-                <PlusCircle src = {Plus}></PlusCircle>
-            </Botones>  
-           
-             
-            </ColDerecha>            
-            </Cont>      
-        </div>
+<Header>
+    <Cuadro>
+    <div><Img src={Sustituto}/></div> 
+    <div><Marca> = Marca, </Marca></div>
+    <div><Gramaje> = Gramaje </Gramaje></div>
+    </Cuadro>
+</Header>
+<Cont>
+<ColIzq>
+    
+    <ColuIconos>
+    <IconoNum src={Item3}/>
+    
+    </ColuIconos>    
+    
+    <DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>
+</ColIzq>
 
+<ColDerecha>
+<div>
+<DivGlobos>
+    
+    <ImgH src={bubble} />
+    <ImgH src={bubbleExc} />
+</DivGlobos>
+<div>
+<MarcaH1>SANCOR</MarcaH1>
+<Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
+<Tachado>$100.000,00</Tachado>
+<Precio>$100.000,00</Precio>
+</div>
+</div>
+<ContBarras>
+    <BarritasCont>
+    <Barritas src= {BarCode}/>
+    </BarritasCont>
+    <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
+    
+   
+</ContBarras>
+<ContImagenes>
+    
+      
+    <RecuadroCantidadNormal>
+         <H1Cantidad>Cantidad</H1Cantidad>
+         <H1CantidadNum>6</H1CantidadNum>
+         
+         <FlechitaDesplegable src={flechaDesplegable}/>
+         
+    </RecuadroCantidadNormal>
+     <DivImageStock>
+        <StockLetras>Stock</StockLetras>
+        <StockCien src={Stock}/>
+    </DivImageStock>
+     
+</ContImagenes>
 
+  <Botones>
+    <Omitir>OMITIR</Omitir>
+    <Teclado src ={TecladoIcono}/>
+    <Siguiente>SIGUIENTE</Siguiente>
+    <PlusCircle src = {Plus}></PlusCircle>
+</Botones>  
+
+ 
+</ColDerecha>            
+</Cont>      
+</div>
 
 */
+
+///////////////////// hasta acá producto individual normal /////////////////////////////////////
