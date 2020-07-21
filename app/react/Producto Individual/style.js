@@ -421,15 +421,7 @@ export const ContImagenes = styled.div`
     display: flex;
     flex-direction: row;
     text-align: center;
-<<<<<<< HEAD
-    align-items: center;
-    @media ${device.mobile} {
-    justify-content:space-around;
-    margin-top: 7px;
-  } 
-=======
     align-items: flex-end;
->>>>>>> 19ae48ac52a3f68e75306385d41d5d90b211620b
 `;
 
 export const CuadritoUno = styled.div`
@@ -492,7 +484,7 @@ font-size: 16px;
 /////////// RECUADRO CON CANTIDAD PRODUCTO NORMAL Y STOCK///////////
 
 export const RecuadroCantidadNormal = styled.div`
-  margin-top: 5%;  
+  //margin-top: 5%;  
   display: flex;  
   box-sizing: border-box;
   height: 55px;
@@ -501,7 +493,7 @@ export const RecuadroCantidadNormal = styled.div`
   border-radius: 3px;
   background-color: #FFFFFF;
   align-items: center;
-  //justify-content: center;  
+  justify-content: space-around;  
 `;
 
 export const H1Cantidad = styled.h1`
@@ -512,12 +504,13 @@ export const H1Cantidad = styled.h1`
   font-size: 17px;
   letter-spacing: 0;
   line-height: 16px;
+  margin-right: 10%;
 `;
 
 export const H1CantidadNum = styled.h1`
 
 height: 18px;
-margin-left: 10%;
+//margin-left: 10%;
 //width: 9px;
 color: #939598;
 font-family: Roboto;
@@ -528,7 +521,7 @@ line-height: 18px;
 `;
 
 export const FlechitaDesplegable = styled.img`
-  margin-left: 28%;  
+  //margin-left: 28%;  
   height: 20px;
   width: 20px;
 `;
