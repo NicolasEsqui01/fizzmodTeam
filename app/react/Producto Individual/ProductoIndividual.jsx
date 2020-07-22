@@ -1,7 +1,7 @@
 import React from "react";
-import { ContGral, ContMarca, ContInfo, ContDer, ContStock, Header, Cuadro, Img, Marca, Gramaje, ColDerecha, ColIzq, ColuIconos, IconoNum, IconoNumDos, StockLetras, StockCien, Cont, FotoProd, DivFoto, DivGlobos, ImagenGlobo, ImgH, MarcaH1, Descri, Tachado, Precio, ContBarras, BarritasCont, Barritas, CodProdu, ImgBarrita, ImBalanza, PesoProdu, ContImagenes, CuadritoUno, PesoCuadro, CuadritoDos, ImgBalanzasUno, ImgBalanzasMas, Instrucciones, RecuadroCantidadNormal, H1Cantidad, H1CantidadNum, FlechitaDesplegable, DivImageStock, BotonesNormal, Botones, OmitirNormal, CruzOmitir, TecladoManual, Omitir, Teclado, Siguiente, PlusCircle, CuadroGrill,ContainerGrillCuadros,NumCuadrados,Sup,Percentage, ContFlechitas, ImgAmarilla } from "./style";
+import { ContGral, ContMarca, ContInfo, ContDer, ContStock, Header, Cuadro, Img, Marca, Gramaje, ColDerecha, ColIzq, ColuIconos, IconoNum, IconoNumDos, StockLetras, StockCien, Cont, FotoProd, DivFoto, DivGlobos, ImagenGlobo, ImgH, MarcaH1, Descri, Tachado, Precio, ContBarras, BarritasCont, Barritas, CodProdu, ImgBarrita, ImBalanza, PesoProdu, ContImagenes, CuadritoUno, PesoCuadro, CuadritoDos, ImgBalanzasUno, ImgBalanzasMas, Instrucciones, RecuadroCantidadNormal, H1Cantidad, H1CantidadNum, FlechitaDesplegable, DivImageStock, BotonesNormal, Botones, OmitirNormal, CruzOmitir, Omitir, Teclado, Siguiente, PlusCircle, CuadroGrill,ContainerGrillCuadros,NumCuadrados,Sup,Percentage, ContFlechitas, ImgAmarilla,BotonTeclado,BotIzq,BotDer } from "./style";
 import Sustituto from "../../images/substitute.svg";
-import Plus from "../../images/plus_circle.svg";
+import masBlanco from "../../images/masBlanco.svg";
 import BarCode from "../../images/bar_code.svg";
 import ImagenBalanza from "../../images/balance.svg";
 import ImagenBalanzaMas from "../../images/Balanza +pesable.svg";
@@ -17,13 +17,13 @@ import Item3 from "../../images/Item3.png";
 import Stock from "../../images/stock.png";
 import TecladoIcono from "../../images/tecladoIcono.png";
 import '../common/styles/main.scss';
+import Navbar from '../Navbar/NavbarContainer'; 
 
 export default ()=>{
     return (
-
-       // <Navbar /> 
 /////////////////////////////// vista producto normal ////////////////////////////////////////       
             <ContGral>
+                <Navbar /> 
             <Header>
                 <Cuadro>
                 <div><Img src={Sustituto}/></div> 
@@ -88,15 +88,18 @@ export default ()=>{
                     </DivImageStock>
                 </ContImagenes>
                   <Botones>
-                    <Omitir>OMITIR</Omitir>
-                    <Teclado src ={TecladoIcono}/>
-                    <Siguiente>SIGUIENTE</Siguiente>
-                    <PlusCircle src = {Plus}></PlusCircle>
-                </Botones>  
+                    <BotIzq>
+                        <Omitir><CruzOmitir src ={ImageCruzOmitir}/>OMITIR</Omitir>
+                        <BotonTeclado><Teclado src ={TecladoIcono}/></BotonTeclado>
+                        <Siguiente>SIGUIENTE</Siguiente>
+                    </BotIzq>
+                    <BotDer>
+                        <PlusCircle src = {masBlanco}></PlusCircle>
+                    </BotDer>
+                 </Botones>  
                 </ColDerecha>            
             </Cont> 
             </ContGral>     
-///////////////////// hasta acá producto individual normal /////////////////////////////////////
     )
 }
 
@@ -172,7 +175,7 @@ export default ()=>{
         //                 <Omitir>OMITIR</Omitir>
         //                 <Teclado src ={TecladoIcono}/>
         //                 <Siguiente>SIGUIENTE</Siguiente>
-        //                 <PlusCircle src = {Plus}></PlusCircle>
+        //                 <PlusCircle src = {masBlanco}></PlusCircle>
         //             </Botones> 
         //         </ColDerecha>
         //     </Cont>
