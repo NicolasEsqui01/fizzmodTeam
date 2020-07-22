@@ -1,42 +1,42 @@
 import React from 'react'
 import {
-Container,
-LIzquierdo,
-LDerecho,
-ContainerIzquierdo,
-ParteSuperior,
-IconoCanasta,
-DivA,
-Div1,
-IconoOrden,
-TitleOrden,
-NumeroOrden,
-ParteInferior,
-Pedidos,
-ImageBox,
-ImageTriangle,
-TitlePedidos,
-BorderNumeroPedido,
-NumeroPedidos,
-HeaderDiv,
-Text,
-DivScroll,
-Productos,
-Img,
-Icono,
-Icono2,
-Icono3,
-Icono4,
-DivR,
-DivP,
-DivX,
-DivZ,
-DivB,
-Descripcion,
-Num,
-Num2,
-Ean,
-Cantidad,
+    Container,
+    LIzquierdo,
+    LDerecho,
+    ContainerIzquierdo,
+    ParteSuperior,
+    IconoCanasta,
+    DivA,
+    Div1,
+    IconoOrden,
+    TitleOrden,
+    NumeroOrden,
+    ParteInferior,
+    Pedidos,
+    ImageBox,
+    ImageTriangle,
+    TitlePedidos,
+    BorderNumeroPedido,
+    NumeroPedidos,
+    HeaderDiv,
+    Text,
+    DivScroll,
+    Productos,
+    Img,
+    Icono,
+    Icono2,
+    Icono3,
+    Icono4,
+    DivR,
+    DivP,
+    DivX,
+    DivZ,
+    DivB,
+    Descripcion,
+    Num,
+    Num2,
+    Ean,
+    Cantidad,
 } from './style'
 
 import box from '../../images/box.svg';
@@ -50,8 +50,8 @@ import balance from '../../images/balance.svg';
 import snow from '../../images/snowflakeCelest.svg';
 
 
-export default ()=>{
-    const prueba = [1,2,3,4,5,6,7,8,9,10]
+export default () => {
+    const prueba = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     return (
         <>
             <Navbar />
@@ -98,49 +98,49 @@ export default ()=>{
 
                 </LIzquierdo>
                 <LDerecho>
-  <HeaderDiv>
-<Text>PRODUCTOS</Text>
-<Text>CANTIDAD</Text>
-   </HeaderDiv>
+                    <HeaderDiv>
+                        <Text>PRODUCTOS</Text>
+                        <Text>CANTIDAD</Text>
+                    </HeaderDiv>
 
-<DivScroll>
+                    <DivScroll>
 
-{ prueba.map(elem =>
-<Productos>
+                        {prueba.map(elem =>
+                            <Productos>
 
-   
-    <DivR >
-      <Img src={basket}/>
-    <DivX>
-      <Descripcion>DESCRIPCION DEL PRODUCTO</Descripcion>
 
-    <DivZ>
-      <Icono2 src= {scanner}/>
-      <Ean>1234456112</Ean>
-      <Cantidad>30 / 30</Cantidad>
-    </DivZ>
+                                <DivR >
+                                    <Img src={basket} />
+                                    <DivX>
+                                        <Descripcion>DESCRIPCION DEL PRODUCTO</Descripcion>
 
-    </DivX>
+                                        <DivZ>
+                                            <Icono2 src={scanner} />
+                                            <Ean>1234456112</Ean>
+                                            <Cantidad>30 / 30</Cantidad>
+                                        </DivZ>
 
-    </DivR>
-       <hr></hr>
-    <DivP>
-       <Icono src={basket}/>
-       <Num> 1. </Num>
-       <Icono3 src={box}/>
-       <Num2>5f0507d88459ab000839154e</Num2>
-       <DivB>
-       <Icono4 src={balance}/>
-       <Icono4 src={substitute}/>
-       </DivB>
-    </DivP>
-    
-</Productos>
-)}
+                                    </DivX>
 
-</DivScroll>
+                                </DivR>
+                                <hr></hr>
+                                <DivP>
+                                    <Icono src={basket} />
+                                    <Num> 1. </Num>
+                                    <Icono3 src={box} />
+                                    <Num2>5f0507d88459ab000839154e</Num2>
+                                    <DivB>
+                                        <Icono4 src={balance} />
+                                        <Icono4 src={substitute} />
+                                    </DivB>
+                                </DivP>
 
-    </LDerecho>
+                            </Productos>
+                        )}
+
+                    </DivScroll>
+
+                </LDerecho>
 
             </Container>
 

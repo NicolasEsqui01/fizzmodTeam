@@ -19,7 +19,7 @@ export const Container = styled.div`
     }
   `;
 
-  ///  Izquierdo
+///  Izquierdo
 
 export const LIzquierdo = styled.div`
   display: flex;
@@ -177,7 +177,7 @@ align-items:center;
   }
   `;
 
-export const HeaderDiv = styled.div `
+export const HeaderDiv = styled.div`
 @media ${device.tablet} {
 height:50px;
 }
@@ -188,7 +188,7 @@ height: 8%;
 
 `
 
-export const Text = styled.h1 `
+export const Text = styled.h1`
 @media ${device.tablet} {
   font-size: 15px;
   }
@@ -203,7 +203,7 @@ height: 15px;
   text-align: center;
 `
 
-export const Productos = styled.div `
+export const Productos = styled.div`
 @media ${device.tablet} {
   height:400px;
   }
@@ -233,7 +233,7 @@ export const DivScroll = styled.div`
 
 //imgs
 
-export const Img = styled.img `
+export const Img = styled.img`
 @media ${device.tablet} {
   height:30%;
   width:20%;
@@ -244,13 +244,13 @@ margin-top:3%;
 margin-left:2%;
 `
 
-export const Icono = styled.img `
+export const Icono = styled.img`
  height:50%;
  width:10%;
  margin-left:2%;
  border-left: 3px solid #08C4C4
 `
-export const Icono2 = styled.img `
+export const Icono2 = styled.img`
 @media ${device.tablet} {
   height:40px;
   width:50px;
@@ -261,7 +261,7 @@ export const Icono2 = styled.img `
  margin-top 10%;
 
 `
-export const Icono3 = styled.img `
+export const Icono3 = styled.img`
 @media ${device.tablet} {
   height:40%;
   width:9%;
@@ -272,7 +272,7 @@ export const Icono3 = styled.img `
  width:7%;
  margin-left:2%;
 `
-export const Icono4 = styled.img `
+export const Icono4 = styled.img`
  height:40px;
  width:40px;
  margin-left:5%;
@@ -281,7 +281,7 @@ export const Icono4 = styled.img `
 
 
 
-export const Descripcion = styled.div `
+export const Descripcion = styled.div`
 @media ${device.tablet} {
   height:20%;
   width:90%;
@@ -342,7 +342,7 @@ line-height: 14px;
 
 `
 
-export const Cantidad =styled.div `
+export const Cantidad = styled.div`
 @media ${device.tablet} {
   width:80%;
   margin-left:0;
@@ -370,11 +370,11 @@ border-radius:30px
 
 //controladores
 
-export const DivX = styled.div `
+export const DivX = styled.div`
 width:100%;
 `
 
-export const DivR = styled.div `
+export const DivR = styled.div`
 @media ${device.tablet} {
   height:70%;
   width:95%;
@@ -384,7 +384,7 @@ width:100%;
 display:flex;
 
 `
-export const DivP = styled.div `
+export const DivP = styled.div`
 @media ${device.tablet} {
   height:30%;
   }
@@ -394,7 +394,7 @@ height:30%;
 align-items:center;
 
 `
-export const DivZ = styled.div `
+export const DivZ = styled.div`
 @media ${device.tablet} {
   display:flex;
   flex-direction:column;
@@ -403,7 +403,7 @@ export const DivZ = styled.div `
 display:flex;
 align-items:center;
 `
-export const DivB = styled.div `
+export const DivB = styled.div`
 @media ${device.tablet} {
   display:flex;
   flex-direction:column;
@@ -419,5 +419,5 @@ align-items:center;
 justify-content:center;
 `
 
- 
+
 
