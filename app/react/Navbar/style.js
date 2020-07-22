@@ -13,7 +13,10 @@ padding-top: 17px;
 padding-bottom: 17px;
 padding-left: 36px;
 padding-right: 36px;
-
+@media ${device.tablet} {
+  padding-left: 12px;
+  padding-right: 12px;
+}
 `;
 
 
@@ -30,12 +33,27 @@ align-items: center;
 
 export const Img = styled.img`
 height: 35px;
-width: 50px;
+width: 36px;
+box-sizing: border-box;
+border-radius: 5px;
+border: 1px solid #3B505B;
+`;
+
+export const Img2 = styled.img`
+height: 35px;
+width: 40px;
+
 `;
 
 export const ImgLogo = styled.img`
 height: 35px;
 width: 110px;
+@media ${device.tablet} {
+    
+  width: 55px;
+  height: auto;
+  margin-left: 10px;
+}
 `;
 
 //padding: 0px 20px 8px 0px;
@@ -67,6 +85,7 @@ export const OvaloCantidad = styled.div`
   @media ${device.tablet} {
     
     width: 50px;
+    height: 25px;
     margin-left: 10px;
   }
 `;
@@ -92,6 +111,9 @@ align-items: center;
 export const ImageReloj = styled.img`
 height: 24px;
 width: auto;
+@media ${device.tablet} {
+  height: 20px;
+}
 `;
 
 export const H1Tiempo = styled.h1`
@@ -104,6 +126,10 @@ font-size: 20px;
 font-weight: bold;
 letter-spacing: 0;
 line-height: 19px;
+@media ${device.tablet} {
+  margin-left: 5px;  
+  margin-left: 6px;
+}
 `;
 
 

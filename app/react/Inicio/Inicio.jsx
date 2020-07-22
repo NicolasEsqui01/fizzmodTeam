@@ -36,11 +36,11 @@ import {
   ContNumGreen,
   ContNumRed,
 } from './style';
-import box from '../../images/box.svg';
-import slashBox from '../../images/box_slash.svg';
+import box from '../../images/icn_new-order.svg';
+import slashBox from '../../images/icn_pre-picking.svg';
 import OrdersContainer from '../Orders/OrdersContainer';
 import boxGreen from '../../images/boxGreen.svg';
-import down from '../../images/chevron_downWhite.svg';
+import down from '../../images/chevron_downWhite.svg';  
 import up from '../../images/chevron_upWhite.svg';
 import clockWhite from '../../images/clockWhite.svg';
 import squareWhite from '../../images/square_chart_line.svg';
