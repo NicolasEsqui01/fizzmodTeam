@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { device } from '../../utils/mediaQuerys';
+import { stubFalse } from 'lodash';
 
 export const Container = styled.div`
 @media ${device.tablet} {
@@ -123,6 +124,18 @@ margin-right: 2%;
 margin-left: 5%;
 height: 50px;
 width: 50px;
+`
+
+
+export const SectorCongelado = styled.div`
+height: 25px;
+width: 50%;
+color: #273947;
+font-family: Roboto;
+font-size: 25px;
+letter-spacing: 0;
+line-height: 16px;
+
 `
 
 export const TitlePedidos = styled.div`
@@ -418,6 +431,11 @@ display:flex;
 align-items:center;
 justify-content:center;
 `
+export const DivK= styled.div `
+height:2px;
+width:100%;
+background-color:#E8EAF6;
 
+`
  
 

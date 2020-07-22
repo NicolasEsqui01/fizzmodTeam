@@ -37,6 +37,8 @@ Num,
 Num2,
 Ean,
 Cantidad,
+SectorCongelado,
+DivK,
 } from './style'
 
 import box from '../../images/box.svg';
@@ -45,6 +47,7 @@ import Navbar from '../Navbar/NavbarContainer';
 import basket from '../../images/basket.svg';
 import scanner from '../../images/scanner.svg';
 import substitute from '../../images/substitute.svg';
+import location from '../../images/location_marker.svg'
 import waves from '../../images/wavesCelest.svg';
 import balance from '../../images/balance.svg';
 import snow from '../../images/snowflakeCelest.svg';
@@ -91,7 +94,10 @@ export default ()=>{
                                 <NumeroPedidos>6</NumeroPedidos>
                             </BorderNumeroPedido>
                         </Pedidos>
-
+                        <Pedidos>
+                            <ImageBox src={location} />
+                            <SectorCongelado>Sector Congelados</SectorCongelado>
+                        </Pedidos>
                     </ParteInferior>
 
 
@@ -123,7 +129,7 @@ export default ()=>{
     </DivX>
 
     </DivR>
-       <hr></hr>
+       <DivK></DivK>
     <DivP>
        <Icono src={basket}/>
        <Num> 1. </Num>
