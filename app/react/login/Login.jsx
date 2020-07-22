@@ -27,9 +27,11 @@ import {
   DivInput3,
   ErrorLabel,
   Span,
+  ImgLogo
 } from './style';
 
 import logoJanis from '../../images/logo_janis.svg';
+import janisLogoInf from "../../images/janis_logo.svg"
 import { Link } from 'react-router-dom';
 
 export default ({
@@ -46,10 +48,10 @@ export default ({
         <DivLogoSuperior>
           <DivCuadrado />
           <DivLogoImg>
-            <Image src={logoJanis} alt="#" />
+            <Image src={logoJanis} alt="Logo" />
           </DivLogoImg>
         </DivLogoSuperior>
-        <DivLogoLetras>janis</DivLogoLetras>
+        <DivLogoLetras><ImgLogo src={janisLogoInf} alt= "logoJanis"/></DivLogoLetras>
       </DivImage>
       <DivContectForm>
         <DivForm>

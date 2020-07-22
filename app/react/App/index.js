@@ -14,7 +14,7 @@ import { Helmet } from 'react-helmet-async';
 import { hot } from 'react-hot-loader/root';
 // import NotFoundPage from '../NotFoundPage/Loadable';
 import LoginContainer from '../login/Loadable'
-import InicioContainer from '../Inicio/InicioContainer';
+import InicioContainer from '../Inicio/Loadable';
 import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 // Header and Footer
