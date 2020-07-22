@@ -91,7 +91,10 @@ export default ({
     );
     tiempoPromedioPorProducto =
       Math.round((countProdPorOrden /= tiempoPorOrden) * 10) / 10;
+
+    
   }
+  {console.log( "SESIONES: ", sessions)}
   return (
     <>
       { getToken === null ?  (
