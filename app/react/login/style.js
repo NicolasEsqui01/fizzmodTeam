@@ -64,6 +64,11 @@ export const DivLogoImg = styled.div`
     width: 70px;
   `;
 
+export const ImgLogo = styled.img`
+height: 35px;
+width: 110px;
+`;
+
 export const Image = styled.img`
   height: 106px;
   width: 100%;
