@@ -2,7 +2,7 @@ const intialState = {
   sessions: [],
   pickers: [],
   permiso: false,
-  status:'pending'
+  status:'pending',
 };
 
 
