@@ -550,7 +550,7 @@ export const ContFlechitas = styled.div`
 
 `;
 
-export const FlechitaDesplegable = styled.img`
+export const FlechitaDesplegable = styled.button`
   //margin-left: 28%;  
   height: 20px;
   width: 20px;

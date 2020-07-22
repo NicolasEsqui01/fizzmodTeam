@@ -1,6 +1,7 @@
 const initialState = {
-  tokenSession: '',
-  sessionId: {},
+  tokenSession: {},
+  sessionId: '',
+  sessionPicking:{}
 };
 
 export default (state = initialState, action) => {
@@ -9,6 +10,8 @@ export default (state = initialState, action) => {
       return { ...state, tokenSession: action.token };
     case 'GET_SESSIONID':
       return { ...state, sessionId: action.sessionId };
+    case 'GET_SESSIONPICKING':
+      return {...state , sessionPicking:action.session};
     default:
       return state;
   }
