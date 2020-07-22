@@ -461,7 +461,7 @@ export const Button = styled.button`
   text-align: center;
   border-radius: 3px;
   background-color: #1db779;
-  
+  outline:none;
 `;
 
   
