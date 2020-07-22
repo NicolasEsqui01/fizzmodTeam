@@ -19,86 +19,103 @@ import TecladoIcono from "../../images/tecladoIcono.png";
 import '../common/styles/main.scss';
 import Navbar from '../Navbar/NavbarContainer'; 
 
-export default ()=>{
+export default ({estado, session, pickeado})=>{
+    console.log("ESTADO!!:",estado)
+    console.log("SESSION A PICKEAR!!:",session)
+    let idx=0;
+    let qty=0;
     return (
 /////////////////////////////// vista producto normal ////////////////////////////////////////       
             <ContGral>
                 <Navbar /> 
-            <Header>
-                <Cuadro>
-                <div><Img src={Sustituto}/></div> 
-                <div><Marca> = Marca, </Marca></div>
-                <div><Gramaje> = Gramaje </Gramaje></div>
-                </Cuadro>
-            </Header>
-            <Cont>
-                <ColIzq>
-                    <ColuIconos>
-                    <Sup>
-                        <ContainerGrillCuadros>
-                         <CuadroGrill/>
-                         <CuadroGrill/>
-                        </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                          <CuadroGrill className="bkgColor"/>
-                          <CuadroGrill/>
-                        </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                        <CuadroGrill/>
-                        <CuadroGrill/>
-                        </ContainerGrillCuadros>
-                            <NumCuadrados>3</NumCuadrados>
-                        </Sup>
-                    </ColuIconos>    
-                    <DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>
-                </ColIzq>
-                <ColDerecha>
-                <div>
-                <DivGlobos>
-                    <ImgAmarilla src={bubble} />
-                    <ImgAmarilla src={bubbleExc} />
-                </DivGlobos>
-                <div>
-                <MarcaH1>SANCOR</MarcaH1>
-                <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
-                <Tachado>$100.000,00</Tachado>
-                <Precio>$100.000,00</Precio>
-                </div>
-                </div>
-                <ContBarras>
-                    <BarritasCont>
-                    <Barritas src= {BarCode}/>
-                    </BarritasCont>
-                    <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
-                </ContBarras>
-                <ContImagenes>
-                    <RecuadroCantidadNormal>
-                         <H1Cantidad>Cantidad</H1Cantidad>
-                         <H1CantidadNum>6</H1CantidadNum>
-                         <ContFlechitas>
-                            <FlechitaDesplegable src={flechaDesplegableArriba}/>
-                            <FlechitaDesplegable src={flechaDesplegableAbajo}/>
-                         </ContFlechitas>
-                    </RecuadroCantidadNormal>
-                     <DivImageStock>
-                     <ContStock>
-                            Stock
-                            <StockCien>+100</StockCien>
-                        </ContStock>
-                    </DivImageStock>
-                </ContImagenes>
-                  <Botones>
-                    <BotIzq>
-                        <Omitir><CruzOmitir src ={ImageCruzOmitir}/>OMITIR</Omitir>
-                        <BotonTeclado><Teclado src ={TecladoIcono}/></BotonTeclado>
-                        <Siguiente>SIGUIENTE</Siguiente>
-                    </BotIzq>
-                    <BotDer>
-                        <PlusCircle src = {masBlanco}></PlusCircle>
-                    </BotDer>
-                 </Botones>  
-                </ColDerecha>            
-            </Cont> 
+                <Header>
+                    <Cuadro>
+                    <div><Img src={Sustituto}/></div> 
+                    <div><Marca> = Marca, </Marca></div>
+                    <div><Gramaje> = Gramaje </Gramaje></div>
+                    </Cuadro>
+                </Header>
+                <Cont>
+                    {   
+                        idx > session.items.length ?
+                        ({/* TERMINO DE PICKEAR, DEBERIA PONER EL STATUS EN PICKED*/})
+                        :
+                        (
+                        <div>
+                            <ColIzq>
+                                <ColuIconos>
+                                <Sup>
+                                    <ContainerGrillCuadros>
+                                     <CuadroGrill/>
+                                     <CuadroGrill/>
+                                    </ContainerGrillCuadros>
+                                    <ContainerGrillCuadros>
+                                      <CuadroGrill className="bkgColor"/>
+                                      <CuadroGrill/>
+                                    </ContainerGrillCuadros>
+                                    <ContainerGrillCuadros>
+                                    <CuadroGrill/>
+                                    <CuadroGrill/>
+                                    </ContainerGrillCuadros>
+                                        <NumCuadrados>3</NumCuadrados>
+                                    </Sup>
+                                </ColuIconos>    
+                                {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
+                                <DivFoto><FotoProd src ={session.items[idx].imageUrl}/></DivFoto>
+                            </ColIzq>
+                            <ColDerecha>
+                                <div>
+                                <DivGlobos>
+                                    <ImgAmarilla src={bubble} />
+                                    <ImgAmarilla src={bubbleExc} />
+                                </DivGlobos>
+                                <div>
+                                <MarcaH1>SANCOR</MarcaH1>
+                                <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
+                                <Tachado>$100.000,00</Tachado>
+                                <Precio>$100.000,00</Precio>
+                                </div>
+                                </div>
+                                <ContBarras>
+                                    <BarritasCont>
+                                    <Barritas src= {BarCode}/>
+                                    </BarritasCont>
+                                    <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
+                                </ContBarras>
+                                <ContImagenes>
+                                    <RecuadroCantidadNormal>
+                                         <H1Cantidad>Cantidad</H1Cantidad>
+                                         <H1CantidadNum>{qty}</H1CantidadNum>
+                                         <ContFlechitas>
+                                            <FlechitaDesplegable src={flechaDesplegableArriba} onClick={()=>qty=qty+1}/>
+                                            <FlechitaDesplegable src={flechaDesplegableAbajo} onClick={()=>qty=qty-1}/>
+                                         </ContFlechitas>
+                                    </RecuadroCantidadNormal>
+                                     <DivImageStock>
+                                     <ContStock>
+                                            Stock
+                                            <StockCien>+100</StockCien>
+                                        </ContStock>
+                                    </DivImageStock>
+                                </ContImagenes>
+                                  <Botones>
+                                    <BotIzq>
+                                        <Omitir><CruzOmitir src ={ImageCruzOmitir}/>OMITIR</Omitir>
+                                        <BotonTeclado><Teclado src ={TecladoIcono}/></BotonTeclado>
+                                        <Siguiente onClick={()=>{
+                                        pickeado(session.id, session.item[idx].id, qty);
+                                        idx+1}
+                                        }>SIGUIENTE</Siguiente> {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                                    </BotIzq>
+                                    <BotDer>
+                                        <PlusCircle src = {masBlanco}></PlusCircle>
+                                    </BotDer>
+                                 </Botones>  
+                            </ColDerecha>
+                        </div>
+                        )
+                    }          
+                </Cont> 
             </ContGral>     
     )
 }
