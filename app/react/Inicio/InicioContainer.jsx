@@ -15,7 +15,7 @@ import history from '../../utils/history'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    sessionId: state.sessionReducer.sessionId.id, // Me trae el id de la session
+    sessionId: state.sessionReducer.sessionId, // Me trae el id de la session
     session: state.inicioReducer.sessions,
     pickers: state.inicioReducer.pickers,
     status: state.inicioReducer.status,

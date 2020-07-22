@@ -6,12 +6,13 @@ import { connectRouter } from 'connected-react-router';
 import loginReducer from "../app/reducers/loginReducer"
 import inicioReducer from "../app/reducers/inicioReducer"
 import sessionReducer from '../app/reducers/sessionReducer'
+import pickingReducer from '../app/reducers/pickingReducer'
 import history from 'utils/history';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
-export default function createReducer(injectedReducers = { loginReducer, inicioReducer, sessionReducer}) {
+export default function createReducer(injectedReducers = { loginReducer, inicioReducer, sessionReducer , pickingReducer}) {
   const rootReducer = combineReducers({
     router: connectRouter(history),
     ...injectedReducers,
