@@ -65,7 +65,7 @@ flex-direction: row;
 margin-top:70px;
 @media ${device.mobile} {
   flex-direction: column;
-  margin-top:20px;
+  margin-top:0px;
 }
 `;
 
@@ -129,9 +129,9 @@ export const DivFoto = styled.div`
   flex-direction: column;
   height: auto;
   float: right;
-  @media ${device.laptop} {
+  @media ${device.mobile} {
+  width: 60%;
   max-width: 450px;
-  width: 70%;
   }  
 `;
 
@@ -203,6 +203,7 @@ export const ContStock = styled.div`
   color:#1DB779;
   @media ${device.mobile} {
   font-size: 14px;
+  margin-bottom:5px;
 }
 `;
 
@@ -245,6 +246,8 @@ display:row;
 @media ${device.mobile} {
     display: column;
     align-items:center;
+    margin-top:0px;
+    margin-bottom:0px;
 }
 `;
 
@@ -271,6 +274,19 @@ height: auto;
 `;
 
 
+export const ImgAmarilla = styled.img`
+@media ${device.tablet} {
+  height: auto;
+  width: 50px;
+}
+  height: auto;
+  width: 60px;
+  background-color: #FFEB3B;
+  border-radius: 50px;
+  padding: 6px;
+  margin-top:5px;
+`;
+
 /////media query/////
 export const ImgH = styled.img`
 @media ${device.tablet} {
@@ -288,9 +304,10 @@ export const ImgH = styled.img`
 //////////// MARCA Y DESCRIPCION ///////////////
 export const MarcaH1 = styled.h1`
   margin-top:15px;
+  padding-bottom:20px;
   color: #2979FF;
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 22px;
   letter-spacing: 0;
   line-height: 15px;
   @media ${device.mobile} {
@@ -304,7 +321,7 @@ export const MarcaH1 = styled.h1`
 `;
 
 export const Descri = styled.div`
-  margin-top:20px
+  margin-top:20px;
   color: #939598;
   font-family: Roboto;
   font-size: 24px;
@@ -313,7 +330,8 @@ export const Descri = styled.div`
   line-height: 25px;
   @media ${device.mobile} {
   font-size: 15px;
-  margin-top:10px
+  margin-top:10px;
+  margin-bottom:10px;
 }
 `;
 
@@ -330,7 +348,8 @@ line-height: 14px;
 text-decoration: line-through;
 @media ${device.mobile} {
   width:50%;
-  margin-top: 0px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 `;
 
@@ -355,7 +374,6 @@ margin-top:15px;
 align-items:center;
 @media ${device.mobile} {
 margin-top:0px;
-justify-content: space-between;
 }
 `;
 
@@ -382,7 +400,6 @@ export const CodProdu = styled.div`
   line-height: 19px;
   margin-right:25px;
   @media ${device.mobile} {
-  width: 30%;
   height: auto;
   font-size: 15px;
   margin-right:0px;
@@ -418,10 +435,15 @@ export const PesoProdu = styled.div`
 /////////// FILA CON ICONOS DE PESO ///////////////
 export const ContImagenes = styled.div`
     margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     text-align: center;
     align-items: flex-end;
+    @media ${device.mobile} {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 `;
 
 export const CuadritoUno = styled.div`
@@ -520,7 +542,15 @@ letter-spacing: 0;
 line-height: 18px;
 `;
 
-export const FlechitaDesplegable = styled.img`
+export const ContFlechitas = styled.div`
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+`;
+
+export const FlechitaDesplegable = styled.button`
   //margin-left: 28%;  
   height: 20px;
   width: 20px;
@@ -545,8 +575,6 @@ export const BotonesNormal = styled.div`
 
 export const OmitirNormal = styled.div`
   display: flex;  
-  height: 53px;
-  width: 140px;
   border-radius: 3px;
   background-color: #FF4343;
   color: #ffffff;
@@ -555,35 +583,15 @@ export const OmitirNormal = styled.div`
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 0;
-  line-height: 24px;
   text-align: center;
-  margin-right: 2px;
-  margin-left: 2px;
+  margin-right: 7px;
   align-items: center;
   justify-content: center;
-  
 `;
 
 export const CruzOmitir = styled.img`
-  height: 35px;
-  width: 35px;
-`;
-
-export const TecladoManual = styled.button`
-  height: 53px;
-  width: 140px;
-  border-radius: 3px;
-  background-color: #6B8A96;
-  border:1px solid #6B8A96;
-  color: #FFFFFF;
-  font-family: Roboto;
-  font-size: 22px;
-  font-weight: bold;
-  letter-spacing: 0;
-  line-height: 21px;
-  text-align: center;
-  margin-left: 4px;
-  margin-right: 10%;
+  height: 30px;
+  width: auto;
 `;
 
 /////////// FILA BOTONES DE ABAJO PROD. PESABLE ////////////
@@ -591,14 +599,33 @@ export const Botones = styled.div`
     display: flex;
     margin-top: 15px;
     flex-direction: row;
-    text-align: center;      
+    align-items: center;
+    @media ${device.mobile} {
+    margin-bottom:15px;
+}     
 `;
 
+export const BotIzq = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width:75%;
+  @media ${device.mobile} {
+  width:90%;
+}
+`;
 
+export const BotDer = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  border:0px solid #1DB779;
+  background:none;
+`;
 
 export const Omitir = styled.button`
-  height: 53px;
-  width: 125px;
+  width:40%;
+  height:70px;
   border-radius: 3px;
   background-color: #FF4343;
   color: #ffffff;
@@ -607,25 +634,32 @@ export const Omitir = styled.button`
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 0;
-  line-height: 24px;
   text-align: center;
-  margin-right: 2px;
-  margin-left: 2px;
+  margin-right: 5px;
+  @media ${device.mobile} {
+  width:35%;
+  height:40px;
+  padding: 3px 10px 3px 10px;
+}
 `;
 
+export const BotonTeclado = styled.button`
+  border-radius: 3px;
+  border:0px solid #1DB779;
+  background:none;
+  `;
+
 export const Teclado = styled.img`
-height: 53px;
-width: 48px;
-border-radius: 3px;
-// background-color: #6B8A96;
-// border:1px solid #6B8A96;
-margin-right: 2px;
-margin-left: 2px;
+  width:auto;
+  height:70px;
+  @media ${device.mobile} {
+  height:40px;
+}
 `;
 
 export const Siguiente = styled.button`
-  height: 53px;
-  width: 130px;
+  width:40%;
+  height:70px;
   border-radius: 3px;
   background-color: #1DB779;
   border:1px solid #1DB779;
@@ -634,16 +668,22 @@ export const Siguiente = styled.button`
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 0;
-  line-height: 24px;
   text-align: center;
-  margin-right: 2px;
-  margin-left: 2px;
+  margin-left: 5px;
+  @media ${device.mobile} {
+  width:35%;
+  height:40px;
+}
   `;
 
 export const PlusCircle = styled.img`
-  height: 53px;
-  width: 53px;
-  margin-right: 2px;
-  margin-left: 2px;
-  
+@media ${device.tablet} {
+  height: auto;
+  width: 40px;
+}
+  height: auto;
+  width: 60px;
+  background-color: #273947;
+  border-radius: 50px;
+  padding: 6px;
 `;

@@ -24,29 +24,28 @@ import Reloj from '../../images/clockWhite.svg';
 
 export default () => {
   return (
-    <NavCont>
-    
-        <div><Img src={MenuHamburguesa} alt= "3"/></div>
-        <div><ImgLogo src={Janis} alt= "3"/></div>
-        <div><Img2 src={Nubee} alt= "3"/></div>
-    
-    </NavCont>
+    //////////////// NAVBAR PARA INICIO /////////////////
+    //<NavCont>
+      //  <div><Img src={MenuHamburguesa} alt= "3"/></div>
+      //  <div><ImgLogo src={Janis} alt= "3"/></div>
+      //  <div><Img2 src={Nubee} alt= "3"/></div>
+   // </NavCont> 
 
-    //////////////// PICKING INICIADO /////////////////
-    // <NavCont>
-    //   <ContenedorFlecha>
-    //     <FlechaAtras src={flechaAtras}/>
-    //     <OvaloCantidad>
-    //       <H1Cantidades>01/120</H1Cantidades>
-    //     </OvaloCantidad>
-    //   </ContenedorFlecha>
-    //   <div>
-    //     <ImgLogo src={Janis} alt="3"/>
-    //   </div>
-    //   <DivReloj>
-    //     <ImageReloj src={Reloj}/>
-    //     <H1Tiempo>01:15:46</H1Tiempo>
-    //   </DivReloj>
-    // </NavCont>
+    //////////////// NAVBAR PICKING INICIADO /////////////////
+    <NavCont>
+      <ContenedorFlecha>
+        <FlechaAtras src={flechaAtras}/>
+        <OvaloCantidad>
+          <H1Cantidades>01/120</H1Cantidades>
+        </OvaloCantidad>
+      </ContenedorFlecha>
+      <div>
+        <ImgLogo src={Janis} alt="3"/>
+      </div>
+      <DivReloj>
+        <ImageReloj src={Reloj}/>
+        <H1Tiempo>01:15:46</H1Tiempo>
+      </DivReloj>
+    </NavCont>
   );
 };

@@ -50,9 +50,9 @@ export const DamePermiso = () => dispatch =>{
 
 export const ChangePending = () => dispatch =>{
   return dispatch(StatusPending())
-}
+};
 
 export const ChangePicked = () => dispatch =>{
   return dispatch(StatusPicked())
-}
+};
 
