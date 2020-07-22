@@ -645,4 +645,5 @@ export const PlusCircle = styled.img`
   width: 53px;
   margin-right: 2px;
   margin-left: 2px;
+  
 `;
