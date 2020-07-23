@@ -23,6 +23,7 @@ import Reloj from '../../images/clockWhite.svg';
 import history from '../../utils/history';
 export default ({ time, start, stop, reset, booleano , booleano1 }) => {
   return (
+
     //////////////// NAVBAR PARA INICIO /////////////////
     //<NavCont>
     //  <div><Img src={MenuHamburguesa} alt= "3"/></div>

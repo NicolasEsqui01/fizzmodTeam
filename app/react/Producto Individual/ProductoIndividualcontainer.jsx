@@ -13,48 +13,28 @@ const ProductoIndividualcontainer = ({
   sendItemPicked,
   token,
 }) => {
+
   const [indice, setIndice] = useState(0);
   const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
   const [interv, setInterv] = useState();
   const [status, setStatus] = useState(0);
   const [count, setCount] = useState(0);
-  let updatedS = time.s,
-    updatedM = time.m,
-    updatedH = time.h;
+  const[active, setActive] = useState(0)
 
-  const start = () => {
-    run();
-    setInterv(setInterval(run, 10));
-  };
+  let updatedS = time.s, updatedM = time.m, updatedH = time.h;
+ 
+    const  handleBtnClick = (n) => {
+              setActive(n)
+          };
+    
+    
+    const  handleCloseClick = () => {
+           setActive(0)
+         };
 
-  const stop = () => {
-    clearInterval(interv);
-    setStatus(2);
-  };
-
-  //   const reset = () => {
-  //     clearInterval(interv);
-  //     setStatus(0);
-  //     setTime({ s: 0, m: 0, h: 0 });
-  //   };
-
-  const run = () => {
-    if (updatedM === 60) {
-      updatedH++;
-      updatedM = 0;
-    }
-    if (updatedS === 60) {
-      updatedM++;
-      updatedS = 0;
-    }
-    updatedS++;
-    return setTime({ s: updatedS, m: updatedM, h: updatedH });
-  };
 
   useEffect(() => {
-    getSessionPicking(idSession).then(() =>{
-      start()
-    })
+    getSessionPicking(idSession)
   }, [indice]);
 
   const ItemPicked = (iditems, qty) => {
@@ -80,6 +60,9 @@ const ProductoIndividualcontainer = ({
     <>
       <Navbar time={time} status={status} booleano={true} />
       <ProductoIndividual
+        Activar = {handleBtnClick}
+        active = {active}
+        onCloseClick = {handleCloseClick}
         session={items}
         pickeado={ItemPicked}
         indice={indice}
