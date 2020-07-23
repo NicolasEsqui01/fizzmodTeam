@@ -4,7 +4,7 @@ import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
 import { getSessionPicking } from '../../action/session';
 import history from '../../utils/history';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/NavbarContainer';
 
 const ProductoIndividualcontainer = ({
   items,
@@ -24,7 +24,7 @@ const ProductoIndividualcontainer = ({
 
   const start = () => {
     run();
-    setInterv(setInterval(run, 10));
+    //setInterv(setInterval(run, 10));
   };
 
   const stop = () => {
@@ -91,6 +91,7 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
+  console.log(state)
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking

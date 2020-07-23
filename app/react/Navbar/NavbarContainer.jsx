@@ -5,16 +5,16 @@ import Navbar from './Navbar';
 const mapStateToProps = (state) => {
   console.log("estado",state)
   return {
-    //items: 
+    items: state.sessionReducer.sessionPicking.items,
+    //state: state
   };
 };
 
-
-const NavbarContainer = () => {
+const NavbarContainer = (props) => {
   return (
-    <Navbar/>
+    <Navbar {...props}/>
   )
 }
-export default connect(mapStateToProps)(NavbarContainer);
+export default connect(mapStateToProps, null)(NavbarContainer);
 
 

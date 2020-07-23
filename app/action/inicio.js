@@ -39,7 +39,6 @@ export const fetchPickers = () => (dispatch) => {
   return axios
     .get(`https://picking.janis.in/api/picker`, headersToPickers())
     .then((list) => {
-      console.log("LISTA DE PICKERS: ", list)
       dispatch(getPickers(list.data))}
       );
 };

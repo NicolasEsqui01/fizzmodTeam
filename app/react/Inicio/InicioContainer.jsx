@@ -12,7 +12,7 @@ import { Redirect } from 'react-router-dom';
 import { setDatosUser as DatosUser } from '../../action/login'
 import { getStartSession } from '../../action/session'
 import history from '../../utils/history'
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/NavbarContainer';
 
 const mapStateToProps = (state, ownProps) => {
   return {
