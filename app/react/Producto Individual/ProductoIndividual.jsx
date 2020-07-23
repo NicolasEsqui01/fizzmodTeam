@@ -159,6 +159,8 @@ export default ({ session, pickeado, setCount, count }) => {
                 <RecuadroCantidadNormal>
                   <H1Cantidad>Cantidad</H1Cantidad>
                   <H1CantidadNum>{count}</H1CantidadNum>
+                  <H1CantidadNum>/ {session[idx].purchasedQuantity}</H1CantidadNum>
+                  
                     { count == 0 ? 
                     (<ContFlechitas>
                       <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
