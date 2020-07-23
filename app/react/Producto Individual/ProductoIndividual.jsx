@@ -83,9 +83,9 @@ import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import Navbar from '../Navbar/NavbarContainer';
+import Skeleton from 'react-loading-skeleton';
 
-export default ({ session, pickeado }) => {
-  let idx = 0;
+export default ({ session, pickeado , indice}) => {
   let qty = 1;
   return (
     /////////////////////////////// vista producto normal ////////////////////////////////////////
@@ -105,10 +105,8 @@ export default ({ session, pickeado }) => {
         </Cuadro>
       </Header>
       <Cont>
-        {idx > session.length ? (
-          {
-            /* TERMINO DE PICKEAR, DEBERIA PONER EL STATUS EN PICKED*/
-          }
+        {session === undefined ? (
+          <div>cargando</div>
         ) : (
           <>
             <ColIzq>
@@ -131,7 +129,7 @@ export default ({ session, pickeado }) => {
               </ColuIconos>
               {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
               <DivFoto>
-                <FotoProd src={session[idx].imageUrl} />
+                <FotoProd src={session[indice].imageUrl} />
               </DivFoto>
             </ColIzq>
             <ColDerecha>
@@ -159,15 +157,15 @@ export default ({ session, pickeado }) => {
               <ContImagenes>
                 <RecuadroCantidadNormal>
                   <H1Cantidad>Cantidad</H1Cantidad>
-                  <H1CantidadNum>{qty}</H1CantidadNum>
+                  <H1CantidadNum>{1}</H1CantidadNum>
                   <ContFlechitas>
                     <FlechitaDesplegable
                     //   src={flechaDesplegableArriba}
-                      onClick={() => qty += 1 }
+                    //   onClick={() => qty += 1 }
                     />
                     <FlechitaDesplegable
                     //   src={flechaDesplegableAbajo}
-                      onClick={() =>qty = qty - 1}
+                    //   onClick={() =>qty = qty - 1}
                     />
                   </ContFlechitas>
                 </RecuadroCantidadNormal>
@@ -188,10 +186,7 @@ export default ({ session, pickeado }) => {
                     <Teclado src={TecladoIcono} />
                   </BotonTeclado>
                   <Siguiente
-                    onClick={() => {
-                      pickeado(session[idx].id, qty);
-                      idx++
-                    }}
+                    onClick={() => pickeado(session[indice].id, qty) }
                   >
                     SIGUIENTE
                   </Siguiente>{' '}

@@ -26,7 +26,6 @@ const OrdersContainer = ({
 };
 
 const mapStateToProps = function (state, ownProps) {
-  console.log(state)
   return {
     listSessions: state.inicioReducer.sessions,
     status: state.inicioReducer.status,
