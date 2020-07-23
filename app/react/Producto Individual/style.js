@@ -19,7 +19,6 @@ height: 100%;
 width: 250px;
 justify-content: center;
 align-items: center;
-position: relative;
 margin-left: auto;
 margin-right: auto;
 `;
@@ -59,7 +58,6 @@ export const Cont = styled.div`
 width: 100%;
 height: auto;
 display: flex;
-align-items: center;
 justify-content: center;
 flex-direction: row;
 margin-top:70px;
@@ -266,7 +264,7 @@ margin-top: 15px;
 
 export const ImagenGlobo = styled.img`
 height: 68px;
-width: 70px;
+width: 80px;
 @media ${device.mobile} {
 width: 65%;
 height: auto;
@@ -279,7 +277,7 @@ export const ImgAmarilla = styled.img`
   height: auto;
   width: 50px;
 }
-  height: auto;
+  height: 60px;
   width: 60px;
   background-color: #FFEB3B;
   border-radius: 50px;
@@ -687,3 +685,379 @@ export const PlusCircle = styled.img`
   border-radius: 50px;
   padding: 6px;
 `;
+
+
+////POPups Sstitutos, Obvservacion, Opciones/////////////////////////////
+
+export const Button = styled.button `
+width:70px;
+height:70px;
+border: 1px solid transparent;
+background-color: transparent;
+outline:none;
+border-radius: 50px;
+cursor: pointer;
+`
+export const Button2 = styled.button `
+width:70px;
+height:70px;
+border: 1px solid transparent;
+background-color: transparent;
+outline:none;
+border-radius: 50px;
+cursor: pointer;
+`
+
+export const ImgX = styled.img `
+width:30px;
+height:30px;
+`
+export const ImgX2 = styled.img `
+width:30px;
+height:30px;
+`
+
+export const ImgM = styled.img `
+width:100px;
+height:100px;
+`
+
+export const ImgT = styled.img `
+width:40px;
+height:40px;
+margin-left:5%;
+`
+
+export const ButtonX = styled.button`
+width:10%;
+cursor: pointer;
+border: 1px solid transparent;
+background-color: transparent;
+outline:none;
+
+`
+export const ButtonX4 = styled.button`
+width:10%;
+cursor: pointer;
+border: 1px solid transparent;
+background-color: transparent;
+outline:none;
+margin-left:90%
+
+`
+
+export const Text = styled.p`
+color: #939598;
+font-family: Roboto;
+font-size: 20px;
+letter-spacing: 0;
+line-height: 24px;
+`
+export const TituloOb = styled.h1`
+margin-left:3%;
+width:75%;
+height:50%;
+font-size: 30px;
+`
+export const PopUpProdu = styled.div`
+ width:100%;
+ height:25%;
+ display:flex;
+ justify-content: center;
+ `
+
+ export const  Logout = styled.button`
+ width:15%;
+ font-size:140%;
+ cursor: pointer;
+ border: 1px solid transparent;
+ background-color: transparent;
+ outline:none;
+ `
+////POPups Balance ////////////////
+export const PopUpProduAcum = styled.div`
+ width:100%;
+ height:20%;
+ display:flex;
+ align-items: center;
+ background-color:#FFFFFF;
+ border-radius: 10px;
+
+`
+export const HeaderDiv = styled.div `
+@media ${device.tablet} {
+height:50px;
+}
+display:flex;
+align-items:center;
+width: 90%;
+height: 8%;
+margin-left:5%;
+
+`
+export const DivScroll = styled.div`
+@media ${device.tablet} {
+  
+  height: 90%;
+ 
+}
+  overflow: auto;
+  height: 100%;
+  margin-left:5%;
+  width: 90%;
+
+`
+
+export const TextB = styled.h1 `
+@media ${device.tablet} {
+  font-size: 15px;
+  }
+margin-top: 4%;
+height: 15px;
+  width:30%;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 15px;
+  text-align: center;
+`
+export const TextB2 = styled.h1 `
+@media ${device.tablet} {
+  font-size: 15px;
+  }
+margin-top: 4%;
+height: 15px;
+  width:30%;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 15px;
+  text-align: center;
+  margin-left:25%;
+  margin-right:5%;
+`
+export const Descripcion = styled.div `
+@media ${device.tablet} {
+  height:20%;
+  width:90%;
+  }
+width:50%;
+margin-left:2%;
+height: 40px;
+color: #939598;
+font-family: Roboto;
+font-size: 100%;
+letter-spacing: 0;
+line-height: 18px;
+
+`
+
+export const Icono = styled.img `
+@media ${device.tablet} {
+  height:40px;
+  width:50px;
+  }
+ height:30px;
+ width:30px;
+ margin-left:2%;
+`
+export const Ean = styled.div`
+@media ${device.tablet} {
+  height:20%;
+  font-size: 20px;
+  width:70%;
+
+  }
+width:25%;
+color: #273947;
+font-family: Roboto;
+font-size: 100%;
+font-weight: bold;
+letter-spacing: 0;
+margin-left:2%;
+
+`
+export const Cantidad =styled.div `
+@media ${device.tablet} {
+  width:80%;
+  margin-left:0;
+  margin-right:0;
+  }
+
+border: 1px solid #E8EAF6;
+font-size:160%;
+color: #273947;
+font-family: Roboto;
+line-height:45px;
+padding:5px;
+height:55%;
+width:20%;
+display:flex;
+justify-content:center;
+align-items: center;
+border-radius:30px;
+font-weight: bold;
+letter-spacing: 0;
+line-height: 19px;
+text-align: center;
+
+`
+
+
+//////controladores/////////
+
+export const DivP = styled.div`
+overflow:auto;
+height:100%
+
+`
+
+export const DivC = styled.div `
+display: flex;
+align-items:center;
+width:100%;
+height:10%;
+background-color:#E8EAF6;
+`
+//sustituto
+export const DIV = styled.div `
+width:100%;
+display: flex;
+position:fixed;
+${props => props.active === 1? null: `display:none`};
+`
+export const Color = styled.div`
+width: 50%;
+height:100vh;
+background-color:#273947;
+opacity:80%;
+
+ `
+export const DivV = styled.div `
+display: flex;    
+background-color:#FFFFFF;
+width: 50%;
+height:100vh;
+flex-direction: column;
+@media ${device.mobile} {
+width: 90%;
+}
+`
+
+//obvservacion
+export const DIV2 = styled.div `
+width:100%;
+display: flex;
+position:fixed;
+${props => props.active === 2? null: `display:none`};
+`
+
+export const DivO = styled.div `
+display: flex;    
+background-color:#FFFFFF;
+width: 50%;
+height:100vh;
+flex-direction: column;
+align-items:center;
+@media ${device.mobile} {
+width: 90%;
+}
+`
+export const DivF = styled.div `
+@media ${device.tablet} {
+  display:flex;
+  flex-direction:column;
+  margin-right:20%;
+  }
+display:flex;
+align-items:center;
+`
+
+//balance
+export const DivZ = styled.div `
+display: flex;    
+position:fixed;
+background-color:#273947;
+opacity:80%;
+width: 50%;
+height:100%;
+flex-direction: column;
+${props => props.active === 3? null: `display:none`};
+@media ${device.mobile} {
+width: 90%;
+}
+
+`
+
+
+export const DivR = styled.div `
+@media ${device.tablet} {
+  height:70%;
+  width:95%;
+  }
+height:70%;
+width:100%;
+display:flex;
+align-items: center;
+
+`
+
+//opciones
+export const DIV4 = styled.div `
+width:100%;
+display: flex;
+position:fixed;
+${props => props.active === 4? null: `display:none`}; 
+`
+export const DivM = styled.div`
+height:60%;
+width:100%;
+`
+export const DivN = styled.div `
+height:20%;
+width:100%;
+`
+export const DivG = styled.div `
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+height:10%;
+
+`
+////Info order
+export const DIV5 = styled.div `
+width:100%;
+display: flex;
+position:fixed;
+${props => props.active === 5? null: `display:none`}; 
+`
+export const DivQ = styled.div `
+height:20%;
+width:100%;
+`
+export const DivS = styled.div `
+height:20%;
+width:100%;
+`
+//////////////////////
+export const DivX = styled.div `
+width:50%;
+`
+export const Espacio = styled.div `
+height:10px;
+width:100%;
+background-color:#273947;
+`
+export const Espacio4 = styled.div `
+height:5px;
+width:100%;
+background-color:#E8EAF6;
+`
+
+
+
+ 
+

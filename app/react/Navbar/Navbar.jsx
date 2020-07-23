@@ -21,9 +21,14 @@ import Nubee from '../../images/icn_cloud.svg';
 import Janis from '../../images/janis_logo.svg';
 import flechaAtras from '../../images/arrow_short_prev.svg';
 import Reloj from '../../images/clockWhite.svg';
+import { Redirect } from 'react-router-dom';
 
 export default () => {
+  /* const goToSession =()=>{
+    <Redirect to='/session'></Redirect>
+  } */
   return (
+
     //////////////// NAVBAR PARA INICIO /////////////////
     //<NavCont>
       //  <div><Img src={MenuHamburguesa} alt= "3"/></div>
@@ -35,7 +40,7 @@ export default () => {
     <NavCont>
       <ContenedorFlecha>
         <FlechaAtras src={flechaAtras}/>
-        <OvaloCantidad>
+        <OvaloCantidad /* onClick={goToSession} */>
           <H1Cantidades>01/120</H1Cantidades>
         </OvaloCantidad>
       </ContenedorFlecha>

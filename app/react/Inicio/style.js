@@ -393,6 +393,7 @@ export const ONuevas = styled.button`
   border: 2px solid #ffffff;
   border-bottom:${props => props.status === 'pending' ?  '4px solid #273947' : null};
   outline:none;
+  cursor: pointer;
   
 `;
 export const PrePickeadas = styled.button`
@@ -414,6 +415,7 @@ export const PrePickeadas = styled.button`
   border: 2px solid #ffffff;
   border-bottom:${props => props.status === 'picked' ?  '4px solid #273947' : null};
   outline:none;
+  cursor: pointer;
   
 `;
 
