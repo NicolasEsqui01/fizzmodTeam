@@ -88,8 +88,10 @@ import '../common/styles/main.scss';
 
 export default ({ session, pickeado, setCount, count, indice }) => {
   let idx = 0;
+
+
   return (
-    /////////////////////////////// vista producto normal ////////////////////////////////////////
+    
     <ContGral>
       <Header>
         <Cuadro>
@@ -106,101 +108,188 @@ export default ({ session, pickeado, setCount, count, indice }) => {
       </Header>
       <Cont>
         { session === undefined ? ( <div>Cargando</div> ) : 
-            (
+          
+              session[indice].isWeighable ? 
+              (           
+                ///////////////// PRODUCTO PESABLE /////////////////
+                <>
+                <ColIzq>
+                            <ColuIconos>
+                                <Sup>
+                                    <ContainerGrillCuadros>
+                                        <CuadroGrill/>
+                                        <CuadroGrill/>
+                                    </ContainerGrillCuadros>
+                                    <ContainerGrillCuadros>
+                                        <CuadroGrill className="bkgColor"/>
+                                        <CuadroGrill/>
+                                    </ContainerGrillCuadros>
+                                    <ContainerGrillCuadros>
+                                        <CuadroGrill/>
+                                        <CuadroGrill/>
+                                    </ContainerGrillCuadros>
+                                    <NumCuadrados>3</NumCuadrados>
+                                </Sup>
+                                <ContStock>
+                                    Stock
+                                    <StockCien>+100</StockCien>
+                                </ContStock>
+                            </ColuIconos>
+                            <DivFoto><FotoProd src ={session[indice].imageUrl}/></DivFoto>
+                        </ColIzq>
+                        <ColDerecha>
+                            <ContMarca>
+                                <ContDer>
+                                    <MarcaH1>{session[indice].name}</MarcaH1>
+                                    <Descri></Descri>
+                                    <ContInfo>
+                                        <Tachado>${session[indice].purchasedPrice}</Tachado>
+                                        <Precio>${session[indice].purchasedPrice}</Precio>
+                                    </ContInfo>
+                                </ContDer>
+                                <DivGlobos>
+                                    <imgAmarilla src = {bubble}/>
+                                    <ImgAmarilla src = {bubbleExc}/>
+                                </DivGlobos>
+                            </ContMarca>
+                            <ContBarras>
+                                <BarritasCont>
+                                <Barritas src= {BarCode}/>
+                                </BarritasCont>
+                                <CodProdu>{session[indice].ean}</CodProdu>
+                                <ImgBarrita/>
+                                <ImBalanza src={ImagenBalanza}/>
+                              <PesoProdu> {session[indice].purchasedQuantity}Kgs</PesoProdu>
+                            </ContBarras>
+                            <ContImagenes>
+                                <CuadritoUno>
+                                    <ImgBalanzasUno src={ImagenBalanza}/>
+                                    <PesoCuadro>{session[indice].purchasedQuantity}
+                                    kgs.</PesoCuadro>
+                                </CuadritoUno>
+                                <CuadritoDos>
+                                <ImgBalanzasMas src={ImagenBalanzaMas}/>
+                                </CuadritoDos>
+                            </ContImagenes>
+                             <Instrucciones>Coloca el producto sobre la balanza</Instrucciones>
+                             <Botones>
+                          <BotIzq>
+                            <Omitir>
+                              <CruzOmitir src={ImageCruzOmitir} />
+                              OMITIR
+                            </Omitir>
+                            <BotonTeclado>
+                              <Teclado src={TecladoIcono} />
+                            </BotonTeclado>
+                            <Siguiente onClick={() => { pickeado(session[idx].id, count); idx++ }}> SIGUIENTE
+                            </Siguiente>{' '}
+                            {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                          </BotIzq>
+                          <BotDer>
+                            <PlusCircle src={masBlanco}></PlusCircle>
+                          </BotDer>
+                        </Botones>
+                        </ColDerecha>
+              </>  
+              ) 
+              : (
+                ////////////////// PRODUCTO NORMAL //////////////////
           <>
-            <ColIzq>
-              <ColuIconos>
-                <Sup>
-                  <ContainerGrillCuadros>
-                    <CuadroGrill />
-                    <CuadroGrill />
-                  </ContainerGrillCuadros>
-                  <ContainerGrillCuadros>
-                    <CuadroGrill className="bkgColor" />
-                    <CuadroGrill />
-                  </ContainerGrillCuadros>
-                  <ContainerGrillCuadros>
-                    <CuadroGrill />
-                    <CuadroGrill />
-                  </ContainerGrillCuadros>
-                  <NumCuadrados>3</NumCuadrados>
-                </Sup>
-              </ColuIconos>
-              {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
-              <DivFoto>
-                <FotoProd src={session[indice].imageUrl} />
-              </DivFoto>
-            </ColIzq>
-            <ColDerecha>
+          <ColIzq>
+            <ColuIconos>
+              <Sup>
+                <ContainerGrillCuadros>
+                  <CuadroGrill />
+                  <CuadroGrill />
+                </ContainerGrillCuadros>
+                <ContainerGrillCuadros>
+                  <CuadroGrill className="bkgColor" />
+                  <CuadroGrill />
+                </ContainerGrillCuadros>
+                <ContainerGrillCuadros>
+                  <CuadroGrill />
+                  <CuadroGrill />
+                </ContainerGrillCuadros>
+                <NumCuadrados>3</NumCuadrados>
+              </Sup>
+            </ColuIconos>
+            {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
+            <DivFoto>
+              <FotoProd src={session[indice].imageUrl} />
+            </DivFoto>
+          </ColIzq>
+          <ColDerecha>
+            <div>
+              <DivGlobos>
+                <ImgAmarilla src={bubble} />
+                <ImgAmarilla src={bubbleExc} />
+              </DivGlobos>
               <div>
-                <DivGlobos>
-                  <ImgAmarilla src={bubble} />
-                  <ImgAmarilla src={bubbleExc} />
-                </DivGlobos>
-                <div>
-                  <MarcaH1>{session[idx].name}</MarcaH1>
-                  <Descri>
-                  
-                  </Descri>
-                  <Tachado>${session[idx].purchasedPrice}</Tachado>
-                <Precio>${session[idx].purchasedPrice}</Precio>
-                </div>
+                <MarcaH1>{session[indice].name}</MarcaH1>
+                <Descri>
+                
+                </Descri>
+                <Tachado>${session[indice].purchasedPrice}</Tachado>
+              <Precio>${session[indice].purchasedPrice}</Precio>
               </div>
-              <ContBarras>
-                <BarritasCont>
-                  <Barritas src={BarCode} />
-                </BarritasCont>
-                <CodProdu>{session[idx].ean}</CodProdu>
-              </ContBarras>
-              <ContImagenes>
-                <RecuadroCantidadNormal>
-                  <H1Cantidad>Cantidad</H1Cantidad>
-                  <H1CantidadNum>{count}</H1CantidadNum>
-                  <H1CantidadNum>/ {session[idx].purchasedQuantity}</H1CantidadNum>
-                  
-                    { count == 0 ? 
-                    (<ContFlechitas>
-                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
-                      <FlechitaDesplegableNone/>
-                     </ContFlechitas>)
-                    :
-                    (<ContFlechitas>
-                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
-                      <FlechitaDesplegable src={flechaDesplegableAbajo} onClick={() => setCount(count-1)} />
-                     </ContFlechitas>)
-                    }
-                </RecuadroCantidadNormal>
-                { count > session[idx].purchasedQuantity ? 
-                    (<Atencion>Supera la Cantidad Pedida</Atencion>)
-                    :
-                    (<div></div>)
-                }
-                <DivImageStock>
-                  <ContStock>
-                    Stock
-                    <StockCien>+100</StockCien>
-                  </ContStock>
-                </DivImageStock>
-              </ContImagenes>
-              <Botones>
-                <BotIzq>
-                  <Omitir>
-                    <CruzOmitir src={ImageCruzOmitir} />
-                    OMITIR
-                  </Omitir>
-                  <BotonTeclado>
-                    <Teclado src={TecladoIcono} />
-                  </BotonTeclado>
-                  <Siguiente onClick={() => { pickeado(session[idx].id, count); idx++ }}> SIGUIENTE
-                  </Siguiente>{' '}
-                  {/*CHEQUEAR QUE SUME 1 BIEN*/}
-                </BotIzq>
-                <BotDer>
-                  <PlusCircle src={masBlanco}></PlusCircle>
-                </BotDer>
-              </Botones>
-            </ColDerecha>
-          </>
+            </div>
+            <ContBarras>
+              <BarritasCont>
+                <Barritas src={BarCode} />
+              </BarritasCont>
+              <CodProdu>{session[indice].ean}</CodProdu>
+            </ContBarras>
+            <ContImagenes>
+              <RecuadroCantidadNormal>
+                <H1Cantidad>Cantidad</H1Cantidad>
+                <H1CantidadNum>{count}</H1CantidadNum>
+                <H1CantidadNum>/ {session[indice].purchasedQuantity}</H1CantidadNum>
+                
+                  { count == 0 ? 
+                  (<ContFlechitas>
+                    <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                    <FlechitaDesplegableNone/>
+                   </ContFlechitas>)
+                  :
+                  (<ContFlechitas>
+                    <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                    <FlechitaDesplegable src={flechaDesplegableAbajo} onClick={() => setCount(count-1)} />
+                   </ContFlechitas>)
+                  }
+              </RecuadroCantidadNormal>
+              { count > session[idx].purchasedQuantity ? 
+                  (<Atencion>Supera la Cantidad Pedida</Atencion>)
+                  :
+                  (<div></div>)
+              }
+              <DivImageStock>
+                <ContStock>
+                  Stock
+                  <StockCien>+100</StockCien>
+                </ContStock>
+              </DivImageStock>
+            </ContImagenes>
+            <Botones>
+              <BotIzq>
+                <Omitir>
+                  <CruzOmitir src={ImageCruzOmitir} />
+                  OMITIR
+                </Omitir>
+                <BotonTeclado>
+                  <Teclado src={TecladoIcono} />
+                </BotonTeclado>
+                <Siguiente onClick={() => { pickeado(session[idx].id, count); idx++ }}> SIGUIENTE
+                </Siguiente>{' '}
+                {/*CHEQUEAR QUE SUME 1 BIEN*/}
+              </BotIzq>
+              <BotDer>
+                <PlusCircle src={masBlanco}></PlusCircle>
+              </BotDer>
+            </Botones>
+          </ColDerecha>
+        </>
+              
+              
         )}
       </Cont>
     </ContGral>

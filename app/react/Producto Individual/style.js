@@ -63,6 +63,7 @@ align-items: center;
 justify-content: center;
 flex-direction: row;
 margin-top:70px;
+
 @media ${device.mobile} {
   flex-direction: column;
   margin-top:0px;
