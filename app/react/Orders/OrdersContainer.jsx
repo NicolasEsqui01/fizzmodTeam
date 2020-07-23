@@ -10,19 +10,19 @@ const OrdersContainer = ({
   status,
   SessionId
 }) => {
-  const [value , setValue] = useState('')
+  const [value, setValue] = useState('')
 
   useEffect(() => {
     findingSessions();
   }, [status]);
 
-  const handleClick = (id) =>{
+  const handleClick = (id) => {
     setValue(id)
     SessionId(id)
-  };    
+  };
 
 
-  return <Orders sessions={listSessions} status={status} handleClick={handleClick} valor={value}/>;
+  return <Orders sessions={listSessions} status={status} handleClick={handleClick} valor={value} />;
 };
 
 const mapStateToProps = function (state, ownProps) {
@@ -38,7 +38,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     findingSessions: () => {
       dispatch(fetchSessions());
     },
-    SessionId:(id) => dispatch(SessionId(id))
+    SessionId: (id) => dispatch(SessionId(id))
   };
 };
 
