@@ -33,6 +33,7 @@ export default ({ time, start, stop, reset, booleano , booleano1, items, state }
     if (item.status == "picked") {itemsPicked = (itemsPicked+1)};
   })}
   return (
+
     //////////////// NAVBAR PARA INICIO /////////////////
     //<NavCont>
     //  <div><Img src={MenuHamburguesa} alt= "3"/></div>

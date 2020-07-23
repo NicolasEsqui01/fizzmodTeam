@@ -1,42 +1,44 @@
 import React from 'react'
 import {
-    Container,
-    LIzquierdo,
-    LDerecho,
-    ContainerIzquierdo,
-    ParteSuperior,
-    IconoCanasta,
-    DivA,
-    Div1,
-    IconoOrden,
-    TitleOrden,
-    NumeroOrden,
-    ParteInferior,
-    Pedidos,
-    ImageBox,
-    ImageTriangle,
-    TitlePedidos,
-    BorderNumeroPedido,
-    NumeroPedidos,
-    HeaderDiv,
-    Text,
-    DivScroll,
-    Productos,
-    Img,
-    Icono,
-    Icono2,
-    Icono3,
-    Icono4,
-    DivR,
-    DivP,
-    DivX,
-    DivZ,
-    DivB,
-    Descripcion,
-    Num,
-    Num2,
-    Ean,
-    Cantidad,
+Container,
+LIzquierdo,
+LDerecho,
+ContainerIzquierdo,
+ParteSuperior,
+IconoCanasta,
+DivA,
+Div1,
+IconoOrden,
+TitleOrden,
+NumeroOrden,
+ParteInferior,
+Pedidos,
+ImageBox,
+ImageTriangle,
+TitlePedidos,
+BorderNumeroPedido,
+NumeroPedidos,
+HeaderDiv,
+Text,
+DivScroll,
+Productos,
+Img,
+Icono,
+Icono2,
+Icono3,
+Icono4,
+DivR,
+DivP,
+DivX,
+DivZ,
+DivB,
+Descripcion,
+Num,
+Num2,
+Ean,
+Cantidad,
+SectorCongelado,
+DivK,
 } from './style'
 
 import box from '../../images/box.svg';
@@ -45,6 +47,7 @@ import Navbar from '../Navbar/Navbar';
 import basket from '../../images/basket.svg';
 import scanner from '../../images/scanner.svg';
 import substitute from '../../images/substitute.svg';
+import location from '../../images/location_marker.svg'
 import waves from '../../images/wavesCelest.svg';
 import balance from '../../images/balance.svg';
 import snow from '../../images/snowflakeCelest.svg';
@@ -91,56 +94,59 @@ export default () => {
                                 <NumeroPedidos>6</NumeroPedidos>
                             </BorderNumeroPedido>
                         </Pedidos>
-
+                        <Pedidos>
+                            <ImageBox src={location} />
+                            <SectorCongelado>Sector Congelados</SectorCongelado>
+                        </Pedidos>
                     </ParteInferior>
 
 
 
                 </LIzquierdo>
                 <LDerecho>
-                    <HeaderDiv>
-                        <Text>PRODUCTOS</Text>
-                        <Text>CANTIDAD</Text>
-                    </HeaderDiv>
+  <HeaderDiv>
+<Text>PRODUCTOS</Text>
+<Text>CANTIDAD</Text>
+   </HeaderDiv>
 
-                    <DivScroll>
+<DivScroll>
 
-                        {prueba.map(elem =>
-                            <Productos>
+{ prueba.map(elem =>
+<Productos>
 
+   
+    <DivR >
+      <Img src={basket}/>
+    <DivX>
+      <Descripcion>DESCRIPCION DEL PRODUCTO</Descripcion>
 
-                                <DivR >
-                                    <Img src={basket} />
-                                    <DivX>
-                                        <Descripcion>DESCRIPCION DEL PRODUCTO</Descripcion>
+    <DivZ>
+      <Icono2 src= {scanner}/>
+      <Ean>1234456112</Ean>
+      <Cantidad>30 / 30</Cantidad>
+    </DivZ>
 
-                                        <DivZ>
-                                            <Icono2 src={scanner} />
-                                            <Ean>1234456112</Ean>
-                                            <Cantidad>30 / 30</Cantidad>
-                                        </DivZ>
+    </DivX>
 
-                                    </DivX>
+    </DivR>
+       <DivK></DivK>
+    <DivP>
+       <Icono src={basket}/>
+       <Num> 1. </Num>
+       <Icono3 src={box}/>
+       <Num2>5f0507d88459ab000839154e</Num2>
+       <DivB>
+       <Icono4 src={balance}/>
+       <Icono4 src={substitute}/>
+       </DivB>
+    </DivP>
+    
+</Productos>
+)}
 
-                                </DivR>
-                                <hr></hr>
-                                <DivP>
-                                    <Icono src={basket} />
-                                    <Num> 1. </Num>
-                                    <Icono3 src={box} />
-                                    <Num2>5f0507d88459ab000839154e</Num2>
-                                    <DivB>
-                                        <Icono4 src={balance} />
-                                        <Icono4 src={substitute} />
-                                    </DivB>
-                                </DivP>
+</DivScroll>
 
-                            </Productos>
-                        )}
-
-                    </DivScroll>
-
-                </LDerecho>
+    </LDerecho>
 
             </Container>
 
