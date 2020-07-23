@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import Carousel from 'react-elastic-carousel';
 import {
   Container,
@@ -40,7 +41,7 @@ import box from '../../images/icn_new-order.svg';
 import slashBox from '../../images/icn_pre-picking.svg';
 import OrdersContainer from '../Orders/OrdersContainer';
 import boxGreen from '../../images/boxGreen.svg';
-import down from '../../images/chevron_downWhite.svg';  
+import down from '../../images/chevron_downWhite.svg';
 import up from '../../images/chevron_upWhite.svg';
 import clockWhite from '../../images/clockWhite.svg';
 import squareWhite from '../../images/square_chart_line.svg';
@@ -113,8 +114,8 @@ export default ({
                 ) : sessions.length === 1 ? (
                   <Orders>ORDEN</Orders>
                 ) : (
-                  <Orders>ORDENES</Orders>
-                )}
+                      <Orders>ORDENES</Orders>
+                    )}
               </OvalInt>
             </Oval>
             <Indicadores>
@@ -147,8 +148,8 @@ export default ({
                 {tiempoPromedioPorProducto !== 0 ? (
                   <Time>''{tiempoPromedioPorProducto}</Time>
                 ) : (
-                  <Time>0</Time>
-                )}
+                    <Time>0</Time>
+                  )}
                 <ContNumGreen>
                   <Percentage>7%</Percentage>
                   <LogoStad src={down} alt="clock" />
@@ -163,8 +164,8 @@ export default ({
                 {tiempoPromedioOrden !== 0 ? (
                   <Time>''{tiempoPromedioOrden}</Time>
                 ) : (
-                  <Time>0</Time>
-                )}
+                    <Time>0</Time>
+                  )}
                 <ContNumRed>
                   <Percentage>7%</Percentage>
                   <LogoStad src={up} alt="clock" />
