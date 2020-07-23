@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { headers } from '../headers'
+
 
 const Login = (token) => {
   return {
@@ -6,6 +8,23 @@ const Login = (token) => {
     token,
   };
 };
+
+const DatosUser = (datos) =>{
+  return{
+    type:'DATA_USER',
+    datos
+  }
+};
+
+export const setDatosUser = () =>{
+  return dispatch =>{
+    return axios.get('https://id.janis.in/api/account' , headers())
+      .then(res => {
+        dispatch(DatosUser(res.data))
+      })
+  }
+};
+
 
 export const setLogin = (obj) => {
   return (dispatch) => {

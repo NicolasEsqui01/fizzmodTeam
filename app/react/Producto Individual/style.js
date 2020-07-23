@@ -333,6 +333,18 @@ export const Descri = styled.div`
 }
 `;
 
+export const Atencion = styled.div`
+  color: #FF4343;
+  width:20%;
+  height:auto;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  @media ${device.mobile} {
+  font-size: 12px;
+}
+`;
+
 
 ///////////// PRECIOS ////////////////////
 export const Tachado = styled.div`
@@ -549,9 +561,13 @@ export const ContFlechitas = styled.div`
 `;
 
 export const FlechitaDesplegable = styled.img`
-  //margin-left: 28%;  
   height: 20px;
   width: 20px;
+`;
+
+export const FlechitaDesplegableNone = styled.img`
+  height: 0px;
+  width: 0px;
 `;
 
 export const DivImageStock = styled.div`
@@ -634,6 +650,7 @@ export const Omitir = styled.button`
   letter-spacing: 0;
   text-align: center;
   margin-right: 5px;
+  outline:none;
   @media ${device.mobile} {
   width:35%;
   height:40px;
@@ -668,6 +685,7 @@ export const Siguiente = styled.button`
   letter-spacing: 0;
   text-align: center;
   margin-left: 5px;
+  outline:none;
   @media ${device.mobile} {
   width:35%;
   height:40px;

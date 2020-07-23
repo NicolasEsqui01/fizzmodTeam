@@ -8,14 +8,19 @@ import {
   ChangePending,
   ChangePicked,
 } from '../../action/inicio';
+import { Redirect } from 'react-router-dom';
+import { setDatosUser as DatosUser } from '../../action/login'
+import { getStartSession } from '../../action/session'
+import history from '../../utils/history'
+import Navbar from '../Navbar/Navbar';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    sessionId: state.loginReducer.user, //VERIFICAR NOMBRE DEL ESTADO
+    sessionId: state.sessionReducer.sessionId, // Me trae el id de la session
     session: state.inicioReducer.sessions,
     pickers: state.inicioReducer.pickers,
     status: state.inicioReducer.status,
-    token: JSON.stringify(localStorage.getItem('token'))
+    token: JSON.stringify(localStorage.getItem('token')),
   };
 };
 
@@ -26,6 +31,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     getPermiso: () => dispatch(DamePermiso()),
     sessionsPending: () => dispatch(ChangePending()),
     sessionsPicked: () => dispatch(ChangePicked()),
+    setDatosUser: () => dispatch(DatosUser()),
+    getStartSession : (id) => dispatch(getStartSession(id)),
   };
 };
 
@@ -39,15 +46,22 @@ const InicioContainer = ({
   sessionsPending,
   sessionsPicked,
   status,
-  token
+  token,
+  setDatosUser,
+  getStartSession,
 }) => {
   useEffect(() => {
-    getSessions();
-    getPickers();
+    if(token !== 'null'){
+      getSessions();
+      getPickers();
+      setDatosUser();
+    }
   }, []);
 
-  const setPermiso = () => {
-    getPermiso();
+  const handleClickSession = () => {
+    getStartSession(sessionId).then(() =>{
+      history.push(`/productoindividual/${sessionId}`)
+    });
   };
 
   const setPending = () => {
@@ -60,18 +74,23 @@ const InicioContainer = ({
 
   return (
     <>
-      <Inicio
-        pickers={pickers}
-        sessions={session}
-        cambio={setPermiso}
-        status={status}
-        getSessionPicked={setPicked}
-        getSessionPending={setPending}
-        getToken={token}
-      ></Inicio>
+      {token === 'null' ? (
+        <Redirect to="/login" />
+      ) : (
+        <>
+        <Navbar booleano={false} />
+        <Inicio
+          pickers={pickers}
+          sessions={session}
+          handleClickSession={handleClickSession}
+          status={status}
+          getSessionPicked={setPicked}
+          getSessionPending={setPending}
+        ></Inicio>
+        </>
+      )}
     </>
   );
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(InicioContainer);

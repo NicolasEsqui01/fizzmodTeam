@@ -1,5 +1,5 @@
 import axios from "axios";
-import { headers } from '../headers'
+import { headers, headersToPickers } from '../headers'
 
 
 const getSessions = (sessions) => ({
@@ -27,7 +27,6 @@ const StatusPicked = ()=>({
   status: 'picked'
 })
 
-
 export const fetchSessions = () => (dispatch) => {
   return axios
     .get('https://picking.janis.in/api/session', headers())
@@ -38,8 +37,9 @@ export const fetchSessions = () => (dispatch) => {
 
 export const fetchPickers = () => (dispatch) => {
   return axios
-    .get(`https://picking.janis.in/api/picker`, headers())
+    .get(`https://picking.janis.in/api/picker`, headersToPickers())
     .then((list) => {
+      console.log("LISTA DE PICKERS: ", list)
       dispatch(getPickers(list.data))}
       );
 };
@@ -50,9 +50,9 @@ export const DamePermiso = () => dispatch =>{
 
 export const ChangePending = () => dispatch =>{
   return dispatch(StatusPending())
-}
+};
 
 export const ChangePicked = () => dispatch =>{
   return dispatch(StatusPicked())
-}
+};
 

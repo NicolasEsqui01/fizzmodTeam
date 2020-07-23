@@ -73,7 +73,6 @@ export default ({
                           type="email"
                           name="email"
                           onChange={handleChange}
-                          value={valor.email}
                         />
                         {valor.email === '' ? <Span>In required</Span> : null}
                       </DivInput2>
@@ -91,7 +90,6 @@ export default ({
                           type="password"
                           name="password"
                           onChange={handleChange}
-                          value={valor.password}
                         />
                         {valor.password === '' ? <Span>In required</Span> : null}
                       </DivInput2>

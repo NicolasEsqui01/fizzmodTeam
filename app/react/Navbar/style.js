@@ -118,7 +118,8 @@ width: auto;
 }
 `;
 
-export const H1Tiempo = styled.h1`
+export const H1Tiempo = styled.div`
+display:flex;
 margin-left: 10px;
 height: 19px;
 //width: 65px;

@@ -1,110 +1,110 @@
-import React from "react";
+import React from 'react';
 import {
-     ContGral, 
-    ContMarca, 
-    ContInfo, 
-    ContDer, 
-    ContStock, 
-    Header, 
-    Cuadro, 
-    Img, 
-    Marca, 
-    Gramaje, 
-    ColDerecha, 
-    ColIzq, 
-    ColuIconos, 
-    IconoNum, 
-    IconoNumDos, 
-    StockLetras, 
-    StockCien, 
-    Cont, 
-    FotoProd, 
-    DivFoto, 
-    DivGlobos, 
-    ImagenGlobo, 
-    ImgH,  
-    MarcaH1, 
-    Descri, 
-    Tachado, 
-    Precio, 
-    ContBarras, 
-    BarritasCont, 
-    Barritas, 
-    CodProdu, 
-    ImgBarrita, 
-    ImBalanza, 
-    PesoProdu, 
-    ContImagenes, 
-    CuadritoUno, 
-    PesoCuadro,
-    CuadritoDos, 
-    ImgBalanzasUno, 
-    ImgBalanzasMas, 
-    Instrucciones, 
-    RecuadroCantidadNormal, 
-    H1Cantidad, 
-    H1CantidadNum, 
-    FlechitaDesplegable, 
-    DivImageStock, 
-    BotonesNormal, 
-    Botones, 
-    OmitirNormal, 
-    CruzOmitir, 
-    Omitir, 
-    Teclado, 
-    Siguiente, 
-    PlusCircle, 
-    CuadroGrill,
-    ContainerGrillCuadros,
-    NumCuadrados, 
-    Sup, 
-    Percentage, 
-    ContFlechitas, 
-    ImgAmarilla, 
-    BotonTeclado,
-    BotIzq, 
-    BotDer, 
-    Button,
-    Button2,
-    ButtonX,
-    ButtonX4,
-    ImgX,
-    ImgX2,
-    ImgM,
-    ImgT,
-    DivV,
-    DivC,
-    DivP,
-    DivO,
-    DivZ,
-    DivX,
-    DivR,
-    DivF,
-    DivM,
-    DivN,
-    DivG,
-    DivQ,
-    DivS,
-    DIV,
-    DIV2,
-    DIV4,
-    DIV5,
-    TituloOb,
-    Text,
-    TextB,
-    TextB2,
-    PopUpProdu,
-    PopUpProduAcum,
-    HeaderDiv,
-    DivScroll,
-    Descripcion,
-    Icono,
-    Ean,
-    Cantidad,
-    Espacio,
-    Espacio4,
-    Color,
-    Logout,
+    ContGral, 
+   ContMarca, 
+   ContInfo, 
+   ContDer, 
+   ContStock, 
+   Header, 
+   Cuadro, 
+   Img, 
+   Marca, 
+   Gramaje, 
+   ColDerecha, 
+   ColIzq, 
+   ColuIconos, 
+   IconoNum, 
+   IconoNumDos, 
+   StockLetras, 
+   StockCien, 
+   Cont, 
+   FotoProd, 
+   DivFoto, 
+   DivGlobos, 
+   ImagenGlobo, 
+   ImgH,  
+   MarcaH1, 
+   Descri, 
+   Tachado, 
+   Precio, 
+   ContBarras, 
+   BarritasCont, 
+   Barritas, 
+   CodProdu, 
+   ImgBarrita, 
+   ImBalanza, 
+   PesoProdu, 
+   ContImagenes, 
+   CuadritoUno, 
+   PesoCuadro,
+   CuadritoDos, 
+   ImgBalanzasUno, 
+   ImgBalanzasMas, 
+   Instrucciones, 
+   RecuadroCantidadNormal, 
+   H1Cantidad, 
+   H1CantidadNum, 
+   FlechitaDesplegable, 
+   DivImageStock, 
+   BotonesNormal, 
+   Botones, 
+   OmitirNormal, 
+   CruzOmitir, 
+   Omitir, 
+   Teclado, 
+   Siguiente, 
+   PlusCircle, 
+   CuadroGrill,
+   ContainerGrillCuadros,
+   NumCuadrados, 
+   Sup, 
+   Percentage, 
+   ContFlechitas, 
+   ImgAmarilla, 
+   BotonTeclado,
+   BotIzq, 
+   BotDer, 
+   Button,
+   Button2,
+   ButtonX,
+   ButtonX4,
+   ImgX,
+   ImgX2,
+   ImgM,
+   ImgT,
+   DivV,
+   DivC,
+   DivP,
+   DivO,
+   DivZ,
+   DivX,
+   DivR,
+   DivF,
+   DivM,
+   DivN,
+   DivG,
+   DivQ,
+   DivS,
+   DIV,
+   DIV2,
+   DIV4,
+   DIV5,
+   TituloOb,
+   Text,
+   TextB,
+   TextB2,
+   PopUpProdu,
+   PopUpProduAcum,
+   HeaderDiv,
+   DivScroll,
+   Descripcion,
+   Icono,
+   Ean,
+   Cantidad,
+   Espacio,
+   Espacio4,
+   Color,
+   Logout,
 } from "./style";
 import scanner from '../../images/scanner.svg';
 import Sustituto from "../../images/substitute.svg";
@@ -131,19 +131,11 @@ import Mensaje from '../../images/comment.svg'
 import trash from '../../images/trash.svg'
 import Salir from '../../images/cross_small_circle.svg'
 
-
-export default ({
-    Activar , 
-    active, 
-    onCloseClick, 
-   
-})=>{
-   const Prueba = [1,2,3]
-
-    return (
-  
-<>
-{/* /////////////////////////////// vista PoPSusticion //////////////////////////////////////// */}
+export default ({ session, pickeado, setCount, count, indice }) => {
+  let idx = 0;
+  return (
+      <>
+      {/* /////////////////////////////// vista PoPSusticion //////////////////////////////////////// */}
 <DIV active = {active}>
 <Color></Color> 
 <DivV>
@@ -166,6 +158,7 @@ export default ({
 </DivP>
 </DivV>
 </DIV>
+
 {/* /////////////////////////////// vista PoPObservaciones //////////////////////////////////////// */}  
 <DIV2 active = {active}>
 <Color></Color> 
@@ -232,21 +225,27 @@ La mayoría de las veces, los elementos absolutamente posicionados que tienen su
 
 </DIV5>  
 
-{/* /////////////////////////////// vista producto normal //////////////////////////////////////// */}  
-            <ContGral>
-                <Navbar /> 
-                
-            <Header>
-                <Cuadro>
-                <div><Img src={Sustituto}/></div> 
-                <div><Marca> = Marca, </Marca></div>
-                <div><Gramaje> = Gramaje </Gramaje></div>
-                </Cuadro>
-            </Header>
-            <Cont>
-                <ColIzq>
-                 {/* /////////////////////////////// vista PoPpesables //////////////////////////////////////// */}  
- <DivZ active = {active}>
+  {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
+    <ContGral>
+      <Header>
+        <Cuadro>
+          <div>
+            <Img src={Sustituto} />
+          </div>
+          <div>
+            <Marca> = Marca, </Marca>
+          </div>
+          <div>
+            <Gramaje> = Gramaje </Gramaje>
+          </div>
+        </Cuadro>
+      </Header>
+      <Cont>
+        { session === undefined ? ( <div>Cargando</div> ) : 
+            (
+          <>
+            <ColIzq>
+            <DivZ active = {active}>
  <HeaderDiv>
 <TextB>PRODUCTOS</TextB>
 <TextB2>CANTIDAD</TextB2>
@@ -272,157 +271,182 @@ La mayoría de las veces, los elementos absolutamente posicionados que tienen su
 <Espacio></Espacio>
 </>
 )}
-
 </DivScroll>
-</DivZ>   
-                    <ColuIconos>
-                    <Sup>
-                        <ContainerGrillCuadros>
-                         <CuadroGrill/>
-                         <CuadroGrill/>
-                        </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                          <CuadroGrill className="bkgColor"/>
-                          <CuadroGrill/>
-                        </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                        <CuadroGrill/>
-                        <CuadroGrill/>
-                        </ContainerGrillCuadros>
-                            <NumCuadrados>3</NumCuadrados>
-                        </Sup>
-                    </ColuIconos>    
-                    <DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>
-                </ColIzq>
-                <ColDerecha>
-                <div>
+</DivZ>
+              <ColuIconos>
+                <Sup>
+                  <ContainerGrillCuadros>
+                    <CuadroGrill />
+                    <CuadroGrill />
+                  </ContainerGrillCuadros>
+                  <ContainerGrillCuadros>
+                    <CuadroGrill className="bkgColor" />
+                    <CuadroGrill />
+                  </ContainerGrillCuadros>
+                  <ContainerGrillCuadros>
+                    <CuadroGrill />
+                    <CuadroGrill />
+                  </ContainerGrillCuadros>
+                  <NumCuadrados>3</NumCuadrados>
+                </Sup>
+              </ColuIconos>
+              {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
+              <DivFoto>
+                <FotoProd src={session[indice].imageUrl} />
+              </DivFoto>
+            </ColIzq>
+            <ColDerecha>
+              <div>
                 <DivGlobos>
-                <Button onClick={()=>Activar(1)} active={active} ><ImgAmarilla src={bubble} /></Button>
-                <Button2 onClick={()=>Activar(2)} active={active} > <ImgAmarilla src={bubbleExc} /></Button2>
+                  <ImgAmarilla src={bubble} />
+                  <ImgAmarilla src={bubbleExc} />
                 </DivGlobos>
                 <div>
-                <MarcaH1>SANCOR</MarcaH1>
-                <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
-                <Tachado>$100.000,00</Tachado>
-                <Precio>$100.000,00</Precio>
-                 </div>
+                  <MarcaH1>SANCOR</MarcaH1>
+                  <Descri>
+                    Nombre del producto con doble línea lorem ipsum dolor sit
+                    amet
+                  </Descri>
+                  <Tachado>$100.000,00</Tachado>
+                  <Precio>$100.000,00</Precio>
                 </div>
-                <ContBarras>
-                    <BarritasCont>
-                    <Barritas src= {BarCode}/>
-                    </BarritasCont>
-                    <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
-                </ContBarras>
-                <ContImagenes>
-                    <RecuadroCantidadNormal>
-                         <H1Cantidad>Cantidad</H1Cantidad>
-                         <H1CantidadNum>6</H1CantidadNum>
-                         <ContFlechitas>
-                            <FlechitaDesplegable src={flechaDesplegableArriba}/>
-                            <FlechitaDesplegable src={flechaDesplegableAbajo}/>
-                         </ContFlechitas>
-                    </RecuadroCantidadNormal>
-                     <DivImageStock>
-                     <ContStock>
-                            Stock
-                            <StockCien>+100</StockCien>
-                        </ContStock>
-                    </DivImageStock>
-                </ContImagenes>
-                  <Botones>
-                    <BotIzq>
-                        <Omitir><CruzOmitir src ={ImageCruzOmitir}/>OMITIR</Omitir>
-                        <BotonTeclado><Teclado src ={TecladoIcono}/></BotonTeclado>
-                        <Siguiente>SIGUIENTE</Siguiente>
-                    </BotIzq>
-                    <BotDer>
-                        <PlusCircle src = {masBlanco}></PlusCircle>
-                    </BotDer>
-                 </Botones>  
-                </ColDerecha>    
-                
-            </Cont> 
-            </ContGral>     
-            </>
-    )
-}
+              </div>
+              <ContBarras>
+                <BarritasCont>
+                  <Barritas src={BarCode} />
+                </BarritasCont>
+                <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
+              </ContBarras>
+              <ContImagenes>
+                <RecuadroCantidadNormal>
+                  <H1Cantidad>Cantidad</H1Cantidad>
+                  <H1CantidadNum>{count}</H1CantidadNum>
+                  <H1CantidadNum>/ {session[idx].purchasedQuantity}</H1CantidadNum>
+                  
+                    { count == 0 ? 
+                    (<ContFlechitas>
+                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                      <FlechitaDesplegableNone/>
+                     </ContFlechitas>)
+                    :
+                    (<ContFlechitas>
+                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                      <FlechitaDesplegable src={flechaDesplegableAbajo} onClick={() => setCount(count-1)} />
+                     </ContFlechitas>)
+                    }
+                </RecuadroCantidadNormal>
+                { count > session[idx].purchasedQuantity ? 
+                    (<Atencion>Supera la Cantidad Pedida</Atencion>)
+                    :
+                    (<div></div>)
+                }
+                <DivImageStock>
+                  <ContStock>
+                    Stock
+                    <StockCien>+100</StockCien>
+                  </ContStock>
+                </DivImageStock>
+              </ContImagenes>
+              <Botones>
+                <BotIzq>
+                  <Omitir>
+                    <CruzOmitir src={ImageCruzOmitir} />
+                    OMITIR
+                  </Omitir>
+                  <BotonTeclado>
+                    <Teclado src={TecladoIcono} />
+                  </BotonTeclado>
+                  <Siguiente onClick={() => { pickeado(session[idx].id, count); idx++ }}> SIGUIENTE
+                  </Siguiente>{' '}
+                  {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                </BotIzq>
+                <BotDer>
+                  <PlusCircle src={masBlanco}></PlusCircle>
+                </BotDer>
+              </Botones>
+            </ColDerecha>
+          </> 
+        )}
+      </Cont>
+    </ContGral>
+    </>
+  );
+};
 
- //////////// VISTA CONTENEDOR DE PRODUCTO POR PESO/////////////////////////////////////
-        // <ContGral>
-        //     <Header>
-        //         <Cuadro>
-        //         <div><Img src={Sustituto}/></div> 
-        //         <div><Marca> = Marca, </Marca></div>
-        //         <div><Gramaje> = Gramaje </Gramaje></div>
-        //         </Cuadro>
-        //     </Header>
-        //     <Cont>
-        //         <ColIzq>
-        //             <ColuIconos>
-        //                 <Sup>
-        //                     <ContainerGrillCuadros>
-        //                         <CuadroGrill/>
-        //                         <CuadroGrill/>
-        //                     </ContainerGrillCuadros>
-        //                     <ContainerGrillCuadros>
-        //                         <CuadroGrill className="bkgColor"/>
-        //                         <CuadroGrill/>
-        //                     </ContainerGrillCuadros>
-        //                     <ContainerGrillCuadros>
-        //                         <CuadroGrill/>
-        //                         <CuadroGrill/>
-        //                     </ContainerGrillCuadros>
-        //                     <NumCuadrados>3</NumCuadrados>
-        //                 </Sup>
-        //                 <ContStock>
-        //                     Stock
-        //                     <StockCien>+100</StockCien>
-        //                 </ContStock>
-        //             </ColuIconos>    
-        //             <DivFoto><FotoProd src ={ImagenProdu}/></DivFoto>
-        //         </ColIzq>
-        //         <ColDerecha>
-        //             <ContMarca>
-        //                 <ContDer>
-        //                     <MarcaH1>SANCOR</MarcaH1>
-        //                     <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
-        //                     <ContInfo>
-        //                         <Tachado>$100.000,00</Tachado>
-        //                         <Precio>$100.000,00</Precio>
-        //                     </ContInfo>
-        //                 </ContDer>
-        //                 <DivGlobos>
-        //                     <imarilla src = {bubble}/>
-        //                     <ImgAmarilla src = {bubbleExc}/>
-        //                 </DivGlobos>
-        //             </ContMarca>
-        //             <ContBarras>
-        //                 <BarritasCont>
-        //                 <Barritas src= {BarCode}/>
-        //                 </BarritasCont>
-        //                 <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
-        //                 <ImgBarrita/>
-        //                 <ImBalanza src={ImagenBalanza}/>
-        //                 <PesoProdu>20,00 Kgs</PesoProdu> 
-        //             </ContBarras>
-        //             <ContImagenes>
-        //                 <CuadritoUno>
-        //                     <ImgBalanzasUno src={ImagenBalanza}/>
-        //                     <PesoCuadro>0,00 kgs.</PesoCuadro>
-        //                 </CuadritoUno>
-        //                 <CuadritoDos>
-        //                 <ImgBalanzasMas src={ImagenBalanzaMas}/>
-        //                 </CuadritoDos> 
-        //             </ContImagenes>
-        //              <Instrucciones>Coloca el producto sobre la balanza</Instrucciones> 
-        //              <Botones>
-        //                 <Omitir>OMITIR</Omitir>
-        //                 <Teclado src ={TecladoIcono}/>
-        //                 <Siguiente>SIGUIENTE</Siguiente>
-        //                 <PlusCircle src = {masBlanco}></PlusCircle>
-        //             </Botones> 
-        //         </ColDerecha>
-        //     </Cont>
-        // </ContGral>  
-        
-    
+//////////// VISTA CONTENEDOR DE PRODUCTO POR PESO/////////////////////////////////////
+// <ContGral>
+//     <Header>
+//         <Cuadro>
+//         <div><Img src={Sustituto}/></div>
+//         <div><Marca> = Marca, </Marca></div>
+//         <div><Gramaje> = Gramaje </Gramaje></div>
+//         </Cuadro>
+//     </Header>
+//     <Cont>
+//         <ColIzq>
+//             <ColuIconos>
+//                 <Sup>
+//                     <ContainerGrillCuadros>
+//                         <CuadroGrill/>
+//                         <CuadroGrill/>
+//                     </ContainerGrillCuadros>
+//                     <ContainerGrillCuadros>
+//                         <CuadroGrill className="bkgColor"/>
+//                         <CuadroGrill/>
+//                     </ContainerGrillCuadros>
+//                     <ContainerGrillCuadros>
+//                         <CuadroGrill/>
+//                         <CuadroGrill/>
+//                     </ContainerGrillCuadros>
+//                     <NumCuadrados>3</NumCuadrados>
+//                 </Sup>
+//                 <ContStock>
+//                     Stock
+//                     <StockCien>+100</StockCien>
+//                 </ContStock>
+//             </ColuIconos>
+//             <DivFoto><FotoProd src ={ImagenProdu}/></DivFoto>
+//         </ColIzq>
+//         <ColDerecha>
+//             <ContMarca>
+//                 <ContDer>
+//                     <MarcaH1>SANCOR</MarcaH1>
+//                     <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
+//                     <ContInfo>
+//                         <Tachado>$100.000,00</Tachado>
+//                         <Precio>$100.000,00</Precio>
+//                     </ContInfo>
+//                 </ContDer>
+//                 <DivGlobos>
+//                     <imarilla src = {bubble}/>
+//                     <ImgAmarilla src = {bubbleExc}/>
+//                 </DivGlobos>
+//             </ContMarca>
+//             <ContBarras>
+//                 <BarritasCont>
+//                 <Barritas src= {BarCode}/>
+//                 </BarritasCont>
+//                 <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
+//                 <ImgBarrita/>
+//                 <ImBalanza src={ImagenBalanza}/>
+//                 <PesoProdu>20,00 Kgs</PesoProdu>
+//             </ContBarras>
+//             <ContImagenes>
+//                 <CuadritoUno>
+//                     <ImgBalanzasUno src={ImagenBalanza}/>
+//                     <PesoCuadro>0,00 kgs.</PesoCuadro>
+//                 </CuadritoUno>
+//                 <CuadritoDos>
+//                 <ImgBalanzasMas src={ImagenBalanzaMas}/>
+//                 </CuadritoDos>
+//             </ContImagenes>
+//              <Instrucciones>Coloca el producto sobre la balanza</Instrucciones>
+//              <Botones>
+//                 <Omitir>OMITIR</Omitir>
+//                 <Teclado src ={TecladoIcono}/>
+//                 <Siguiente>SIGUIENTE</Siguiente>
+//                 <PlusCircle src = {masBlanco}></PlusCircle>
+//             </Botones>
+//         </ColDerecha>
+//     </Cont>
+// </ContGral>
