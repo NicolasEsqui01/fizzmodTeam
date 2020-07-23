@@ -87,6 +87,9 @@ import '../common/styles/main.scss';
 
 
 export default ({ session, pickeado, setCount, count, indice }) => {
+
+  console.log(session)
+
   let idx = 0;
   return (
     /////////////////////////////// vista producto normal ////////////////////////////////////////

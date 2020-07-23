@@ -4,7 +4,7 @@ import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
 import { getSessionPicking } from '../../action/session';
 import history from '../../utils/history';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Navbar/NavbarContainer';
 
 const ProductoIndividualcontainer = ({
   items,
@@ -18,6 +18,7 @@ const ProductoIndividualcontainer = ({
   const [interv, setInterv] = useState();
   const [status, setStatus] = useState(0);
   const [count, setCount] = useState(0);
+
   let updatedS = time.s,
     updatedM = time.m,
     updatedH = time.h;
@@ -53,9 +54,9 @@ const ProductoIndividualcontainer = ({
 
   useEffect(() => {
     getSessionPicking(idSession).then(() =>{
-      start()
-    })
-  }, [indice]);
+      return start()
+    });
+  }, []); 
 
   const ItemPicked = (iditems, qty) => {
     const data = {
@@ -69,7 +70,7 @@ const ProductoIndividualcontainer = ({
     };
     sendItemPicked(idSession, data).then(() => {
       if (indice + 1 < items.length) {
-        return setIndice(indice + 1);
+        return setIndice(indice + 1)
       } else {
         stop();
         return history.push('/inicio');

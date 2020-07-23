@@ -10,9 +10,9 @@ const mapStateToProps = (state) => {
 };
 
 
-const NavbarContainer = () => {
+const NavbarContainer = ({time , status , booleano}) => {
   return (
-    <Navbar/>
+    <Navbar time={time} status={status} booleano={booleano}/>
   )
 }
 export default connect(mapStateToProps)(NavbarContainer);
