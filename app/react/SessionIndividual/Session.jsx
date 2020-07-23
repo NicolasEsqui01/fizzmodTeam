@@ -41,7 +41,7 @@ import {
 
 import box from '../../images/box.svg';
 import triangleCircle from '../../images/triangle_circle.svg';
-import Navbar from '../Navbar/NavbarContainer';
+import Navbar from '../Navbar/Navbar';
 import basket from '../../images/basket.svg';
 import scanner from '../../images/scanner.svg';
 import substitute from '../../images/substitute.svg';
@@ -54,7 +54,7 @@ export default () => {
     const prueba = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     return (
         <>
-            <Navbar />
+            <Navbar booleano1={true}/>
             <Container>
                 <LIzquierdo>
                     <ContainerIzquierdo>

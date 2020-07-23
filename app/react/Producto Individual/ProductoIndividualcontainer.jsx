@@ -13,12 +13,14 @@ const ProductoIndividualcontainer = ({
   sendItemPicked,
   token,
 }) => {
-
   const [indice, setIndice] = useState(0);
   const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
   const [interv, setInterv] = useState();
   const [status, setStatus] = useState(0);
-  let updatedS = time.s, updatedM = time.m, updatedH = time.h;
+  const [count, setCount] = useState(0);
+  let updatedS = time.s,
+    updatedM = time.m,
+    updatedH = time.h;
 
   const start = () => {
     run();
@@ -30,11 +32,11 @@ const ProductoIndividualcontainer = ({
     setStatus(2);
   };
 
-//   const reset = () => {
-//     clearInterval(interv);
-//     setStatus(0);
-//     setTime({ s: 0, m: 0, h: 0 });
-//   };
+  //   const reset = () => {
+  //     clearInterval(interv);
+  //     setStatus(0);
+  //     setTime({ s: 0, m: 0, h: 0 });
+  //   };
 
   const run = () => {
     if (updatedM === 60) {
@@ -50,10 +52,9 @@ const ProductoIndividualcontainer = ({
   };
 
   useEffect(() => {
-    if(indice === 0) {
-        start()
-    }
-    getSessionPicking(idSession)
+    getSessionPicking(idSession).then(() =>{
+      start()
+    })
   }, [indice]);
 
   const ItemPicked = (iditems, qty) => {
@@ -70,29 +71,26 @@ const ProductoIndividualcontainer = ({
       if (indice + 1 < items.length) {
         return setIndice(indice + 1);
       } else {
-        stop()
+        stop();
         return history.push('/inicio');
       }
     });
   };
-
   return (
     <>
-    <Navbar
-        time={time}
-        status={status}
-        booleano={true}
-    />
+      <Navbar time={time} status={status} booleano={true} />
       <ProductoIndividual
         session={items}
         pickeado={ItemPicked}
         indice={indice}
+        count={count}
+        setCount={setCount}
       />
     </>
   );
 };
 
-const MapStateToProps = (state , ownProps) => {
+const MapStateToProps = (state, ownProps) => {
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking
