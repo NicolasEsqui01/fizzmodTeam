@@ -51,7 +51,6 @@ import triangleWhite from '../../images/triangle_circle_white.svg';
 import '../common/styles/main.scss';
 import moment from 'moment';
 import NotFoundPage from '../NotFoundPage/Loadable';
-import Navbar from '../Navbar/NavbarContainer';
 
 
 export default ({
@@ -92,9 +91,9 @@ export default ({
     tiempoPromedioPorProducto =
       Math.round((countProdPorOrden /= tiempoPorOrden) * 10) / 10;
   }
+
   return (
     <>
-      <Navbar />
       <Container>
         <Carousel
           className="sliderInicio"

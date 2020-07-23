@@ -12,6 +12,7 @@ import { Redirect } from 'react-router-dom';
 import { setDatosUser as DatosUser } from '../../action/login'
 import { getStartSession } from '../../action/session'
 import history from '../../utils/history'
+import Navbar from '../Navbar/Navbar';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -59,7 +60,7 @@ const InicioContainer = ({
 
   const handleClickSession = () => {
     getStartSession(sessionId).then(() =>{
-      history.push('/productoindividual')
+      history.push(`/productoindividual/${sessionId}`)
     });
   };
 
@@ -76,6 +77,8 @@ const InicioContainer = ({
       {token === 'null' ? (
         <Redirect to="/login" />
       ) : (
+        <>
+        <Navbar booleano={false} />
         <Inicio
           pickers={pickers}
           sessions={session}
@@ -84,6 +87,7 @@ const InicioContainer = ({
           getSessionPicked={setPicked}
           getSessionPending={setPending}
         ></Inicio>
+        </>
       )}
     </>
   );
