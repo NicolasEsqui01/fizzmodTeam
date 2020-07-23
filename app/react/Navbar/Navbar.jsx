@@ -14,14 +14,13 @@ import {
   H1Tiempo,
 } from './style';
 import Imagen from '../../images/check_circle_bold.svg';
-
 import MenuHamb from '../../images/hamburguesa.png';
 import MenuHamburguesa from '../../images/icn_menu-irregular.svg';
 import Nubee from '../../images/icn_cloud.svg';
 import Janis from '../../images/janis_logo.svg';
 import flechaAtras from '../../images/arrow_short_prev.svg';
 import Reloj from '../../images/clockWhite.svg';
-
+import history from '../../utils/history';
 export default ({ time, start, stop, reset, booleano }) => {
   return (
     //////////////// NAVBAR PARA INICIO /////////////////
@@ -35,8 +34,8 @@ export default ({ time, start, stop, reset, booleano }) => {
     <NavCont>
       {booleano ? (
         <ContenedorFlecha>
-          <FlechaAtras src={flechaAtras} />
-          <OvaloCantidad>
+          <FlechaAtras src={flechaAtras} onClick={history.goBack}/>
+        <OvaloCantidad onClick={()=>history.push('/session')}>
             <H1Cantidades>01/120</H1Cantidades>
           </OvaloCantidad>
         </ContenedorFlecha>

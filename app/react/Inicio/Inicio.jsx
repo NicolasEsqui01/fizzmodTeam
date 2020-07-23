@@ -106,7 +106,7 @@ export default ({
           <InicioA>
             <Oval>
               <OvalInt>
-                <Pickers>{pickers.length} PICKERS</Pickers>
+                <Pickers><div> PICKERS </div><div> {pickers.length} </div></Pickers>
                 <Qty>{sessions.length}</Qty>{' '}
                 {sessions.length == 0 ? (
                   <Orders>NOTHING YET...</Orders>
@@ -121,17 +121,17 @@ export default ({
               <Icos24>
                 <Logos src={triangleWhite} alt="triangle" />
                 <PNumbers>{pending}</PNumbers>
-                <PNames>X ORDEN</PNames>
+                <PNames>PENDING</PNames>
               </Icos24>
               <Icos24>
                 <Logos src={clockRed} alt="clock" />
                 <PNumbers>{picking}</PNumbers>
-                <PNames>X ORDEN</PNames>
+                <PNames>PICKING</PNames>
               </Icos24>
               <Icos24>
                 <Logos src={boxGreen} alt="box" />
                 <PNumbers>{picked}</PNumbers>
-                <PNames>X PICKER</PNames>
+                <PNames>PICKED</PNames>
               </Icos24>
             </Indicadores>
           </InicioA>

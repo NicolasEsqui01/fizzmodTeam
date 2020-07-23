@@ -6,7 +6,7 @@ import { getSessionPicking } from '../../action/session';
 import history from '../../utils/history';
 import Navbar from '../Navbar/Navbar';
 
-const ProductoIndividualcontainer = ({
+const ProductoIndividualcontainer = ({ 
   items,
   idSession,
   getSessionPicking,
@@ -76,6 +76,12 @@ const ProductoIndividualcontainer = ({
     });
   };
 
+    const[count, setCount] = useState(0)
+
+    useEffect(() =>{
+        getSessionPicking(idSession);
+    },[indice]);
+
   return (
     <>
     <Navbar
@@ -87,6 +93,8 @@ const ProductoIndividualcontainer = ({
         session={items}
         pickeado={ItemPicked}
         indice={indice}
+        count={count}
+        setCount={setCount}
       />
     </>
   );
