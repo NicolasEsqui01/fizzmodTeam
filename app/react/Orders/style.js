@@ -1,15 +1,10 @@
 import styled from 'styled-components';
 import { device } from '../../utils/mediaQuerys';
 
-
-
 export const ListOrdenes = styled.div`
-@media ${device.tablet} {
-  
-  height: 450px;
- 
-}
- 
+  @media ${device.tablet} {
+    height: 450px;
+  }
   margin-left: 5%;
   margin-right: 5%;
   display: flex;
@@ -18,15 +13,15 @@ export const ListOrdenes = styled.div`
   width: 90%;
   border-radius: 3px;
   background-color: #ffffff;
-  &:active{border: 4px solid #1db779 }
+  ${({ permitir, div }) => {
+    return permitir === div ? 'border: 4px solid #1db779;' : null
+  }}
 `;
-//${props => props.permitir? 'border: 1px solid #1db779 ':null} &:active{border: 4px solid #1db779 }
+
 export const Numero = styled.h1`
-@media ${device.tablet} {
-  
-  font-size: 100%;
- 
-}
+  @media ${device.tablet} {
+    font-size: 100%;
+  }
   margin-top: 5%;
   height: 20px;
   width: 100%;
@@ -40,10 +35,10 @@ export const Numero = styled.h1`
 
 // Logos
 export const Img = styled.img`
-@media ${device.tablet} {
-  height: 40px;
-  width: 40px;
-}
+  @media ${device.tablet} {
+    height: 40px;
+    width: 40px;
+  }
   margin-top: 3%;
   margin-left: 5%;
   height: 60px;
@@ -53,10 +48,10 @@ export const Img = styled.img`
   padding: 7px;
 `;
 export const ImgP = styled.img`
-@media ${device.tablet} {
-  height: 70%;
-  margin-left: 10%;
-}
+  @media ${device.tablet} {
+    height: 70%;
+    margin-left: 10%;
+  }
   margin-left: 3%;
   margin-right: 5%;
   height: 80%;
@@ -65,7 +60,6 @@ export const ImgP = styled.img`
 
 // Div de control
 export const DivN = styled.div`
-
   display: flex;
   flex-direction: column;
   margin-left: 5%;
@@ -77,10 +71,10 @@ export const DivT = styled.div`
 `;
 
 export const DivP = styled.div`
-@media ${device.tablet} {
-  flex-direction: column;
-  aling-content: center;
-}
+  @media ${device.tablet} {
+    flex-direction: column;
+    aling-content: center;
+  }
   display: flex;
   margin-top: 5%;
   flex-direction: row;
@@ -93,15 +87,13 @@ export const DivS = styled.div`
 `;
 
 export const DivScroll = styled.div`
-@media ${device.tablet} {
-  
-  height: 90%;
- 
-}
+  @media ${device.tablet} {
+    height: 90%;
+  }
   overflow: auto;
   height: 100%;
   width: 100%;
-`
+`;
 
 //
 
@@ -143,11 +135,11 @@ export const Text = styled.div`
 `;
 
 export const Peso = styled.div`
-@media ${device.tablet} {
-  width: 70%;
-  height: 50px;
-  margin: 5px;
-}
+  @media ${device.tablet} {
+    width: 70%;
+    height: 50px;
+    margin: 5px;
+  }
   margin-right: 3%;
   box-sizing: border-box;
   height: 80px;
@@ -161,11 +153,11 @@ export const Peso = styled.div`
 `;
 
 export const Frio = styled.div`
-@media ${device.tablet} {
-  width: 70%;
-  height: 50px;
-  margin: 5px;
-}
+  @media ${device.tablet} {
+    width: 70%;
+    height: 50px;
+    margin: 5px;
+  }
   margin-right: 3%;
   box-sizing: border-box;
   height: 80px;
@@ -179,11 +171,11 @@ export const Frio = styled.div`
 `;
 
 export const Aire = styled.div`
-@media ${device.tablet} {
-  width: 70%;
-  height: 50px;
-  margin: 5px;
-}
+  @media ${device.tablet} {
+    width: 70%;
+    height: 50px;
+    margin: 5px;
+  }
   margin-right: 3%;
   box-sizing: border-box;
   height: 80px;
@@ -197,11 +189,11 @@ export const Aire = styled.div`
 `;
 
 export const Marca = styled.div`
-@media ${device.tablet} {
-  width: 90%;
-  height: 50px;
-  margin: 5px;
-}
+  @media ${device.tablet} {
+    width: 90%;
+    height: 50px;
+    margin: 5px;
+  }
 
   box-sizing: border-box;
   height: 80px;
@@ -213,11 +205,11 @@ export const Marca = styled.div`
   align-items: center;
 `;
 export const Marca2 = styled.div`
-@media ${device.tablet} {
-  width: 90%;
-  height: 50px;
-  margin: 5px;
-}
+  @media ${device.tablet} {
+    width: 90%;
+    height: 50px;
+    margin: 5px;
+  }
   box-sizing: border-box;
   height: 80px;
   width: 95%;
@@ -230,9 +222,9 @@ export const Marca2 = styled.div`
 `;
 
 export const Info = styled.div`
-@media ${device.tablet} {
-  font-size: 11px;
-}
+  @media ${device.tablet} {
+    font-size: 11px;
+  }
   height: 30px;
   width: 60%;
   color: #273947;

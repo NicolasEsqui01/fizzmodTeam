@@ -1,52 +1,45 @@
-import React,{useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Orders from './Orders';
-import {fetchSessions, DamePermiso} from '../../action/inicio'
+import { fetchSessions } from '../../action/inicio';
+import { SessionId } from '../../action/session'
 
-const OrdersContainer = ({ findingSessions , listSessions, permiso, status,  getPermiso}) =>{
+const OrdersContainer = ({
+  findingSessions,
+  listSessions,
+  status,
+  SessionId
+}) => {
+  const [value, setValue] = useState('')
 
- useEffect(()=>{
-  
-    findingSessions()
-  
-},[status]) 
+  useEffect(() => {
+    findingSessions();
+  }, [status]);
 
-const setPermiso = ()=>{
-      
-    getPermiso()
-    
-  }
+  const handleClick = (id) => {
+    setValue(id)
+    SessionId(id)
+  };
 
 
-return(
-<Orders 
-  sessions = {listSessions}
-  permiso = {permiso}
-  status= {status}
-  cambio={setPermiso}
-/>)
-
+  return <Orders sessions={listSessions} status={status} handleClick={handleClick} valor={value} />;
 };
 
-const mapStateToProps = function (state, ownProps){
-    return({
+const mapStateToProps = function (state, ownProps) {
+  console.log(state)
+  return {
     listSessions: state.inicioReducer.sessions,
-    permiso : state.inicioReducer.permiso,
     status: state.inicioReducer.status,
-   
-    })
-
+  };
 };
 
-const mapDispatchToProps = function (dispatch, ownProps){
-  
-    return({
-
-     findingSessions: ()=> dispatch(fetchSessions()), 
-     getPermiso: () => dispatch(DamePermiso()),
-
-    })
-    
+const mapDispatchToProps = function (dispatch, ownProps) {
+  return {
+    findingSessions: () => {
+      dispatch(fetchSessions());
+    },
+    SessionId: (id) => dispatch(SessionId(id))
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrdersContainer);
