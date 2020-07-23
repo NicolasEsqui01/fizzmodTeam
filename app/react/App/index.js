@@ -34,9 +34,11 @@ function App() {
       <Switch>
         <Route path='/login' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
+
         <Route path="/session" component={SessionConteniner} />
         <Route path="/productoindividual" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
+
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />
