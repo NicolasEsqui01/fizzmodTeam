@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import {
   ListOrdenes,
   Numero,
@@ -26,17 +26,31 @@ import balance from '../../images/balanceCelest.svg';
 import snow from '../../images/snowflakeCelest.svg';
 import substitute from '../../images/substitute.svg';
 import store from '../../images/store.svg';
+import moment from 'moment';
 
 export default ({ sessions, status, handleClick, valor }) => {
+  let start;
+  let end;
+  let duration;
+
   //element.startPickingTime - element.endPickingTime
   return (
     <>
-      <DivScroll >
+      <DivScroll>
         {sessions
           .filter((e) => e.status === status)
           .map((element) => {
+            start = moment(element.startPickingTime);
+            end = moment(element.endPickingTime);
+            duration = moment.duration(end.diff(start)).asMinutes();
+
             return (
-              <ListOrdenes key={element.id} permitir={valor} div={element.id} onClick={() => handleClick(element.id)}>
+              <ListOrdenes
+                key={element.id}
+                permitir={valor}
+                div={element.id}
+                onClick={() => handleClick(element.id)}
+              >
                 <Img src={box} />
                 <DivN>
                   <Numero>Nro.{element.id} </Numero>
@@ -45,7 +59,7 @@ export default ({ sessions, status, handleClick, valor }) => {
                       <Num>{element.totalItems}</Num> Items/
                     </Text>
                     <Text>
-                      <Num>16</Num> min
+                      <Num>{parseInt(duration * 10 ,10)}</Num>min
                     </Text>
                   </DivT>
                   <DivP>

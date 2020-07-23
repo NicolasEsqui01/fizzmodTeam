@@ -84,8 +84,6 @@ import Item3 from '../../images/Item3.png';
 import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
-import Navbar from '../Navbar/NavbarContainer';
-import Skeleton from 'react-loading-skeleton';
 
 
 export default ({ session, pickeado, setCount, count, indice }) => {
@@ -93,7 +91,6 @@ export default ({ session, pickeado, setCount, count, indice }) => {
   return (
     /////////////////////////////// vista producto normal ////////////////////////////////////////
     <ContGral>
-      <Navbar />
       <Header>
         <Cuadro>
           <div>

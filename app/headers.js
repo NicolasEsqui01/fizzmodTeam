@@ -10,7 +10,6 @@ export const headers = () => {
     }
 }
 
-
 export const headersToPickers = () => {
     return {
         headers:{
