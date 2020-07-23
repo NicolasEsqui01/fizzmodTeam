@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import Carousel from 'react-elastic-carousel';
 import {
   Container,
@@ -40,7 +41,7 @@ import box from '../../images/icn_new-order.svg';
 import slashBox from '../../images/icn_pre-picking.svg';
 import OrdersContainer from '../Orders/OrdersContainer';
 import boxGreen from '../../images/boxGreen.svg';
-import down from '../../images/chevron_downWhite.svg';  
+import down from '../../images/chevron_downWhite.svg';
 import up from '../../images/chevron_upWhite.svg';
 import clockWhite from '../../images/clockWhite.svg';
 import squareWhite from '../../images/square_chart_line.svg';
@@ -106,32 +107,32 @@ export default ({
           <InicioA>
             <Oval>
               <OvalInt>
-                <Pickers>{pickers.length} PICKERS</Pickers>
+                <Pickers><div> PICKERS </div><div> {pickers.length} </div></Pickers>
                 <Qty>{sessions.length}</Qty>{' '}
                 {sessions.length == 0 ? (
                   <Orders>NOTHING YET...</Orders>
                 ) : sessions.length === 1 ? (
                   <Orders>ORDEN</Orders>
                 ) : (
-                  <Orders>ORDENES</Orders>
-                )}
+                      <Orders>ORDENES</Orders>
+                    )}
               </OvalInt>
             </Oval>
             <Indicadores>
               <Icos24>
                 <Logos src={triangleWhite} alt="triangle" />
                 <PNumbers>{pending}</PNumbers>
-                <PNames>X ORDEN</PNames>
+                <PNames>PENDING</PNames>
               </Icos24>
               <Icos24>
                 <Logos src={clockRed} alt="clock" />
                 <PNumbers>{picking}</PNumbers>
-                <PNames>X ORDEN</PNames>
+                <PNames>PICKING</PNames>
               </Icos24>
               <Icos24>
                 <Logos src={boxGreen} alt="box" />
                 <PNumbers>{picked}</PNumbers>
-                <PNames>X PICKER</PNames>
+                <PNames>PICKED</PNames>
               </Icos24>
             </Indicadores>
           </InicioA>
@@ -147,8 +148,8 @@ export default ({
                 {tiempoPromedioPorProducto !== 0 ? (
                   <Time>''{tiempoPromedioPorProducto}</Time>
                 ) : (
-                  <Time>0</Time>
-                )}
+                    <Time>0</Time>
+                  )}
                 <ContNumGreen>
                   <Percentage>7%</Percentage>
                   <LogoStad src={down} alt="clock" />
@@ -163,8 +164,8 @@ export default ({
                 {tiempoPromedioOrden !== 0 ? (
                   <Time>''{tiempoPromedioOrden}</Time>
                 ) : (
-                  <Time>0</Time>
-                )}
+                    <Time>0</Time>
+                  )}
                 <ContNumRed>
                   <Percentage>7%</Percentage>
                   <LogoStad src={up} alt="clock" />

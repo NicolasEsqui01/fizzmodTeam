@@ -9,3 +9,15 @@ export const headers = () => {
         }
     }
 }
+
+
+export const headersToPickers = () => {
+    return {
+        headers:{
+            'Content-Type': 'application/json',
+            'janis-api-key': 'Bearer',
+            'janis-client': 'plataforma5-2020',
+            'janis-api-secret': localStorage.getItem('token')
+        }
+    }
+}

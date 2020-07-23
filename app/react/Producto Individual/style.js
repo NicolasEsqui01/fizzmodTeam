@@ -652,6 +652,7 @@ export const Omitir = styled.button`
   letter-spacing: 0;
   text-align: center;
   margin-right: 5px;
+  outline:none;
   @media ${device.mobile} {
   width:35%;
   height:40px;
@@ -686,6 +687,7 @@ export const Siguiente = styled.button`
   letter-spacing: 0;
   text-align: center;
   margin-left: 5px;
+  outline:none;
   @media ${device.mobile} {
   width:35%;
   height:40px;

@@ -85,8 +85,10 @@ import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import Navbar from '../Navbar/NavbarContainer';
+import Skeleton from 'react-loading-skeleton';
 
-export default ({ session, pickeado, setCount, count }) => {
+
+export default ({ session, pickeado, setCount, count, indice }) => {
   let idx = 0;
   return (
     /////////////////////////////// vista producto normal ////////////////////////////////////////
@@ -106,9 +108,8 @@ export default ({ session, pickeado, setCount, count }) => {
         </Cuadro>
       </Header>
       <Cont>
-        { session === undefined ? (
-          <div>Cargando</div>
-        ) : (
+        { session === undefined ? ( <div>Cargando</div> ) : 
+            (
           <>
             <ColIzq>
               <ColuIconos>
@@ -130,7 +131,7 @@ export default ({ session, pickeado, setCount, count }) => {
               </ColuIconos>
               {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
               <DivFoto>
-                <FotoProd src={session[idx].imageUrl} />
+                <FotoProd src={session[indice].imageUrl} />
               </DivFoto>
             </ColIzq>
             <ColDerecha>
@@ -194,13 +195,7 @@ export default ({ session, pickeado, setCount, count }) => {
                   <BotonTeclado>
                     <Teclado src={TecladoIcono} />
                   </BotonTeclado>
-                  <Siguiente
-                    onClick={() => {
-                      pickeado(session[idx].id, count);
-                      idx++
-                    }}
-                  >
-                    SIGUIENTE
+                  <Siguiente onClick={() => { pickeado(session[idx].id, count); idx++ }}> SIGUIENTE
                   </Siguiente>{' '}
                   {/*CHEQUEAR QUE SUME 1 BIEN*/}
                 </BotIzq>

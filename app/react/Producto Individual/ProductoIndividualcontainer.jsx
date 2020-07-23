@@ -3,8 +3,11 @@ import { connect } from "react-redux";
 import ProductoIndividual from "./ProductoIndividual";
 import { itemPicked } from '../../action/picking';
 import { getSessionPicking } from '../../action/session'
+import history from '../../utils/history'
 
-const ProductoIndividualcontainer = ({items , idSession , getSessionPicking , setItemPicked , token})=> {
+const ProductoIndividualcontainer = ({items , idSession , getSessionPicking , sendItemPicked , token})=> {
+
+    const [indice , setIndice] = useState(0)
 
     const[count, setCount] = useState(0)
 
@@ -14,7 +17,8 @@ const ProductoIndividualcontainer = ({items , idSession , getSessionPicking , se
 
     useEffect(() =>{
         getSessionPicking(idSession);
-    },[]);
+    },[indice]);
+
 
 	const ItemPicked = (iditems , count )=>{
         const data = {
@@ -24,16 +28,24 @@ const ProductoIndividualcontainer = ({items , idSession , getSessionPicking , se
             "pickedQuantity": count,
           }]
         };
-		sendItemPicked(idSession, data)
+		sendItemPicked(idSession, data).then(() =>{
+            if( ( indice + 1 ) < items.length ){
+                return setIndice(indice + 1)
+            }else{
+                return history.push('/inicio')
+            }
+        });
 	}
 
     return (
-        <ProductoIndividual session={items} pickeado={ItemPicked} setCount={setCount} count={count}/>
+        //<>
+        <ProductoIndividual session={items} pickeado={ItemPicked} indice={indice} setCount={setCount} count={count}/>
+        //{this.props.children}
+        //</>
     )
 };
 
 const MapStateToProps = (state)=> {
-    console.log("estado",state)
     return {
         idSession:state.sessionReducer.sessionId, // id de la sesssion
         token:state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking
@@ -43,7 +55,7 @@ const MapStateToProps = (state)=> {
 
 const MapDispatchToProps = (dispatch)=> {
     return {
-        sendItemPicked: (obj) => dispatch(itemPicked(obj)),
+        sendItemPicked: (id, obj) => dispatch(itemPicked(id,obj)),
         getSessionPicking : (id) => dispatch(getSessionPicking(id))
     }
 };

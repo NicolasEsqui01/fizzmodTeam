@@ -13,7 +13,7 @@ export const ListOrdenes = styled.div`
   width: 90%;
   border-radius: 3px;
   background-color: #ffffff;
-  ${({permitir , div}) => {
+  ${({ permitir, div }) => {
     return permitir === div ? 'border: 4px solid #1db779;' : null
   }}
 `;
