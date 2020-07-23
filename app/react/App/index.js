@@ -35,7 +35,7 @@ function App() {
         <Route path="/inicio" component={InicioContainer} />
 
         <Route path="/session" component={SessionConteniner} />
-        <Route path="/productoindividual" component={ProductoIndividual} />
+        <Route path="/productoindividual/:id" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
 
         {/* <Route exact path="" component={NotFoundPage} /> */}
