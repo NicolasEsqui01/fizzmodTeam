@@ -156,6 +156,7 @@ export const Line = styled.div`
 
 
 export const Pickers = styled.div`
+  display:flex;
   height: 14px;
   color: #d0d3e3;
   font-family: Roboto;

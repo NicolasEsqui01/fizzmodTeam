@@ -7,6 +7,7 @@ import {
   ContStock,
   Header,
   Cuadro,
+  Atencion,
   Img,
   Marca,
   Gramaje,
@@ -45,6 +46,7 @@ import {
   H1Cantidad,
   H1CantidadNum,
   FlechitaDesplegable,
+  FlechitaDesplegableNone,
   DivImageStock,
   BotonesNormal,
   Botones,
@@ -82,15 +84,13 @@ import Item3 from '../../images/Item3.png';
 import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
-import Navbar from '../Navbar/NavbarContainer';
 
-export default ({ session, pickeado }) => {
+
+export default ({ session, pickeado, setCount, count, indice }) => {
   let idx = 0;
-  let qty = 1;
   return (
     /////////////////////////////// vista producto normal ////////////////////////////////////////
     <ContGral>
-      <Navbar />
       <Header>
         <Cuadro>
           <div>
@@ -105,10 +105,8 @@ export default ({ session, pickeado }) => {
         </Cuadro>
       </Header>
       <Cont>
-        {session === undefined? (
-        <div>cargando</div>
-        
-        ) : (
+        { session === undefined ? ( <div>Cargando</div> ) : 
+            (
           <>
             <ColIzq>
               <ColuIconos>
@@ -130,7 +128,7 @@ export default ({ session, pickeado }) => {
               </ColuIconos>
               {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
               <DivFoto>
-                <FotoProd src={session[idx].imageUrl} />
+                <FotoProd src={session[indice].imageUrl} />
               </DivFoto>
             </ColIzq>
             <ColDerecha>
@@ -156,19 +154,27 @@ export default ({ session, pickeado }) => {
               </ContBarras>
               <ContImagenes>
                 <RecuadroCantidadNormal>
-                  <H1Cantidad>Cantidad solicitada:{session[idx].purchasedQuantity} </H1Cantidad>
-                  <H1CantidadNum>{qty}</H1CantidadNum>
-                  <ContFlechitas>
-                    <FlechitaDesplegable
-                    //   src={flechaDesplegableArriba}
-                      onClick={() => qty += 1 }
-                    />
-                    <FlechitaDesplegable
-                    //   src={flechaDesplegableAbajo}
-                      onClick={() =>qty = qty - 1}
-                    />
-                  </ContFlechitas>
+                  <H1Cantidad>Cantidad</H1Cantidad>
+                  <H1CantidadNum>{count}</H1CantidadNum>
+                  <H1CantidadNum>/ {session[idx].purchasedQuantity}</H1CantidadNum>
+                  
+                    { count == 0 ? 
+                    (<ContFlechitas>
+                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                      <FlechitaDesplegableNone/>
+                     </ContFlechitas>)
+                    :
+                    (<ContFlechitas>
+                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                      <FlechitaDesplegable src={flechaDesplegableAbajo} onClick={() => setCount(count-1)} />
+                     </ContFlechitas>)
+                    }
                 </RecuadroCantidadNormal>
+                { count > session[idx].purchasedQuantity ? 
+                    (<Atencion>Supera la Cantidad Pedida</Atencion>)
+                    :
+                    (<div></div>)
+                }
                 <DivImageStock>
                   <ContStock>
                     Stock
@@ -185,13 +191,7 @@ export default ({ session, pickeado }) => {
                   <BotonTeclado>
                     <Teclado src={TecladoIcono} />
                   </BotonTeclado>
-                  <Siguiente
-                    onClick={() => {
-                      pickeado(session[idx].id, qty);
-                      idx++
-                    }}
-                  >
-                    SIGUIENTE
+                  <Siguiente onClick={() => { pickeado(session[idx].id, count); idx++ }}> SIGUIENTE
                   </Siguiente>{' '}
                   {/*CHEQUEAR QUE SUME 1 BIEN*/}
                 </BotIzq>

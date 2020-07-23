@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import { Switch, Route , Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 import { hot } from 'react-hot-loader/root';
@@ -19,6 +19,7 @@ import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 // Header and Footer
 import GlobalStyle from '../../global-styles';
+import SessionConteniner from '../SessionIndividual/SessionConteniner';
 
 function App() {
   return (
@@ -30,10 +31,13 @@ function App() {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <Switch>
-        <Route path='/login' component={LoginContainer}/>
+        <Route path='/login' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
-        <Route path="/productoindividual" component={ProductoIndividual}/>
-        <Route path="/forgotPassword" component={ForgotPassword}/>
+
+        <Route path="/session" component={SessionConteniner} />
+        <Route path="/productoindividual/:id" component={ProductoIndividual} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />
