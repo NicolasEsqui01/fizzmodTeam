@@ -7,6 +7,7 @@ import {
   ContStock,
   Header,
   Cuadro,
+  Atencion,
   Img,
   Marca,
   Gramaje,
@@ -45,6 +46,7 @@ import {
   H1Cantidad,
   H1CantidadNum,
   FlechitaDesplegable,
+  FlechitaDesplegableNone,
   DivImageStock,
   BotonesNormal,
   Botones,
@@ -84,9 +86,8 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import Navbar from '../Navbar/NavbarContainer';
 
-export default ({ session, pickeado }) => {
+export default ({ session, pickeado, setCount, count }) => {
   let idx = 0;
-  let qty = 1;
   return (
     /////////////////////////////// vista producto normal ////////////////////////////////////////
     <ContGral>
@@ -105,10 +106,8 @@ export default ({ session, pickeado }) => {
         </Cuadro>
       </Header>
       <Cont>
-        {idx > session.length ? (
-          {
-            /* TERMINO DE PICKEAR, DEBERIA PONER EL STATUS EN PICKED*/
-          }
+        { session === undefined ? (
+          <div>Cargando</div>
         ) : (
           <>
             <ColIzq>
@@ -159,18 +158,24 @@ export default ({ session, pickeado }) => {
               <ContImagenes>
                 <RecuadroCantidadNormal>
                   <H1Cantidad>Cantidad</H1Cantidad>
-                  <H1CantidadNum>{qty}</H1CantidadNum>
-                  <ContFlechitas>
-                    <FlechitaDesplegable
-                    //   src={flechaDesplegableArriba}
-                      onClick={() => qty += 1 }
-                    />
-                    <FlechitaDesplegable
-                    //   src={flechaDesplegableAbajo}
-                      onClick={() =>qty = qty - 1}
-                    />
-                  </ContFlechitas>
+                  <H1CantidadNum>{count}</H1CantidadNum>
+                    { count == 0 ? 
+                    (<ContFlechitas>
+                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                      <FlechitaDesplegableNone/>
+                     </ContFlechitas>)
+                    :
+                    (<ContFlechitas>
+                      <FlechitaDesplegable src={flechaDesplegableArriba} onClick={() => setCount(count+1)}/>
+                      <FlechitaDesplegable src={flechaDesplegableAbajo} onClick={() => setCount(count-1)} />
+                     </ContFlechitas>)
+                    }
                 </RecuadroCantidadNormal>
+                { count > session[idx].purchasedQuantity ? 
+                    (<Atencion>Supera la Cantidad Pedida</Atencion>)
+                    :
+                    (<div></div>)
+                }
                 <DivImageStock>
                   <ContStock>
                     Stock
@@ -189,7 +194,7 @@ export default ({ session, pickeado }) => {
                   </BotonTeclado>
                   <Siguiente
                     onClick={() => {
-                      pickeado(session[idx].id, qty);
+                      pickeado(session[idx].id, count);
                       idx++
                     }}
                   >

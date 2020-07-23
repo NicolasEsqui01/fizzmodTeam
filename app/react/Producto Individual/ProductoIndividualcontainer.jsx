@@ -6,28 +6,34 @@ import { getSessionPicking } from '../../action/session'
 
 const ProductoIndividualcontainer = ({items , idSession , getSessionPicking , setItemPicked , token})=> {
 
+    const[count, setCount] = useState(0)
+
+    useEffect(() => {
+       
+    },[])
+
     useEffect(() =>{
         getSessionPicking(idSession);
     },[]);
 
-	const ItemPicked = (iditems , qty )=>{
+	const ItemPicked = (iditems , count )=>{
         const data = {
           "token":`${token}`,
           "items":[{
             "id": iditems, 
-            "pickedQuantity": qty,
+            "pickedQuantity": count,
           }]
         };
 		sendItemPicked(idSession, data)
 	}
 
     return (
-        <ProductoIndividual session={items} pickeado={ItemPicked}/>
+        <ProductoIndividual session={items} pickeado={ItemPicked} setCount={setCount} count={count}/>
     )
 };
 
 const MapStateToProps = (state)=> {
-    console.log(state)
+    console.log("estado",state)
     return {
         idSession:state.sessionReducer.sessionId, // id de la sesssion
         token:state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking

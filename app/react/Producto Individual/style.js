@@ -335,6 +335,18 @@ export const Descri = styled.div`
 }
 `;
 
+export const Atencion = styled.div`
+  color: #FF4343;
+  width:20%;
+  height:auto;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  @media ${device.mobile} {
+  font-size: 12px;
+}
+`;
+
 
 ///////////// PRECIOS ////////////////////
 export const Tachado = styled.div`
@@ -550,10 +562,14 @@ export const ContFlechitas = styled.div`
 
 `;
 
-export const FlechitaDesplegable = styled.button`
-  //margin-left: 28%;  
+export const FlechitaDesplegable = styled.img`
   height: 20px;
   width: 20px;
+`;
+
+export const FlechitaDesplegableNone = styled.img`
+  height: 0px;
+  width: 0px;
 `;
 
 export const DivImageStock = styled.div`
