@@ -94,7 +94,7 @@ export default ({ session, pickeado }) => {
       <Header>
         <Cuadro>
           <div>
-            <Img src={Sustituto} />
+           <Img src={Sustituto} />
           </div>
           <div>
             <Marca> = Marca, </Marca>
@@ -105,10 +105,9 @@ export default ({ session, pickeado }) => {
         </Cuadro>
       </Header>
       <Cont>
-        {idx > session.length ? (
-          {
-            /* TERMINO DE PICKEAR, DEBERIA PONER EL STATUS EN PICKED*/
-          }
+        {session === undefined? (
+        <div>cargando</div>
+        
         ) : (
           <>
             <ColIzq>
@@ -141,24 +140,23 @@ export default ({ session, pickeado }) => {
                   <ImgAmarilla src={bubbleExc} />
                 </DivGlobos>
                 <div>
-                  <MarcaH1>SANCOR</MarcaH1>
+                  <MarcaH1>{session[idx].name}</MarcaH1>
                   <Descri>
-                    Nombre del producto con doble línea lorem ipsum dolor sit
-                    amet
+                  
                   </Descri>
-                  <Tachado>$100.000,00</Tachado>
-                  <Precio>$100.000,00</Precio>
+                  <Tachado>${session[idx].purchasedPrice}</Tachado>
+                <Precio>${session[idx].purchasedPrice}</Precio>
                 </div>
               </div>
               <ContBarras>
                 <BarritasCont>
                   <Barritas src={BarCode} />
                 </BarritasCont>
-                <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
+                <CodProdu>{session[idx].ean}</CodProdu>
               </ContBarras>
               <ContImagenes>
                 <RecuadroCantidadNormal>
-                  <H1Cantidad>Cantidad</H1Cantidad>
+                  <H1Cantidad>Cantidad solicitada:{session[idx].purchasedQuantity} </H1Cantidad>
                   <H1CantidadNum>{qty}</H1CantidadNum>
                   <ContFlechitas>
                     <FlechitaDesplegable
@@ -206,6 +204,7 @@ export default ({ session, pickeado }) => {
         )}
       </Cont>
     </ContGral>
+    
   );
 };
 
@@ -241,16 +240,16 @@ export default ({ session, pickeado }) => {
 //                     <StockCien>+100</StockCien>
 //                 </ContStock>
 //             </ColuIconos>
-//             <DivFoto><FotoProd src ={ImagenProdu}/></DivFoto>
+//             <DivFoto><FotoProd src ={session[idx].imageUrl}/></DivFoto>
 //         </ColIzq>
 //         <ColDerecha>
 //             <ContMarca>
 //                 <ContDer>
 //                     <MarcaH1>SANCOR</MarcaH1>
-//                     <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
+//                     <Descri>{session[idx].name}</Descri>
 //                     <ContInfo>
-//                         <Tachado>$100.000,00</Tachado>
-//                         <Precio>$100.000,00</Precio>
+//                         <Tachado>${session[idx].purchasedPrice}</Tachado>
+//                         <Precio>${session[idx].purchasedPrice}</Precio>
 //                     </ContInfo>
 //                 </ContDer>
 //                 <DivGlobos>
@@ -262,7 +261,7 @@ export default ({ session, pickeado }) => {
 //                 <BarritasCont>
 //                 <Barritas src= {BarCode}/>
 //                 </BarritasCont>
-//                 <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
+//                 <CodProdu>{session[idx].ean}</CodProdu>
 //                 <ImgBarrita/>
 //                 <ImBalanza src={ImagenBalanza}/>
 //                 <PesoProdu>20,00 Kgs</PesoProdu>

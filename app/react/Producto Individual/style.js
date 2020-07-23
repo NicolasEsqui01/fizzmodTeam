@@ -5,7 +5,7 @@ import { device } from '../../utils/mediaQuerys';
 export const Header = styled.div`
   background-color: #E8EAF6;
   width: 100%;
-  height: 48px;
+  height: 56px;
 `;
 
 export const Img = styled.img`
