@@ -105,7 +105,8 @@ import {
   Espacio4,
   Color,
   Logout,
-  FlechitaDesplegableNone
+  FlechitaDesplegableNone,
+  Atencion
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -346,7 +347,7 @@ export default ({
                   <DivGlobos>
                     <Button onClick={() => Activar(1)}>
                       {' '}
-                      <imgAmarilla src={bubble} />
+                      <ImgAmarilla src={bubble} />
                     </Button>
                     <Button2 onClick={() => Activar(2)}>
                       <ImgAmarilla src={bubbleExc} />
@@ -474,7 +475,7 @@ export default ({
                   <DivGlobos>
                     <Button onClick={() => Activar(1)}>
                       {' '}
-                      <imgAmarilla src={bubble} />
+                      <ImgAmarilla src={bubble} />
                     </Button>
                     <Button2 onClick={() => Activar(2)}>
                       <ImgAmarilla src={bubbleExc} />
