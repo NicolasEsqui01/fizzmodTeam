@@ -338,7 +338,7 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri></Descri>
+                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
@@ -466,7 +466,7 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri></Descri>
+                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
