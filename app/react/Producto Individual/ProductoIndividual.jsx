@@ -346,7 +346,7 @@ export default ({
                   <DivGlobos>
                     <Button onClick={() => Activar(1)}>
                       {' '}
-                      <imgAmarilla src={bubble} />
+                      <ImgAmarilla src={bubble} />
                     </Button>
                     <Button2 onClick={() => Activar(2)}>
                       <ImgAmarilla src={bubbleExc} />
@@ -474,7 +474,7 @@ export default ({
                   <DivGlobos>
                     <Button onClick={() => Activar(1)}>
                       {' '}
-                      <imgAmarilla src={bubble} />
+                      <ImgAmarilla src={bubble} />
                     </Button>
                     <Button2 onClick={() => Activar(2)}>
                       <ImgAmarilla src={bubbleExc} />

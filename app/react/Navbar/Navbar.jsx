@@ -9,9 +9,6 @@ import {
   FlechaAtras,
   OvaloCantidad,
   H1Cantidades,
-  DivReloj,
-  ImageReloj,
-  H1Tiempo,
 } from './style';
 import Imagen from '../../images/check_circle_bold.svg';
 import MenuHamb from '../../images/hamburguesa.png';
@@ -19,11 +16,11 @@ import MenuHamburguesa from '../../images/icn_menu-irregular.svg';
 import Nubee from '../../images/icn_cloud.svg';
 import Janis from '../../images/janis_logo.svg';
 import flechaAtras from '../../images/arrow_short_prev.svg';
-import Reloj from '../../images/clockWhite.svg';
 import history from '../../utils/history';
+import CronometroContainer from '../cronometro/Loadable';
 
 
-export default ({ time, start, stop, reset, booleano , booleano1, items, state }) => {
+export default ({ booleano , booleano1, items, state  }) => {
   let itemsPicked = 0;
   let totalItems= 0;
   
@@ -59,14 +56,7 @@ export default ({ time, start, stop, reset, booleano , booleano1, items, state }
         <ImgLogo src={Janis} alt="3" />
       </div>
       {booleano ? (
-        <DivReloj>
-          {/*<ImageReloj src={Reloj} />
-          <H1Tiempo>
-            <H1Tiempo>{time.h >= 10 ? time.h : '0' + time.h}</H1Tiempo>
-            <H1Tiempo>{time.m >= 10 ? time.m : '0' + time.m}</H1Tiempo>
-            <H1Tiempo>{time.s >= 10 ? time.s : '0' + time.s}</H1Tiempo>
-          </H1Tiempo>*/}
-        </DivReloj>
+        <CronometroContainer  />
       ) : (
         <div>
           <Img2 src={Nubee} alt="3" />
