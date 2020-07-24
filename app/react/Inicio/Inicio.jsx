@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Carousel from 'react-elastic-carousel';
 import {
   Container,
@@ -52,7 +52,6 @@ import '../common/styles/main.scss';
 import moment from 'moment';
 import NotFoundPage from '../NotFoundPage/Loadable';
 
-
 export default ({
   sessions,
   pickers,
@@ -90,13 +89,7 @@ export default ({
     );
     tiempoPromedioPorProducto =
       Math.round((countProdPorOrden /= tiempoPorOrden) * 10) / 10;
-
-    
   }
-
-  {console.log( "SESIONES: ", sessions)}
-
-
 
   return (
     <>
@@ -112,15 +105,18 @@ export default ({
           <InicioA>
             <Oval>
               <OvalInt>
-                <Pickers><div> PICKERS  </div><div>  {pickers.length}  </div></Pickers>
+                <Pickers>
+                  <div> PICKERS </div>
+                  <div> {pickers.length} </div>
+                </Pickers>
                 <Qty>{sessions.length}</Qty>{' '}
                 {sessions.length == 0 ? (
                   <Orders>NOTHING YET...</Orders>
                 ) : sessions.length === 1 ? (
                   <Orders>ORDEN</Orders>
                 ) : (
-                      <Orders>ORDENES</Orders>
-                    )}
+                  <Orders>ORDENES</Orders>
+                )}
               </OvalInt>
             </Oval>
             <Indicadores>
@@ -153,8 +149,8 @@ export default ({
                 {tiempoPromedioPorProducto !== 0 ? (
                   <Time>''{tiempoPromedioPorProducto}</Time>
                 ) : (
-                    <Time>0</Time>
-                  )}
+                  <Time>0</Time>
+                )}
                 <ContNumGreen>
                   <Percentage>7%</Percentage>
                   <LogoStad src={down} alt="clock" />
@@ -169,8 +165,8 @@ export default ({
                 {tiempoPromedioOrden !== 0 ? (
                   <Time>''{tiempoPromedioOrden}</Time>
                 ) : (
-                    <Time>0</Time>
-                  )}
+                  <Time>0</Time>
+                )}
                 <ContNumRed>
                   <Percentage>7%</Percentage>
                   <LogoStad src={up} alt="clock" />

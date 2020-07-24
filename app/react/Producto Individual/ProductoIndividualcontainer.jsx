@@ -11,6 +11,7 @@ const ProductoIndividualcontainer = ({
   idSession,
   getSessionPicking,
   sendItemPicked,
+  sendToNavItemsPicked,
   token,
 }) => {
   const [indice, setIndice] = useState(0);
@@ -31,6 +32,7 @@ const ProductoIndividualcontainer = ({
   }, []);
 
   const ItemPicked = (iditems, qty) => {
+    // construir objeto de CANTIDAD PARA NAVBAR
     const data = {
       token: `${token}`,
       items: [
@@ -40,6 +42,7 @@ const ProductoIndividualcontainer = ({
         },
       ],
     };
+
     sendItemPicked(idSession, data).then(() => {
       if (indice + 1 < items.length) {
         return setIndice(indice + 1);
@@ -49,6 +52,7 @@ const ProductoIndividualcontainer = ({
       }
     });
   };
+
   return (
     <>
       <Navbar booleano={true}/>
