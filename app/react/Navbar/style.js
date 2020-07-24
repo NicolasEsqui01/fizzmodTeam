@@ -71,15 +71,17 @@ export const FlechaAtras = styled.img`
   width: auto;
 `;
 
-export const OvaloCantidad = styled.div`
+export const OvaloCantidad = styled.button`
   margin-left: 17px;  
   display: flex;
   justify-content: center;
-  width: 80px;
+  width: 140px;
+  height:60px;
   border-radius: 50px;
   background-color: #1DB779;
   align-items: center;
-  
+  outline:none;
+  border: 1px solid transparent;
   margin-right: auto;
 
   @media ${device.tablet} {
@@ -95,7 +97,7 @@ export const H1Cantidades = styled.h1`
 
 color: #FFFFFF;
 font-family: Roboto;
-font-size: 14px;
+font-size: 25px;
 font-weight: bold;
 letter-spacing: 0;
 
