@@ -15,20 +15,9 @@ const ProductoIndividualcontainer = ({
   token,
 }) => {
   const [indice, setIndice] = useState(0);
-  const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
-  const [interv, setInterv] = useState();
   const [status, setStatus] = useState(0);
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(0);
-
-  let updatedS = time.s,
-    updatedM = time.m,
-    updatedH = time.h;
-    
-  const start = () => {
-    run();
-    setInterv(setInterval(run, 10));
-  };
 
   const handleBtnClick = (n) => {
     setActive(n);
@@ -66,7 +55,7 @@ const ProductoIndividualcontainer = ({
 
   return (
     <>
-      <Navbar time={time} status={status} booleano={true} />
+      <Navbar booleano={true}/>
       <ProductoIndividual
         Activar={handleBtnClick}
         active={active}
@@ -82,7 +71,6 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
-  console.log(state)
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking

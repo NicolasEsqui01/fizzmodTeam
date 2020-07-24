@@ -180,36 +180,8 @@ export default ({
           <DivP>
             <Text>
               {' '}
-              Un elemento posicionado es un elemento cuyo valor computado de
-              position es relative, absolute, fixed, o sticky. (En otras
-              palabras, cualquiera excepto static). Un elemento posicionado
-              relativamente es un elemento cuyo valor computado de position es
-              relative. Las propiedades top y bottom especifican el
-              desplazamiento vertical desde su posición original; las
-              propiedades left y right especifican su desplazamiento horizontal.
-              Un elemento posicionado absolutamente es un elemento cuyo valor
-              computado de position es absolute o fixed. Las propiedades top,
-              right, bottom, y left especifican el desplazamiento desde los
-              bordes del bloque contenedor del elemento. (El bloque contenedor
-              es el ancestro relativo al cual el elemento está posicionado). Si
-              el elemento tiene márgenes, se agregarán al desplazamiento. el
-              elemento establece un nuevo contexto de formato de bloque para su
-              contenido Un elemento posicionado fijamente es un elemento cuyo
-              valor de position computado es sticky. Es tratado como un elemento
-              posicionado relativamente hasta que su bloque contenedor cruza un
-              límite establecido (como por ejemplo dando a top cualquier valor
-              distinto de auto), dentro de su flujo principal (o el contenedor
-              dentro del cual se mueve), desde el cual es tratado como "fijo"
-              hasta que alcance el borde opuesto de su bloque contenedor. La
-              mayoría de las veces, los elementos absolutamente posicionados que
-              tienen su height y width establecidos en auto son ajustados hasta
-              acomodarse a su contenido. Sin embargo, elementos non-replaced y
-              absolutamente posicionados se pueden crear para llenar el espacio
-              vertical disponible, especificando tanto top como bottom, y
-              dejando height sin especificar (es decir, auto). De igual manera
-              se pueden utilizar para llenar el espacio horizontal disponible
-              especificando tanto left como right, y dando a width el valor de
-              auto.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia voluptates est officia fuga quos a, enim vero labore ipsa quae, praesentium, harum porro eaque soluta delectus autem repellat? Sit, magni?
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem harum, tempora nisi quasi tenetur, nobis adipisci laborum recusandae quidem aliquid alias cupiditate quod, culpa delectus ratione porro minus unde minima.
             </Text>
           </DivP>
         </DivO>
@@ -389,14 +361,13 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[idx].id, count);
+                        pickeado(session[idx].id, session[indice].purchasedQuantity);
                         idx++;
                       }}
                     >
                       {' '}
                       SIGUIENTE
                     </Siguiente>{' '}
-                    {/*CHEQUEAR QUE SUME 1 BIEN*/}
                   </BotIzq>
                   <BotDer>
                     <PlusCircle src={masBlanco}></PlusCircle>
