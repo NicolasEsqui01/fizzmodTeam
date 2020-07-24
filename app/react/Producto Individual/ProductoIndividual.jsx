@@ -105,7 +105,7 @@ import {
   Espacio4,
   Color,
   Logout,
-  FlechitaDesplegableNone,
+  FlechitaDesplegableNone
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -159,7 +159,7 @@ export default ({
           </DivC>
           <DivP>
             {Prueba.map((element) => {
-              return <PopUpProdu>{element}</PopUpProdu>;
+              return <PopUpProdu key={element}>{element}</PopUpProdu>;
             })}
           </DivP>
         </DivV>
@@ -418,7 +418,7 @@ export default ({
                   <DivScroll>
                     {Prueba.map((elem) => (
                       <>
-                        <PopUpProduAcum>
+                        <PopUpProduAcum key={elem}>
                           <DivR>
                             <ImgM src={Mensaje} />
                             <DivX>
@@ -562,82 +562,4 @@ export default ({
   );
 };
 
-{
-  /* //////////// VISTA CONTENEDOR DE PRODUCTO POR PESO/////////////////////////////////////
-// <ContGral>
-//     <Header>
-//         <Cuadro>
-//         <div><Img src={Sustituto}/></div>
-//         <div><Marca> = Marca, </Marca></div>
-//         <div><Gramaje> = Gramaje </Gramaje></div>
-//         </Cuadro>
-//     </Header>
-//     <Cont>
-//         <ColIzq>
-//             <ColuIconos>
-//                 <Sup>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill className="bkgColor"/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <NumCuadrados>3</NumCuadrados>
-//                 </Sup>
-//                 <ContStock>
-//                     Stock
-//                     <StockCien>+100</StockCien>
-//                 </ContStock>
-//             </ColuIconos>
-//             <DivFoto><FotoProd src ={session[idx].imageUrl}/></DivFoto>
-//         </ColIzq>
-//         <ColDerecha>
-//             <ContMarca>
-//                 <ContDer>
-//                     <MarcaH1>SANCOR</MarcaH1>
-//                     <Descri>{session[idx].name}</Descri>
-//                     <ContInfo>
-//                         <Tachado>${session[idx].purchasedPrice}</Tachado>
-//                         <Precio>${session[idx].purchasedPrice}</Precio>
-//                     </ContInfo>
-//                 </ContDer>
-//                 <DivGlobos>
-//                     <imarilla src = {bubble}/>
-//                     <ImgAmarilla src = {bubbleExc}/>
-//                 </DivGlobos>
-//             </ContMarca>
-//             <ContBarras>
-//                 <BarritasCont>
-//                 <Barritas src= {BarCode}/>
-//                 </BarritasCont>
-//                 <CodProdu>{session[idx].ean}</CodProdu>
-//                 <ImgBarrita/>
-//                 <ImBalanza src={ImagenBalanza}/>
-//                 <PesoProdu>20,00 Kgs</PesoProdu>
-//             </ContBarras>
-//             <ContImagenes>
-//                 <CuadritoUno>
-//                     <ImgBalanzasUno src={ImagenBalanza}/>
-//                     <PesoCuadro>0,00 kgs.</PesoCuadro>
-//                 </CuadritoUno>
-//                 <CuadritoDos>
-//                 <ImgBalanzasMas src={ImagenBalanzaMas}/>
-//                 </CuadritoDos>
-//             </ContImagenes>
-//              <Instrucciones>Coloca el producto sobre la balanza</Instrucciones>
-//              <Botones>
-//                 <Omitir>OMITIR</Omitir>
-//                 <Teclado src ={TecladoIcono}/>
-//                 <Siguiente>SIGUIENTE</Siguiente>
-//                 <PlusCircle src = {masBlanco}></PlusCircle>
-//             </Botones>
-//         </ColDerecha>
-//     </Cont>
-// </ContGral> */
-}
+
