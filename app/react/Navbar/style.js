@@ -3,7 +3,7 @@ import { device } from '../../utils/mediaQuerys';
 
 export const NavCont = styled.div`
 width: 100%;
-height: 10%;
+height: 8%;
 background-color: #273947;
 display: flex;
 align-items: center;

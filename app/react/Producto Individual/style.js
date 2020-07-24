@@ -5,7 +5,7 @@ import { device } from '../../utils/mediaQuerys';
 export const Header = styled.div`
   background-color: #E8EAF6;
   width: 100%;
-  height: 48px;
+  height: 56px;
 `;
 
 export const Img = styled.img`
@@ -61,6 +61,7 @@ display: flex;
 justify-content: center;
 flex-direction: row;
 margin-top:70px;
+
 @media ${device.mobile} {
   flex-direction: column;
   margin-top:0px;

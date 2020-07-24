@@ -26,7 +26,7 @@ import history from '../../utils/history';
 export default ({ time, start, stop, reset, booleano , booleano1, items, state }) => {
   let itemsPicked = 0;
   let totalItems= 0;
-  console.log("items.length", items.length )
+  
   if(items){
   totalItems= items.length;
   items.find(item=>{
