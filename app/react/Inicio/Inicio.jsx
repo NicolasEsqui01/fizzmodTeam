@@ -112,7 +112,7 @@ export default ({
           <InicioA>
             <Oval>
               <OvalInt>
-                <Pickers><div> PICKERS </div><div> {pickers.length} </div></Pickers>
+                <Pickers><div> PICKERS  </div><div>  {pickers.length}  </div></Pickers>
                 <Qty>{sessions.length}</Qty>{' '}
                 {sessions.length == 0 ? (
                   <Orders>NOTHING YET...</Orders>
