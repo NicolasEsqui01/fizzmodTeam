@@ -3,19 +3,20 @@ import { device } from '../../utils/mediaQuerys';
 
 export const NavCont = styled.div`
 width: 100%;
-height: 10%;
 background-color: #273947;
 display: flex;
 align-items: center;
 flex-direction: row;
 justify-content: space-between;
-padding-top: 17px;
-padding-bottom: 17px;
-padding-left: 36px;
-padding-right: 36px;
+padding-top: 1%;
+padding-bottom: 1%;
+padding-left: 3%;
+padding-right: 3%;
 @media ${device.tablet} {
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 6%;
+  padding-right: 6%;
 }
 `;
 
@@ -46,13 +47,10 @@ width: 40px;
 `;
 
 export const ImgLogo = styled.img`
-height: 35px;
-width: 110px;
+width: 100px;
+height: auto;
 @media ${device.tablet} {
-    
-  width: 55px;
-  height: auto;
-  margin-left: 10px;
+  width: 75px;
 }
 `;
 
@@ -67,16 +65,22 @@ align-items: center;
 `;
 
 export const FlechaAtras = styled.img`
-  height: 22px;
+  height: 27px;
   width: auto;
+  @media ${device.tablet} {
+  width: auto;
+  height: 22px;
+}
+
 `;
 
 export const OvaloCantidad = styled.button`
-  margin-left: 17px;  
+  margin-left: 50px;  
   display: flex;
   justify-content: center;
-  width: 140px;
-  height:60px;
+  width: 77px;
+  height: 26px;
+  height:auto;
   border-radius: 50px;
   background-color: #1DB779;
   align-items: center;
@@ -84,23 +88,24 @@ export const OvaloCantidad = styled.button`
   border: 1px solid transparent;
   margin-right: auto;
 
-  @media ${device.tablet} {
-    
-    width: 50px;
-    height: 25px;
+  @media ${device.tablet} { 
+    margin-left: 30px;    
+    width: 48px;
+    height: 26px;
     margin-left: 10px;
   }
 `;
 
 export const H1Cantidades = styled.h1`
-
-
 color: #FFFFFF;
 font-family: Roboto;
-font-size: 25px;
+font-size: 16px;
 font-weight: bold;
 letter-spacing: 0;
 
+@media ${device.tablet} {    
+    font-size: 14px;
+  }
 
 `;
 
