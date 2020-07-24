@@ -15,7 +15,6 @@ import history from '../../utils/history'
 import Navbar from '../Navbar/NavbarContainer';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state)
   return {
     sessionId: state.sessionReducer.sessionId, // Me trae el id de la session
     session: state.inicioReducer.sessions,

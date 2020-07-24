@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { device } from '../../utils/mediaQuerys';
 
 export const NavCont = styled.div`
@@ -20,30 +20,27 @@ padding-right: 3%;
 }
 `;
 
-
 export const Nav = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-//padding-top: 5px;
-margin-right: 20px;
-margin-left: 20px;
-align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  //padding-top: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
+  align-items: center;
 `;
 
-
 export const Img = styled.img`
-height: 35px;
-width: 36px;
-box-sizing: border-box;
-border-radius: 5px;
-border: 1px solid #3B505B;
+  height: 35px;
+  width: 36px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #3b505b;
 `;
 
 export const Img2 = styled.img`
-height: 35px;
-width: 40px;
-
+  height: 35px;
+  width: 40px;
 `;
 
 export const ImgLogo = styled.img`
@@ -59,9 +56,9 @@ height: auto;
 ////// SESION INICIADA /////////////
 
 export const ContenedorFlecha = styled.div`
-display: flex;
-flex-direction: row;
-align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const FlechaAtras = styled.img`
@@ -82,9 +79,9 @@ export const OvaloCantidad = styled.button`
   height: 26px;
   height:auto;
   border-radius: 50px;
-  background-color: #1DB779;
+  background-color: #1db779;
   align-items: center;
-  outline:none;
+  outline: none;
   border: 1px solid transparent;
   margin-right: auto;
 
@@ -114,30 +111,3 @@ display: flex;
 flex-direction: row;
 align-items: center;
 `;
-
-export const ImageReloj = styled.img`
-height: 24px;
-width: auto;
-@media ${device.tablet} {
-  height: 20px;
-}
-`;
-
-export const H1Tiempo = styled.div`
-display:flex;
-margin-left: 10px;
-height: 19px;
-//width: 65px;
-color: #FFFFFF;
-font-family: Roboto;
-font-size: 20px;
-font-weight: bold;
-letter-spacing: 0;
-line-height: 19px;
-@media ${device.tablet} {
-  margin-left: 5px;  
-  margin-left: 6px;
-}
-`;
-
-
