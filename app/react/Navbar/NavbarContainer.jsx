@@ -4,16 +4,16 @@ import Navbar from './Navbar';
 
 const mapStateToProps = (state) => {
   return {
-    //items: 
+    items: state.sessionReducer.sessionPicking.items,
+    //state: state
   };
 };
 
-
-const NavbarContainer = ({time , status , booleano}) => {
+const NavbarContainer = (props) => {
   return (
-    <Navbar time={time} status={status} booleano={booleano}/>
+    <Navbar {...props}/>
   )
 }
-export default connect(mapStateToProps)(NavbarContainer);
+export default connect(mapStateToProps, null)(NavbarContainer);
 
 

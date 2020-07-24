@@ -20,8 +20,10 @@ const ProductoIndividualcontainer = ({
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(0);
 
-  let updatedS = time.s, updatedM = time.m, updatedH = time.h;
-
+  let updatedS = time.s,
+    updatedM = time.m,
+    updatedH = time.h;
+    
   const start = () => {
     run();
     setInterv(setInterval(run, 10));
@@ -76,6 +78,7 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
+  console.log(state)
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking

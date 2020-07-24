@@ -142,8 +142,8 @@ export default ({
   active,
   onCloseClick,
 }) => {
-  const Prueba = [1,2,3,4]
   let idx = 0;
+  const Prueba = [1,2,3,4]
   return (
     <>
       {/* /////////////////////////////// vista PoPSusticion //////////////////////////////////////// */}
@@ -272,7 +272,139 @@ export default ({
         <Cont>
           {session === undefined ? (
             <div>Cargando</div>
+          ) : session[indice].isWeighable ? (
+            ///////////////// PRODUCTO PESABLE /////////////////
+            <>
+              <ColIzq>
+                <DivZ active={active}>
+                  <HeaderDiv>
+                    <TextB>PRODUCTOS</TextB>
+                    <TextB2>CANTIDAD</TextB2>
+                    <ButtonX onClick={onCloseClick}>
+                      <ImgX2 src={XWhite} />
+                    </ButtonX>
+                  </HeaderDiv>
+                  <DivScroll>
+                    {Prueba.map((elem) => (
+                      <>
+                        <PopUpProduAcum>
+                          <DivR>
+                            <ImgM src={Mensaje} />
+                            <DivX>
+                              <Descripcion>
+                                DESCRIPCION DEL PRODUCTO
+                              </Descripcion>
+                              <DivF>
+                                <Icono src={scanner} />
+                                <Ean>1234456112</Ean>
+                              </DivF>
+                            </DivX>
+                            <Cantidad>8 Kg</Cantidad>
+                            <ImgT src={trash} />
+                          </DivR>
+                        </PopUpProduAcum>
+                        <Espacio></Espacio>
+                      </>
+                    ))}
+                  </DivScroll>
+                </DivZ>
+                <ColuIconos>
+                  <Sup>
+                    <ContainerGrillCuadros>
+                      <CuadroGrill />
+                      <CuadroGrill />
+                    </ContainerGrillCuadros>
+                    <ContainerGrillCuadros>
+                      <CuadroGrill className="bkgColor" />
+                      <CuadroGrill />
+                    </ContainerGrillCuadros>
+                    <ContainerGrillCuadros>
+                      <CuadroGrill />
+                      <CuadroGrill />
+                    </ContainerGrillCuadros>
+                    <NumCuadrados>3</NumCuadrados>
+                  </Sup>
+                  <ContStock>
+                    Stock
+                    <StockCien>+100</StockCien>
+                  </ContStock>
+                </ColuIconos>
+                <DivFoto>
+                  <FotoProd src={session[indice].imageUrl} />
+                </DivFoto>
+              </ColIzq>
+              <ColDerecha>
+                <ContMarca>
+                  <ContDer>
+                    <MarcaH1>{session[indice].name}</MarcaH1>
+                    <Descri></Descri>
+                    <ContInfo>
+                      <Tachado>${session[indice].purchasedPrice}</Tachado>
+                      <Precio>${session[indice].purchasedPrice}</Precio>
+                    </ContInfo>
+                  </ContDer>
+                  <DivGlobos>
+                    <Button onClick={() => Activar(1)}>
+                      {' '}
+                      <imgAmarilla src={bubble} />
+                    </Button>
+                    <Button2 onClick={() => Activar(2)}>
+                      <ImgAmarilla src={bubbleExc} />
+                    </Button2>
+                  </DivGlobos>
+                </ContMarca>
+                <ContBarras>
+                  <BarritasCont>
+                    <Barritas src={BarCode} />
+                  </BarritasCont>
+                  <CodProdu>{session[indice].ean}</CodProdu>
+                  <ImgBarrita />
+                  <ImBalanza src={ImagenBalanza} />
+                  <PesoProdu> {session[indice].purchasedQuantity}Kgs</PesoProdu>
+                </ContBarras>
+                <ContImagenes>
+                  <CuadritoUno>
+                    <ImgBalanzasUno src={ImagenBalanza} />
+                    <PesoCuadro>
+                      {session[indice].purchasedQuantity}
+                      kgs.
+                    </PesoCuadro>
+                  </CuadritoUno>
+                  <CuadritoDos>
+                    <ImgBalanzasMas src={ImagenBalanzaMas} />
+                  </CuadritoDos>
+                </ContImagenes>
+                <Instrucciones>
+                  Coloca el producto sobre la balanza
+                </Instrucciones>
+                <Botones>
+                  <BotIzq>
+                    <Omitir>
+                      <CruzOmitir src={ImageCruzOmitir} />
+                      OMITIR
+                    </Omitir>
+                    <BotonTeclado>
+                      <Teclado src={TecladoIcono} />
+                    </BotonTeclado>
+                    <Siguiente
+                      onClick={() => {
+                        pickeado(session[idx].id, count);
+                        idx++;
+                      }}
+                    >
+                      {' '}
+                      SIGUIENTE
+                    </Siguiente>{' '}
+                    {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                  </BotIzq>
+                  <BotDer>
+                    <PlusCircle src={masBlanco}></PlusCircle>
+                  </BotDer>
+                </Botones>
+              </ColDerecha>
+            </>
           ) : (
+            ////////////////// PRODUCTO NORMAL //////////////////
             <>
               <ColIzq>
                 <DivZ active={active}>
@@ -330,33 +462,38 @@ export default ({
                 </DivFoto>
               </ColIzq>
               <ColDerecha>
-                <div>
+                <ContMarca>
+                  <ContDer>
+                    <MarcaH1>{session[indice].name}</MarcaH1>
+                    <Descri></Descri>
+                    <ContInfo>
+                      <Tachado>${session[indice].purchasedPrice}</Tachado>
+                      <Precio>${session[indice].purchasedPrice}</Precio>
+                    </ContInfo>
+                  </ContDer>
                   <DivGlobos>
-                    <Button onClick={()=> Activar(1)}><ImgAmarilla src={bubble} /></Button>
-                    <Button2 onClick={() => Activar(2)}><ImgAmarilla src={bubbleExc} /></Button2>
+                    <Button onClick={() => Activar(1)}>
+                      {' '}
+                      <imgAmarilla src={bubble} />
+                    </Button>
+                    <Button2 onClick={() => Activar(2)}>
+                      <ImgAmarilla src={bubbleExc} />
+                    </Button2>
                   </DivGlobos>
-                  <div>
-                    <MarcaH1>SANCOR</MarcaH1>
-                    <Descri>
-                      Nombre del producto con doble línea lorem ipsum dolor sit
-                      amet
-                    </Descri>
-                    <Tachado>$100.000,00</Tachado>
-                    <Precio>$100.000,00</Precio>
-                  </div>
-                </div>
+                </ContMarca>
+
                 <ContBarras>
                   <BarritasCont>
                     <Barritas src={BarCode} />
                   </BarritasCont>
-                  <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
+                  <CodProdu>{session[indice].ean}</CodProdu>
                 </ContBarras>
                 <ContImagenes>
                   <RecuadroCantidadNormal>
                     <H1Cantidad>Cantidad</H1Cantidad>
                     <H1CantidadNum>{count}</H1CantidadNum>
                     <H1CantidadNum>
-                      / {session[idx].purchasedQuantity}
+                      / {session[indice].purchasedQuantity}
                     </H1CantidadNum>
 
                     {count == 0 ? (
@@ -425,80 +562,4 @@ export default ({
   );
 };
 
-//////////// VISTA CONTENEDOR DE PRODUCTO POR PESO/////////////////////////////////////
-// <ContGral>
-//     <Header>
-//         <Cuadro>
-//         <div><Img src={Sustituto}/></div>
-//         <div><Marca> = Marca, </Marca></div>
-//         <div><Gramaje> = Gramaje </Gramaje></div>
-//         </Cuadro>
-//     </Header>
-//     <Cont>
-//         <ColIzq>
-//             <ColuIconos>
-//                 <Sup>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill className="bkgColor"/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <NumCuadrados>3</NumCuadrados>
-//                 </Sup>
-//                 <ContStock>
-//                     Stock
-//                     <StockCien>+100</StockCien>
-//                 </ContStock>
-//             </ColuIconos>
-//             <DivFoto><FotoProd src ={ImagenProdu}/></DivFoto>
-//         </ColIzq>
-//         <ColDerecha>
-//             <ContMarca>
-//                 <ContDer>
-//                     <MarcaH1>SANCOR</MarcaH1>
-//                     <Descri>Nombre del producto con doble línea lorem ipsum dolor sit amet</Descri>
-//                     <ContInfo>
-//                         <Tachado>$100.000,00</Tachado>
-//                         <Precio>$100.000,00</Precio>
-//                     </ContInfo>
-//                 </ContDer>
-//                 <DivGlobos>
-//                     <imarilla src = {bubble}/>
-//                     <ImgAmarilla src = {bubbleExc}/>
-//                 </DivGlobos>
-//             </ContMarca>
-//             <ContBarras>
-//                 <BarritasCont>
-//                 <Barritas src= {BarCode}/>
-//                 </BarritasCont>
-//                 <CodProdu>29BJKDSEF0KKLFNSO</CodProdu>
-//                 <ImgBarrita/>
-//                 <ImBalanza src={ImagenBalanza}/>
-//                 <PesoProdu>20,00 Kgs</PesoProdu>
-//             </ContBarras>
-//             <ContImagenes>
-//                 <CuadritoUno>
-//                     <ImgBalanzasUno src={ImagenBalanza}/>
-//                     <PesoCuadro>0,00 kgs.</PesoCuadro>
-//                 </CuadritoUno>
-//                 <CuadritoDos>
-//                 <ImgBalanzasMas src={ImagenBalanzaMas}/>
-//                 </CuadritoDos>
-//             </ContImagenes>
-//              <Instrucciones>Coloca el producto sobre la balanza</Instrucciones>
-//              <Botones>
-//                 <Omitir>OMITIR</Omitir>
-//                 <Teclado src ={TecladoIcono}/>
-//                 <Siguiente>SIGUIENTE</Siguiente>
-//                 <PlusCircle src = {masBlanco}></PlusCircle>
-//             </Botones>
-//         </ColDerecha>
-//     </Cont>
-// </ContGral>
+
