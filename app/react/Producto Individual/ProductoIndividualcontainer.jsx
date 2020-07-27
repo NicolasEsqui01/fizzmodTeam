@@ -54,7 +54,7 @@ const ProductoIndividualcontainer = ({
       sendItemPicked(idSession, data).then(() => {
         let newIndice = Number(indice) + 1;
         return history.push(`/productoindividual/${idSession}/${newIndice}`);
-      });
+      }).then(()=>setCount(0))
     }
   };
 

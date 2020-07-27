@@ -466,33 +466,37 @@ export default ({
                     <H1CantidadNum>
                       / {session[indice].purchasedQuantity}
                     </H1CantidadNum>
-
-                    {count == 0 ? (
                       <ContFlechitas>
+                    {count == 0 ? (
+                        <>
                         <FlechitaDesplegable
                           src={flechaDesplegableArriba}
                           onClick={() => setCount(count + 1)}
                         />
                         <FlechitaDesplegableNone />
-                      </ContFlechitas>
+                        </>
                     ) : (
-                      <ContFlechitas>
-                        <FlechitaDesplegable
-                          src={flechaDesplegableArriba}
-                          onClick={() => setCount(count + 1)}
-                        />
+                      count >= session[idx].purchasedQuantity ? (
+                        <>
+                        <FlechitaDesplegableNone />
                         <FlechitaDesplegable
                           src={flechaDesplegableAbajo}
-                          onClick={() => setCount(count - 1)}
-                        />
-                      </ContFlechitas>
-                    )}
+                          onClick={() => setCount(count - 1)} />
+                        </>
+                        ) : (
+                            <>
+                            <FlechitaDesplegable
+                              src={flechaDesplegableArriba}
+                              onClick={() => setCount(count + 1)}/>
+                            <FlechitaDesplegable
+                              src={flechaDesplegableAbajo}
+                              onClick={() => setCount(count - 1)}/>
+                            </>
+                            )
+                        )
+                    }
+                    </ContFlechitas>
                   </RecuadroCantidadNormal>
-                  {count > session[idx].purchasedQuantity ? (
-                    <Atencion>Supera la Cantidad Pedida</Atencion>
-                  ) : (
-                    <div></div>
-                  )}
                   <DivImageStock>
                     <ContStock>
                       Stock
