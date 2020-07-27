@@ -48,7 +48,7 @@ const ProductoIndividualcontainer = ({
         stop();
         return history.push('/inicio');
       }
-    });
+    }).then(()=>setCount(0)) ;
   };
 
   return (
