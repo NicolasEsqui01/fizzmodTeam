@@ -78,7 +78,6 @@ const InicioContainer = ({
         <Redirect to="/" />
       ) : (
         <>
-        <Navbar booleano={false} />
         <Inicio
           pickers={pickers}
           sessions={session}

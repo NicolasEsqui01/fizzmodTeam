@@ -53,7 +53,6 @@ const ProductoIndividualcontainer = ({
 
   return (
     <>
-      <Navbar booleano={true} />
       <ProductoIndividual
         Activar={handleBtnClick}
         active={active}
