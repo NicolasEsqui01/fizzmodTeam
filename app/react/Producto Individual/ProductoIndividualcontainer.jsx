@@ -32,9 +32,8 @@ const ProductoIndividualcontainer = ({
   }, []);
 
   const ItemPicked = (iditems, qty) => {
-    // construir objeto de CANTIDAD PARA NAVBAR
     const data = {
-      token: `${token}`,
+      token: token,
       items: [
         {
           id: iditems,
@@ -42,7 +41,6 @@ const ProductoIndividualcontainer = ({
         },
       ],
     };
-
     sendItemPicked(idSession, data).then(() => {
       if (indice + 1 < items.length) {
         return setIndice(indice + 1);
@@ -55,7 +53,7 @@ const ProductoIndividualcontainer = ({
 
   return (
     <>
-      <Navbar booleano={true}/>
+      <Navbar booleano={true} />
       <ProductoIndividual
         Activar={handleBtnClick}
         active={active}
@@ -73,7 +71,7 @@ const ProductoIndividualcontainer = ({
 const MapStateToProps = (state, ownProps) => {
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
-    token: state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking
+    token: localStorage.getItem('token'), // token de la session cuando inicia el picking
     items: state.sessionReducer.sessionPicking.items, // los items de la session
   };
 };

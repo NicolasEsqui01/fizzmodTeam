@@ -6,13 +6,11 @@ const CronometroContainer = ({}) => {
   const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
   const [interv, setInterv] = useState();
 
-  let updatedS = time.s,
-    updatedM = time.m,
-    updatedH = time.h;
+  let updatedS = time.s , updatedM = time.m , updatedH = time.h;
 
   const start = () => {
     run();
-    setInterv(setInterval(run, 10));
+    setInterv(setInterval(run, 1000));
   };
 
   const run = () => {
@@ -25,14 +23,17 @@ const CronometroContainer = ({}) => {
       updatedS = 0;
     }
     updatedS++;
-    return setTime({ s: updatedS, m: updatedM, h: updatedH });
+    return setTime({ s: updatedS, m: updatedM, h: updatedH })
   };
 
-  if (time.s === 0 && time.m === 0 && time.h === 0) {
-    start();
+  if (time.s === 0 && time.m === 0 && time.h === 0 ) {
+    start()
   }
 
-  return <Cronometro time={time} />;
+  return (
+    <Cronometro time={time}/>
+  )
 };
+
 
 export default connect(null, null)(CronometroContainer);

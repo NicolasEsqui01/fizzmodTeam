@@ -260,7 +260,7 @@ export default ({
                   <DivScroll>
                     {Prueba.map((elem) => (
                       <>
-                        <PopUpProduAcum>
+                        <PopUpProduAcum key={elem}>
                           <DivR>
                             <ImgM src={Mensaje} />
                             <DivX>

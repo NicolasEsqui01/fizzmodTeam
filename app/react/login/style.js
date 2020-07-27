@@ -142,12 +142,22 @@ export const FormInput = styled.div`
    flex-direction: column;
    margin-top: 46px;
 `;
+
+export const DivLoading = styled.div`
+display:flex;
+position:fixed;
+${({active}) => active === 1 ? null : 'display:none'}
+`
+
+export const Loadingg = styled.div`
+ border:1px solid black;
+ margin:0 auto;
+`
+
+
 export const SubInput = styled.div`
-   // display: flex;
-   // -webkit-box-align: center;
-   // align-items: center;
-    height: 58px;
-    margin-bottom: 26px;
+  height: 58px;
+  margin-bottom: 26px;
 `;
 
 export const DivInput = styled.div`

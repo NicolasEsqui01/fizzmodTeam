@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
     session: state.inicioReducer.sessions,
     pickers: state.inicioReducer.pickers,
     status: state.inicioReducer.status,
-    token: JSON.stringify(localStorage.getItem('token')),
+    auth: JSON.stringify(localStorage.getItem('auth')),
   };
 };
 
@@ -46,12 +46,12 @@ const InicioContainer = ({
   sessionsPending,
   sessionsPicked,
   status,
-  token,
+  auth,
   setDatosUser,
   getStartSession,
 }) => {
   useEffect(() => {
-    if(token !== 'null'){
+    if(auth !== 'null'){
       getSessions();
       getPickers();
       setDatosUser();
@@ -74,8 +74,8 @@ const InicioContainer = ({
 
   return (
     <>
-      {token === 'null' ? (
-        <Redirect to="/login" />
+      {auth === 'null' ? (
+        <Redirect to="/" />
       ) : (
         <>
         <Navbar booleano={false} />
