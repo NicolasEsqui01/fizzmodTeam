@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getSessions: () => dispatch(fetchSessions()),
     getPickers: () => dispatch(fetchPickers()),
@@ -42,7 +42,6 @@ const InicioContainer = ({
   getPickers,
   pickers,
   getSessions,
-  getPermiso,
   sessionsPending,
   sessionsPicked,
   status,
