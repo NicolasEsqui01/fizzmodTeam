@@ -20,7 +20,7 @@ import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 import SessionConteniner from '../SessionIndividual/SessionConteniner';
 import GlobalStyle from '../../global-styles';
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Navbar/NavbarContainer'
 
 
 function App({location }) {
@@ -37,7 +37,7 @@ function App({location }) {
         <Route exact path='/' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
         <Route path="/session" component={SessionConteniner} />
-        <Route path="/productoindividual/:id" component={ProductoIndividual} />
+        <Route path="/productoindividual/:id/:indice" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
       </Switch>
       <GlobalStyle />

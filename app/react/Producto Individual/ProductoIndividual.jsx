@@ -361,8 +361,7 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[idx].id, session[indice].purchasedQuantity);
-                        idx++;
+                        pickeado(session[indice].id, session[indice].purchasedQuantity);
                       }}
                     >
                       {' '}
@@ -512,8 +511,7 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[idx].id, count);
-                        idx++;
+                        pickeado(session[indice].id, count);
                       }}
                     >
                       {' '}

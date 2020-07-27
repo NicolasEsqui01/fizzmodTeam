@@ -2,20 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
-import { getSessionPicking } from '../../action/session';
+import { getSessionPicking, setBooleano } from '../../action/session';
 import history from '../../utils/history';
-import Navbar from '../Navbar/NavbarContainer';
 
 const ProductoIndividualcontainer = ({
   items,
   idSession,
   getSessionPicking,
   sendItemPicked,
-  sendToNavItemsPicked,
   token,
+  setBooleano,
+  match,
 }) => {
-  const [indice, setIndice] = useState(0);
-  const [status, setStatus] = useState(0);
+  const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(0);
 
@@ -29,7 +28,12 @@ const ProductoIndividualcontainer = ({
 
   useEffect(() => {
     getSessionPicking(idSession);
+    setBooleano(true);
   }, []);
+
+  useEffect(() => {
+    setIndice(match.params.indice);
+  }, [match.params.indice]);
 
   const ItemPicked = (iditems, qty) => {
     const data = {
@@ -41,28 +45,33 @@ const ProductoIndividualcontainer = ({
         },
       ],
     };
-    sendItemPicked(idSession, data).then(() => {
-      if (indice + 1 < items.length) {
-        return setIndice(indice + 1);
-      } else {
-        stop();
-        return history.push('/inicio');
-      }
-    });
+
+    if (Number(indice) === items.length) {
+      setBooleano(false);
+      localStorage.removeItem('token');
+      return history.push('/inicio');
+    } else {
+      sendItemPicked(idSession, data).then(() => {
+        let newIndice = Number(indice) + 1;
+        return history.push(`/productoindividual/${idSession}/${newIndice}`);
+      });
+    }
   };
 
   return (
     <>
-      <ProductoIndividual
-        Activar={handleBtnClick}
-        active={active}
-        onCloseClick={handleCloseClick}
-        session={items}
-        pickeado={ItemPicked}
-        indice={indice}
-        count={count}
-        setCount={setCount}
-      />
+      {items ? (
+        <ProductoIndividual
+          Activar={handleBtnClick}
+          active={active}
+          onCloseClick={handleCloseClick}
+          session={items}
+          pickeado={ItemPicked}
+          indice={indice - 1}
+          count={count}
+          setCount={setCount}
+        />
+      ) : null}
     </>
   );
 };
@@ -79,6 +88,7 @@ const MapDispatchToProps = (dispatch) => {
   return {
     sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
     getSessionPicking: (id) => dispatch(getSessionPicking(id)),
+    setBooleano: (boolean) => dispatch(setBooleano(boolean)),
   };
 };
 
