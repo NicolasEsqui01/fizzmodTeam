@@ -20,6 +20,7 @@ import ForgotPassword from '../forgotPasseword/Loadable';
 // Header and Footer
 import GlobalStyle from '../../global-styles';
 import SessionConteniner from '../SessionIndividual/SessionConteniner';
+import ConfirmacionContainer from '../ConfirmacionCanasto/Loadable';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/session" component={SessionConteniner} />
         <Route path="/productoindividual/:id" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/confirmacion" component={ConfirmacionContainer} />
 
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
