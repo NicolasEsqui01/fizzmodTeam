@@ -10,11 +10,10 @@ import {
 } from '../../action/inicio';
 import { Redirect } from 'react-router-dom';
 import { setDatosUser as DatosUser } from '../../action/login'
-import { getStartSession } from '../../action/session'
+import { getStartSession , setBooleano } from '../../action/session'
 import history from '../../utils/history'
-import Navbar from '../Navbar/NavbarContainer';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     sessionId: state.sessionReducer.sessionId, // Me trae el id de la session
     session: state.inicioReducer.sessions,
@@ -33,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     sessionsPicked: () => dispatch(ChangePicked()),
     setDatosUser: () => dispatch(DatosUser()),
     getStartSession : (id) => dispatch(getStartSession(id)),
+    setBooleano: (booleano) => dispatch(setBooleano(booleano))
   };
 };
 
@@ -48,6 +48,7 @@ const InicioContainer = ({
   auth,
   setDatosUser,
   getStartSession,
+  setBooleano
 }) => {
   useEffect(() => {
     if(auth !== 'null'){
@@ -59,7 +60,8 @@ const InicioContainer = ({
 
   const handleClickSession = () => {
     getStartSession(sessionId).then(() =>{
-      history.push(`/productoindividual/${sessionId}`)
+      setBooleano(true)
+      return history.push(`/productoindividual/${sessionId}/1`)
     });
   };
 
