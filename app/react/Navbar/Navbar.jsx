@@ -16,9 +16,8 @@ import flechaAtras from '../../images/arrow_short_prev.svg';
 import history from '../../utils/history';
 import CronometroContainer from '../cronometro/Loadable';
 
-export default ({ booleano , items, qty }) => {
+export default ({ booleano , items, qty , sessionId }) => {
   let itemsPicked = 0;
-  let length = 0;
   let totalItems =0;
   if (items) {
     totalItems = items.length;
@@ -33,9 +32,9 @@ export default ({ booleano , items, qty }) => {
       {booleano ? (
         <ContenedorFlecha>
           <FlechaAtras src={flechaAtras} onClick={history.goBack} />
-          <OvaloCantidad onClick={() => history.push('/session')}>
+          <OvaloCantidad onClick={() => history.push(`/session/${sessionId}`)}>
             <H1Cantidades>
-              {qty}/{length}
+              {qty}/{totalItems}
             </H1Cantidades>
           </OvaloCantidad>
         </ContenedorFlecha>

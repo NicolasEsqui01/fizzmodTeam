@@ -72,6 +72,7 @@ const InicioContainer = ({
 
   const handleClickSession = () => {
     getStartSession(sessionId).then(() =>{
+      localStorage.setItem('sessionid', sessionId)
       setBooleano(true)
       return history.push(`/productoindividual/${sessionId}/1`)
     });

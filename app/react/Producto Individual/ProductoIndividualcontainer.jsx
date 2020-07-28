@@ -49,6 +49,7 @@ const ProductoIndividualcontainer = ({
     if (Number(indice) === items.length) {
       setBooleano(false);
       localStorage.removeItem('token');
+      localStorage.removeItem('sessionid')
       return history.push('/inicio');
     } else {
       sendItemPicked(idSession, data).then(() => {
