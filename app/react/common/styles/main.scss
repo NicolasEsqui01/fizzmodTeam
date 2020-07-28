@@ -49,3 +49,14 @@ body {
 .bkgColor{
   background-color: #2979FF;
 }
+
+
+//IDENTIFICACION DE ORDENES PICKING O PICKED
+
+.picked{
+  border: 2px solid #1DB779;
+}
+
+.picking{
+  border: 2px solid #F13B70;
+}

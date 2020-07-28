@@ -2,7 +2,8 @@ const initialState = {
   tokenSession: {},
   sessionId: '',
   sessionPicking:{},
-  booleano:false
+  booleano:false,
+  statusOrderSelected: 'pending'
 };
 
 export default (state = initialState, action) => {
@@ -16,6 +17,8 @@ export default (state = initialState, action) => {
       return {...state , sessionPicking:action.session};
     case 'SET_BOOLEANO' : 
       return {...state , booleano: action.booleano }
+    case 'SET_TYPE_OF_ORDER_SELECTED' : 
+      return {...state , statusOrderSelected: action.string }
     default:
       return state;
   }

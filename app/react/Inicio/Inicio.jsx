@@ -21,6 +21,7 @@ import {
   DivJ,
   DivP,
   Button,
+  ButtonRetomar,
   Icos24Hor,
   PNames,
   PNumbers,
@@ -62,6 +63,8 @@ export default ({
   totalPicked,
   totalPending,
   status,
+  statusOrderSelected,
+  okBoton
 }) => (
     <>
       <Container>
@@ -169,7 +172,15 @@ export default ({
           <OrdersContainer />
 
           <OrdenFooter>
-            <Button onClick={handleClickSession}>Comenzar</Button>
+            { okBoton == 'picking' ? 
+            (<ButtonRetomar onClick={handleClickSession}>Retomar</ButtonRetomar>)
+            :
+            ( okBoton == 'pending' ? 
+              (<Button onClick={handleClickSession}>Comenzar</Button>)
+               :
+              (<Button onClick={handleClickSession}>Revisar</Button>)
+            )
+            }
           </OrdenFooter>
         </LDerecho>
       </Container>

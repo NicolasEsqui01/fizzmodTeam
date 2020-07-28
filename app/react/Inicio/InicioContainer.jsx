@@ -21,6 +21,7 @@ const mapStateToProps = (state) => {
     totalPickings: state.inicioReducer.totalSessionsPicking,
     pickers: state.inicioReducer.pickers,
     status: state.inicioReducer.status,
+    statusOrderSelected: state.sessionReducer.statusOrderSelected,
     auth: JSON.stringify(localStorage.getItem('auth')),
   };
 };
@@ -44,6 +45,7 @@ const InicioContainer = ({
   totalPendings,
   totalPickeds,
   totalPickings,
+  statusOrderSelected,
   getPickers,
   pickers,
   getSessions,
@@ -66,9 +68,16 @@ const InicioContainer = ({
   useEffect(() => {
     if(totalSessions !== 0){
       setPending(totalSessions);
-      setPicked(totalSessions);
     }  
   }, [totalSessions]);
+
+  useEffect(() => {
+    if (statusOrderSelected=="picking")setOkBoton("picking")
+    if (statusOrderSelected=="pending")setOkBoton("pending")
+    if (statusOrderSelected=="picked")setOkBoton("picked")
+  }, [statusOrderSelected]);
+
+  const [okBoton, setOkBoton] = useState('')
 
   const handleClickSession = () => {
     getStartSession(sessionId).then(() =>{
@@ -86,6 +95,11 @@ const InicioContainer = ({
     sessionsPickedAndPicking(totalSessions);
   };
 
+  const handleClick = (id) => {
+    setValue(id)
+    SessionId(id)
+  };
+
   return (
     <>
       {auth === 'null' ? (
@@ -100,6 +114,8 @@ const InicioContainer = ({
           totalPicking={totalPickings}
           handleClickSession={handleClickSession}
           status={status}
+          statusOrderSelected={statusOrderSelected}
+          okBoton={okBoton}
           getSessionPicked={setPicked}
           getSessionPending={setPending}
         ></Inicio>
