@@ -467,6 +467,27 @@ export const Button = styled.button`
   outline:none;
 `;
 
-  
 
+export const ButtonRetomar = styled.button`
+@media ${device.tablet} {
+  
+  height: 50%;
+  width: 60%;
+  font-size: 200%;
+ 
+}
+  height: 80%;
+  width: 50%;
+  color: #ffffff;
+  border:1px solid #F13B70;
+  font-family: Roboto;
+  font-size: 250%;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #F13B70;
+  outline:none;
+`;
 

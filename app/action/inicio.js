@@ -48,7 +48,9 @@ export const fetchSessions = () => (dispatch) => {
     .then(()=>{
      axios.get('https://picking.janis.in/api/session?filters[status][0]=pending', headersToPickers())
       .then((allSessionsPending) => {
-        dispatch(totalPending(allSessionsPending.headers['x-janis-total']))})
+        dispatch(totalPending(allSessionsPending.headers['x-janis-total']));
+
+      })
     })
     .then(()=>{
       axios.get('https://picking.janis.in/api/session?filters[status][0]=picking', headersToPickers())
