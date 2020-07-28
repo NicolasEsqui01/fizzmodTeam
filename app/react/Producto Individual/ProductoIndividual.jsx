@@ -66,45 +66,6 @@ import {
   BotDer,
   Button,
   Button2,
-  ButtonX,
-  ButtonX4,
-  ImgX,
-  ImgX2,
-  ImgM,
-  ImgT,
-  DivV,
-  DivC,
-  DivP,
-  DivO,
-  DivZ,
-  DivX,
-  DivR,
-  DivF,
-  DivM,
-  DivN,
-  DivG,
-  DivQ,
-  DivS,
-  DIV,
-  DIV2,
-  DIV4,
-  DIV5,
-  TituloOb,
-  Text,
-  TextB,
-  TextB2,
-  PopUpProdu,
-  PopUpProduAcum,
-  HeaderDiv,
-  DivScroll,
-  Descripcion,
-  Icono,
-  Ean,
-  Cantidad,
-  Espacio,
-  Espacio4,
-  Color,
-  Logout,
   FlechitaDesplegableNone,
   Atencion
 } from './style';
@@ -126,12 +87,7 @@ import Item3 from '../../images/Item3.png';
 import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
-import Navbar from '../Navbar/NavbarContainer';
-import X from '../../images/cross_light.svg';
-import XWhite from '../../images/cross_light_White.svg';
-import Mensaje from '../../images/comment.svg';
-import trash from '../../images/trash.svg';
-import Salir from '../../images/cross_small_circle.svg';
+import PopUpPesables from '../PopUps/PopUpPesables';
 
 export default ({
   session,
@@ -144,89 +100,9 @@ export default ({
   onCloseClick,
 }) => {
   let idx = 0;
-  const Prueba = [1,2,3,4]
+
   return (
     <>
-      {/* /////////////////////////////// vista PoPSusticion //////////////////////////////////////// */}
-      <DIV active={active}>
-        <Color></Color>
-        <DivV>
-          <DivC>
-            <ImgM src={Mensaje} />
-            <TituloOb> Sustitutos </TituloOb>
-            <ButtonX onClick={onCloseClick}>
-              <ImgX src={X} />
-            </ButtonX>
-          </DivC>
-          <DivP>
-            {Prueba.map((element) => {
-              return <PopUpProdu key={element}>{element}</PopUpProdu>;
-            })}
-          </DivP>
-        </DivV>
-      </DIV>
-
-      {/* /////////////////////////////// vista PoPObservaciones //////////////////////////////////////// */}
-      <DIV2 active={active}>
-        <Color></Color>
-        <DivO>
-          <DivC>
-            <ImgM src={Mensaje} />
-            <TituloOb> Observaciones </TituloOb>
-            <ButtonX onClick={onCloseClick}>
-              <ImgX src={X} />
-            </ButtonX>
-          </DivC>
-          <DivP>
-            <Text>
-              {' '}
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia voluptates est officia fuga quos a, enim vero labore ipsa quae, praesentium, harum porro eaque soluta delectus autem repellat? Sit, magni?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem harum, tempora nisi quasi tenetur, nobis adipisci laborum recusandae quidem aliquid alias cupiditate quod, culpa delectus ratione porro minus unde minima.
-            </Text>
-          </DivP>
-        </DivO>
-      </DIV2>
-
-      {/* /////////////////////////////// vista PoPOpciones //////////////////////////////////////// */}
-      <DIV4 active={active}>
-        <Color></Color>
-        <DivO>
-          <DivC>
-            <ButtonX4 onClick={onCloseClick}>
-              <ImgX src={X} />
-            </ButtonX4>
-          </DivC>
-          <DivM></DivM>
-          <Espacio4></Espacio4>
-          <DivN></DivN>
-          <Espacio4></Espacio4>
-          <DivG>
-            <ImgX src={Salir} />
-            <Logout> Logout </Logout>
-          </DivG>
-        </DivO>
-      </DIV4>
-
-      {/* /////////////////////////////// vista PoPInfo ORDER //////////////////////////////////////// */}
-      <DIV5 active={active}>
-        <Color></Color>
-        <DivO>
-          <DivC>
-            <ImgM src={Mensaje} />
-            <TituloOb> Nro. 12345675436</TituloOb>
-            <ButtonX onClick={onCloseClick}>
-              <ImgX src={X} />
-            </ButtonX>
-          </DivC>
-
-          <DivQ></DivQ>
-
-          <DivS></DivS>
-
-          <DivG></DivG>
-        </DivO>
-      </DIV5>
-
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
       <ContGral>
         <Header>
@@ -249,38 +125,12 @@ export default ({
             ///////////////// PRODUCTO PESABLE /////////////////
             <>
               <ColIzq>
-                <DivZ active={active}>
-                  <HeaderDiv>
-                    <TextB>PRODUCTOS</TextB>
-                    <TextB2>CANTIDAD</TextB2>
-                    <ButtonX onClick={onCloseClick}>
-                      <ImgX2 src={XWhite} />
-                    </ButtonX>
-                  </HeaderDiv>
-                  <DivScroll>
-                    {Prueba.map((elem) => (
-                      <>
-                        <PopUpProduAcum key={elem}>
-                          <DivR>
-                            <ImgM src={Mensaje} />
-                            <DivX>
-                              <Descripcion>
-                                DESCRIPCION DEL PRODUCTO
-                              </Descripcion>
-                              <DivF>
-                                <Icono src={scanner} />
-                                <Ean>1234456112</Ean>
-                              </DivF>
-                            </DivX>
-                            <Cantidad>8 Kg</Cantidad>
-                            <ImgT src={trash} />
-                          </DivR>
-                        </PopUpProduAcum>
-                        <Espacio></Espacio>
-                      </>
-                    ))}
-                  </DivScroll>
-                </DivZ>
+              
+         <PopUpPesables
+             active={active}
+             onCloseClick={onCloseClick}
+             />
+
                 <ColuIconos>
                   <Sup>
                     <ContainerGrillCuadros>
@@ -361,15 +211,14 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[idx].id, session[indice].purchasedQuantity);
-                        idx++;
+                        pickeado(session[indice].id, session[indice].purchasedQuantity);
                       }}
                     >
                       {' '}
                       SIGUIENTE
                     </Siguiente>{' '}
                   </BotIzq>
-                  <BotDer>
+                  <BotDer onClick={()=>Activar(4)}>
                     <PlusCircle src={masBlanco}></PlusCircle>
                   </BotDer>
                 </Botones>
@@ -379,38 +228,7 @@ export default ({
             ////////////////// PRODUCTO NORMAL //////////////////
             <>
               <ColIzq>
-                <DivZ active={active}>
-                  <HeaderDiv>
-                    <TextB>PRODUCTOS</TextB>
-                    <TextB2>CANTIDAD</TextB2>
-                    <ButtonX onClick={onCloseClick}>
-                      <ImgX2 src={XWhite} />
-                    </ButtonX>
-                  </HeaderDiv>
-                  <DivScroll>
-                    {Prueba.map((elem) => (
-                      <>
-                        <PopUpProduAcum key={elem}>
-                          <DivR>
-                            <ImgM src={Mensaje} />
-                            <DivX>
-                              <Descripcion>
-                                DESCRIPCION DEL PRODUCTO
-                              </Descripcion>
-                              <DivF>
-                                <Icono src={scanner} />
-                                <Ean>1234456112</Ean>
-                              </DivF>
-                            </DivX>
-                            <Cantidad>8 Kg</Cantidad>
-                            <ImgT src={trash} />
-                          </DivR>
-                        </PopUpProduAcum>
-                        <Espacio></Espacio>
-                      </>
-                    ))}
-                  </DivScroll>
-                </DivZ>
+               
                 <ColuIconos>
                   <Sup>
                     <ContainerGrillCuadros>
@@ -516,8 +334,7 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[idx].id, count);
-                        idx++;
+                        pickeado(session[indice].id, count);
                       }}
                     >
                       {' '}
@@ -525,7 +342,7 @@ export default ({
                     </Siguiente>{' '}
                     {/*CHEQUEAR QUE SUME 1 BIEN*/}
                   </BotIzq>
-                  <BotDer>
+                  <BotDer onClick={()=>Activar(4)}>
                     <PlusCircle src={masBlanco}></PlusCircle>
                   </BotDer>
                 </Botones>

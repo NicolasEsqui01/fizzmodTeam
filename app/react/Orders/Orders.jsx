@@ -7,6 +7,8 @@ import {
   Num,
   NumP,
   Img,
+  ImgPicked,
+  ImgPicking,
   ImgP,
   DivN,
   DivT,
@@ -28,30 +30,22 @@ import substitute from '../../images/substitute.svg';
 import store from '../../images/store.svg';
 import moment from 'moment';
 
-export default ({ sessions, status, handleClick, valor }) => {
+export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, valor}) => {
   let start;
   let end;
   let duration;
-  // let arrFractionable = [];
-  //let arrWeighable = [];
-  // let arrFresh = [];
-
-  //element.startPickingTime - element.endPickingTime
   return (
     <>
       <DivScroll>
-        {sessions
-         
-
-          .filter((e) => e.status === status)
-          .map((element) => {
+        { status == 'pending' ? 
+          (pendSessions.map((element) => {
             let arrFractionable = [];
             let arrWeighable = [];
             let arrFresh = [];
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-            //console.log("element es: " + element.totalItems)
+          
               element.items.map((el)=>{
               
                 el.isFresh==true? arrFresh.push(el.name) : null;
@@ -65,7 +59,8 @@ export default ({ sessions, status, handleClick, valor }) => {
                 key={element.id}
                 permitir={valor}
                 div={element.id}
-                onClick={() => handleClick(element.id)}
+                estadoOrden={element.status}
+                onClick={() => handleClick(element.id, 'pending')}
               >
                 <Img src={box} />
                 <DivN>
@@ -106,8 +101,113 @@ export default ({ sessions, status, handleClick, valor }) => {
                   </DivS>
                 </DivN>
               </ListOrdenes>
-            );
-          })}
+                  );
+            })
+          )
+          :
+          (pickedAndPikcingSessions.map((element) => {
+            start = moment(element.startPickingTime);
+            end = moment(element.endPickingTime);
+            duration = moment.duration(end.diff(start)).asMinutes();
+            return element.status == "picked"? 
+                 (<ListOrdenes
+                  className="picked"
+                  key={element.id}
+                  permitir={valor}
+                  div={element.id}
+                  estadoOrden={element.status}
+                  onClick={() => handleClick(element.id, 'picked')}>
+                    <ImgPicked src={box} />
+                    <DivN>
+                      <Numero>Nro.{element.id} </Numero>
+                      <DivT>
+                        <Text>
+                          <Num>{element.totalItems}</Num> Items/
+                        </Text>
+                        <Text>
+                          <Num>{parseInt(duration * 10 ,10)}</Num>min
+                        </Text>
+                      </DivT>
+                      <DivP>
+                        <Peso>
+                          <ImgP src={balance} />
+                          <NumP>23</NumP>
+                        </Peso>
+                        <Frio>
+                          <ImgP src={snow} />
+                          <NumP>23</NumP>
+                        </Frio>
+                        <Aire>
+                          <ImgP src={waves} />
+                          <NumP>23</NumP>
+                        </Aire>
+                      </DivP>
+                      <DivS>
+                        <Marca>
+                          <ImgP src={substitute} />
+                          <Info>= Marca, = Gramage</Info>
+                        </Marca>
+                      </DivS>
+                      <DivS>
+                        <Marca2>
+                          <ImgP src={store} />
+                          <Info>Retiro por tienda</Info>
+                        </Marca2>
+                      </DivS>
+                    </DivN>
+                  </ListOrdenes>)
+                :
+                (<ListOrdenes
+                  className="picking"
+                  key={element.id}
+                  permitir={valor}
+                  div={element.id}
+                  estadoOrden={element.status}
+                  onClick={() => handleClick(element.id,'picking')}>
+                    <ImgPicking src={box} />
+                    <DivN>
+                      <Numero>Nro.{element.id} </Numero>
+                      <DivT>
+                        <Text>
+                          <Num>{element.totalItems}</Num> Items/
+                        </Text>
+                        <Text>
+                          <Num>{parseInt(duration * 10 ,10)}</Num>min
+                        </Text>
+                      </DivT>
+                      <DivP>
+                        <Peso>
+                          <ImgP src={balance} />
+                          <NumP>23</NumP>
+                        </Peso>
+                        <Frio>
+                          <ImgP src={snow} />
+                          <NumP>23</NumP>
+                        </Frio>
+                        <Aire>
+                          <ImgP src={waves} />
+                          <NumP>23</NumP>
+                        </Aire>
+                      </DivP>
+                      <DivS>
+                        <Marca>
+                          <ImgP src={substitute} />
+                          <Info>= Marca, = Gramage</Info>
+                        </Marca>
+                      </DivS>
+                      <DivS>
+                        <Marca2>
+                          <ImgP src={store} />
+                          <Info>Retiro por tienda</Info>
+                        </Marca2>
+                      </DivS>
+                    </DivN>
+                  </ListOrdenes>
+                )
+               }
+              )
+            )
+        }
       </DivScroll>
     </>
   );

@@ -18,10 +18,12 @@ import LoginContainer from '../login/Loadable'
 import InicioContainer from '../Inicio/Loadable';
 import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
-import SessionConteniner from '../SessionIndividual/SessionConteniner';
 import ConfirmacionContainer from '../ConfirmacionCanasto/Loadable';
+import SessionConteniner from '../SessionIndividual/Loadable';
 import GlobalStyle from '../../global-styles';
-import Navbar from '../Navbar/Navbar'
+import PopUpContainer from '../PopUps/PopUpContainer'
+import Navbar from '../Navbar/NavbarContainer'
+
 
 
 function App({location }) {
@@ -33,12 +35,13 @@ function App({location }) {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
+       <PopUpContainer/> 
       { location !== '/' ? <Navbar/> : null }
       <Switch>
         <Route exact path='/' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
-        <Route path="/session" component={SessionConteniner} />
-        <Route path="/productoindividual/:id" component={ProductoIndividual} />
+        <Route path="/session/:id" component={SessionConteniner}/>
+        <Route path="/productoindividual/:id/:indice" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/confirmacion" component={ConfirmacionContainer} />
 

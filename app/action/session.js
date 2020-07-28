@@ -22,6 +22,33 @@ const sessionPicking = (session) => {
   };
 };
 
+const boolean = (booleano) => {
+  return {
+    type: 'SET_BOOLEANO',
+    booleano,
+  };
+};
+
+const typeOrder = (string) => {
+  return {
+    type: 'SET_TYPE_OF_ORDER_SELECTED',
+    string,
+  };
+};
+
+
+export const setBooleano = (bool) => {
+  return (dispatch) => {
+    return dispatch(boolean(bool));
+  };
+};
+
+export const estadoOrdenSelected = (string) => {
+  return (dispatch) => {
+    return dispatch(typeOrder(string));
+  };
+};
+
 export const getStartSession = (id) => {
   return (dispatch) => {
     return axios

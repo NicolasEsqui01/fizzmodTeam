@@ -3,23 +3,25 @@ import { connect } from 'react-redux';
 import Inicio from './Inicio';
 import {
   fetchSessions,
-  DamePermiso,
   fetchPickers,
   ChangePending,
-  ChangePicked,
+  ChangePickedAndPicking,
 } from '../../action/inicio';
 import { Redirect } from 'react-router-dom';
 import { setDatosUser as DatosUser } from '../../action/login'
-import { getStartSession } from '../../action/session'
+import { getStartSession , setBooleano } from '../../action/session'
 import history from '../../utils/history'
-import Navbar from '../Navbar/NavbarContainer';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     sessionId: state.sessionReducer.sessionId, // Me trae el id de la session
-    session: state.inicioReducer.sessions,
+    totalSessions: state.inicioReducer.totalSessions,
+    totalPendings: state.inicioReducer.totalSessionsPending,
+    totalPickeds: state.inicioReducer.totalSessionsPicked,
+    totalPickings: state.inicioReducer.totalSessionsPicking,
     pickers: state.inicioReducer.pickers,
     status: state.inicioReducer.status,
+    statusOrderSelected: state.sessionReducer.statusOrderSelected,
     auth: JSON.stringify(localStorage.getItem('auth')),
   };
 };
@@ -28,47 +30,74 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getSessions: () => dispatch(fetchSessions()),
     getPickers: () => dispatch(fetchPickers()),
-    getPermiso: () => dispatch(DamePermiso()),
-    sessionsPending: () => dispatch(ChangePending()),
-    sessionsPicked: () => dispatch(ChangePicked()),
+    sessionsPending: (totalSessions) => dispatch(ChangePending(totalSessions)),
+    sessionsPickedAndPicking: (totalSessions) => dispatch(ChangePickedAndPicking(totalSessions)),
     setDatosUser: () => dispatch(DatosUser()),
     getStartSession : (id) => dispatch(getStartSession(id)),
+    setBooleano: (booleano) => dispatch(setBooleano(booleano))
   };
 };
 
 const InicioContainer = ({
   sessionId,
   session,
+  totalSessions,
+  totalPendings,
+  totalPickeds,
+  totalPickings,
+  statusOrderSelected,
   getPickers,
   pickers,
   getSessions,
   sessionsPending,
-  sessionsPicked,
+  sessionsPickedAndPicking,
   status,
   auth,
   setDatosUser,
   getStartSession,
+  setBooleano
 }) => {
   useEffect(() => {
     if(auth !== 'null'){
-      getSessions();
+      getSessions()
       getPickers();
       setDatosUser();
     }
   }, []);
 
+  useEffect(() => {
+    if(totalSessions !== 0){
+      setPending(totalSessions);
+    }  
+  }, [totalSessions]);
+
+  useEffect(() => {
+    if (statusOrderSelected=="picking")setOkBoton("picking")
+    if (statusOrderSelected=="pending")setOkBoton("pending")
+    if (statusOrderSelected=="picked")setOkBoton("picked")
+  }, [statusOrderSelected]);
+
+  const [okBoton, setOkBoton] = useState('')
+
   const handleClickSession = () => {
     getStartSession(sessionId).then(() =>{
-      history.push(`/productoindividual/${sessionId}`)
+      localStorage.setItem('sessionid', sessionId)
+      setBooleano(true)
+      return history.push(`/productoindividual/${sessionId}/1`)
     });
   };
 
   const setPending = () => {
-    sessionsPending();
+    sessionsPending(totalSessions);
   };
 
   const setPicked = () => {
-    sessionsPicked();
+    sessionsPickedAndPicking(totalSessions);
+  };
+
+  const handleClick = (id) => {
+    setValue(id)
+    SessionId(id)
   };
 
   return (
@@ -79,9 +108,14 @@ const InicioContainer = ({
         <>
         <Inicio
           pickers={pickers}
-          sessions={session}
+          sessions={totalSessions}
+          totalPending={totalPendings}
+          totalPicked={totalPickeds}
+          totalPicking={totalPickings}
           handleClickSession={handleClickSession}
           status={status}
+          statusOrderSelected={statusOrderSelected}
+          okBoton={okBoton}
           getSessionPicked={setPicked}
           getSessionPending={setPending}
         ></Inicio>

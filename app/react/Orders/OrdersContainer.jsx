@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Orders from './Orders';
-import { fetchSessions } from '../../action/inicio';
-import { SessionId } from '../../action/session'
+import { SessionId, estadoOrdenSelected } from '../../action/session'
 
 const OrdersContainer = ({
-  findingSessions,
-  listSessions,
+  pendingSessions,
+  pickedAndPickingSessiones,
   status,
-  SessionId
+  SessionId,
+  typeOrder
 }) => {
   const [value, setValue] = useState('')
 
-  useEffect(() => {
-    findingSessions();
-  }, [status]);
-
-  const handleClick = (id) => {
+  const handleClick = (id, estado) => {
     setValue(id)
     SessionId(id)
+    typeOrder(estado)
   };
 
-
-  return <Orders sessions={listSessions} status={status} handleClick={handleClick} valor={value} />;
+  return <Orders pendSessions={pendingSessions} pickedAndPikcingSessions={pickedAndPickingSessiones} handleClick={handleClick} valor={value} status={status}/>;
 };
 
 const mapStateToProps = function (state, ownProps) {
   return {
-    listSessions: state.inicioReducer.sessions,
+    pendingSessions: state.inicioReducer.sessionsPending,
+    pickedAndPickingSessiones:state.inicioReducer.sessionsPickedAndPicking,
     status: state.inicioReducer.status,
   };
 };
@@ -37,7 +34,8 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     findingSessions: () => {
       dispatch(fetchSessions());
     },
-    SessionId: (id) => dispatch(SessionId(id))
+    SessionId: (id) => dispatch(SessionId(id)),
+    typeOrder: (type)=>dispatch(estadoOrdenSelected(type))
   };
 };
 
