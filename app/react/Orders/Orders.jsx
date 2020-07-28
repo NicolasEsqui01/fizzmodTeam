@@ -32,7 +32,6 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
   let start;
   let end;
   let duration;
-  console.log("STATUS!!!", status)
   return (
     <>
       <DivScroll>

@@ -26,10 +26,6 @@ const getPickers = (pickers) => ({
   pickers,
 });
 
-const setPermiso = ()=>({
-  type: "GET_PERMISO",
-  permiso : true
-})
 
 const StatusPending = (sessions)=>({
   type: "GET_SESSIONS_PENDING",
@@ -41,31 +37,28 @@ const StatusPickedAndPicking = (sessions)=>({
   sessions,
 })
 
-
-
 export const fetchSessions = () => (dispatch) => {
   return axios
     .get('https://picking.janis.in/api/session?sortBy=dateCreated&sortDirection=desc', headersToPickers())
     .then((allSessions) => {
-      console.log("TOTALES : ",allSessions.headers['x-janis-total'])
-      return dispatch(getSessions(allSessions.headers['x-janis-total']))})
+      dispatch(getSessions(allSessions.headers['x-janis-total']))
+      const total = allSessions.headers['x-janis-total'];
+      return total;
+      })
     .then(()=>{
-     return axios.get('https://picking.janis.in/api/session?filters[status][0]=pending', headersToPickers())
+     axios.get('https://picking.janis.in/api/session?filters[status][0]=pending', headersToPickers())
       .then((allSessionsPending) => {
-        console.log("TOTAL PENDING: ",allSessionsPending.headers['x-janis-total'])
-        return dispatch(totalPending(allSessionsPending.headers['x-janis-total']))})
+        dispatch(totalPending(allSessionsPending.headers['x-janis-total']))})
     })
     .then(()=>{
-      return axios.get('https://picking.janis.in/api/session?filters[status][0]=picking', headersToPickers())
+      axios.get('https://picking.janis.in/api/session?filters[status][0]=picking', headersToPickers())
       .then((allSessionsPicking) => {
-        console.log("TOTALES PICKING : ",allSessionsPicking.headers['x-janis-total'])
-         return dispatch(totalPicking(allSessionsPicking.headers['x-janis-total']))})
+         dispatch(totalPicking(allSessionsPicking.headers['x-janis-total']))})
     })
     .then(()=>{
-      return axios.get('https://picking.janis.in/api/session?filters[status][0]=picked', headersToPickers())
+      axios.get('https://picking.janis.in/api/session?filters[status][0]=picked', headersToPickers())
       .then((allSessionsPicked) => {
-        console.log("TOTALES PICKED : ",allSessionsPicked.headers['x-janis-total'])
-        return dispatch(totalPicked(allSessionsPicked.headers['x-janis-total']))})
+        dispatch(totalPicked(allSessionsPicked.headers['x-janis-total']))})
     })
     ;
 };
@@ -74,29 +67,22 @@ export const fetchPickers = () => (dispatch) => {
   return axios
     .get(`https://picking.janis.in/api/picker`, headersToPickers())
     .then((list) => {
-      console.log("ESTOY EN PICKERS")
       dispatch(getPickers(list.data))}
       );
 };
 
-export const DamePermiso = () => dispatch =>{
-  return dispatch(setPermiso())
-}
-
-export const ChangePending = (totalPending) => dispatch =>{
+export const ChangePending = (qtyTotalSessions) => dispatch =>{
   return axios
-  .get(`https://picking.janis.in/api/session?filters[status][0]=pending`, headers2(totalPending))
+  .get(`https://picking.janis.in/api/session?filters[status][0]=pending`, headers2(qtyTotalSessions))
   .then((list) => {
-      console.log("list.headers PENDING:  ",list.headers)
       dispatch(StatusPending(list.data))}
       );
 };
 
-export const ChangePickedAndPicking = (totalPickedAndPicking) => dispatch =>{
+export const ChangePickedAndPicking = (qtyTotalSessions) => dispatch =>{
   return axios
-  .get(`https://picking.janis.in/api/session?filters[status][0]=picking&filters[status][1]=picked`, headers2(totalPickedAndPicking))
+  .get(`https://picking.janis.in/api/session?filters[status][0]=picking&filters[status][1]=picked`, headers2(qtyTotalSessions))
   .then((list) => {
-      console.log("list.headers PICKED AND PICKING:  ",list.headers)
       dispatch(StatusPickedAndPicking(list.data))}
       );
 };

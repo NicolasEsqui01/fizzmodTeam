@@ -13,17 +13,10 @@ const OrdersContainer = ({
 }) => {
   const [value, setValue] = useState('')
 
-  // useEffect((status) => {
-  //   if (status == '') ChangePending();
-  //   if (status == '')  
-
-  // }, [status]);
-
   const handleClick = (id) => {
     setValue(id)
     SessionId(id)
   };
-
 
   return <Orders pendSessions={pendingSessions} pickedAndPikcingSessions={pickedAndPickingSessions} handleClick={handleClick} valor={value} status={status} />;
 };

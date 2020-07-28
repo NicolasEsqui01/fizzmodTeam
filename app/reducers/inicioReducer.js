@@ -6,7 +6,6 @@ const intialState = {
   sessionsPending: [],
   sessionsPickedAndPicking: [],
   pickers: [],
-  permiso: false,
   status:'pending',
 };
 
@@ -22,8 +21,6 @@ export default function reducer(state = intialState, action) {
       return { ...state, totalSessionsPicking: action.totalSessionsPicking };    
     case "GET_PICKERS":
       return { ...state, pickers: action.pickers };
-    case "GET_PERMISO":
-      return { ...state, permiso: action.permiso };
     case "GET_SESSIONS_PENDING":
       return { ...state, sessionsPending: action.sessions, status:'pending'};
     case "GET_SESSIONS_PICKED_&_PICKING":

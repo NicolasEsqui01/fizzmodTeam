@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Inicio from './Inicio';
 import {
   fetchSessions,
-  DamePermiso,
   fetchPickers,
   ChangePending,
   ChangePickedAndPicking,
@@ -15,7 +14,6 @@ import history from '../../utils/history'
 import Navbar from '../Navbar/NavbarContainer';
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("ESTADO: ", state)
   return {
     sessionId: state.sessionReducer.sessionId, // Me trae el id de la session
     totalSessions: state.inicioReducer.totalSessions,
@@ -32,7 +30,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getSessions: () => dispatch(fetchSessions()),
     getPickers: () => dispatch(fetchPickers()),
-    getPermiso: () => dispatch(DamePermiso()),
     sessionsPending: (totalSessions) => dispatch(ChangePending(totalSessions)),
     sessionsPickedAndPicking: (totalSessions) => dispatch(ChangePickedAndPicking(totalSessions)),
     setDatosUser: () => dispatch(DatosUser()),
@@ -66,7 +63,10 @@ const InicioContainer = ({
   }, []);
 
   useEffect(() => {
-      setPending()  
+    if(totalSessions !== 0){
+      setPending(totalSessions);
+      setPicked(totalSessions);
+    }  
   }, [totalSessions]);
 
   const handleClickSession = () => {
@@ -76,7 +76,6 @@ const InicioContainer = ({
   };
 
   const setPending = () => {
-    console.log("TOTAL SESSIONES DENTRO DEL SET PENDING : ", totalSessions)
     sessionsPending(totalSessions);
   };
 
