@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
 import { getSessionPicking } from '../../action/session';
+import { Desactivacion, Activacion } from '../../action/popup'
 import history from '../../utils/history';
-import Navbar from '../Navbar/NavbarContainer';
+
 
 const ProductoIndividualcontainer = ({
   items,
@@ -13,18 +14,17 @@ const ProductoIndividualcontainer = ({
   sendItemPicked,
   sendToNavItemsPicked,
   token,
+  Activar,
+  active,
+  handleCloseClick,
 }) => {
   const [indice, setIndice] = useState(0);
   const [status, setStatus] = useState(0);
   const [count, setCount] = useState(0);
-  const [active, setActive] = useState(0);
+ 
 
   const handleBtnClick = (n) => {
-    setActive(n);
-  };
-
-  const handleCloseClick = () => {
-    setActive(0);
+    Activar(n)
   };
 
   useEffect(() => {
@@ -72,6 +72,7 @@ const MapStateToProps = (state, ownProps) => {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking
     items: state.sessionReducer.sessionPicking.items, // los items de la session
+    active: state.popupReducer.numero,
   };
 };
 
@@ -79,8 +80,10 @@ const MapDispatchToProps = (dispatch) => {
   return {
     sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
     getSessionPicking: (id) => dispatch(getSessionPicking(id)),
+    Activar: (n) => dispatch(Activacion(n)),
+    handleCloseClick:()=>(dispatch(Desactivacion()))   }
   };
-};
+
 
 export default connect(
   MapStateToProps,
