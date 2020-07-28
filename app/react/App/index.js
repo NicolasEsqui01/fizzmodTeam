@@ -20,7 +20,9 @@ import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 import SessionConteniner from '../SessionIndividual/Loadable';
 import GlobalStyle from '../../global-styles';
+import PopUpContainer from '../PopUps/PopUpContainer'
 import Navbar from '../Navbar/NavbarContainer'
+
 
 
 function App({location }) {
@@ -32,6 +34,7 @@ function App({location }) {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
+       <PopUpContainer/> 
       { location !== '/' ? <Navbar/> : null }
       <Switch>
         <Route exact path='/' component={LoginContainer} />
