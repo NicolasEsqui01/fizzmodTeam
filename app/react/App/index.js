@@ -18,6 +18,7 @@ import LoginContainer from '../login/Loadable'
 import InicioContainer from '../Inicio/Loadable';
 import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
+import ConfirmacionContainer from '../ConfirmacionCanasto/Loadable';
 import SessionConteniner from '../SessionIndividual/Loadable';
 import GlobalStyle from '../../global-styles';
 import PopUpContainer from '../PopUps/PopUpContainer'
@@ -42,6 +43,9 @@ function App({location }) {
         <Route path="/session/:id" component={SessionConteniner}/>
         <Route path="/productoindividual/:id/:indice" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/confirmacion" component={ConfirmacionContainer} />
+
+        {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />
     </div>
