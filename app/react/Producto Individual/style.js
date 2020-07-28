@@ -637,6 +637,7 @@ export const BotDer = styled.button`
   justify-content:center;
   border:0px solid #1DB779;
   background:none;
+  outline:none;
 `;
 export const Button = styled.button `
 width:70px;
@@ -685,6 +686,7 @@ export const BotonTeclado = styled.button`
   border-radius: 3px;
   border:0px solid #1DB779;
   background:none;
+  outline:none;
   `;
 
 export const Teclado = styled.img`

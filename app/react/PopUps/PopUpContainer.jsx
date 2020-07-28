@@ -21,6 +21,7 @@ return(
       <>
   <PopUpOrden
           active={active}
+          Activar={handleBtnClick}
           onCloseClick={handleCloseClick}
     />
     <PopUpObservacion
@@ -43,8 +44,6 @@ return(
 }
 
 const mapStateToProps = (state, ownProp)=>{
-      console.log(state.popupReducer.numero)
-     
   return{
       active: state.popupReducer.numero
   }
