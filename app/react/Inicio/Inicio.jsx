@@ -58,40 +58,11 @@ export default ({
   handleClickSession,
   getSessionPending,
   getSessionPicked,
+  totalPicking,
+  totalPicked,
+  totalPending,
   status,
-}) => {
-  let picked = 0;
-  let picking = 0;
-  let pending = 0;
-  let tiempoPorOrden = [];
-  let countProdPorOrden = [];
-  for (let i = 0; i < sessions.length; i++) {
-    if (sessions[i].status === 'picked') {
-      picked += 1;
-      var start = moment(sessions[i].startPickingTime);
-      var end = moment(sessions[i].endPickingTime);
-      let duration = moment.duration(end.diff(start)).asMinutes();
-      tiempoPorOrden.push(duration);
-      countProdPorOrden.push(sessions[i].items.length);
-    } else if (sessions[i].status === 'picking') picking += 1;
-    else if (sessions[i].status === 'pending') pending += 1;
-  }
-  let tiempoPromedioOrden = 0;
-  let tiempoPromedioPorProducto = 0;
-  if (tiempoPorOrden.length > 0) {
-    let length = tiempoPorOrden.length;
-    tiempoPorOrden = tiempoPorOrden.reduce(
-      (previous, current) => (current += previous),
-    );
-    tiempoPromedioOrden = parseInt((tiempoPorOrden /= length) * 10, 10) / 10;
-    countProdPorOrden = countProdPorOrden.reduce(
-      (previous, current) => (current += previous),
-    );
-    tiempoPromedioPorProducto =
-      Math.round((countProdPorOrden /= tiempoPorOrden) * 10) / 10;
-  }
-
-  return (
+}) => (
     <>
       <Container>
         <Carousel
@@ -109,10 +80,10 @@ export default ({
                   <div> PICKERS </div>
                   <div> {pickers.length} </div>
                 </Pickers>
-                <Qty>{sessions.length}</Qty>{' '}
-                {sessions.length == 0 ? (
+                <Qty>{sessions}</Qty>{' '}
+                {sessions == 0 ? (
                   <Orders>NOTHING YET...</Orders>
-                ) : sessions.length === 1 ? (
+                ) : sessions === 1 ? (
                   <Orders>ORDEN</Orders>
                 ) : (
                   <Orders>ORDENES</Orders>
@@ -122,17 +93,17 @@ export default ({
             <Indicadores>
               <Icos24>
                 <Logos src={triangleWhite} alt="triangle" />
-                <PNumbers>{pending}</PNumbers>
+                <PNumbers>{totalPending}</PNumbers>
                 <PNames>PENDING</PNames>
               </Icos24>
               <Icos24>
                 <Logos src={clockRed} alt="clock" />
-                <PNumbers>{picking}</PNumbers>
+                <PNumbers>{totalPicking}</PNumbers>
                 <PNames>PICKING</PNames>
               </Icos24>
               <Icos24>
                 <Logos src={boxGreen} alt="box" />
-                <PNumbers>{picked}</PNumbers>
+                <PNumbers>{totalPicked}</PNumbers>
                 <PNames>PICKED</PNames>
               </Icos24>
             </Indicadores>
@@ -146,11 +117,12 @@ export default ({
               <Icos24Hor>
                 <Logos src={clockWhite} alt="clock" />
                 <Item>TIEMPO POR PRODUCTO</Item>
-                {tiempoPromedioPorProducto !== 0 ? (
+                {/*tiempoPromedioPorProducto !== 0 ? (
                   <Time>''{tiempoPromedioPorProducto}</Time>
                 ) : (
                   <Time>0</Time>
-                )}
+                )*/}
+                XX
                 <ContNumGreen>
                   <Percentage>7%</Percentage>
                   <LogoStad src={down} alt="clock" />
@@ -162,11 +134,12 @@ export default ({
               <Icos24Hor>
                 <Logos src={squareWhite} alt="clock" />
                 <Item>TIEMPO POR ORDEN</Item>
-                {tiempoPromedioOrden !== 0 ? (
+                {/*tiempoPromedioOrden !== 0 ? (
                   <Time>''{tiempoPromedioOrden}</Time>
                 ) : (
                   <Time>0</Time>
-                )}
+                )*/}
+                XX
                 <ContNumRed>
                   <Percentage>7%</Percentage>
                   <LogoStad src={up} alt="clock" />
@@ -202,4 +175,36 @@ export default ({
       </Container>
     </>
   );
-};
+
+
+{/*   //ESPERANDO DATOS DE ESTADISTICA DEL BACKEND
+  let picked = 0;
+  let picking = 0;
+  let pending = 0;
+  let tiempoPorOrden = [];
+  let countProdPorOrden = [];
+  for (let i = 0; i < sessions.length; i++) {
+    if (sessions[i].status === 'picked') {
+      picked += 1;
+      var start = moment(sessions[i].startPickingTime);
+      var end = moment(sessions[i].endPickingTime);
+      let duration = moment.duration(end.diff(start)).asMinutes();
+      tiempoPorOrden.push(duration);
+      countProdPorOrden.push(sessions[i].items.length);
+    } else if (sessions[i].status === 'picking') picking += 1;
+    else if (sessions[i].status === 'pending') pending += 1;
+  }
+  let tiempoPromedioOrden = 0;
+  let tiempoPromedioPorProducto = 0;
+  if (tiempoPorOrden.length > 0) {
+    let length = tiempoPorOrden.length;
+    tiempoPorOrden = tiempoPorOrden.reduce(
+      (previous, current) => (current += previous),
+    );
+    tiempoPromedioOrden = parseInt((tiempoPorOrden /= length) * 10, 10) / 10;
+    countProdPorOrden = countProdPorOrden.reduce(
+      (previous, current) => (current += previous),
+    );
+    tiempoPromedioPorProducto =
+      Math.round((countProdPorOrden /= tiempoPorOrden) * 10) / 10;
+  */}

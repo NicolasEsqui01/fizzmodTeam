@@ -20,3 +20,16 @@ export const headersToPickers = () => {
         }
     }
 }
+
+
+export const headers2 = (total) => {
+    return {
+        headers:{
+            'Content-Type': 'application/json',
+            'janis-api-key': 'Bearer',
+            'janis-client': 'plataforma5-2020',
+            'x-janis-page-size': total,
+            'janis-api-secret': localStorage.getItem('auth')
+        }
+    }
+}
