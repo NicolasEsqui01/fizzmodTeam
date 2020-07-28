@@ -36,8 +36,9 @@ import grafico from '../../images/square_chart_line.svg'
 import user from '../../images/user_closed.svg'
 import credit from '../../images/credit_card.svg'
 import phone from '../../images/phone_outline.svg'
+import back from '../../images/arrow_left.svg'
 
- export default ({active, onCloseClick})=>{
+ export default ({active, onCloseClick, Activar})=>{
 
   const prueba = [1,2,3,4,5,6,7,8,9,10]
 
@@ -102,6 +103,7 @@ import phone from '../../images/phone_outline.svg'
       <DivW2>
       <ImgP src={credit}/>
       <PPP>MasterdCard</PPP>
+      <ButtonX onClick={()=>Activar(4)}><ImgP src={back}/></ButtonX>
       </DivW2>
       </DivS2>
     </DivO>

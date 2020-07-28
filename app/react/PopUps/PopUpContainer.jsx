@@ -21,6 +21,7 @@ return(
       <>
   <PopUpOrden
           active={active}
+          Activar={handleBtnClick}
           onCloseClick={handleCloseClick}
     />
     <PopUpObservacion
