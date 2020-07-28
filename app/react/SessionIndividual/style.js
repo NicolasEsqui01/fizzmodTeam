@@ -61,7 +61,6 @@ line-height: 11px;
 `
 export const NumeroOrden = styled.div`
 height: 19px;
-width: 150px;
 color: #273947;
 font-family: Roboto;
 font-size: 23px;
@@ -221,11 +220,12 @@ export const Productos = styled.div`
   height:400px;
   }
 margin-top:10px;
+margin-bottom:15px;
 background-color:#FFFFFF;
 height:33%;
 display: flex;
 flex-direction: column;
-border-right: 15px solid #2979FF;
+border-right: ${({estado}) => estado === 'picked' ? '15px solid rgb(8, 196, 196)' : '15px solid #2979FF'};
 border-top-right-radius: 5px;
 border-bottom-right-radius:5px;
 `
