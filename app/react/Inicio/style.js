@@ -414,7 +414,7 @@ export const PrePickeadas = styled.button`
   text-align: center;
   background-color: #ffffff;
   border: 2px solid #ffffff;
-  border-bottom:${props => props.status === 'picked' ?  '4px solid #273947' : null};
+  border-bottom:${props => props.status === 'pickedAndPicking' ?  '4px solid #273947' : null};
   outline:none;
   cursor: pointer;
   

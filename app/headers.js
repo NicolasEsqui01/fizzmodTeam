@@ -4,7 +4,7 @@ export const headers = () => {
             'Content-Type': 'application/json',
             'janis-api-key': 'Bearer',
             'janis-client': 'plataforma5-2020',
-            'x-janis-page': 1,
+            'x-janis-page': 3,
             'janis-api-secret': localStorage.getItem('auth')
         }
     }
@@ -16,6 +16,19 @@ export const headersToPickers = () => {
             'Content-Type': 'application/json',
             'janis-api-key': 'Bearer',
             'janis-client': 'plataforma5-2020',
+            'janis-api-secret': localStorage.getItem('auth')
+        }
+    }
+}
+
+
+export const headers2 = (total) => {
+    return {
+        headers:{
+            'Content-Type': 'application/json',
+            'janis-api-key': 'Bearer',
+            'janis-client': 'plataforma5-2020',
+            'x-janis-page-size': total,
             'janis-api-secret': localStorage.getItem('auth')
         }
     }

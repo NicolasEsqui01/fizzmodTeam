@@ -1,33 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import Orders from './Orders';
-import { fetchSessions } from '../../action/inicio';
+import { ChangePending, ChangePickedAndPicking } from '../../action/inicio';
 import { SessionId } from '../../action/session'
 
 const OrdersContainer = ({
-  findingSessions,
-  listSessions,
+  ChangePending,
+  pickedAndPickingSessions,
+  pendingSessions,
   status,
   SessionId
 }) => {
   const [value, setValue] = useState('')
-
-  useEffect(() => {
-    findingSessions();
-  }, [status]);
 
   const handleClick = (id) => {
     setValue(id)
     SessionId(id)
   };
 
-
-  return <Orders sessions={listSessions} status={status} handleClick={handleClick} valor={value} />;
+  return <Orders pendSessions={pendingSessions} pickedAndPikcingSessions={pickedAndPickingSessions} handleClick={handleClick} valor={value} status={status} />;
 };
 
 const mapStateToProps = function (state, ownProps) {
   return {
-    listSessions: state.inicioReducer.sessions,
+    pendingSessions: state.inicioReducer.sessionsPending,
+    pickedAndPickingSessions:state.inicioReducer.sessionsPickedAndPicking,
     status: state.inicioReducer.status,
   };
 };
