@@ -11,43 +11,29 @@ const ProductoIndividualcontainer = ({
   idSession,
   getSessionPicking,
   sendItemPicked,
+  sendToNavItemsPicked,
   token,
 }) => {
-
   const [indice, setIndice] = useState(0);
-  const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
-  const [interv, setInterv] = useState();
   const [status, setStatus] = useState(0);
   const [count, setCount] = useState(0);
-  const[active, setActive] = useState(0)
+  const [active, setActive] = useState(0);
 
-  let updatedS = time.s,
-    updatedM = time.m,
-    updatedH = time.h;
-
-  const start = () => {
-    run();
-    //setInterv(setInterval(run, 10));
+  const handleBtnClick = (n) => {
+    setActive(n);
   };
 
- 
-    const  handleBtnClick = (n) => {
-              setActive(n)
-          };
-    
-    
-    const  handleCloseClick = () => {
-           setActive(0)
-         };
-
+  const handleCloseClick = () => {
+    setActive(0);
+  };
 
   useEffect(() => {
-    getSessionPicking(idSession)
-  }, [indice]);
+    getSessionPicking(idSession);
+  }, []);
 
   const ItemPicked = (iditems, qty) => {
     const data = {
-      token: `${token}`,
+      token: token,
       items: [
         {
           id: iditems,
@@ -62,15 +48,15 @@ const ProductoIndividualcontainer = ({
         stop();
         return history.push('/inicio');
       }
-    });
+    }).then(()=>setCount(0)) ;
   };
+
   return (
     <>
-      <Navbar time={time} status={status} booleano={true} />
       <ProductoIndividual
-        Activar = {handleBtnClick}
-        active = {active}
-        onCloseClick = {handleCloseClick}
+        Activar={handleBtnClick}
+        active={active}
+        onCloseClick={handleCloseClick}
         session={items}
         pickeado={ItemPicked}
         indice={indice}
@@ -82,10 +68,9 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
-  console.log(state)
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
-    token: state.sessionReducer.tokenSession.token, // token de la session cuando inicia el picking
+    token: localStorage.getItem('token'), // token de la session cuando inicia el picking
     items: state.sessionReducer.sessionPicking.items, // los items de la session
   };
 };

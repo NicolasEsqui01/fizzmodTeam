@@ -106,6 +106,7 @@ import {
   Color,
   Logout,
   FlechitaDesplegableNone,
+  Atencion
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -159,7 +160,7 @@ export default ({
           </DivC>
           <DivP>
             {Prueba.map((element) => {
-              return <PopUpProdu>{element}</PopUpProdu>;
+              return <PopUpProdu key={element}>{element}</PopUpProdu>;
             })}
           </DivP>
         </DivV>
@@ -179,36 +180,8 @@ export default ({
           <DivP>
             <Text>
               {' '}
-              Un elemento posicionado es un elemento cuyo valor computado de
-              position es relative, absolute, fixed, o sticky. (En otras
-              palabras, cualquiera excepto static). Un elemento posicionado
-              relativamente es un elemento cuyo valor computado de position es
-              relative. Las propiedades top y bottom especifican el
-              desplazamiento vertical desde su posición original; las
-              propiedades left y right especifican su desplazamiento horizontal.
-              Un elemento posicionado absolutamente es un elemento cuyo valor
-              computado de position es absolute o fixed. Las propiedades top,
-              right, bottom, y left especifican el desplazamiento desde los
-              bordes del bloque contenedor del elemento. (El bloque contenedor
-              es el ancestro relativo al cual el elemento está posicionado). Si
-              el elemento tiene márgenes, se agregarán al desplazamiento. el
-              elemento establece un nuevo contexto de formato de bloque para su
-              contenido Un elemento posicionado fijamente es un elemento cuyo
-              valor de position computado es sticky. Es tratado como un elemento
-              posicionado relativamente hasta que su bloque contenedor cruza un
-              límite establecido (como por ejemplo dando a top cualquier valor
-              distinto de auto), dentro de su flujo principal (o el contenedor
-              dentro del cual se mueve), desde el cual es tratado como "fijo"
-              hasta que alcance el borde opuesto de su bloque contenedor. La
-              mayoría de las veces, los elementos absolutamente posicionados que
-              tienen su height y width establecidos en auto son ajustados hasta
-              acomodarse a su contenido. Sin embargo, elementos non-replaced y
-              absolutamente posicionados se pueden crear para llenar el espacio
-              vertical disponible, especificando tanto top como bottom, y
-              dejando height sin especificar (es decir, auto). De igual manera
-              se pueden utilizar para llenar el espacio horizontal disponible
-              especificando tanto left como right, y dando a width el valor de
-              auto.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia voluptates est officia fuga quos a, enim vero labore ipsa quae, praesentium, harum porro eaque soluta delectus autem repellat? Sit, magni?
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Exercitationem harum, tempora nisi quasi tenetur, nobis adipisci laborum recusandae quidem aliquid alias cupiditate quod, culpa delectus ratione porro minus unde minima.
             </Text>
           </DivP>
         </DivO>
@@ -287,7 +260,7 @@ export default ({
                   <DivScroll>
                     {Prueba.map((elem) => (
                       <>
-                        <PopUpProduAcum>
+                        <PopUpProduAcum key={elem}>
                           <DivR>
                             <ImgM src={Mensaje} />
                             <DivX>
@@ -337,7 +310,7 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri></Descri>
+                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
@@ -346,7 +319,7 @@ export default ({
                   <DivGlobos>
                     <Button onClick={() => Activar(1)}>
                       {' '}
-                      <imgAmarilla src={bubble} />
+                      <ImgAmarilla src={bubble} />
                     </Button>
                     <Button2 onClick={() => Activar(2)}>
                       <ImgAmarilla src={bubbleExc} />
@@ -388,14 +361,13 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[idx].id, count);
+                        pickeado(session[idx].id, session[indice].purchasedQuantity);
                         idx++;
                       }}
                     >
                       {' '}
                       SIGUIENTE
                     </Siguiente>{' '}
-                    {/*CHEQUEAR QUE SUME 1 BIEN*/}
                   </BotIzq>
                   <BotDer>
                     <PlusCircle src={masBlanco}></PlusCircle>
@@ -418,7 +390,7 @@ export default ({
                   <DivScroll>
                     {Prueba.map((elem) => (
                       <>
-                        <PopUpProduAcum>
+                        <PopUpProduAcum key={elem}>
                           <DivR>
                             <ImgM src={Mensaje} />
                             <DivX>
@@ -465,7 +437,7 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri></Descri>
+                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
@@ -474,7 +446,7 @@ export default ({
                   <DivGlobos>
                     <Button onClick={() => Activar(1)}>
                       {' '}
-                      <imgAmarilla src={bubble} />
+                      <ImgAmarilla src={bubble} />
                     </Button>
                     <Button2 onClick={() => Activar(2)}>
                       <ImgAmarilla src={bubbleExc} />
@@ -495,33 +467,37 @@ export default ({
                     <H1CantidadNum>
                       / {session[indice].purchasedQuantity}
                     </H1CantidadNum>
-
-                    {count == 0 ? (
                       <ContFlechitas>
+                    {count == 0 ? (
+                        <>
                         <FlechitaDesplegable
                           src={flechaDesplegableArriba}
                           onClick={() => setCount(count + 1)}
                         />
                         <FlechitaDesplegableNone />
-                      </ContFlechitas>
+                        </>
                     ) : (
-                      <ContFlechitas>
-                        <FlechitaDesplegable
-                          src={flechaDesplegableArriba}
-                          onClick={() => setCount(count + 1)}
-                        />
+                      count >= session[idx].purchasedQuantity ? (
+                        <>
+                        <FlechitaDesplegableNone />
                         <FlechitaDesplegable
                           src={flechaDesplegableAbajo}
-                          onClick={() => setCount(count - 1)}
-                        />
-                      </ContFlechitas>
-                    )}
+                          onClick={() => setCount(count - 1)} />
+                        </>
+                        ) : (
+                            <>
+                            <FlechitaDesplegable
+                              src={flechaDesplegableArriba}
+                              onClick={() => setCount(count + 1)}/>
+                            <FlechitaDesplegable
+                              src={flechaDesplegableAbajo}
+                              onClick={() => setCount(count - 1)}/>
+                            </>
+                            )
+                        )
+                    }
+                    </ContFlechitas>
                   </RecuadroCantidadNormal>
-                  {count > session[idx].purchasedQuantity ? (
-                    <Atencion>Supera la Cantidad Pedida</Atencion>
-                  ) : (
-                    <div></div>
-                  )}
                   <DivImageStock>
                     <ContStock>
                       Stock
@@ -562,82 +538,4 @@ export default ({
   );
 };
 
-{
-  /* //////////// VISTA CONTENEDOR DE PRODUCTO POR PESO/////////////////////////////////////
-// <ContGral>
-//     <Header>
-//         <Cuadro>
-//         <div><Img src={Sustituto}/></div>
-//         <div><Marca> = Marca, </Marca></div>
-//         <div><Gramaje> = Gramaje </Gramaje></div>
-//         </Cuadro>
-//     </Header>
-//     <Cont>
-//         <ColIzq>
-//             <ColuIconos>
-//                 <Sup>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill className="bkgColor"/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <ContainerGrillCuadros>
-//                         <CuadroGrill/>
-//                         <CuadroGrill/>
-//                     </ContainerGrillCuadros>
-//                     <NumCuadrados>3</NumCuadrados>
-//                 </Sup>
-//                 <ContStock>
-//                     Stock
-//                     <StockCien>+100</StockCien>
-//                 </ContStock>
-//             </ColuIconos>
-//             <DivFoto><FotoProd src ={session[idx].imageUrl}/></DivFoto>
-//         </ColIzq>
-//         <ColDerecha>
-//             <ContMarca>
-//                 <ContDer>
-//                     <MarcaH1>SANCOR</MarcaH1>
-//                     <Descri>{session[idx].name}</Descri>
-//                     <ContInfo>
-//                         <Tachado>${session[idx].purchasedPrice}</Tachado>
-//                         <Precio>${session[idx].purchasedPrice}</Precio>
-//                     </ContInfo>
-//                 </ContDer>
-//                 <DivGlobos>
-//                     <imarilla src = {bubble}/>
-//                     <ImgAmarilla src = {bubbleExc}/>
-//                 </DivGlobos>
-//             </ContMarca>
-//             <ContBarras>
-//                 <BarritasCont>
-//                 <Barritas src= {BarCode}/>
-//                 </BarritasCont>
-//                 <CodProdu>{session[idx].ean}</CodProdu>
-//                 <ImgBarrita/>
-//                 <ImBalanza src={ImagenBalanza}/>
-//                 <PesoProdu>20,00 Kgs</PesoProdu>
-//             </ContBarras>
-//             <ContImagenes>
-//                 <CuadritoUno>
-//                     <ImgBalanzasUno src={ImagenBalanza}/>
-//                     <PesoCuadro>0,00 kgs.</PesoCuadro>
-//                 </CuadritoUno>
-//                 <CuadritoDos>
-//                 <ImgBalanzasMas src={ImagenBalanzaMas}/>
-//                 </CuadritoDos>
-//             </ContImagenes>
-//              <Instrucciones>Coloca el producto sobre la balanza</Instrucciones>
-//              <Botones>
-//                 <Omitir>OMITIR</Omitir>
-//                 <Teclado src ={TecladoIcono}/>
-//                 <Siguiente>SIGUIENTE</Siguiente>
-//                 <PlusCircle src = {masBlanco}></PlusCircle>
-//             </Botones>
-//         </ColDerecha>
-//     </Cont>
-// </ContGral> */
-}
+

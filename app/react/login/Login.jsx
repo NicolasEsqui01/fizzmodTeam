@@ -27,21 +27,36 @@ import {
   DivInput3,
   ErrorLabel,
   Span,
-  ImgLogo
+  ImgLogo,
+  DivLoading,
+  Loadingg,
 } from './style';
 
 import logoJanis from '../../images/logo_janis.svg';
-import janisLogoInf from "../../images/janis_logo.svg"
+import janisLogoInf from '../../images/janis_logo.svg';
 import { Link } from 'react-router-dom';
+import Lottie from 'react-lottie';
+import Loading from '../../Lotties/7774-loading.json';
 
 export default ({
   handleSubmit,
   handleChange,
   error,
   mensaje,
-  valCampos,
   valor,
+  inicio,
+  handleClick,
+  active,
 }) => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Loading,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+
   return (
     <DivContenedor>
       <DivImage>
@@ -51,7 +66,9 @@ export default ({
             <Image src={logoJanis} alt="Logo" />
           </DivLogoImg>
         </DivLogoSuperior>
-        <DivLogoLetras><ImgLogo src={janisLogoInf} alt= "logoJanis"/></DivLogoLetras>
+        <DivLogoLetras>
+          <ImgLogo src={janisLogoInf} alt="logoJanis" />
+        </DivLogoLetras>
       </DivImage>
       <DivContectForm>
         <DivForm>
@@ -61,41 +78,54 @@ export default ({
             {error ? <ErrorLabel>{mensaje}</ErrorLabel> : null}
           </DivTitle>
           <Form onSubmit={handleSubmit}>
-            <FormInput >
-                <SubInput>
-                  <Label colors={valor.email}>Email</Label>
-                  <DivInput>
-                    <DivInput1>
-                      <DivInput2>
-                        <DivInput3></DivInput3>
-                        <Input
-                          colors={valor.email}
-                          type="email"
-                          name="email"
-                          onChange={handleChange}
-                        />
-                        {valor.email === '' ? <Span>In required</Span> : null}
-                      </DivInput2>
-                    </DivInput1>
-                  </DivInput>
-                </SubInput>
-                <SubInput>
-                  <Label colors={valor.password}>Password</Label>
-                  <DivInput>
-                    <DivInput1>
-                      <DivInput2>
-                        <DivInput3></DivInput3>
-                        <Input
-                          colors={valor.password}
-                          type="password"
-                          name="password"
-                          onChange={handleChange}
-                        />
-                        {valor.password === '' ? <Span>In required</Span> : null}
-                      </DivInput2>
-                    </DivInput1>
-                  </DivInput>
-                </SubInput>
+            <FormInput>
+              <SubInput>
+                <Label colors={valor.email}>Email</Label>
+                <DivInput>
+                  <DivInput1>
+                    <DivInput2>
+                      <DivInput3></DivInput3>
+                      <Input
+                        colors={valor.email}
+                        type="email"
+                        name="email"
+                        onChange={handleChange}
+                      />
+                      {valor.email === '' ? <Span>In required</Span> : null}
+                    </DivInput2>
+                  </DivInput1>
+                </DivInput>
+              </SubInput>
+              {inicio ? (
+                <DivLoading active={active}>
+                  <Loadingg>
+                    <Lottie
+                      options={defaultOptions}
+                      width={100}
+                      height={100}
+                      isStopped={false}
+                      isPaused={false}
+                    />
+                  </Loadingg>
+                </DivLoading>
+              ) : null}
+              <SubInput>
+                <Label colors={valor.password}>Password</Label>
+                <DivInput>
+                  <DivInput1>
+                    <DivInput2>
+                      <DivInput3></DivInput3>
+                      <Input
+                        colors={valor.password}
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                      />
+                      {valor.password === '' ? <Span>In required</Span> : null}
+                    </DivInput2>
+                  </DivInput1>
+                </DivInput>
+              </SubInput>
             </FormInput>
             <FormButtom>
               <Forgot>
@@ -103,7 +133,7 @@ export default ({
                   <TagA href="#">Forgot Password</TagA>{' '}
                 </Link>
               </Forgot>
-              <Button>Enter</Button>
+              <Button onClick={handleClick}>Enter</Button>
             </FormButtom>
           </Form>
         </DivForm>

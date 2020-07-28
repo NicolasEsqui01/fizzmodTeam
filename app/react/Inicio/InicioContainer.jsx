@@ -20,11 +20,11 @@ const mapStateToProps = (state, ownProps) => {
     session: state.inicioReducer.sessions,
     pickers: state.inicioReducer.pickers,
     status: state.inicioReducer.status,
-    token: JSON.stringify(localStorage.getItem('token')),
+    auth: JSON.stringify(localStorage.getItem('auth')),
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     getSessions: () => dispatch(fetchSessions()),
     getPickers: () => dispatch(fetchPickers()),
@@ -42,16 +42,15 @@ const InicioContainer = ({
   getPickers,
   pickers,
   getSessions,
-  getPermiso,
   sessionsPending,
   sessionsPicked,
   status,
-  token,
+  auth,
   setDatosUser,
   getStartSession,
 }) => {
   useEffect(() => {
-    if(token !== 'null'){
+    if(auth !== 'null'){
       getSessions();
       getPickers();
       setDatosUser();
@@ -74,11 +73,10 @@ const InicioContainer = ({
 
   return (
     <>
-      {token === 'null' ? (
-        <Redirect to="/login" />
+      {auth === 'null' ? (
+        <Redirect to="/" />
       ) : (
         <>
-        <Navbar booleano={false} />
         <Inicio
           pickers={pickers}
           sessions={session}

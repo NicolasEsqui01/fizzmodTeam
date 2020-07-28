@@ -1,5 +1,5 @@
 const inicialState = {
-    ItemsPicked:{},
+    ItemsPicked:{}
 };
 
 export default (state = inicialState , action) => {

@@ -51,7 +51,7 @@ height: 21px;
 
 export const ContGral = styled.div`
 width: 100%;
-height: 100vh;
+height: 100%;
 `;
 
 export const Cont = styled.div`
@@ -61,7 +61,7 @@ display: flex;
 justify-content: center;
 flex-direction: row;
 margin-top:70px;
-
+align-items:center;
 @media ${device.mobile} {
   flex-direction: column;
   margin-top:0px;
@@ -128,6 +128,7 @@ export const DivFoto = styled.div`
   flex-direction: column;
   height: auto;
   float: right;
+  max-width: 450px;
   @media ${device.mobile} {
   width: 60%;
   max-width: 450px;
@@ -646,7 +647,7 @@ export const Omitir = styled.button`
   color: #ffffff;
   border:1px solid #FF4343;
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 23px;
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;
@@ -655,6 +656,7 @@ export const Omitir = styled.button`
   @media ${device.mobile} {
   width:35%;
   height:40px;
+  font-size: 18px;
   padding: 3px 10px 3px 10px;
 }
 `;
@@ -681,7 +683,7 @@ export const Siguiente = styled.button`
   border:1px solid #1DB779;
   color: #ffffff;
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;
@@ -690,6 +692,7 @@ export const Siguiente = styled.button`
   @media ${device.mobile} {
   width:35%;
   height:40px;
+  font-size: 18px;
 }
   `;
 
@@ -737,8 +740,11 @@ height:30px;
 `
 
 export const ImgM = styled.img `
-width:100px;
+width:75px;
 height:100px;
+@media ${device.tablet} {
+  width: 50px;
+}
 `
 
 export const ImgT = styled.img `
@@ -775,14 +781,19 @@ line-height: 24px;
 export const TituloOb = styled.h1`
 margin-left:3%;
 width:75%;
-height:50%;
 font-size: 30px;
+text-align: center;
+@media ${device.tablet} {
+
+}
+
 `
 export const PopUpProdu = styled.div`
  width:100%;
  height:25%;
  display:flex;
  justify-content: center;
+ align-items:center;
  `
 
  export const  Logout = styled.button`
@@ -935,10 +946,16 @@ height:100%
 
 export const DivC = styled.div `
 display: flex;
+flex-direction: row;
 align-items:center;
-width:100%;
 height:10%;
+padding-left:15px;
+padding-right:15px;
 background-color:#E8EAF6;
+@media ${device.mobile} {
+
+}
+
 `
 //sustituto
 export const DIV = styled.div `
