@@ -13,8 +13,22 @@ export const ListOrdenes = styled.div`
   width: 90%;
   border-radius: 3px;
   background-color: #ffffff;
-  ${({ permitir, div }) => {
-    return permitir === div ? 'border: 4px solid #1db779;' : null
+  ${({ permitir, div, estadoOrden }) => {
+    
+    if(estadoOrden == 'pending'){
+      if(permitir === div) return 'border: 4px solid #1db779 !important;'
+      else return null
+    } 
+
+    if(estadoOrden == 'picking'){
+      if(permitir === div) return 'border: 6px solid #F13B70 !important;'
+      else return null
+    } 
+
+    if(estadoOrden == 'picked'){
+      if(permitir === div) return 'border: 6px solid #1db779 !important;'
+      else return null
+    }      
   }}
 `;
 
@@ -47,6 +61,35 @@ export const Img = styled.img`
   border-radius: 50px;
   padding: 7px;
 `;
+
+export const ImgPicked = styled.img`
+  @media ${device.tablet} {
+    height: 40px;
+    width: 40px;
+  }
+  margin-top: 3%;
+  margin-left: 5%;
+  height: 60px;
+  width: 60px;
+  background-color: #1DB779;
+  border-radius: 50px;
+  padding: 7px;
+`;
+
+export const ImgPicking = styled.img`
+  @media ${device.tablet} {
+    height: 40px;
+    width: 40px;
+  }
+  margin-top: 3%;
+  margin-left: 5%;
+  height: 60px;
+  width: 60px;
+  background-color: #F13B70;
+  border-radius: 50px;
+  padding: 7px;
+`;
+
 export const ImgP = styled.img`
   @media ${device.tablet} {
     height: 70%;

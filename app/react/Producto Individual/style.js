@@ -708,7 +708,7 @@ export const Siguiente = styled.button`
   border:1px solid #1DB779;
   color: #ffffff;
   font-family: Roboto;
-  font-size: 23px;
+  font-size: 14px;
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;

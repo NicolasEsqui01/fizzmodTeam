@@ -6,10 +6,11 @@ const mapStateToProps = (state) => {
   return {
     items: state.sessionReducer.sessionPicking.items,
     booleano: state.sessionReducer.booleano,
+    sessionId: localStorage.getItem('sessionid'),
   };
 };
 
-const NavbarContainer = ({ time, status, booleano, items }) => {
+const NavbarContainer = ({ time, status, booleano, items, sessionId }) => {
   const [itemsPicked, setItemsPicked] = useState(0);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ const NavbarContainer = ({ time, status, booleano, items }) => {
       });
       setItemsPicked(contador);
     }
-  }, [items]);
+  }, [itemsPicked]);
 
   return (
     <Navbar
@@ -31,6 +32,7 @@ const NavbarContainer = ({ time, status, booleano, items }) => {
       status={status}
       booleano={booleano}
       items={items}
+      sessionId={sessionId}
     />
   );
 };

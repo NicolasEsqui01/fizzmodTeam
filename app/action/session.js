@@ -29,9 +29,23 @@ const boolean = (booleano) => {
   };
 };
 
+const typeOrder = (string) => {
+  return {
+    type: 'SET_TYPE_OF_ORDER_SELECTED',
+    string,
+  };
+};
+
+
 export const setBooleano = (bool) => {
   return (dispatch) => {
     return dispatch(boolean(bool));
+  };
+};
+
+export const estadoOrdenSelected = (string) => {
+  return (dispatch) => {
+    return dispatch(typeOrder(string));
   };
 };
 
