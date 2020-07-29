@@ -67,7 +67,7 @@ import {
   Button,
   Button2,
   FlechitaDesplegableNone,
-  Atencion
+  Atencion,
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -101,6 +101,8 @@ export default ({
   onCloseClick,
 }) => {
   let idx = 0;
+
+  console.log(session[indice]);
 
   return (
     <>
@@ -162,7 +164,10 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
+                    <Descri>
+                      Nombre del producto con doble linea lorem ipsum dolor sit
+                      amet
+                    </Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
@@ -214,14 +219,17 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[indice].id, session[indice].purchasedQuantity);
+                        pickeado(
+                          session[indice].id,
+                          session[indice].purchasedQuantity,
+                        );
                       }}
                     >
                       {' '}
                       SIGUIENTE
                     </Siguiente>{' '}
                   </BotIzq>
-                  <BotDer onClick={()=>Activar(4)}>
+                  <BotDer onClick={() => Activar(4)}>
                     <PlusCircle src={masBlanco}></PlusCircle>
                   </BotDer>
                 </Botones>
@@ -257,7 +265,10 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
+                    <Descri>
+                      Nombre del producto con doble linea lorem ipsum dolor sit
+                      amet
+                    </Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
@@ -287,35 +298,35 @@ export default ({
                     <H1CantidadNum>
                       / {session[indice].purchasedQuantity}
                     </H1CantidadNum>
-                      <ContFlechitas>
-                    {count == 0 ? (
+                    <ContFlechitas>
+                      {count == 0 ? (
                         <>
-                        <FlechitaDesplegable
-                          src={flechaDesplegableArriba}
-                          onClick={() => setCount(count + 1)}
-                        />
-                        <FlechitaDesplegableNone />
+                          <FlechitaDesplegable
+                            src={flechaDesplegableArriba}
+                            onClick={() => setCount(count + 1)}
+                          />
+                          <FlechitaDesplegableNone />
                         </>
-                    ) : (
-                      count >= session[idx].purchasedQuantity ? (
+                      ) : count >= session[idx].purchasedQuantity ? (
                         <>
-                        <FlechitaDesplegableNone />
-                        <FlechitaDesplegable
-                          src={flechaDesplegableAbajo}
-                          onClick={() => setCount(count - 1)} />
+                          <FlechitaDesplegableNone />
+                          <FlechitaDesplegable
+                            src={flechaDesplegableAbajo}
+                            onClick={() => setCount(count - 1)}
+                          />
                         </>
-                        ) : (
-                            <>
-                            <FlechitaDesplegable
-                              src={flechaDesplegableArriba}
-                              onClick={() => setCount(count + 1)}/>
-                            <FlechitaDesplegable
-                              src={flechaDesplegableAbajo}
-                              onClick={() => setCount(count - 1)}/>
-                            </>
-                            )
-                        )
-                    }
+                      ) : (
+                        <>
+                          <FlechitaDesplegable
+                            src={flechaDesplegableArriba}
+                            onClick={() => setCount(count + 1)}
+                          />
+                          <FlechitaDesplegable
+                            src={flechaDesplegableAbajo}
+                            onClick={() => setCount(count - 1)}
+                          />
+                        </>
+                      )}
                     </ContFlechitas>
                   </RecuadroCantidadNormal>
                   <DivImageStock>
@@ -344,7 +355,7 @@ export default ({
                     </Siguiente>{' '}
                     {/*CHEQUEAR QUE SUME 1 BIEN*/}
                   </BotIzq>
-                  <BotDer onClick={()=>Activar(4)}>
+                  <BotDer onClick={() => Activar(4)}>
                     <PlusCircle src={masBlanco}></PlusCircle>
                   </BotDer>
                 </Botones>
@@ -356,5 +367,3 @@ export default ({
     </>
   );
 };
-
-

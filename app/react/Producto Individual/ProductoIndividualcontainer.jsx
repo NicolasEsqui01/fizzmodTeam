@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
-import { Desactivacion, Activacion } from '../../action/popup'
+import { Desactivacion, Activacion } from '../../action/popup';
 import { getSessionPicking, setBooleano } from '../../action/session';
 import history from '../../utils/history';
-
 
 const ProductoIndividualcontainer = ({
   items,
@@ -21,10 +20,9 @@ const ProductoIndividualcontainer = ({
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
- 
 
   const handleBtnClick = (n) => {
-    Activar(n)
+    Activar(n);
   };
 
   useEffect(() => {
@@ -48,15 +46,14 @@ const ProductoIndividualcontainer = ({
     };
 
     if (Number(indice) === items.length) {
-      setBooleano(false);
-      localStorage.removeItem('token');
-      localStorage.removeItem('sessionid')
-      return history.push('/inicio');
+      return history.push('/confirmacion');
     } else {
-      sendItemPicked(idSession, data).then(() => {
-        let newIndice = Number(indice) + 1;
-        return history.push(`/productoindividual/${idSession}/${newIndice}`);
-      }).then(()=>setCount(0))
+      sendItemPicked(idSession, data)
+        .then(() => {
+          let newIndice = Number(indice) + 1;
+          return history.push(`/productoindividual/${idSession}/${newIndice}`);
+        })
+        .then(() => setCount(0));
     }
   };
 
@@ -92,11 +89,10 @@ const MapDispatchToProps = (dispatch) => {
     sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
     getSessionPicking: (id) => dispatch(getSessionPicking(id)),
     Activar: (n) => dispatch(Activacion(n)),
-    handleCloseClick:()=>(dispatch(Desactivacion())),
+    handleCloseClick: () => dispatch(Desactivacion()),
     setBooleano: (boolean) => dispatch(setBooleano(boolean)),
-  }
+  };
 };
-
 
 export default connect(
   MapStateToProps,
