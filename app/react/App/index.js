@@ -36,6 +36,7 @@ function App({location }) {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
        <PopUpContainer/> 
+ 
       { location !== '/' ? <Navbar/> : null }
       <Switch>
         <Route exact path='/' component={LoginContainer} />

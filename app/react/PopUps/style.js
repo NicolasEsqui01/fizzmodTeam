@@ -97,10 +97,14 @@ margin-left:5%;
 
 export const ButtonX = styled.button`
 width:10%;
+margin-left:35%;
 cursor: pointer;
 border: 1px solid transparent;
 background-color: transparent;
 outline:none;
+@media ${device.tablet} {
+  margin-left:10%;
+  }
 
 `
 export const ButtonX4 = styled.button`
@@ -122,11 +126,11 @@ line-height: 24px;
 `
 export const TituloOb = styled.h1`
 margin-left:3%;
-width:75%;
+width:50%;
 font-size: 30px;
-text-align: center;
 @media ${device.tablet} {
 font-size:20px;
+width:70%;
 }
 
 `
@@ -302,6 +306,35 @@ text-align: center;
 
 //////controladores/////////
 
+export const DivText = styled.div `
+width:80%;
+display:flex;
+flex-direction:column;
+border-bottom: 2px solid #E8EAF6
+`
+export const DivText2 = styled.div `
+width:80%;
+display:flex;
+flex-direction:column;
+
+`
+
+export const DivExit = styled.div `
+ display:flex;
+ height:15%;
+ width:100%;
+ align-items:center;
+ border-Top: 2px solid #E8EAF6;
+
+`
+
+export const DivControl = styled.div`
+margin-top:10%;
+display:flex;
+width:100%;
+height:10%;
+`
+
 export const DivIM2 = styled.div `
  width:10%;
 `
@@ -346,7 +379,18 @@ background-color:#E8EAF6;
 @media ${device.mobile} {
 width:100%;
 }
-
+`
+export const DivCXL = styled.div `
+display: flex;
+flex-direction: row;
+align-items:center;
+height:15%;
+padding-left:15px;
+padding-right:15px;
+background-color:#E8EAF6;
+@media ${device.mobile} {
+width:100%;
+}
 `
 //sustituto
 export const DIV = styled.div `
@@ -376,6 +420,7 @@ animation: ${slideRight} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 width: 90%;
 }
 `
+
 
 //obvservacion
 export const DIV2 = styled.div `
@@ -569,8 +614,18 @@ font-size: 25px;
 letter-spacing: 0;
 line-height: 16px;
 @media ${device.mobile} {
-  font-size: 12px;
+  font-size:20px;
   }
+`
+export const Abajo = styled.p `
+  height: 20px;
+  margin-top:3%;
+  width: 100%;
+  color: #939598;
+  font-family: Roboto;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 14px;
 `
 
 export const NN = styled.span `
@@ -626,7 +681,7 @@ export const DivBarr = styled.div `
  
  display:flex;
  width:90%;
- jutify-content:center;
+ justify-content:center;
 
 `
 export const DivMN = styled.div `
@@ -642,6 +697,48 @@ export const DivS2 = styled.div`
 height:20%;
 `
 
+/// Servicios extra 
+export const DIV6 = styled.div `
+width:100%;
+display: flex;
+position:fixed;
+${props => props.active === 6? null: `display:none`};
+`
+export const Servicios = styled.div`
+height: 100%;
+width: 90%;
+color: #939598;
+font-family: Roboto;
+font-size: 30px;
+letter-spacing: 0;
+line-height: 24px;
+margin-top:3%;
+`
+export const DivLI = styled.div`
+ display:flex
+ height: 15%;
+ width: 100%;
+`
+export const DivPunto = styled.div`
+ display:flex;
+ width: 10%;
+ justify-content:center;
+ margin-top:4%;
+`
+export const Punto = styled.div`
+height:16px;
+width:16px;
+border-radius:50%;
+background-color: #08C4C4;
+`
+////InfoPicker
+export const DIV7 = styled.div `
+width:100%;
+display: flex;
+position:fixed;
+${props => props.active === 7? null: `display:none`};  
+
+`
 //////////////////////
 export const DivX = styled.div `
 width:50%;
