@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     DivZ,
     HeaderDiv,
@@ -25,35 +25,37 @@ import {
  import trash from '../../images/trash.svg'
 
 
- export default ({active, onCloseClick})=>{
-    const Prueba = [1,2,3,4]
+
+
+ export default ({active, onCloseClick, wheights, handleRemoveItem})=>{
+    console.log("wheights en popup", wheights)
      return(
          <>
             <DivZ active={active}>
+                    <ButtonX>
+                      <ImgX2 src={XWhite} onClick={onCloseClick}/>
+                    </ButtonX>
                   <HeaderDiv>
                     <TextB>PRODUCTOS</TextB>
                     <TextB2>CANTIDAD</TextB2>
-                    <ButtonX onClick={onCloseClick}>
-                      <ImgX2 src={XWhite} />
-                    </ButtonX>
                   </HeaderDiv>
                   <DivScroll>
-                    {Prueba.map((elem) => (
+                    {wheights.map((elem, idx) => (
                       <>
                         <PopUpProduAcum key={elem.id}>
                           <DivR>
-                            <ImgM src={Mensaje} />
+                            <ImgM src={elem.img} />
                             <DivX>
                               <Descripcion>
-                                DESCRIPCION DEL PRODUCTO
+                                {elem.name}
                               </Descripcion>
                               <DivF>
                                 <Icono src={scanner} />
-                                <Ean>1234456112</Ean>
+                                <Ean>{elem.ean}</Ean>
                               </DivF>
                             </DivX>
-                            <Cantidad>8 Kg</Cantidad>
-                            <ImgT src={trash} />
+                            <Cantidad>{elem.qty} kgs.</Cantidad>
+                            <ImgT src={trash} onClick={()=>{handleRemoveItem(idx)}} />
                           </DivR>
                         </PopUpProduAcum>
                         <Espacio></Espacio>

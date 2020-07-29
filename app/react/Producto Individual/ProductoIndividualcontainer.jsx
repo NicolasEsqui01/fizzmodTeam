@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
@@ -20,6 +20,9 @@ const ProductoIndividualcontainer = ({
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
+  const [showInput, setShowInput] = useState(false);
+  const [input, setInput] = useState(0);
+  const [wheights, setWheights] = useState([]);
 
   const handleBtnClick = (n) => {
     Activar(n);
@@ -33,6 +36,17 @@ const ProductoIndividualcontainer = ({
   useEffect(() => {
     setIndice(match.params.indice);
   }, [match.params.indice]);
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if(showInput == true)
+    inputRef.current.focus();
+  }, [showInput]);
+
+  useEffect(() => {
+    if(input!=0) inputRef.current.value="";
+  }, [wheights]);
 
   const ItemPicked = (iditems, qty) => {
     const data = {
@@ -57,6 +71,31 @@ const ProductoIndividualcontainer = ({
     }
   };
 
+  const handleChange = (event) => {
+    setInput(event.target.value);
+  };
+
+  const handleSubmit = (event, id, name, ean, image) => {
+    event.preventDefault();
+    const itemPesable={
+      id: id,
+      name: name,
+      ean: ean,
+      img: image,
+      qty: input
+    }
+    setWheights([...wheights,itemPesable])
+  };
+
+  const handleRemoveItem = (idx) => {
+    if (idx > -1) {
+    wheights.splice(idx,1)
+    setWheights([...wheights]);
+    console.log("wheights OK", wheights)
+  }};
+
+  console.log("CHEQUEANDO ", wheights)
+
   return (
     <>
       {items ? (
@@ -69,6 +108,13 @@ const ProductoIndividualcontainer = ({
           indice={indice - 1}
           count={count}
           setCount={setCount}
+          showInput={showInput}
+          setShowInput={setShowInput}
+          inputRef={inputRef}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          wheights={wheights}
+          handleRemoveItem={handleRemoveItem}
         />
       ) : null}
     </>

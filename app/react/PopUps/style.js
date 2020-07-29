@@ -66,6 +66,7 @@ height:50px;
 }
 `
 export const ImgX2 = styled.img `
+cursor: pointer;
 width:30px;
 height:30px;
 `
@@ -82,10 +83,8 @@ height:100px;
 width:100px;
 margin:6%;
 @media ${device.tablet} {
-  
   width:50px;
   height:50px;
- 
 }
 `
 
@@ -96,14 +95,14 @@ margin-left:5%;
 `
 
 export const ButtonX = styled.button`
-width:10%;
-margin-left:35%;
-cursor: pointer;
+text-align:right;
+margin-top:7px;
+margin-right:7px;
 border: 1px solid transparent;
 background-color: transparent;
 outline:none;
 @media ${device.tablet} {
-  margin-left:10%;
+
   }
 
 `
@@ -167,7 +166,6 @@ export const PopUpProdu = styled.div`
 ////POPups Balance ////////////////
 export const PopUpProduAcum = styled.div`
  width:100%;
- height:20%;
  display:flex;
  align-items: center;
  background-color:#FFFFFF;
@@ -202,9 +200,7 @@ export const TextB = styled.h1 `
 @media ${device.tablet} {
   font-size: 15px;
   }
-margin-top: 4%;
-height: 15px;
-  width:30%;
+  width: 47%;
   color: #FFFFFF;
   font-family: Roboto;
   font-size: 20px;
@@ -216,30 +212,23 @@ export const TextB2 = styled.h1 `
 @media ${device.tablet} {
   font-size: 15px;
   }
-margin-top: 4%;
-height: 15px;
-  width:30%;
+  width: 47%;
   color: #FFFFFF;
   font-family: Roboto;
   font-size: 20px;
   letter-spacing: 0;
   line-height: 15px;
   text-align: center;
-  margin-left:25%;
-  margin-right:5%;
 `
 export const Descripcion = styled.div `
 @media ${device.tablet} {
   height:20%;
   width:90%;
   }
-width:50%;
 margin-left:2%;
-height: 40px;
+height: 20px;
 color: #939598;
 font-family: Roboto;
-font-size: 100%;
-letter-spacing: 0;
 line-height: 18px;
 
 `
@@ -266,12 +255,9 @@ export const Ean = styled.div`
   width:70%;
   margin-left:12%;
   }
-width:25%;
 color: #273947;
 font-family: Roboto;
-font-size: 100%;
 font-weight: bold;
-letter-spacing: 0;
 margin-left:2%;
 
 `
@@ -281,11 +267,12 @@ export const Cantidad =styled.div `
   height:35%;
   margin-left:0;
   margin-right:0;
-  font-size:120%;
+  font-size:110%;
   }
-
+padding-top: 10px;
+padding-bottom: 10px;
 border: 1px solid #E8EAF6;
-font-size:160%;
+font-size:130%;
 color: #273947;
 font-family: Roboto;
 line-height:45px;
@@ -297,7 +284,6 @@ justify-content:center;
 align-items: center;
 border-radius:30px;
 font-weight: bold;
-letter-spacing: 0;
 line-height: 19px;
 text-align: center;
 
@@ -461,8 +447,9 @@ display: flex;
 position:fixed;
 background-color:#273947;
 width: 50%;
-height:100%;
 flex-direction: column;
+opacity: 95%;
+animation: ${slideRight} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 ${props => props.active === 3? null: `display:none`};
 @media ${device.mobile} {
 width: 90%;
