@@ -585,7 +585,8 @@ export const BotonesNormal = styled.div`
   display: flex;
   margin-top: 15px;
   flex-direction: row;
-  text-align: center;    
+  text-align: center;   
+  cursor: pointer; 
 `;
 
 
@@ -638,6 +639,7 @@ export const BotDer = styled.button`
   border:0px solid #1DB779;
   background:none;
   outline:none;
+  cursor: pointer;
 `;
 export const Button = styled.button `
 width:70px;
@@ -687,6 +689,7 @@ export const BotonTeclado = styled.button`
   border:0px solid #1DB779;
   background:none;
   outline:none;
+  cursor: pointer;
   `;
 
 export const Teclado = styled.img`
@@ -711,6 +714,7 @@ export const Siguiente = styled.button`
   text-align: center;
   margin-left: 5px;
   outline:none;
+  cursor: pointer;
   @media ${device.mobile} {
   width:35%;
   height:40px;

@@ -88,6 +88,7 @@ import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
+import TecladoContainer from '../Tecleado/TecladoContainer'
 
 export default ({
   session,
@@ -108,7 +109,9 @@ export default ({
         <Header>
           <Cuadro>
             <div>
+            <Button onClick={() => Activar(1)}>
               <Img src={Sustituto} />
+              </Button>
             </div>
             <div>
               <Marca> = Marca, </Marca>
@@ -125,7 +128,6 @@ export default ({
             ///////////////// PRODUCTO PESABLE /////////////////
             <>
               <ColIzq>
-              
          <PopUpPesables
              active={active}
              onCloseClick={onCloseClick}
@@ -167,11 +169,11 @@ export default ({
                     </ContInfo>
                   </ContDer>
                   <DivGlobos>
-                    <Button onClick={() => Activar(1)}>
+                    <Button onClick={() => Activar(2)}>
                       {' '}
                       <ImgAmarilla src={bubble} />
                     </Button>
-                    <Button2 onClick={() => Activar(2)}>
+                    <Button2 onClick={() => Activar(6)}>
                       <ImgAmarilla src={bubbleExc} />
                     </Button2>
                   </DivGlobos>
@@ -200,6 +202,7 @@ export default ({
                 <Instrucciones>
                   Coloca el producto sobre la balanza
                 </Instrucciones>
+           
                 <Botones>
                   <BotIzq>
                     <Omitir>
@@ -228,7 +231,6 @@ export default ({
             ////////////////// PRODUCTO NORMAL //////////////////
             <>
               <ColIzq>
-               
                 <ColuIconos>
                   <Sup>
                     <ContainerGrillCuadros>
@@ -262,11 +264,11 @@ export default ({
                     </ContInfo>
                   </ContDer>
                   <DivGlobos>
-                    <Button onClick={() => Activar(1)}>
+                  <Button onClick={() => Activar(2)}>
                       {' '}
                       <ImgAmarilla src={bubble} />
                     </Button>
-                    <Button2 onClick={() => Activar(2)}>
+                    <Button2 onClick={() => Activar(6)}>
                       <ImgAmarilla src={bubbleExc} />
                     </Button2>
                   </DivGlobos>
