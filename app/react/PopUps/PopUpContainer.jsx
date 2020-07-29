@@ -4,8 +4,10 @@ import { Desactivacion, Activacion } from '../../action/popup'
 import PopUpObservacion from './PopUpObservacion'
 import PopUpSustitucion from './PopUpSustitucion'
 import PopUpOpciones from './PopUpOpciones'
-import PopUpPesables from './PopUpPesables'
 import PopUpOrden from './PopUpOrden'
+import PopUpServiciosExtras from './PopUpServiciosExtras'
+import PopUpInfoPicker from './PopUpInfoPicker'
+import PopUpControladorDePeso from './PopUpControladorDePeso'
 
 
 const PopUpContainer = ({active, handleCloseClick, Activar})=>{
@@ -24,6 +26,10 @@ return(
           Activar={handleBtnClick}
           onCloseClick={handleCloseClick}
     />
+       <PopUpInfoPicker
+          active={active}
+          onCloseClick={handleCloseClick}
+    />
     <PopUpObservacion
           active={active}
           onCloseClick={handleCloseClick}
@@ -32,11 +38,18 @@ return(
           active={active}
           onCloseClick={handleCloseClick}
     />
+    <PopUpServiciosExtras
+          active={active}
+          onCloseClick={handleCloseClick}
+    />
     <PopUpOpciones
           active={active}
           Activar={handleBtnClick}
           onCloseClick={handleCloseClick}
     />
+     <PopUpControladorDePeso
+     
+     />
  </> 
 
 )

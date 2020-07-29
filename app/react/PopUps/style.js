@@ -641,6 +641,16 @@ margin-left:7%;
 export const DivS2 = styled.div`
 height:20%;
 `
+///// Controlador de peso
+
+export const DIV8 = styled.div`
+width:100%;
+display: flex;
+position:fixed;
+${props => props.active === 8? null :`display:none`}; 
+`
+
+
 
 //////////////////////
 export const DivX = styled.div `
