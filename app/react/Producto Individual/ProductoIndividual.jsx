@@ -88,7 +88,7 @@ import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
-
+import TecladoContainer from '../Tecleado/TecladoContainer';
 
 export default ({
   session,
@@ -108,8 +108,8 @@ export default ({
         <Header>
           <Cuadro>
             <div>
-            <Button onClick={() => Activar(1)}>
-              <Img src={Sustituto} />
+              <Button onClick={() => Activar(1)}>
+                <Img src={Sustituto} />
               </Button>
             </div>
             <div>
@@ -121,17 +121,13 @@ export default ({
           </Cuadro>
         </Header>
         <Cont>
-          {session === undefined ? (
+          {session.length === 0 ? (
             <div>Cargando</div>
           ) : session[indice].isWeighable ? (
             ///////////////// PRODUCTO PESABLE /////////////////
             <>
               <ColIzq>
-              
-         <PopUpPesables
-             active={active}
-             onCloseClick={onCloseClick}
-             />
+                <PopUpPesables active={active} onCloseClick={onCloseClick} />
 
                 <ColuIconos>
                   <Sup>
@@ -172,10 +168,12 @@ export default ({
                     </ContInfo>
                   </ContDer>
                   <DivGlobos>
-                    <Button onClick={() => Activar(2)}>
-                      {' '}
-                      <ImgAmarilla src={bubble} />
-                    </Button>
+                    {session[indice].customerNote ? (
+                      <Button onClick={() => Activar(2)}>
+                        {' '}
+                        <ImgAmarilla src={bubble} />
+                      </Button>
+                    ) : null}
                     <Button2 onClick={() => Activar(6)}>
                       <ImgAmarilla src={bubbleExc} />
                     </Button2>
@@ -205,7 +203,7 @@ export default ({
                 <Instrucciones>
                   Coloca el producto sobre la balanza
                 </Instrucciones>
-           
+
                 <Botones>
                   <BotIzq>
                     <Omitir>
@@ -216,12 +214,12 @@ export default ({
                       <Teclado src={TecladoIcono} />
                     </BotonTeclado>
                     <Siguiente
-                      onClick={() => {
+                      onClick={() =>
                         pickeado(
                           session[indice].id,
                           session[indice].purchasedQuantity,
-                        );
-                      }}
+                        )
+                      }
                     >
                       {' '}
                       SIGUIENTE
@@ -273,10 +271,12 @@ export default ({
                     </ContInfo>
                   </ContDer>
                   <DivGlobos>
-                  <Button onClick={() => Activar(2)}>
-                      {' '}
-                      <ImgAmarilla src={bubble} />
-                    </Button>
+                    {session[indice].customerNote ? (
+                      <Button onClick={() => Activar(2)}>
+                        {' '}
+                        <ImgAmarilla src={bubble} />
+                      </Button>
+                    ) : null}
                     <Button2 onClick={() => Activar(6)}>
                       <ImgAmarilla src={bubbleExc} />
                     </Button2>
@@ -344,9 +344,7 @@ export default ({
                       <Teclado src={TecladoIcono} />
                     </BotonTeclado>
                     <Siguiente
-                      onClick={() => {
-                        pickeado(session[indice].id, count);
-                      }}
+                      onClick={() => pickeado(session[indice].id, count)}
                     >
                       {' '}
                       SIGUIENTE

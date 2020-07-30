@@ -31,7 +31,7 @@ import unPick from '../../images/icn_unpick.svg';
 import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
 
-export default ({ active, onCloseClick, Activar }) => {
+export default ({ active, onCloseClick, Activar , handleLogout}) => {
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -101,7 +101,7 @@ export default ({ active, onCloseClick, Activar }) => {
         <Espacio4></Espacio4>
         <DivG>
           <ImgX src={LogOut} />
-          <Logout> LOGOUT </Logout>
+          <Logout onClick={() => onCloseClick() && handleLogout()}> LOGOUT </Logout>
         </DivG>
       </DivO>
     </DIV4>

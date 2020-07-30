@@ -2,12 +2,14 @@ import styled, { keyframes } from 'styled-components';
 import { device } from '../../utils/mediaQuerys';
 
 const slideRight = keyframes`
-  0% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
-  }
+0% {
+  transform: scaleX(0.4);
+  transform-origin: 100% 100%;
+}
+100% {
+  transform: scaleX(1);
+  transform-origin: 100% 100%;
+}
 `;
 const ScaleCenter = keyframes`
 0% {
@@ -423,7 +425,7 @@ export const DivV = styled.div`
   width: 50%;
   height: 100vh;
   flex-direction: column;
-  animation: ${slideRight} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: ${slideRight} 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   @media ${device.mobile} {
     width: 90%;
   }
@@ -445,7 +447,7 @@ export const DivO = styled.div`
   flex-direction: column;
   position: fixed;
   right: 0px;
-  animation: ${slideRight} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: ${slideRight} 0.5s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   @media ${device.mobile} {
     width: 90%;
   }

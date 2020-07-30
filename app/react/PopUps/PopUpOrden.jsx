@@ -38,16 +38,15 @@ import credit from '../../images/credit_card.svg';
 import phone from '../../images/phone_outline.svg';
 import back from '../../images/arrow_left.svg';
 
-export default ({ active, onCloseClick, Activar }) => {
+export default ({ active, onCloseClick, Activar, idSession }) => {
   const prueba = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  return (
+  return idSession.items ? (
     <DIV5 active={active}>
       <Color></Color>
       <DivO>
         <DivC>
           <Img src={box} />
-          <TituloOb> Nro. 12345675436</TituloOb>
+          <TituloOb> Nro.{localStorage.getItem('sessionid')}</TituloOb>
           <ButtonX onClick={onCloseClick}>
             <ImgX src={X} />
           </ButtonX>
@@ -57,19 +56,17 @@ export default ({ active, onCloseClick, Activar }) => {
           <P>Estado Orden</P>
           <DivW>
             <ImgP src={totals} />
-            <Num>$120.00</Num>
+            <Num>${idSession.items.map(Element => Element.purchasedPrice * Element.purchasedQuantity).reduce((a,b) => a + b ,0)}</Num>
           </DivW>
           <DivVC>
             <ImgP src={grafico} />
 
             <DivCON>
               <PP>Pickeados:</PP>
-              <NN>47</NN>
-              <Nn> / 86</Nn>
+              <NN>{idSession.items.filter(Element => Element.status === 'picked').length}</NN>
+              <Nn> / {idSession.totalItems} </Nn>
               <DivBarr>
-                {prueba.map((elemnt) => {
-                  return <Barrita>{elemnt}</Barrita>;
-                })}
+                {idSession.items.map((Element , indice) => <Barrita>{indice + 1}</Barrita>)}
               </DivBarr>
             </DivCON>
           </DivVC>
@@ -106,5 +103,5 @@ export default ({ active, onCloseClick, Activar }) => {
         </DivS2>
       </DivO>
     </DIV5>
-  );
+  ) : null;
 };

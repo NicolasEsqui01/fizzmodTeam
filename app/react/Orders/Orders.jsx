@@ -34,23 +34,31 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
   let start;
   let end;
   let duration;
+  let arrFractionable = 0;
+  let arrWeighable = 0;
+  let arrFresh = 0;
+  
+  
+  
+
+  
   return (
     <>
       <DivScroll>
         { status == 'pending' ? 
           (pendSessions.map((element) => {
-            let arrFractionable = [];
-            let arrWeighable = [];
-            let arrFresh = [];
+            arrFractionable = 0;
+            arrWeighable = 0;
+            arrFresh = 0;
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
           
               element.items.map((el)=>{
               
-                el.isFresh==true? arrFresh.push(el.name) : null;
-                el.isWeighable==true? arrWeighable.push(el.name) : null;
-                el.isFractionable==true? arrFractionable.push(el.name) : null;
+                el.isFresh==true? arrFresh += 1 : null;
+                el.isWeighable==true? arrWeighable +=1 : null;
+                el.isFractionable==true? arrFractionable +=1 : null;
                 
              })
 
@@ -76,15 +84,15 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                   <DivP>
                     <Peso>
                       <ImgP src={balance} />
-                    <NumP>{arrWeighable.length}</NumP>
+                    <NumP>{arrWeighable}</NumP>
                     </Peso>
                     <Frio>
                       <ImgP src={snow} />
-                    <NumP>{arrFractionable.length}</NumP>
+                    <NumP>{arrFractionable}</NumP>
                     </Frio>
                     <Aire>
                       <ImgP src={waves} />
-                    <NumP>{arrFresh.length}</NumP>
+                    <NumP>{arrFresh}</NumP>
                     </Aire>
                   </DivP>
                   <DivS>
@@ -106,11 +114,27 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
           )
           :
           (pickedAndPikcingSessions.map((element) => {
+            arrFractionable = 0;
+            arrWeighable = 0;
+            arrFresh = 0;
+
+            element.items.map((el)=>{
+              
+              el.isFresh==true? arrFresh +=1 : null;
+              el.isWeighable==true? arrWeighable += 1: null;
+              el.isFractionable==true? arrFractionable +=1 : null;
+              
+           })
+
+            
+           
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
             return element.status == "picked"? 
-                 (<ListOrdenes
+                 (
+                 
+                 <ListOrdenes
                   className="picked"
                   key={element.id}
                   permitir={valor}
@@ -131,15 +155,15 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                       <DivP>
                         <Peso>
                           <ImgP src={balance} />
-                          <NumP>23</NumP>
+                        <NumP>{arrWeighable}</NumP>
                         </Peso>
                         <Frio>
                           <ImgP src={snow} />
-                          <NumP>23</NumP>
+                        <NumP>{arrFractionable}</NumP>
                         </Frio>
                         <Aire>
                           <ImgP src={waves} />
-                          <NumP>23</NumP>
+                          <NumP>{arrFresh}</NumP>
                         </Aire>
                       </DivP>
                       <DivS>
@@ -178,15 +202,15 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                       <DivP>
                         <Peso>
                           <ImgP src={balance} />
-                          <NumP>23</NumP>
+                          <NumP>{arrWeighable}</NumP>
                         </Peso>
                         <Frio>
                           <ImgP src={snow} />
-                          <NumP>23</NumP>
+                          <NumP>{arrFractionable}</NumP>
                         </Frio>
                         <Aire>
                           <ImgP src={waves} />
-                          <NumP>23</NumP>
+                          <NumP>{arrFresh}</NumP>
                         </Aire>
                       </DivP>
                       <DivS>

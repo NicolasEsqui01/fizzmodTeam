@@ -3,7 +3,8 @@ const initialState = {
   sessionId: '',
   sessionPicking:{},
   booleano:false,
-  statusOrderSelected: 'pending'
+  statusOrderSelected: 'pending',
+  idItems:''
 };
 
 export default (state = initialState, action) => {
@@ -19,6 +20,8 @@ export default (state = initialState, action) => {
       return {...state , booleano: action.booleano }
     case 'SET_TYPE_OF_ORDER_SELECTED' : 
       return {...state , statusOrderSelected: action.string }
+    case 'IDITEMS' : 
+      return {...state , idItems:action.id }  
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Desactivacion, Activacion } from '../../action/popup';
 import PopUpObservacion from './PopUpObservacion';
@@ -9,12 +9,16 @@ import PopUpServiciosExtras from './PopUpServiciosExtras';
 import PopUpInfoPicker from './PopUpInfoPicker';
 import PopUpControlDePeso from './PopUpControlDePeso';
 import PopUpBaterry from './PopUpBaterry';
+import { getSessionPicking } from '../../action/session';
+import history from '../../utils/history';
 
 const PopUpContainer = ({
   active,
   handleCloseClick,
   Activar,
   sendItemPicked,
+  idSession,
+  idItems
 }) => {
   const [battery, setBattery] = useState(null);
   const [cerrar, setCerrar] = useState(true);
@@ -23,7 +27,12 @@ const PopUpContainer = ({
   };
 
   const closeAlerts = () => {
-   setCerrar(false)
+    setCerrar(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth', 'sessionid');
+    return history.push('/');
   };
 
   const ItemPicked = (iditems, qty) => {
@@ -52,15 +61,14 @@ const PopUpContainer = ({
   async function getBattery() {
     let battery = await navigator.getBattery();
     let charge = battery.level;
-    setBattery(charge)
-
-  } 
+    setBattery(charge);
+  }
   setInterval(() => {
     getBattery();
   }, 10000);
 
-  if(battery <0.2 && battery > 0.18){
-    setCerrar(true)
+  if (battery < 0.2 && battery > 0.18) {
+    setCerrar(true);
   }
 
   return (
@@ -76,15 +84,22 @@ const PopUpContainer = ({
         active={active}
         Activar={handleBtnClick}
         onCloseClick={handleCloseClick}
+        idSession={idSession}
       />
       <PopUpInfoPicker active={active} onCloseClick={handleCloseClick} />
-      <PopUpObservacion active={active} onCloseClick={handleCloseClick} />
+      <PopUpObservacion
+        active={active}
+        onCloseClick={handleCloseClick}
+        idSession={idSession}
+        idItems={idItems}
+      />
       <PopUpSustitucion active={active} onCloseClick={handleCloseClick} />
       <PopUpServiciosExtras active={active} onCloseClick={handleCloseClick} />
       <PopUpOpciones
         active={active}
         Activar={handleBtnClick}
         onCloseClick={handleCloseClick}
+        handleLogout={handleLogout}
       />
       <PopUpControlDePeso
         pickeado={ItemPicked}
@@ -97,6 +112,8 @@ const PopUpContainer = ({
 const mapStateToProps = (state, ownProp) => {
   return {
     active: state.popupReducer.numero,
+    idSession: state.sessionReducer.sessionPicking,
+    idItems: state.sessionReducer.idItems,
   };
 };
 
@@ -104,6 +121,7 @@ const mapDispatchToProps = (dispatch, ownProp) => {
   return {
     Activar: (n) => dispatch(Activacion(n)),
     handleCloseClick: () => dispatch(Desactivacion()),
+    getSessionPicking: (id) => dispatch(getSessionPicking(id)),
     sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
   };
 };
