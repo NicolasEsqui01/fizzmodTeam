@@ -12,7 +12,7 @@ import {
   DivP,
   PopUpProdu,
 } from './style'
-import Mensaje from '../../images/comment.svg'
+import Sustituto from '../../images/substitute.svg';
 import X from '../../images/cross_light.svg'
 
 
@@ -26,7 +26,7 @@ export default ({active, onCloseClick})=>{
         <Color></Color>
         <DivV>
           <DivC>
-            <ImgM src={Mensaje} />
+            <ImgM src={Sustituto} />
             <TituloOb> Sustitutos </TituloOb>
             <ButtonX onClick={onCloseClick}>
               <ImgX src={X} />

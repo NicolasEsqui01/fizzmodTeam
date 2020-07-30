@@ -67,7 +67,7 @@ import {
   Button,
   Button2,
   FlechitaDesplegableNone,
-  Atencion
+  Atencion,
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -88,6 +88,7 @@ import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
+import TecladoContainer from '../Tecleado/TecladoContainer';
 
 export default ({
   session,
@@ -100,7 +101,6 @@ export default ({
   onCloseClick,
 }) => {
   let idx = 0;
-
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -108,7 +108,9 @@ export default ({
         <Header>
           <Cuadro>
             <div>
-              <Img src={Sustituto} />
+              <Button onClick={() => Activar(1)}>
+                <Img src={Sustituto} />
+              </Button>
             </div>
             <div>
               <Marca> = Marca, </Marca>
@@ -119,17 +121,13 @@ export default ({
           </Cuadro>
         </Header>
         <Cont>
-          {session === undefined ? (
+          {session.length === 0 ? (
             <div>Cargando</div>
           ) : session[indice].isWeighable ? (
             ///////////////// PRODUCTO PESABLE /////////////////
             <>
               <ColIzq>
-              
-         <PopUpPesables
-             active={active}
-             onCloseClick={onCloseClick}
-             />
+                <PopUpPesables active={active} onCloseClick={onCloseClick} />
 
                 <ColuIconos>
                   <Sup>
@@ -160,18 +158,23 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
+                    <Descri>
+                      Nombre del producto con doble linea lorem ipsum dolor sit
+                      amet
+                    </Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
                     </ContInfo>
                   </ContDer>
                   <DivGlobos>
-                    <Button onClick={() => Activar(1)}>
-                      {' '}
-                      <ImgAmarilla src={bubble} />
-                    </Button>
-                    <Button2 onClick={() => Activar(2)}>
+                    {session[indice].customerNote ? (
+                      <Button onClick={() => Activar(2)}>
+                        {' '}
+                        <ImgAmarilla src={bubble} />
+                      </Button>
+                    ) : null}
+                    <Button2 onClick={() => Activar(6)}>
                       <ImgAmarilla src={bubbleExc} />
                     </Button2>
                   </DivGlobos>
@@ -200,6 +203,7 @@ export default ({
                 <Instrucciones>
                   Coloca el producto sobre la balanza
                 </Instrucciones>
+
                 <Botones>
                   <BotIzq>
                     <Omitir>
@@ -210,15 +214,18 @@ export default ({
                       <Teclado src={TecladoIcono} />
                     </BotonTeclado>
                     <Siguiente
-                      onClick={() => {
-                        pickeado(session[indice].id, session[indice].purchasedQuantity);
-                      }}
+                      onClick={() =>
+                        pickeado(
+                          session[indice].id,
+                          session[indice].purchasedQuantity,
+                        )
+                      }
                     >
                       {' '}
                       SIGUIENTE
                     </Siguiente>{' '}
                   </BotIzq>
-                  <BotDer onClick={()=>Activar(4)}>
+                  <BotDer onClick={() => Activar(4)}>
                     <PlusCircle src={masBlanco}></PlusCircle>
                   </BotDer>
                 </Botones>
@@ -228,7 +235,6 @@ export default ({
             ////////////////// PRODUCTO NORMAL //////////////////
             <>
               <ColIzq>
-               
                 <ColuIconos>
                   <Sup>
                     <ContainerGrillCuadros>
@@ -255,18 +261,23 @@ export default ({
                 <ContMarca>
                   <ContDer>
                     <MarcaH1>{session[indice].name}</MarcaH1>
-                    <Descri>Nombre del producto con doble linea lorem ipsum dolor  sit amet</Descri>
+                    <Descri>
+                      Nombre del producto con doble linea lorem ipsum dolor sit
+                      amet
+                    </Descri>
                     <ContInfo>
                       <Tachado>${session[indice].purchasedPrice}</Tachado>
                       <Precio>${session[indice].purchasedPrice}</Precio>
                     </ContInfo>
                   </ContDer>
                   <DivGlobos>
-                    <Button onClick={() => Activar(1)}>
-                      {' '}
-                      <ImgAmarilla src={bubble} />
-                    </Button>
-                    <Button2 onClick={() => Activar(2)}>
+                    {session[indice].customerNote ? (
+                      <Button onClick={() => Activar(2)}>
+                        {' '}
+                        <ImgAmarilla src={bubble} />
+                      </Button>
+                    ) : null}
+                    <Button2 onClick={() => Activar(6)}>
                       <ImgAmarilla src={bubbleExc} />
                     </Button2>
                   </DivGlobos>
@@ -285,35 +296,35 @@ export default ({
                     <H1CantidadNum>
                       / {session[indice].purchasedQuantity}
                     </H1CantidadNum>
-                      <ContFlechitas>
-                    {count == 0 ? (
+                    <ContFlechitas>
+                      {count == 0 ? (
                         <>
-                        <FlechitaDesplegable
-                          src={flechaDesplegableArriba}
-                          onClick={() => setCount(count + 1)}
-                        />
-                        <FlechitaDesplegableNone />
+                          <FlechitaDesplegable
+                            src={flechaDesplegableArriba}
+                            onClick={() => setCount(count + 1)}
+                          />
+                          <FlechitaDesplegableNone />
                         </>
-                    ) : (
-                      count >= session[idx].purchasedQuantity ? (
+                      ) : count >= session[idx].purchasedQuantity ? (
                         <>
-                        <FlechitaDesplegableNone />
-                        <FlechitaDesplegable
-                          src={flechaDesplegableAbajo}
-                          onClick={() => setCount(count - 1)} />
+                          <FlechitaDesplegableNone />
+                          <FlechitaDesplegable
+                            src={flechaDesplegableAbajo}
+                            onClick={() => setCount(count - 1)}
+                          />
                         </>
-                        ) : (
-                            <>
-                            <FlechitaDesplegable
-                              src={flechaDesplegableArriba}
-                              onClick={() => setCount(count + 1)}/>
-                            <FlechitaDesplegable
-                              src={flechaDesplegableAbajo}
-                              onClick={() => setCount(count - 1)}/>
-                            </>
-                            )
-                        )
-                    }
+                      ) : (
+                        <>
+                          <FlechitaDesplegable
+                            src={flechaDesplegableArriba}
+                            onClick={() => setCount(count + 1)}
+                          />
+                          <FlechitaDesplegable
+                            src={flechaDesplegableAbajo}
+                            onClick={() => setCount(count - 1)}
+                          />
+                        </>
+                      )}
                     </ContFlechitas>
                   </RecuadroCantidadNormal>
                   <DivImageStock>
@@ -333,16 +344,14 @@ export default ({
                       <Teclado src={TecladoIcono} />
                     </BotonTeclado>
                     <Siguiente
-                      onClick={() => {
-                        pickeado(session[indice].id, count);
-                      }}
+                      onClick={() => pickeado(session[indice].id, count) }
                     >
                       {' '}
                       SIGUIENTE
                     </Siguiente>{' '}
                     {/*CHEQUEAR QUE SUME 1 BIEN*/}
                   </BotIzq>
-                  <BotDer onClick={()=>Activar(4)}>
+                  <BotDer onClick={() => Activar(4)}>
                     <PlusCircle src={masBlanco}></PlusCircle>
                   </BotDer>
                 </Botones>
@@ -354,5 +363,3 @@ export default ({
     </>
   );
 };
-
-
