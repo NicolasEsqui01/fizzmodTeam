@@ -8,6 +8,7 @@ import inicioReducer from "../app/reducers/inicioReducer"
 import sessionReducer from '../app/reducers/sessionReducer'
 import pickingReducer from '../app/reducers/pickingReducer'
 import popupReducer from '../app/reducers/popupReducer'
+import tecladoReducer from '../app/reducers/tecladoReducer'
 import history from 'utils/history';
 
 /**
@@ -19,6 +20,7 @@ export default function createReducer(injectedReducers = {
   sessionReducer, 
   pickingReducer,
   popupReducer,
+  tecladoReducer,
 }) {
   const rootReducer = combineReducers({
     router: connectRouter(history),

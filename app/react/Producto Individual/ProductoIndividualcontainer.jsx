@@ -21,6 +21,7 @@ const ProductoIndividualcontainer = ({
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
 
+
   const handleBtnClick = (n) => {
     Activar(n);
   };
