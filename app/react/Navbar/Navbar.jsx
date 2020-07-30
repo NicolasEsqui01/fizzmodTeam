@@ -16,26 +16,24 @@ import flechaAtras from '../../images/arrow_short_prev.svg';
 import history from '../../utils/history';
 import CronometroContainer from '../cronometro/Loadable';
 
-export default ({ booleano, booleano1, items, qty }) => {
-  let itemsPicked = 0;
-  let length = 0;
+export default ({ booleano , items, qtyPicked , sessionId }) => {
   let totalItems =0;
   if (items) {
     totalItems = items.length;
-    items.find((item) => {
-      if (item.status == 'picked') {
-        itemsPicked = itemsPicked + 1;
-      }
-    });
+    // items.find((item) => {
+    //   if (item.status == 'picked') {
+    //     itemsPicked = itemsPicked + 1;
+    //   }
+    // });
   }
   return (
     <NavCont>
-      {booleano1 || booleano ? (
+      {booleano ? (
         <ContenedorFlecha>
           <FlechaAtras src={flechaAtras} onClick={history.goBack} />
-          <OvaloCantidad onClick={() => history.push('/session')}>
+          <OvaloCantidad onClick={() => history.push(`/session/${sessionId}`)}>
             <H1Cantidades>
-              {qty}/{length}
+              {qtyPicked}/{totalItems}
             </H1Cantidades>
           </OvaloCantidad>
         </ContenedorFlecha>
@@ -47,7 +45,7 @@ export default ({ booleano, booleano1, items, qty }) => {
       <div>
         <ImgLogo src={Janis} alt="3" />
       </div>
-      {booleano1 || booleano ? (
+      {booleano ? (
         <CronometroContainer />
       ) : (
         <div>

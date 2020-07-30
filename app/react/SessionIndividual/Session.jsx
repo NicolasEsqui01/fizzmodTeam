@@ -52,11 +52,9 @@ import waves from '../../images/wavesCelest.svg';
 import balance from '../../images/balance.svg';
 import snow from '../../images/snowflakeCelest.svg';
 
-export default () => {
-  const prueba = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export default ({ Idsession }) => {
   return (
     <>
-      <Navbar booleano1={true} />
       <Container>
         <LIzquierdo>
           <ContainerIzquierdo>
@@ -73,7 +71,7 @@ export default () => {
               </IconoCanasta>
               <IconoOrden>
                 <TitleOrden>Ronda</TitleOrden>
-                <NumeroOrden>NRO.837289</NumeroOrden>
+                <NumeroOrden>{`NRO.${Idsession.id}`}</NumeroOrden>
               </IconoOrden>
             </ParteSuperior>
           </ContainerIzquierdo>
@@ -89,7 +87,7 @@ export default () => {
               <ImageTriangle src={triangleCircle} />
               <TitlePedidos>Productos</TitlePedidos>
               <BorderNumeroPedido>
-                <NumeroPedidos>6</NumeroPedidos>
+                <NumeroPedidos>{ Idsession.items && Idsession.items.length}</NumeroPedidos>
               </BorderNumeroPedido>
             </Pedidos>
             <Pedidos>
@@ -105,33 +103,35 @@ export default () => {
           </HeaderDiv>
 
           <DivScroll>
-            {prueba.map((elem) => (
-              <Productos key={elem}>
-                <DivR>
-                  <Img src={basket} />
-                  <DivX>
-                    <Descripcion>DESCRIPCION DEL PRODUCTO</Descripcion>
+            { Idsession.items && Idsession.items.map((elem) => {
+              return (
+                <Productos key={elem.id} estado={elem.status}>
+                  <DivR>
+                    <Img src={elem.imageUrl} />
+                    <DivX>
+                      <Descripcion>{elem.name}</Descripcion>
 
-                    <DivZ>
-                      <Icono2 src={scanner} />
-                      <Ean>1234456112</Ean>
-                      <Cantidad>30 / 30</Cantidad>
-                    </DivZ>
-                  </DivX>
-                </DivR>
-                <DivK></DivK>
-                <DivP>
-                  <Icono src={basket} />
-                  <Num> 1. </Num>
-                  <Icono3 src={box} />
-                  <Num2>5f0507d88459ab000839154e</Num2>
-                  <DivB>
-                    <Icono4 src={balance} />
-                    <Icono4 src={substitute} />
-                  </DivB>
-                </DivP>
-              </Productos>
-            ))}
+                      <DivZ>
+                        <Icono2 src={scanner} />
+                        <Ean>{elem.ean}</Ean>
+                        <Cantidad>30 / 30</Cantidad>
+                      </DivZ>
+                    </DivX>
+                  </DivR>
+                  <DivK></DivK>
+                  <DivP>
+                    <Icono src={basket} />
+                    <Num> 1. </Num>
+                    <Icono3 src={box} />
+                    <Num2>{Idsession.id}</Num2>
+                    <DivB>
+                      <Icono4 src={balance} />
+                      <Icono4 src={substitute} />
+                    </DivB>
+                  </DivP>
+                </Productos>
+              );
+            })}
           </DivScroll>
         </LDerecho>
       </Container>

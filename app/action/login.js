@@ -43,8 +43,5 @@ export const setRecuperarPassword = (obj) => {
   return (dispatch) => {
     return axios
       .post('https://id.janis.in/api/password-recovery', obj)
-      .then((res) => {
-        console.log(res.data);
-      });
   };
 };

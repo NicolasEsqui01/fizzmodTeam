@@ -5,23 +5,37 @@ import Navbar from './Navbar';
 const mapStateToProps = (state) => {
   return {
     items: state.sessionReducer.sessionPicking.items,
+    itemsPicking: state.pickingReducer.ItemsPicked,
+    booleano: state.sessionReducer.booleano,
+    sessionId: localStorage.getItem('sessionid'),
   };
-}
+};
 
-const NavbarContainer = ({time , status , booleano, items }) => {
+const NavbarContainer = ({ time, status, booleano, items, itemsPicking, sessionId }) => {
 
-  const [itemsPicked, setItemsPicked] = useState(0);
+  const [pickeados, setPickeados] = useState(0);
 
   useEffect(() => {
-    if(items){
-    let contador=0;
-    items.find(item =>{ if (item.status=="picked"){ contador++ }})
-    setItemsPicked(contador)
-    }},[items])
+    if (items != undefined) {
+      items.find((item) => {
+        if (item.status == 'picked') {
+          setPickeados(pickeados+1);
+        }
+      });
+    }
+  }, [itemsPicking]);
 
+  
   return (
-    <Navbar qty={itemsPicked} time={time} status={status} booleano={booleano} items={items}/>
-  )
-}
+    <Navbar
+      qtyPicked={pickeados}
+      items={items}
+      time={time}
+      status={status}
+      booleano={booleano}
+      sessionId={sessionId}
+    />
+  );
+};
 
 export default connect(mapStateToProps, null)(NavbarContainer);

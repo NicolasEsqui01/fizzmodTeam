@@ -5,6 +5,7 @@ import Cronometro from './Cronometro';
 const CronometroContainer = ({}) => {
   const [time, setTime] = useState({ s: 0, m: 0, h: 0 });
   const [interv, setInterv] = useState();
+  const [booleano , setBooleano] = useState(false)
 
   let updatedS = time.s , updatedM = time.m , updatedH = time.h;
 
@@ -12,6 +13,12 @@ const CronometroContainer = ({}) => {
     run();
     setInterv(setInterval(run, 1000));
   };
+
+  useEffect(() => {
+    return () => {
+      clearInterval(interv)
+    };
+  }, []);
 
   const run = () => {
     if (updatedM === 60) {
@@ -26,9 +33,13 @@ const CronometroContainer = ({}) => {
     return setTime({ s: updatedS, m: updatedM, h: updatedH })
   };
 
-  if (time.s === 0 && time.m === 0 && time.h === 0 ) {
-    start()
+  localStorage.setItem('cronometro', JSON.stringify(time))
+
+  if (!booleano) {
+      start()
+      setBooleano(!booleano)
   }
+
 
   return (
     <Cronometro time={time}/>

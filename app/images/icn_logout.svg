@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>icn_logout</title>
+    <desc>Created with Sketch.</desc>
+    <g id="1024---App-PICKING---Flujo-normal" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M14.494,5.5609 C17.088,6.5759 18.932,9.0959 18.932,12.0439 C18.932,15.8859 15.806,19.0119 11.966,19.0119 C8.124,19.0119 5,15.8859 5,12.0439 C5,9.0959 6.845,6.5759 9.436,5.5609 L9.436,5.5609 L9.436,7.2129 C7.699,8.1269 6.509,9.9489 6.509,12.0439 C6.509,15.0529 8.957,17.5009 11.966,17.5009 C14.973,17.5009 17.422,15.0529 17.422,12.0439 C17.422,9.9489 16.232,8.1269 14.494,7.2129 L14.494,7.2129 Z M12.7775,4 L12.7775,12.63 L11.1535,12.63 L11.1535,4 L12.7775,4 Z" id="icn_logout" fill="#939598"></path>
+    </g>
+</svg>

@@ -12,7 +12,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 96vh;
+  height: 93vh;
   @import url('https://fonts.googleapis.com/css?family=Roboto');
   body {
     font-family: 'Roboto', sans-serif;
@@ -414,7 +414,7 @@ export const PrePickeadas = styled.button`
   text-align: center;
   background-color: #ffffff;
   border: 2px solid #ffffff;
-  border-bottom:${props => props.status === 'picked' ?  '4px solid #273947' : null};
+  border-bottom:${props => props.status === 'pickedAndPicking' ?  '4px solid #273947' : null};
   outline:none;
   cursor: pointer;
   
@@ -450,6 +450,7 @@ export const Button = styled.button`
   height: 50%;
   width: 60%;
   font-size: 200%;
+  cursor: pointer;
  
 }
   height: 80%;
@@ -467,6 +468,28 @@ export const Button = styled.button`
   outline:none;
 `;
 
-  
 
+export const ButtonRetomar = styled.button`
+@media ${device.tablet} {
+  
+  height: 50%;
+  width: 60%;
+  font-size: 200%;
+  cursor: pointer;
+ 
+}
+  height: 80%;
+  width: 50%;
+  color: #ffffff;
+  border:1px solid #F13B70;
+  font-family: Roboto;
+  font-size: 250%;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: #F13B70;
+  outline:none;
+`;
 
