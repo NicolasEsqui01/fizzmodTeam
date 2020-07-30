@@ -14,6 +14,12 @@ const CronometroContainer = ({}) => {
     setInterv(setInterval(run, 1000));
   };
 
+  useEffect(() => {
+    return () => {
+      clearInterval(interv)
+    };
+  }, []);
+
   const run = () => {
     if (updatedM === 60) {
       updatedH++;

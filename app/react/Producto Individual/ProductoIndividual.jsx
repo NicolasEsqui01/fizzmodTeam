@@ -25,6 +25,7 @@ import {
   ImgH,
   MarcaH1,
   Descri,
+  showInputPesable,
   Tachado,
   Precio,
   ContBarras,
@@ -34,13 +35,17 @@ import {
   ImgBarrita,
   ImBalanza,
   PesoProdu,
+  QtyPesables,
+  PesoCuadroInput,
   ContImagenes,
   CuadritoUno,
   PesoCuadro,
   CuadritoDos,
   ImgBalanzasUno,
+  Form,
   ImgBalanzasMas,
   Instrucciones,
+  InstruccionesWarning,
   RecuadroCantidadNormal,
   H1Cantidad,
   H1CantidadNum,
@@ -98,7 +103,15 @@ export default ({
   indice,
   Activar,
   active,
+  showInput,
+  setShowInput,
   onCloseClick,
+  inputRef,
+  handleChange,
+  handleSubmit,
+  wheights,
+  pesoTotal,
+  handleRemoveItem
 }) => {
   let idx = 0;
   return (
@@ -127,8 +140,13 @@ export default ({
             ///////////////// PRODUCTO PESABLE /////////////////
             <>
               <ColIzq>
-                <PopUpPesables active={active} onCloseClick={onCloseClick} />
 
+         <PopUpPesables
+             active={active}
+             onCloseClick={onCloseClick}
+             wheights={wheights}
+             handleRemoveItem={handleRemoveItem}
+             />
                 <ColuIconos>
                   <Sup>
                     <ContainerGrillCuadros>
@@ -190,20 +208,44 @@ export default ({
                 </ContBarras>
                 <ContImagenes>
                   <CuadritoUno>
+                    {
+                    wheights.length > 0 ? 
+                    (<QtyPesables onClick={() => Activar(3)}>{wheights.length}</QtyPesables>)
+                    : null
+                    }
                     <ImgBalanzasUno src={ImagenBalanza} />
                     <PesoCuadro>
                       {session[indice].purchasedQuantity}
                       kgs.
                     </PesoCuadro>
                   </CuadritoUno>
+                  <Form onSubmit={()=>{handleSubmit(event, session[indice].id, session[indice].name, session[indice].ean, session[indice].imageUrl)}}>
+                    <PesoCuadroInput
+                    type="number"
+                    step="any"
+                    ref={inputRef}
+                    showInput={showInput}
+                    active={active} 
+                    placeholder='Kgs.'
+                    onChange={handleChange}
+                    />
+                  </Form>
                   <CuadritoDos>
-                    <ImgBalanzasMas src={ImagenBalanzaMas} />
+                    <ImgBalanzasMas src={ImagenBalanzaMas} 
+                    onClick={() => { setShowInput(true) }}/>
                   </CuadritoDos>
                 </ContImagenes>
-                <Instrucciones>
+                {
+                  pesoTotal>session[indice].purchasedQuantity ?
+                  <InstruccionesWarning>
+                  Supera la Cantidad Solicitada por el Cliente
+                  ({session[indice].purchasedQuantity} kgs.)
+                  </InstruccionesWarning>
+                  :
+                  <Instrucciones>
                   Coloca el producto sobre la balanza
-                </Instrucciones>
-
+                  </Instrucciones>
+                }
                 <Botones>
                   <BotIzq>
                     <Omitir>
@@ -211,16 +253,15 @@ export default ({
                       OMITIR
                     </Omitir>
                     <BotonTeclado>
-                      <Teclado src={TecladoIcono} />
+                      <Teclado src={TecladoIcono} onClick={() => { setShowInput(true) }}/>
                     </BotonTeclado>
                     <Siguiente
                       onClick={() =>
                         pickeado(
                           session[indice].id,
                           session[indice].purchasedQuantity,
-                        )
-                      }
-                    >
+                          true
+                        )}>
                       {' '}
                       SIGUIENTE
                     </Siguiente>{' '}
@@ -344,7 +385,9 @@ export default ({
                       <Teclado src={TecladoIcono} />
                     </BotonTeclado>
                     <Siguiente
-                      onClick={() => pickeado(session[indice].id, count) }
+                      onClick={() => {
+                        pickeado(session[indice].id, count, false);
+                      }}
                     >
                       {' '}
                       SIGUIENTE

@@ -31,7 +31,7 @@ import fraction from "../../images/fraction.svg";
 import store from '../../images/store.svg';
 import moment from 'moment';
 
-export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, valor}) => {
+export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, valor }) => {
   let start;
   let end;
   let duration;
@@ -43,11 +43,14 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
  
   
 
-  
+
+
+
+
   return (
     <>
       <DivScroll>
-        { status == 'pending' ? 
+        {status == 'pending' ?
           (pendSessions.map((element) => {
             arrFractionable = 0;
             arrWeighable = 0;
@@ -56,16 +59,17 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-          
-              element.items.map((el)=>{
-              
-                el.isFresh==true? arrFresh += 1 : null;
-                el.isWeighable==true? arrWeighable +=1 : null;
-                el.isFractionable==true? arrFractionable +=1 : null;
-                el.isFrozen==true? arrFrozen +=1 : null;
-                
-             })
 
+            element.items.map((el) => {
+
+              el.isFresh == true ? arrFresh += 1 : null;
+              el.isWeighable == true ? arrWeighable += 1 : null;
+              el.isFractionable == true ? arrFractionable += 1 : null;
+              el.isFrozen==true? arrFrozen +=1 : null;
+
+            })
+
+           
             return (
               <ListOrdenes
                 key={element.id}
@@ -82,13 +86,13 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                       <Num>{element.totalItems}</Num> Items/
                     </Text>
                     <Text>
-                      <Num>{parseInt(duration * 10 ,10)}</Num>min
+                      <Num>{parseInt(duration * 10, 10)}</Num>min
                     </Text>
                   </DivT>
                   <DivP>
                     <Peso>
                       <ImgP src={balance} />
-                    <NumP>{arrWeighable}</NumP>
+                      <NumP>{arrWeighable}</NumP>
                     </Peso>
                     <Frio>
                       <ImgP src={snow} />
@@ -96,7 +100,7 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                     </Frio>
                     <Aire>
                       <ImgP src={waves} />
-                    <NumP>{arrFresh}</NumP>
+                      <NumP>{arrFresh}</NumP>
                     </Aire>
                     <Aire>
                       <ImgP src={fraction} />
@@ -117,8 +121,8 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                   </DivS>
                 </DivN>
               </ListOrdenes>
-                  );
-            })
+            );
+          })
           )
           :
           (pickedAndPikcingSessions.map((element) => {
@@ -136,35 +140,33 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
               
            })
 
-            
-           
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-            return element.status == "picked"? 
-                 (
-                 
-                 <ListOrdenes
+            return element.status == "picked" ?
+              (
+
+                <ListOrdenes
                   className="picked"
                   key={element.id}
                   permitir={valor}
                   div={element.id}
                   estadoOrden={element.status}
                   onClick={() => handleClick(element.id, 'picked')}>
-                    <ImgPicked src={box} />
-                    <DivN>
-                      <Numero>Nro.{element.id} </Numero>
-                      <DivT>
-                        <Text>
-                          <Num>{element.totalItems}</Num> Items/
+                  <ImgPicked src={box} />
+                  <DivN>
+                    <Numero>Nro.{element.id} </Numero>
+                    <DivT>
+                      <Text>
+                        <Num>{element.totalItems}</Num> Items/
                         </Text>
-                        <Text>
-                          <Num>{parseInt(duration * 10 ,10)}</Num>min
+                      <Text>
+                        <Num>{parseInt(duration * 10, 10)}</Num>min
                         </Text>
-                      </DivT>
-                      <DivP>
-                        <Peso>
-                          <ImgP src={balance} />
+                    </DivT>
+                    <DivP>
+                      <Peso>
+                        <ImgP src={balance} />
                         <NumP>{arrWeighable}</NumP>
                         </Peso>
                         <Frio>
@@ -209,8 +211,8 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                         <Text>
                           <Num>{element.totalItems}</Num> Items/
                         </Text>
-                        <Text>
-                          <Num>{parseInt(duration * 10 ,10)}</Num>min
+                    <Text>
+                      <Num>{parseInt(duration * 10, 10)}</Num>min
                         </Text>
                       </DivT>
                       <DivP>
@@ -248,7 +250,9 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                 )
                }
               )
-            )
+          
+          )
+          
         }
       </DivScroll>
     </>
