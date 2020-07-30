@@ -49,7 +49,7 @@ export default ({ active, onCloseClick, Activar, idSession }) => {
    largo = idSession.items.filter(Element => Element.status === 'picked').length
   }
   if(largo !== 0){
-  porcentaje = (largo/total)*100 - 13
+  porcentaje = (largo/total)*100 -10
   }
 
  

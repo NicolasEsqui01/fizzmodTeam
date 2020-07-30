@@ -12,7 +12,7 @@ export const itemPicked = (sessionId, obj) => {
   return (dispatch) => {
     return axios
       .post(`https://picking.janis.in/api/session/${sessionId}/pick`, obj , headers())
-      .then((res) => dispatch(Picked(res.data)) )
+      .then((res) => { dispatch(Picked(obj.items)) })
       .catch(err =>{
         return err.response.data
       });

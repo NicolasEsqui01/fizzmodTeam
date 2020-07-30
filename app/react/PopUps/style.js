@@ -18,6 +18,28 @@ const ScaleCenter = keyframes`
 100% {
   transform: scale(1);
 }
+`
+export const ImgX = styled.img`
+width: 50px;   
+height: 50px;   
+@media ${device.tablet} 
+{
+  width: 20px;     
+  height: 20px;  
+}
+`   
+export const ImgM = styled.img`
+width: 75px;
+  height: 100px;
+  @media ${device.tablet} {
+    width: 50px;
+  }
+`
+
+export const ImgX2 = styled.img `
+cursor: pointer;
+width:30px;
+height:30px;
 `;
 
 const DiagonalEffect = keyframes`
@@ -34,6 +56,17 @@ const DiagonalEffect = keyframes`
   transform-origin: 100% 0%;
 }
 `
+
+
+export const ImgO = styled.img `
+height:100px;
+width:100px;
+margin:6%;
+@media ${device.tablet} {
+  width:50px;
+  height:50px;
+`
+
 ////POPups Sstitutos, Obvservacion, Opciones/////////////////////////////
 
 export const Button = styled.button`
@@ -77,33 +110,14 @@ export const ImgP = styled.img`
   }
 `;
 
-export const ImgX = styled.img`
-  width: 50px;
-  height: 50px;
-  @media ${device.tablet} {
-    width: 20px;
-    height: 20px;
-  }
-`;
-export const ImgX2 = styled.img`
-  width: 30px;
-  height: 30px;
-`;
-
-export const ImgM = styled.img`
-  width: 75px;
-  height: 100px;
-  @media ${device.tablet} {
-    width: 50px;
-  }
-`;
-export const ImgO = styled.img`
-  height: 100px;
-  width: 100px;
-  margin: 6%;
-  @media ${device.tablet} {
-    width: 50px;
-    height: 50px;
+export const ButtonX = styled.button`
+text-align:right;
+margin-top:7px;
+margin-right:7px;
+border: 1px solid transparent;
+background-color: transparent;
+outline:none;
+@media ${device.tablet} {
   }
 `;
 
@@ -134,17 +148,6 @@ margin-left:${props => props.Done}%;
 align-items:center;
 `
 
-export const ButtonX = styled.button`
-  width: 10%;
-  margin-left: 35%;
-  cursor: pointer;
-  border: 1px solid transparent;
-  background-color: transparent;
-  outline: none;
-  @media ${device.tablet} {
-    margin-left: 10%;
-  }
-`;
 export const ButtonX4 = styled.button`
   width: 10%;
   cursor: pointer;
@@ -202,41 +205,40 @@ export const Logout = styled.button`
 `;
 ////POPups Balance ////////////////
 export const PopUpProduAcum = styled.div`
-  width: 100%;
-  height: 20%;
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
-  border-radius: 10px;
-`;
-export const HeaderDiv = styled.div`
-  @media ${device.tablet} {
-    height: 50px;
-  }
-  display: flex;
-  align-items: center;
-  width: 90%;
-  height: 8%;
-  margin-left: 5%;
-`;
+ width:100%;
+ display:flex;
+ align-items: center;
+ background-color:#FFFFFF;
+ border-radius: 10px;
+
+`
+export const HeaderDiv = styled.div `
+@media ${device.tablet} {
+height:50px;
+}
+display:flex;
+align-items:center;
+width: 90%;
+height: 8%;
+margin-left:5%;
+`
 export const DivScroll = styled.div`
-  @media ${device.tablet} {
-    height: 90%;
-  }
+@media ${device.tablet} {
+  height: 70%;
+}
   overflow: auto;
   height: 100%;
   margin-left: 5%;
   width: 90%;
-`;
+  height: 80%;
+`
 
-export const TextB = styled.h1`
-  @media ${device.tablet} {
-    font-size: 15px;
+export const TextB = styled.h1 `
+@media ${device.tablet} {
+  font-size: 15px;
   }
-  margin-top: 4%;
-  height: 15px;
-  width: 30%;
-  color: #ffffff;
+  width: 47%;
+  color: #FFFFFF;
   font-family: Roboto;
   font-size: 20px;
   letter-spacing: 0;
@@ -247,22 +249,37 @@ export const TextB2 = styled.h1`
   @media ${device.tablet} {
     font-size: 15px;
   }
-  margin-top: 4%;
-  height: 15px;
-  width: 30%;
-  color: #ffffff;
+  width: 47%;
+  color: #FFFFFF;
   font-family: Roboto;
   font-size: 20px;
   letter-spacing: 0;
   line-height: 15px;
   text-align: center;
-  margin-left: 25%;
-  margin-right: 5%;
-`;
-export const Descripcion = styled.div`
-  @media ${device.tablet} {
-    height: 20%;
-    width: 90%;
+`
+export const Descripcion = styled.div `
+@media ${device.tablet} {
+  height:20%;
+  width:90%;
+  }
+margin-left:2%;
+height: 20px;
+color: #939598;
+font-family: Roboto;
+line-height: 18px;
+
+`
+export const ButtonM = styled.button `
+background-color:#FFFFFF;
+outline:none;
+border: 1px solid #FFFFFF;
+cursor:pointer;
+`
+
+export const Icono = styled.img `
+@media ${device.tablet} {
+  height:40px;
+  width:50px;
   }
   width: 50%;
   margin-left: 2%;
@@ -273,22 +290,17 @@ export const Descripcion = styled.div`
   letter-spacing: 0;
   line-height: 18px;
 `;
-export const ButtonM = styled.button`
-  background-color: #ffffff;
-  outline: none;
-  border: 1px solid #ffffff;
-  cursor: pointer;
-`;
 
-export const Icono = styled.img`
-  @media ${device.tablet} {
-    height: 40px;
-    width: 50px;
-  }
-  height: 30px;
-  width: 30px;
-  margin-left: 2%;
-`;
+// export const Icono = styled.img`
+//   @media ${device.tablet} {
+//     height: 40px;
+//     width: 50px;
+//   }
+//   height: 30px;
+//   width: 30px;
+//   margin-left: 2%;
+// `;
+
 export const Ean = styled.div`
   @media ${device.tablet} {
     height: 10%;
@@ -296,41 +308,39 @@ export const Ean = styled.div`
     width: 70%;
     margin-left: 12%;
   }
-  width: 25%;
-  color: #273947;
-  font-family: Roboto;
-  font-size: 100%;
-  font-weight: bold;
-  letter-spacing: 0;
-  margin-left: 2%;
-`;
-export const Cantidad = styled.div`
-  @media ${device.tablet} {
-    width: 30%;
-    height: 35%;
-    margin-left: 0;
-    margin-right: 0;
-    font-size: 120%;
+color: #273947;
+font-family: Roboto;
+font-weight: bold;
+margin-left:2%;
+
+`
+export const Cantidad =styled.div `
+@media ${device.tablet} {
+  width:30%;
+  height:35%;
+  margin-left:0;
+  margin-right:0;
+  font-size:110%;
   }
+padding-top: 10px;
+padding-bottom: 10px;
+border: 1px solid #E8EAF6;
+font-size:130%;
+color: #273947;
+font-family: Roboto;
+line-height:45px;
+padding:5px;
+height:55%;
+width:20%;
+display:flex;
+justify-content:center;
+align-items: center;
+border-radius:30px;
+font-weight: bold;
+line-height: 19px;
+text-align: center;
 
-  border: 1px solid #e8eaf6;
-  font-size: 160%;
-  color: #273947;
-  font-family: Roboto;
-  line-height: 45px;
-  padding: 5px;
-  height: 55%;
-  width: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  font-weight: bold;
-  letter-spacing: 0;
-  line-height: 19px;
-  text-align: center;
-`;
-
+`
 //////controladores/////////
 
 export const DivCC = styled.div`
@@ -484,18 +494,30 @@ export const DivF = styled.div`
 `;
 
 //balance
-export const DivZ = styled.div`
-  display: flex;
-  position: fixed;
-  background-color: #273947;
-  width: 50%;
-  height: 100%;
-  flex-direction: column;
-  ${(props) => (props.active === 3 ? null : `display:none`)};
-  @media ${device.mobile} {
-    width: 90%;
-  }
-`;
+export const DivZ = styled.div `
+display: flex;    
+position:fixed;
+background-color:#273947;
+width: 50%;
+flex-direction: column;
+opacity: 95%;
+margin-top:-6%;
+height:75%;
+animation: ${slideRight} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+${props => props.active === 3? null: `display:none`};
+@media ${device.mobile} {
+width: 90%;
+margin-top: 0%;
+height: 56%;
+}
+`
+// export const DivR = styled.div `
+// @media ${device.tablet} {
+//   height:70%;
+//   width:95%;
+//   }
+// `;
+
 export const DivR = styled.div`
   @media ${device.tablet} {
     height: 70%;
