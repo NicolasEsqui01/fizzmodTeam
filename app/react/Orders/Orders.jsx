@@ -27,6 +27,7 @@ import waves from '../../images/wavesCelest.svg';
 import balance from '../../images/balanceCelest.svg';
 import snow from '../../images/snowflakeCelest.svg';
 import substitute from '../../images/substitute.svg';
+import fraction from "../../images/fraction.svg";
 import store from '../../images/store.svg';
 import moment from 'moment';
 
@@ -37,8 +38,9 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
   let arrFractionable = 0;
   let arrWeighable = 0;
   let arrFresh = 0;
+  let arrFrozen = 0;
   
-  
+ 
   
 
   
@@ -50,6 +52,7 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
             arrFractionable = 0;
             arrWeighable = 0;
             arrFresh = 0;
+            arrFrozen = 0;
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
@@ -59,6 +62,7 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                 el.isFresh==true? arrFresh += 1 : null;
                 el.isWeighable==true? arrWeighable +=1 : null;
                 el.isFractionable==true? arrFractionable +=1 : null;
+                el.isFrozen==true? arrFrozen +=1 : null;
                 
              })
 
@@ -88,11 +92,15 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                     </Peso>
                     <Frio>
                       <ImgP src={snow} />
-                    <NumP>{arrFractionable}</NumP>
+                    <NumP>{arrFrozen}</NumP>
                     </Frio>
                     <Aire>
                       <ImgP src={waves} />
                     <NumP>{arrFresh}</NumP>
+                    </Aire>
+                    <Aire>
+                      <ImgP src={fraction} />
+                    <NumP>{arrFractionable}</NumP>
                     </Aire>
                   </DivP>
                   <DivS>
@@ -117,12 +125,14 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
             arrFractionable = 0;
             arrWeighable = 0;
             arrFresh = 0;
+            arrFrozen = 0;
 
             element.items.map((el)=>{
               
               el.isFresh==true? arrFresh +=1 : null;
               el.isWeighable==true? arrWeighable += 1: null;
               el.isFractionable==true? arrFractionable +=1 : null;
+              el.isFrozen==true? arrFrozen +=1 : null;
               
            })
 
@@ -159,12 +169,16 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                         </Peso>
                         <Frio>
                           <ImgP src={snow} />
-                        <NumP>{arrFractionable}</NumP>
+                        <NumP>{arrFrozen}</NumP>
                         </Frio>
                         <Aire>
                           <ImgP src={waves} />
                           <NumP>{arrFresh}</NumP>
                         </Aire>
+                        <Aire>
+                      <ImgP src={fraction} />
+                    <NumP>{arrFractionable}</NumP>
+                    </Aire>
                       </DivP>
                       <DivS>
                         <Marca>
@@ -206,12 +220,16 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                         </Peso>
                         <Frio>
                           <ImgP src={snow} />
-                          <NumP>{arrFractionable}</NumP>
+                          <NumP>{arrFrozen}</NumP>
                         </Frio>
                         <Aire>
                           <ImgP src={waves} />
                           <NumP>{arrFresh}</NumP>
                         </Aire>
+                        <Aire>
+                      <ImgP src={fraction} />
+                    <NumP>{arrFractionable}</NumP>
+                    </Aire>
                       </DivP>
                       <DivS>
                         <Marca>
