@@ -483,6 +483,64 @@ export const PesoCuadro = styled.h1`
   text-align: center;
 `;
 
+export const PesoCuadroInput = styled.input`
+  height: 54px;
+  width: 109px;
+  color: #273947;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-left:20px;
+  border: 2px solid #0368F;
+  ${props => props.showInput == false ? `display:none` : null};
+  ${props => props.active == 2 || props.active == 6  ? `display:none` : null};
+  @media ${device.tablet} {
+
+} 
+
+  &::-webkit-input-placeholder {
+    color: black;
+  }
+  &:focus {
+        box-shadow: 0px 0px 2px #0368FF;
+    }
+
+  &::-webkit-inner-spin-button {
+
+    -webkit-appearance: none;
+
+    margin: 0;
+
+  }
+`;
+
+export const Form = styled.form`
+  display: inline-block;
+`;
+
+export const QtyPesables = styled.div`
+@media ${device.tablet} {
+  height: 23px;
+  width: 23px;
+  font-size:13px;
+} 
+  font-size:15px;
+  height: 25px;
+  width: 25px;
+  color: white;
+  text-align:center;
+  background-color: #0368FF;
+  border-radius: 50px;
+  padding: 2px;
+  font-family: Roboto;
+  font-weight: bold;
+  margin-left: -18px;
+  margin-top: -10px;
+`;
+
+
+
 export const CuadritoDos = styled.div`
   box-sizing: border-box;
   height: 55px;
@@ -512,6 +570,14 @@ margin-top: 15px;
 color: #273947;
 font-family: Roboto;
 font-size: 16px;
+`;
+
+export const InstruccionesWarning = styled.h1`
+margin-top: 15px;
+color: red;
+font-family: Roboto;
+font-size: 16px;
+font-weight: bold;
 `;
 
 
@@ -708,7 +774,7 @@ export const Siguiente = styled.button`
   border:1px solid #1DB779;
   color: #ffffff;
   font-family: Roboto;
-  font-size: 14px;
+  font-size: 23px;
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;
