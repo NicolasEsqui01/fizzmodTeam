@@ -22,6 +22,8 @@ const ProductoIndividualcontainer = ({
   const [count, setCount] = useState(0);
   const [showInput, setShowInput] = useState(false);
   const [input, setInput] = useState(0);
+  const [pesoTotal, setPesoTotal] = useState(0);
+  const [difPeso, setDifPeso] = useState(0);
   const [wheights, setWheights] = useState([]);
 
   const handleBtnClick = (n) => {
@@ -40,31 +42,57 @@ const ProductoIndividualcontainer = ({
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if(showInput == true)
+    if(showInput)
     inputRef.current.focus();
   }, [showInput]);
 
   useEffect(() => {
-    if(input!=0) inputRef.current.value="";
+    if(inputRef.current && input!=0) inputRef.current.value="";
   }, [wheights]);
 
-  const ItemPicked = (iditems, qty) => {
-    const data = {
-      token: token,
-      items: [
-        {
-          id: iditems,
-          pickedQuantity: qty,
-        },
-      ],
-    };
+  const ItemPicked = (iditems, qty, pesable) => {
+    let data ={}
+    if(pesable == true){
+      let dataPesable = {
+        token: token,
+        items: [
+          {
+            id: iditems,
+            pickedQuantity: pesoTotal,
+          },
+        ],
+      }
+      data = dataPesable
+    } else{
+      let dataNoPesable = {
+        token: token,
+        items: [
+          {
+            id: iditems,
+            pickedQuantity: qty,
+          },
+        ],
+      }
+      data = dataNoPesable
+    }
 
     if (Number(indice) === items.length) {
-      return history.push('/confirmacion');
+      // return history.push('/confirmacion');
+      return history.push({
+                pathname: '/confirmacion',
+                state: { idSession: idSession,
+                         data: data
+                       }
+                     })
+      setWheights([]);
+      setPesoTotal(0);
+      setCount(0)
     } else {
-      sendItemPicked(idSession, data)
+        sendItemPicked(idSession, data)
         .then(() => {
           let newIndice = Number(indice) + 1;
+          setWheights([]);
+          setPesoTotal(0);
           return history.push(`/productoindividual/${idSession}/${newIndice}`);
         })
         .then(() => setCount(0));
@@ -72,7 +100,7 @@ const ProductoIndividualcontainer = ({
   };
 
   const handleChange = (event) => {
-    setInput(event.target.value);
+    setInput(Number(event.target.value));
   };
 
   const handleSubmit = (event, id, name, ean, image) => {
@@ -84,17 +112,22 @@ const ProductoIndividualcontainer = ({
       img: image,
       qty: input
     }
+    let nuevoPeso = pesoTotal + input;
+    setPesoTotal(nuevoPeso)
     setWheights([...wheights,itemPesable])
   };
 
   const handleRemoveItem = (idx) => {
     if (idx > -1) {
+    let restarPeso = wheights[idx].qty
     wheights.splice(idx,1)
     setWheights([...wheights]);
-    console.log("wheights OK", wheights)
-  }};
+    let nuevoPeso = pesoTotal - restarPeso;
+    setPesoTotal(nuevoPeso)
+  }
+  if (wheights.length == 0) handleCloseClick();
+  };
 
-  console.log("CHEQUEANDO ", wheights)
 
   return (
     <>
@@ -114,6 +147,7 @@ const ProductoIndividualcontainer = ({
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           wheights={wheights}
+          pesoTotal={pesoTotal}
           handleRemoveItem={handleRemoveItem}
         />
       ) : null}

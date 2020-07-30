@@ -45,6 +45,7 @@ import {
   Form,
   ImgBalanzasMas,
   Instrucciones,
+  InstruccionesWarning,
   RecuadroCantidadNormal,
   H1Cantidad,
   H1CantidadNum,
@@ -109,12 +110,10 @@ export default ({
   handleChange,
   handleSubmit,
   wheights,
+  pesoTotal,
   handleRemoveItem
 }) => {
   let idx = 0;
-  console.log(session[indice]);
-  console.log("wheights en componente de prod",wheights)
-
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -207,7 +206,11 @@ export default ({
                 </ContBarras>
                 <ContImagenes>
                   <CuadritoUno>
-                    <QtyPesables onClick={() => Activar(3)}>{wheights.length}</QtyPesables>
+                    {
+                    wheights.length > 0 ? 
+                    (<QtyPesables onClick={() => Activar(3)}>{wheights.length}</QtyPesables>)
+                    : null
+                    }
                     <ImgBalanzasUno src={ImagenBalanza} />
                     <PesoCuadro>
                       {session[indice].purchasedQuantity}
@@ -219,7 +222,8 @@ export default ({
                     type="number"
                     step="any"
                     ref={inputRef}
-                    showInput={showInput} 
+                    showInput={showInput}
+                    active={active} 
                     placeholder='Kgs.'
                     onChange={handleChange}
                     />
@@ -229,10 +233,17 @@ export default ({
                     onClick={() => { setShowInput(true) }}/>
                   </CuadritoDos>
                 </ContImagenes>
-                <Instrucciones>
+                {
+                  pesoTotal>session[indice].purchasedQuantity ?
+                  <InstruccionesWarning>
+                  Supera la Cantidad Solicitada por el Cliente
+                  ({session[indice].purchasedQuantity} kgs.)
+                  </InstruccionesWarning>
+                  :
+                  <Instrucciones>
                   Coloca el producto sobre la balanza
-                </Instrucciones>
-           
+                  </Instrucciones>
+                }
                 <Botones>
                   <BotIzq>
                     <Omitir>
@@ -240,13 +251,14 @@ export default ({
                       OMITIR
                     </Omitir>
                     <BotonTeclado>
-                      <Teclado src={TecladoIcono} />
+                      <Teclado src={TecladoIcono} onClick={() => { setShowInput(true) }}/>
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
                         pickeado(
                           session[indice].id,
                           session[indice].purchasedQuantity,
+                          true
                         );
                       }}
                     >
@@ -372,7 +384,7 @@ export default ({
                     </BotonTeclado>
                     <Siguiente
                       onClick={() => {
-                        pickeado(session[indice].id, count);
+                        pickeado(session[indice].id, count, false);
                       }}
                     >
                       {' '}

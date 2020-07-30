@@ -494,6 +494,11 @@ export const PesoCuadroInput = styled.input`
   margin-left:20px;
   border: 2px solid #0368F;
   ${props => props.showInput == false ? `display:none` : null};
+  ${props => props.active == 2 || props.active == 6  ? `display:none` : null};
+  @media ${device.tablet} {
+
+} 
+
   &::-webkit-input-placeholder {
     color: black;
   }
@@ -565,6 +570,14 @@ margin-top: 15px;
 color: #273947;
 font-family: Roboto;
 font-size: 16px;
+`;
+
+export const InstruccionesWarning = styled.h1`
+margin-top: 15px;
+color: red;
+font-family: Roboto;
+font-size: 16px;
+font-weight: bold;
 `;
 
 

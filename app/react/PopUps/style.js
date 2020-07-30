@@ -181,19 +181,16 @@ align-items:center;
 width: 90%;
 height: 8%;
 margin-left:5%;
-
 `
 export const DivScroll = styled.div`
 @media ${device.tablet} {
-  
-  height: 90%;
- 
+  height: 70%;
 }
   overflow: auto;
   height: 100%;
   margin-left:5%;
   width: 90%;
-
+  height: 80%;
 `
 
 export const TextB = styled.h1 `
@@ -449,10 +446,14 @@ background-color:#273947;
 width: 50%;
 flex-direction: column;
 opacity: 95%;
+margin-top:-6%;
+height:75%;
 animation: ${slideRight} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 ${props => props.active === 3? null: `display:none`};
 @media ${device.mobile} {
 width: 90%;
+margin-top: 0%;
+height: 56%;
 }
 `
 export const DivR = styled.div `
