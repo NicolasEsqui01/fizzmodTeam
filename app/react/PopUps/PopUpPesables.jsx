@@ -1,34 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
 import {
-    DivZ,
-    HeaderDiv,
-    TextB,
-    TextB2,
-    ButtonX,
-    ImgX2,
-    ImgM,
-    ImgT,
-    DivScroll,
-    PopUpProduAcum,
-    DivR,
-    DivX,
-    Descripcion,
-    Icono,
-    DivF,
-    Ean,
-    Cantidad,
-    Espacio,
- } from './style'
- import XWhite from '../../images/cross_light_White.svg'
- import Mensaje from '../../images/comment.svg'
- import scanner from '../../images/scanner.svg'
- import trash from '../../images/trash.svg'
-
-
-
+  DivZ,
+  HeaderDiv,
+  TextB,
+  TextB2,
+  ButtonX,
+  ImgX2,
+  ImgM,
+  ImgT,
+  DivScroll,
+  PopUpProduAcum,
+  DivR,
+  DivX,
+  Descripcion,
+  Icono,
+  DivF,
+  Ean,
+  Cantidad,
+  Espacio,
+} from './style';
+import XWhite from '../../images/cross_light_White.svg';
+import Mensaje from '../../images/comment.svg';
+import scanner from '../../images/scanner.svg';
+import trash from '../../images/trash.svg';
 
  export default ({active, onCloseClick, wheights, handleRemoveItem})=>{
-    console.log("wheights en popup", wheights)
      return(
          <>
             <DivZ active={active}>

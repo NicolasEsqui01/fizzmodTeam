@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import {
   DIV6,
@@ -14,18 +14,16 @@ import {
   DivPunto,
   Punto,
   Servicios,
-} from './style'
-import X from '../../images/cross_light.svg'
+} from './style';
+import X from '../../images/cross_light.svg';
 import bubbleExc from '../../images/exclamation_circle.svg';
 
+export default ({ active, onCloseClick }) => {
+  const Prueba = [1, 2, 3, 4];
 
-export default ({active, onCloseClick})=>{
-
-  const Prueba = [1,2,3,4]
-
-    return(
-     <>
-    <DIV6 active={active}>
+  return (
+    <>
+      <DIV6 active={active}>
         <Color></Color>
         <DivV>
           <DivC>
@@ -36,23 +34,30 @@ export default ({active, onCloseClick})=>{
             </ButtonX>
           </DivC>
           <DivP>
-          <ul>
-            {Prueba.map((element) => {
-              return (
-                  <> 
-                  <DivLI>
-                  <DivPunto>
-                      <Punto/>
-                  </DivPunto>
-              <Servicios key={element.id}>Así podemos hacer que la lista esté definida por puntos negros (li type=”disc”), por puntos con el fondo blanco (li type=”circle”) o por cuadrados (li type=”square”). Aunque esta apariencia dependerá del navegador. Hay algunos navegadores que dan otras apariencias a estos mismos atributos.</Servicios>
-                  </DivLI>
+            <ul>
+              {Prueba.map((element) => {
+                return (
+                  <>
+                    <DivLI>
+                      <DivPunto>
+                        <Punto />
+                      </DivPunto>
+                      <Servicios key={element.id}>
+                        Así podemos hacer que la lista esté definida por puntos
+                        negros (li type=”disc”), por puntos con el fondo blanco
+                        (li type=”circle”) o por cuadrados (li type=”square”).
+                        Aunque esta apariencia dependerá del navegador. Hay
+                        algunos navegadores que dan otras apariencias a estos
+                        mismos atributos.
+                      </Servicios>
+                    </DivLI>
                   </>
-              )
-            })}
-          </ul>
+                );
+              })}
+            </ul>
           </DivP>
         </DivV>
       </DIV6>
-      </>
-    )
-}
+    </>
+  );
+};

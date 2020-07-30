@@ -3,11 +3,16 @@ import { connect } from 'react-redux';
 import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
 import { Desactivacion, Activacion } from '../../action/popup';
-import { getSessionPicking, setBooleano } from '../../action/session';
+import {
+  getSessionPicking,
+  setBooleano,
+  setIdItems,
+} from '../../action/session';
 import history from '../../utils/history';
+import { Redirect } from 'react-router-dom';
 
 const ProductoIndividualcontainer = ({
-  items,
+  items = [],
   idSession,
   getSessionPicking,
   sendItemPicked,
@@ -17,6 +22,9 @@ const ProductoIndividualcontainer = ({
   handleCloseClick,
   setBooleano,
   match,
+  auth,
+  setIdItems,
+  idItems
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
@@ -26,18 +34,25 @@ const ProductoIndividualcontainer = ({
   const [difPeso, setDifPeso] = useState(0);
   const [wheights, setWheights] = useState([]);
 
+  useEffect(() => {
+    if (auth !== 'null') {
+      getSessionPicking(idSession);
+      setBooleano(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    setIndice(match.params.indice)
+    if(items.length){
+      setIdItems(items[match.params.indice - 1].id)
+    }
+  }, [match.params.indice , items.length]);
+
+  
   const handleBtnClick = (n) => {
     Activar(n);
   };
 
-  useEffect(() => {
-    getSessionPicking(idSession);
-    setBooleano(true);
-  }, []);
-
-  useEffect(() => {
-    setIndice(match.params.indice);
-  }, [match.params.indice]);
 
   const inputRef = useRef(null);
 
@@ -131,7 +146,9 @@ const ProductoIndividualcontainer = ({
 
   return (
     <>
-      {items ? (
+      {auth === 'null' ? (
+        <Redirect to="/" />
+      ) : items ? (
         <ProductoIndividual
           Activar={handleBtnClick}
           active={active}
@@ -156,11 +173,14 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
+
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking
     items: state.sessionReducer.sessionPicking.items, // los items de la session
     active: state.popupReducer.numero,
+    auth: JSON.stringify(localStorage.getItem('auth')),
+    idItems:state.sessionReducer.idItems
   };
 };
 
@@ -171,6 +191,7 @@ const MapDispatchToProps = (dispatch) => {
     Activar: (n) => dispatch(Activacion(n)),
     handleCloseClick: () => dispatch(Desactivacion()),
     setBooleano: (boolean) => dispatch(setBooleano(boolean)),
+    setIdItems: (id) =>  dispatch(setIdItems(id)),
   };
 };
 
