@@ -10,7 +10,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 // import { hot } from 'react-hot-loader/root';
 // import NotFoundPage from '../NotFoundPage/Loadable';
@@ -19,11 +19,12 @@ import InicioContainer from '../Inicio/Loadable';
 import ProductoIndividual from "../Producto Individual/Loadable"
 import ForgotPassword from '../forgotPasseword/Loadable';
 import SessionConteniner from '../SessionIndividual/SessionConteniner';
+import CanastosContainer from '../Canastos/CanastosContainer';
 import GlobalStyle from '../../global-styles';
 import Navbar from '../Navbar/Navbar'
 
 
-function App({location }) {
+function App({ location }) {
   return (
     <div>
       <Helmet
@@ -32,11 +33,12 @@ function App({location }) {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      { location !== '/' ? <Navbar/> : null }
+      {location !== '/' ? <Navbar /> : null}
       <Switch>
         <Route exact path='/' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
         <Route path="/session" component={SessionConteniner} />
+        <Route path="/canastos" component={CanastosContainer} />
         <Route path="/productoindividual/:id" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
       </Switch>
@@ -45,10 +47,10 @@ function App({location }) {
   );
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
   return {
-    location:state.router.location.pathname
+    location: state.router.location.pathname
   }
 };
 
-export default connect(mapStateToProps,null)(App);
+export default connect(mapStateToProps, null)(App);

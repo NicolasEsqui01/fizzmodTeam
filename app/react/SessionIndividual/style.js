@@ -135,7 +135,6 @@ font-family: Roboto;
 font-size: 25px;
 letter-spacing: 0;
 line-height: 16px;
-
 `
 
 export const TitlePedidos = styled.div`
@@ -431,10 +430,10 @@ display:flex;
 align-items:center;
 justify-content:center;
 `
-export const DivK= styled.div `
+export const DivK = styled.div`
 height:2px;
 width:100%;
 background-color:#E8EAF6;
 `
- 
+
 
