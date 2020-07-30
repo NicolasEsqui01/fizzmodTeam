@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Navbar from './Navbar';
 
 const mapStateToProps = (state) => {
-  console.log("items",state.sessionReducer.sessionPicking.items)
-  console.log("itemsPicking",state.pickingReducer.ItemsPicked)
   return {
     items: state.sessionReducer.sessionPicking.items,
     itemsPicking: state.pickingReducer.ItemsPicked,
@@ -27,12 +25,7 @@ const NavbarContainer = ({ time, status, booleano, items, itemsPicking, sessionI
     }
   }, [itemsPicking]);
 
-  useEffect(() => {
-    return () => {
-      console.log("pickeados", pickeados);
-    };
-  }, []);
-
+  
   return (
     <Navbar
       qtyPicked={pickeados}

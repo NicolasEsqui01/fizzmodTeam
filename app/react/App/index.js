@@ -47,7 +47,6 @@ function App({location }) {
         <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/seleccion" component={SeleccionContainer} />
         <Route path="/confirmacion" component={ConfirmacionContainer} />
-
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />
