@@ -8,7 +8,7 @@ const startSession = (token) => {
   };
 };
 
-const getSessionsId = (sessionId) => {
+export const SessionId = (sessionId) => {
   return {
     type: 'GET_SESSIONID',
     sessionId,
@@ -22,31 +22,25 @@ const sessionPicking = (session) => {
   };
 };
 
-const boolean = (booleano) => {
+export const setBooleano = (booleano) => {
   return {
     type: 'SET_BOOLEANO',
     booleano,
   };
 };
 
-const typeOrder = (string) => {
+export const estadoOrdenSelected = (string) => {
   return {
     type: 'SET_TYPE_OF_ORDER_SELECTED',
     string,
   };
 };
 
-
-export const setBooleano = (bool) => {
-  return (dispatch) => {
-    return dispatch(boolean(bool));
-  };
-};
-
-export const estadoOrdenSelected = (string) => {
-  return (dispatch) => {
-    return dispatch(typeOrder(string));
-  };
+export const setIdItems = (id) =>{
+  return {
+    type:'IDITEMS',
+    id
+  }
 };
 
 export const getStartSession = (id) => {
@@ -59,11 +53,6 @@ export const getStartSession = (id) => {
   };
 };
 
-export const SessionId = (id) => {
-  return (dispatch) => {
-    return dispatch(getSessionsId(id));
-  };
-};
 
 export const getSessionPicking = (id) => {
   return (dispatch) => {
