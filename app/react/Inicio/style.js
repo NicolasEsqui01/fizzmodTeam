@@ -450,6 +450,7 @@ export const Button = styled.button`
   height: 50%;
   width: 60%;
   font-size: 200%;
+  cursor: pointer;
  
 }
   height: 80%;
@@ -474,6 +475,7 @@ export const ButtonRetomar = styled.button`
   height: 50%;
   width: 60%;
   font-size: 200%;
+  cursor: pointer;
  
 }
   height: 80%;

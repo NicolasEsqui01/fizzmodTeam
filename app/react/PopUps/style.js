@@ -113,6 +113,27 @@ export const ImgT = styled.img`
   margin-left: 5%;
 `;
 
+export const ImgFlechi = styled.img`
+ width: 40px;
+ height: 40px;
+`
+export const NumeroFlechi = styled.p `
+height: 30px;
+width: 15px;
+color: #273947;
+font-family: Roboto;
+font-size: 20px;
+letter-spacing: 0;
+line-height: 16px;
+`
+export const  FlechitaDone = styled.div`
+display:flex;
+flex-direction:column;
+width:5%;
+margin-left:${props => props.Done}%;
+align-items:center;
+`
+
 export const ButtonX = styled.button`
   width: 10%;
   margin-left: 35%;
@@ -142,7 +163,7 @@ export const Text = styled.p`
 `;
 export const TituloOb = styled.h1`
   margin-left: 3%;
-  width: 50%;
+  width: 100%;
   font-size: 30px;
   @media ${device.tablet} {
     font-size: 20px;
@@ -672,17 +693,6 @@ export const P = styled.p`
   }
 `;
 
-export const Barrita = styled.div`
-  heigth: 1px;
-  margin-top: 3%;
-  width: 10%;
-  background-color: #fcaba9;
-`;
-export const DivBarr = styled.div`
-  display: flex;
-  width: 90%;
-  justify-content: center;
-`;
 export const DivMN = styled.div`
   width: 100%;
   margin-top: 5%;

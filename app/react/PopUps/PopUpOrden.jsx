@@ -15,6 +15,8 @@ import {
   DivQ,
   DivS2,
   DivG,
+  ImgFlechi,
+  NumeroFlechi,
   TituloOb,
   P,
   PP,
@@ -22,12 +24,11 @@ import {
   NN,
   Nn,
   Num,
-  Barrita,
-  DivBarr,
-  DivIM2,
+  FlechitaDone,
   DivCON,
   DivMN,
 } from './style';
+import ProgressBar from '../ProgressBar/ProgressBar'
 import box from '../../images/boxWhite.svg';
 import X from '../../images/cross_light.svg';
 import totals from '../../images/totals.svg';
@@ -37,9 +38,21 @@ import user from '../../images/user_closed.svg';
 import credit from '../../images/credit_card.svg';
 import phone from '../../images/phone_outline.svg';
 import back from '../../images/arrow_left.svg';
+import flechita from '../../images/arrow_up_flatBlack.svg'
 
 export default ({ active, onCloseClick, Activar, idSession }) => {
-  const prueba = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let total 
+  let largo
+  let porcentaje
+  if(idSession.items){
+   total = idSession.totalItems
+   largo = idSession.items.filter(Element => Element.status === 'picked').length
+  }
+  if(largo !== 0){
+  porcentaje = (largo/total)*100 - 13
+  }
+
+ 
   return idSession.items ? (
     <DIV5 active={active}>
       <Color></Color>
@@ -63,11 +76,13 @@ export default ({ active, onCloseClick, Activar, idSession }) => {
 
             <DivCON>
               <PP>Pickeados:</PP>
-              <NN>{idSession.items.filter(Element => Element.status === 'picked').length}</NN>
-              <Nn> / {idSession.totalItems} </Nn>
-              <DivBarr>
-                {idSession.items.map((Element , indice) => <Barrita>{indice + 1}</Barrita>)}
-              </DivBarr>
+              <NN>{largo}</NN>
+              <Nn> / {total} </Nn>
+             <ProgressBar Done ={largo} Total={total}/>
+             <FlechitaDone Done ={porcentaje}>
+               <ImgFlechi src={flechita}/>
+              <NumeroFlechi>{largo}</NumeroFlechi>
+             </FlechitaDone>
             </DivCON>
           </DivVC>
         </DivQ>
