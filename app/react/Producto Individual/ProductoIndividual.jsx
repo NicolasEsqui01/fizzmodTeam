@@ -344,7 +344,7 @@ export default ({
                       <Teclado src={TecladoIcono} />
                     </BotonTeclado>
                     <Siguiente
-                      onClick={() => pickeado(session[indice].id, count) }
+                      onClick={() => pickeado(session[indice].id, count)}
                     >
                       {' '}
                       SIGUIENTE

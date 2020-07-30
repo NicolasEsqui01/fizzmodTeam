@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import {
   DIV,
@@ -11,18 +11,16 @@ import {
   ButtonX,
   DivP,
   PopUpProdu,
-} from './style'
+} from './style';
 import Sustituto from '../../images/substitute.svg';
-import X from '../../images/cross_light.svg'
+import X from '../../images/cross_light.svg';
 
+export default ({ active, onCloseClick }) => {
+  const Prueba = [1, 2, 3, 4];
 
-export default ({active, onCloseClick})=>{
-
-  const Prueba = [1,2,3,4]
-
-    return(
-     <>
-    <DIV active={active}>
+  return (
+    <>
+      <DIV active={active}>
         <Color></Color>
         <DivV>
           <DivC>
@@ -39,9 +37,6 @@ export default ({active, onCloseClick})=>{
           </DivP>
         </DivV>
       </DIV>
-
-
-     </>
-
-    )
-}
+    </>
+  );
+};
