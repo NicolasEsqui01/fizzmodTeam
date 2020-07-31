@@ -352,7 +352,6 @@ export default ({
                         </Button2>
                       </DivGlobos>
                     </ContMarca>
-
                     <ContBarras>
                       <BarritasCont>
                         <Barritas src={BarCode} />
@@ -643,7 +642,6 @@ export default ({
                       </Button2>
                     </DivGlobos>
                   </ContMarca>
-
                   <ContBarras>
                     <BarritasCont>
                       <Barritas src={BarCode} />

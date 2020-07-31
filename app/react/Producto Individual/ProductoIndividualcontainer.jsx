@@ -59,7 +59,7 @@ const ProductoIndividualcontainer = ({
   }, [showInput]);
 
   useEffect(() => {
-    if (inputRef.current && input != 0) inputRef.current.value = '';
+    if(inputRef.current && input!=0) inputRef.current.value="";
   }, [wheights]);
 
   const ItemPicked = (iditems, qty, pesable) => {
