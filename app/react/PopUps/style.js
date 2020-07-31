@@ -541,9 +541,8 @@ export const DivM = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 60%;
+  height: 50%;
   width: 100%;
-  margin-top: 50px;
 `;
 
 export const DivH = styled.div`
@@ -739,7 +738,7 @@ export const Servicios = styled.div`
   width: 90%;
   color: #939598;
   font-family: Roboto;
-  font-size: 30px;
+  font-size: 15px;
   letter-spacing: 0;
   line-height: 24px;
   margin-top: 3%;

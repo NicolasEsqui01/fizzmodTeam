@@ -16,7 +16,7 @@ import flechaAtras from '../../images/arrow_short_prev.svg';
 import history from '../../utils/history';
 import CronometroContainer from '../cronometro/Loadable';
 
-export default ({ booleano , items, qtyPicked , sessionId, final }) => {
+export default ({ booleano , items, qtyPicked , sessionId, final, volverDelFinal }) => {
   let totalItems =0;
   if (items) {
     totalItems = items.length;
@@ -25,7 +25,12 @@ export default ({ booleano , items, qtyPicked , sessionId, final }) => {
     <NavCont>
       {booleano ? (
         <ContenedorFlecha>
-          <FlechaAtras src={flechaAtras} onClick={history.goBack} />
+          <FlechaAtras 
+          src={flechaAtras} 
+          onClick={()=>{
+            volverDelFinal();
+            }}
+          />
             { final ?
             null
             :
