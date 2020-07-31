@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ConfirmacionCanasto from './ConfirmacionCanasto';
 import { setBooleano } from '../../action/session';
 import { itemPicked } from '../../action/picking';
+import { itemFinalPick } from '../../action/picking';
 import history from '../../utils/history'
 
 
@@ -13,6 +14,8 @@ const ConfirmacionContainer = (props) => {
     .then(()=>{
       localStorage.removeItem('token');
       localStorage.removeItem('sessionid');
+      localStorage.removeItem('final');
+      props.sendFinal();
       return history.push('/inicio')
     })
   };
@@ -20,13 +23,15 @@ const ConfirmacionContainer = (props) => {
   return <ConfirmacionCanasto handleClick={handleClick}/>;
 };
 
-const MapStateToProps = () => {};
-
 const mapDispatchToProps = (dispatch) => {
+
     return {
         sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
-        setBooleano: (booleano) => dispatch(setBooleano(booleano))
+        setBooleano: (booleano) => dispatch(setBooleano(booleano)),
+        sendFinal: () => dispatch(itemFinalPick()),
     }
 };
 
 export default connect(null, mapDispatchToProps)(ConfirmacionContainer);
+
+
