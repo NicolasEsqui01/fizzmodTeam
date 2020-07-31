@@ -45,7 +45,7 @@ export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
   let largo
   let porcentaje
   if(idSession.items){
-    console.log('entro')
+  
    total = idSession.totalItems
    largo = idSession.items.filter(Element => Element.status === 'picked' ).length
   
@@ -53,8 +53,7 @@ export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
   if(largo !== 0){
     porcentaje = (largo/total)*100 -10
   }
-  console.log(total,'total')
-  console.log(largo, 'largo')
+
 
  
   return idSession.items ? (

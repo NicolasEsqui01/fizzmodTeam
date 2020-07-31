@@ -10,7 +10,7 @@ const ProgressBar = ({Done,Total})=>{
 
     let porcentaje = (Done/Total)*100
 
-    console.log(porcentaje)
+
 
 return(
     <ProgressTotal2 Total={Total} >
@@ -21,7 +21,7 @@ return(
 )
 }
 const mapStateToProps = (state, ownProps)=>{
-  console.log(ownProps)
+
     return({
         Done: ownProps.Done,
         Total: ownProps.Total

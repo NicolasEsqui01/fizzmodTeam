@@ -50,13 +50,9 @@ export default ({handleClick, idSession}) => {
   let largo
   let porcentaje
   if(idSession.items){
-    console.log('entro')
    total = idSession.totalItems
-   largo = idSession.items.filter(Element => Element.status === 'picked' ).length
-  
+   largo = idSession.items.filter(Element => Element.status === 'picked' ).length 
   }
-  console.log(total,'total')
-  console.log(largo, 'largo')
   return (
     <Container>
       <Izquierdo>

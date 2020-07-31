@@ -48,11 +48,9 @@ const ProductoIndividualcontainer = ({
     }
   }, [match.params.indice , items.length]);
 
-  
   const handleBtnClick = (n) => {
     Activar(n);
   };
-
 
   const inputRef = useRef(null);
 
@@ -92,16 +90,16 @@ const ProductoIndividualcontainer = ({
     }
 
     if (Number(indice) === items.length) {
-      // return history.push('/confirmacion');
-      return history.push({
+      localStorage.setItem('final', true)
+      history.push({
                 pathname: '/confirmacion',
                 state: { idSession: idSession,
                          data: data
                        }
                      })
-      setWheights([]);
-      setPesoTotal(0);
-      setCount(0)
+      // setWheights([]);
+      // setPesoTotal(0);
+      // setCount(0)
     } else {
         sendItemPicked(idSession, data)
         .then(() => {
