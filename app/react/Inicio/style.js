@@ -12,7 +12,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 96vh;
+  height: 93vh;
   @import url('https://fonts.googleapis.com/css?family=Roboto');
   body {
     font-family: 'Roboto', sans-serif;
@@ -450,6 +450,7 @@ export const Button = styled.button`
   height: 50%;
   width: 60%;
   font-size: 200%;
+  cursor: pointer;
  
 }
   height: 80%;
@@ -474,6 +475,7 @@ export const ButtonRetomar = styled.button`
   height: 50%;
   width: 60%;
   font-size: 200%;
+  cursor: pointer;
  
 }
   height: 80%;

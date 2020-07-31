@@ -1,12 +1,15 @@
 const inicialState = {
-  ItemsPicked: {},
+  ItemsPicked: [],
 };
 
 export default (state = inicialState, action) => {
   switch (action.type) {
     case 'ITEM_PICKED':
-      return { ...state, ItemsPicked: action.items };
+      return { ...state, ItemsPicked: [...state.ItemsPicked, action.items] };
+    case 'FINAL':
+      return { ...state, ItemsPicked: [] };
     default:
       return state;
   }
 };
+

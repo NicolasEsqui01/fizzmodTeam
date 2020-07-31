@@ -27,41 +27,49 @@ import waves from '../../images/wavesCelest.svg';
 import balance from '../../images/balanceCelest.svg';
 import snow from '../../images/snowflakeCelest.svg';
 import substitute from '../../images/substitute.svg';
+import fraction from "../../images/fraction.svg";
 import store from '../../images/store.svg';
 import moment from 'moment';
 
-export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, valor}) => {
+export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, valor }) => {
   let start;
   let end;
   let duration;
   let arrFractionable = 0;
   let arrWeighable = 0;
   let arrFresh = 0;
+  let arrFrozen = 0;
   
-  
+ 
   
 
-  
+
+
+
+
   return (
     <>
       <DivScroll>
-        { status == 'pending' ? 
+        {status == 'pending' ?
           (pendSessions.map((element) => {
             arrFractionable = 0;
             arrWeighable = 0;
             arrFresh = 0;
+            arrFrozen = 0;
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-          
-              element.items.map((el)=>{
-              
-                el.isFresh==true? arrFresh += 1 : null;
-                el.isWeighable==true? arrWeighable +=1 : null;
-                el.isFractionable==true? arrFractionable +=1 : null;
-                
-             })
 
+            element.items.map((el) => {
+
+              el.isFresh == true ? arrFresh += 1 : null;
+              el.isWeighable == true ? arrWeighable += 1 : null;
+              el.isFractionable == true ? arrFractionable += 1 : null;
+              el.isFrozen==true? arrFrozen +=1 : null;
+
+            })
+
+           
             return (
               <ListOrdenes
                 key={element.id}
@@ -78,21 +86,25 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                       <Num>{element.totalItems}</Num> Items/
                     </Text>
                     <Text>
-                      <Num>{parseInt(duration * 10 ,10)}</Num>min
+                      <Num>{parseInt(duration * 10, 10)}</Num>min
                     </Text>
                   </DivT>
                   <DivP>
                     <Peso>
                       <ImgP src={balance} />
-                    <NumP>{arrWeighable}</NumP>
+                      <NumP>{arrWeighable}</NumP>
                     </Peso>
                     <Frio>
                       <ImgP src={snow} />
-                    <NumP>{arrFractionable}</NumP>
+                    <NumP>{arrFrozen}</NumP>
                     </Frio>
                     <Aire>
                       <ImgP src={waves} />
-                    <NumP>{arrFresh}</NumP>
+                      <NumP>{arrFresh}</NumP>
+                    </Aire>
+                    <Aire>
+                      <ImgP src={fraction} />
+                    <NumP>{arrFractionable}</NumP>
                     </Aire>
                   </DivP>
                   <DivS>
@@ -109,62 +121,66 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                   </DivS>
                 </DivN>
               </ListOrdenes>
-                  );
-            })
+            );
+          })
           )
           :
           (pickedAndPikcingSessions.map((element) => {
             arrFractionable = 0;
             arrWeighable = 0;
             arrFresh = 0;
+            arrFrozen = 0;
 
             element.items.map((el)=>{
               
               el.isFresh==true? arrFresh +=1 : null;
               el.isWeighable==true? arrWeighable += 1: null;
               el.isFractionable==true? arrFractionable +=1 : null;
+              el.isFrozen==true? arrFrozen +=1 : null;
               
            })
 
-            
-           
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-            return element.status == "picked"? 
-                 (
-                 
-                 <ListOrdenes
+            return element.status == "picked" ?
+              (
+
+                <ListOrdenes
                   className="picked"
                   key={element.id}
                   permitir={valor}
                   div={element.id}
                   estadoOrden={element.status}
                   onClick={() => handleClick(element.id, 'picked')}>
-                    <ImgPicked src={box} />
-                    <DivN>
-                      <Numero>Nro.{element.id} </Numero>
-                      <DivT>
-                        <Text>
-                          <Num>{element.totalItems}</Num> Items/
+                  <ImgPicked src={box} />
+                  <DivN>
+                    <Numero>Nro.{element.id} </Numero>
+                    <DivT>
+                      <Text>
+                        <Num>{element.totalItems}</Num> Items/
                         </Text>
-                        <Text>
-                          <Num>{parseInt(duration * 10 ,10)}</Num>min
+                      <Text>
+                        <Num>{parseInt(duration * 10, 10)}</Num>min
                         </Text>
-                      </DivT>
-                      <DivP>
-                        <Peso>
-                          <ImgP src={balance} />
+                    </DivT>
+                    <DivP>
+                      <Peso>
+                        <ImgP src={balance} />
                         <NumP>{arrWeighable}</NumP>
                         </Peso>
                         <Frio>
                           <ImgP src={snow} />
-                        <NumP>{arrFractionable}</NumP>
+                        <NumP>{arrFrozen}</NumP>
                         </Frio>
                         <Aire>
                           <ImgP src={waves} />
                           <NumP>{arrFresh}</NumP>
                         </Aire>
+                        <Aire>
+                      <ImgP src={fraction} />
+                    <NumP>{arrFractionable}</NumP>
+                    </Aire>
                       </DivP>
                       <DivS>
                         <Marca>
@@ -195,8 +211,8 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                         <Text>
                           <Num>{element.totalItems}</Num> Items/
                         </Text>
-                        <Text>
-                          <Num>{parseInt(duration * 10 ,10)}</Num>min
+                    <Text>
+                      <Num>{parseInt(duration * 10, 10)}</Num>min
                         </Text>
                       </DivT>
                       <DivP>
@@ -206,12 +222,16 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                         </Peso>
                         <Frio>
                           <ImgP src={snow} />
-                          <NumP>{arrFractionable}</NumP>
+                          <NumP>{arrFrozen}</NumP>
                         </Frio>
                         <Aire>
                           <ImgP src={waves} />
                           <NumP>{arrFresh}</NumP>
                         </Aire>
+                        <Aire>
+                      <ImgP src={fraction} />
+                    <NumP>{arrFractionable}</NumP>
+                    </Aire>
                       </DivP>
                       <DivS>
                         <Marca>
@@ -230,7 +250,9 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                 )
                }
               )
-            )
+          
+          )
+          
         }
       </DivScroll>
     </>
