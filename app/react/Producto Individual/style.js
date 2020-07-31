@@ -494,7 +494,7 @@ export const PesoCuadroInput = styled.input`
   margin-left:20px;
   border: 2px solid #0368FF;
   ${props => props.showInput == false ? `display:none` : null};
-  ${props => props.active == 2 || props.active == 6  ? `display:none` : null};
+  ${props => props.active == 2 || props.active == 6  || props.active == 1 ? `display:none` : null};
   @media ${device.tablet} {
 
 } 

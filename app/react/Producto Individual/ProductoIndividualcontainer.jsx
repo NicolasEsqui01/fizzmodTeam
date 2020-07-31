@@ -92,8 +92,8 @@ const ProductoIndividualcontainer = ({
     }
 
     if (Number(indice) === items.length) {
-      // return history.push('/confirmacion');
-      return history.push({
+      localStorage.setItem('final', true)
+      history.push({
                 pathname: '/confirmacion',
                 state: { idSession: idSession,
                          data: data
