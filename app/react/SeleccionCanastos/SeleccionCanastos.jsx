@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-   
   Header,
   DivIconoHeader,
   IconoCanasta,
@@ -49,24 +48,14 @@ import lapiz from '../../images/edit.svg';
 import BasketDashed from '../../images/basket_dashed.svg';
 import BasketFull from '../../images/basket_full.svg';
 import BasketFullAzul from '../../images/basket_full_azul.svg';
+import X from '../../images/cross_light.svg';
 
-export default () => {
+export default ({ handleClick, valor, handleSubmit }) => {
   return (
-    
-    <div>
+    <>
       <Header>
         <DivIconoHeader>
           <IconoHeader src={IconoHeaderImg} />
-          {/* <IconoCanasta>
-                <DivA>
-                  <Div1></Div1>
-                  <Div1></Div1>
-                </DivA>
-                <DivA>
-                  <Div1></Div1>
-                  <Div1></Div1>
-                </DivA>
-              </IconoCanasta> */}
           <H1Header>Pickee los canastos</H1Header>
         </DivIconoHeader>
       </Header>
@@ -76,45 +65,41 @@ export default () => {
         </ColuIzquierda>
         <DivMedio>
           <DivFilaUno>
-            <DivUno>
-              <FilaArriba>
-                <DivLineaUno>
-                  <LineaVerde />
-                  <Uno>1.</Uno>
-                </DivLineaUno>
-                <Lapiz src={lapiz} />
-              </FilaArriba>
-              <SegundaParteCaja>
-                <CodigoBarrasDiv>
-                  <CodBarras src={barCode} />
-                  <H1Cod>676543528893009</H1Cod>
-                </CodigoBarrasDiv>
-                <CodigoBarrasDiv>
-                  <CodBarras src={BoxGris} />
-                  <H1Caja>676543528893009</H1Caja>
-                </CodigoBarrasDiv>
-              </SegundaParteCaja>
-            </DivUno>
-            <DivDos>
-              <DivIconoBarritas>
-                <BarritasArribaizq src={barCodeAzul} />
-              </DivIconoBarritas>
-              <EstructuraCaja>
-                <ImagenGrande src={BasketFullAzul} />
-
-                <H1PickearCanasto>PICKEAR CANASTO</H1PickearCanasto>
-              </EstructuraCaja>
-              <NumCanasto>2</NumCanasto>
-            </DivDos>
-            <DivUno>
-              <DivIconoBarritas>
-                <BarritasArribaizq src={barCodeGris} />
-              </DivIconoBarritas>
-              <EstructuraCaja>
-                <ImagenGrande src={BasketFull} />
-              </EstructuraCaja>
-              <NumCanastoGris>3</NumCanastoGris>
-            </DivUno>
+            {[{ id: 1 }, { id: 2 }, { id: 3 }].map((Element) => {
+              return (
+                <>
+                  <DivUno
+                    key={Element.id}
+                    valor={valor}
+                    elementos={Element.id}
+                    onClick={() => handleClick(Element.id)}
+                  >
+                    <DivIconoBarritas>
+                      {Element.id === valor ? (
+                        <BarritasArribaizq src={barCodeAzul} />
+                      ) : (
+                        <BarritasArribaizq src={barCodeGris} />
+                      )}
+                    </DivIconoBarritas>
+                    <EstructuraCaja>
+                      {Element.id === valor ? (
+                        <ImagenGrande src={BasketFullAzul} />
+                      ) : (
+                        <ImagenGrande src={BasketFull} />
+                      )}
+                      {Element.id === valor ? (
+                        <NumCanasto>{Element.id}</NumCanasto>
+                      ) : (
+                        <NumCanastoGris>{Element.id}</NumCanastoGris>
+                      )}
+                      {Element.id === valor ? (
+                        <H1PickearCanasto>PICKEAR CANASTO</H1PickearCanasto>
+                      ) : null}
+                    </EstructuraCaja>
+                  </DivUno>
+                </>
+              );
+            })}
           </DivFilaUno>
           <DivFilaDos>
             <DivUno>
@@ -123,21 +108,17 @@ export default () => {
               </DivIconoBarritas>
               <EstructuraCaja>
                 <ImagenGrande src={BasketFull} />
-              </EstructuraCaja>
-              <NumCanastoGris>4</NumCanastoGris>
-            </DivUno>
-            <DivUno>
-              <EstructuraCaja>
-                <ImagengrandeDiv>
-                  <ImagenGrande src={BasketDashed} />
-                </ImagengrandeDiv>
+                <NumCanastoGris>4</NumCanastoGris>
               </EstructuraCaja>
             </DivUno>
             <DivUno>
               <EstructuraCaja>
-                <ImagengrandeDiv>
-                  <ImagenGrande src={BasketDashed} />
-                </ImagengrandeDiv>
+                <ImagenGrande src={BasketDashed} />
+              </EstructuraCaja>
+            </DivUno>
+            <DivUno>
+              <EstructuraCaja>
+                <ImagenGrande src={BasketDashed} />
               </EstructuraCaja>
             </DivUno>
           </DivFilaDos>
@@ -147,6 +128,44 @@ export default () => {
           </Footer>
         </DivMedio>
       </DivGeneral>
-    </div>
+    </>
   );
 };
+
+{/* <DivPopup valor={valor} elementos={Element.id}>
+                    <SubDivPopup>
+                      <FormPopup onSubmit={handleSubmit}>
+                        <Input type="text" />
+                        <InputSubmit type="submit" value="enter" />
+                      </FormPopup>
+                    </SubDivPopup>
+                  </DivPopup>  */}
+
+{
+  /* <FilaArriba>
+<DivLineaUno>
+  <LineaVerde />
+  <Uno>1.</Uno>
+</DivLineaUno>
+<Lapiz src={lapiz} />
+</FilaArriba>
+<SegundaParteCaja>
+<CodigoBarrasDiv>
+  <CodBarras src={barCode} />
+  <H1Cod>676543528893009</H1Cod>
+</CodigoBarrasDiv>
+<CodigoBarrasDiv>
+  <CodBarras src={BoxGris} />
+  <H1Caja>676543528893009</H1Caja>
+</CodigoBarrasDiv>
+</SegundaParteCaja> */
+}
+
+// <DivIconoBarritas>
+//     <BarritasArribaizq src={barCodeAzul} />
+//   </DivIconoBarritas>
+//   <EstructuraCaja>
+//     <ImagenGrande src={BasketFullAzul} />
+//     <NumCanasto>2</NumCanasto>
+//     <H1PickearCanasto>PICKEAR CANASTO</H1PickearCanasto>
+//   </EstructuraCaja>
