@@ -21,7 +21,7 @@ export default ({ Bateria, closeAlert, cerrar}) => {
         </Cuerpo>
       </Color2>
     </DIV9>
-  ) : Bateria <= 0.2? (
+  ) : Bateria === 0.2? (
     <DIV9 cerrar={cerrar}>
     <Color2>
       <Cuerpo Bate = {Bateria}>

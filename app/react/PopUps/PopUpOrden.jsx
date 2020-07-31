@@ -40,17 +40,20 @@ import phone from '../../images/phone_outline.svg';
 import back from '../../images/arrow_left.svg';
 import flechita from '../../images/arrow_up_flatBlack.svg'
 
-export default ({ active, onCloseClick, Activar, idSession }) => {
+export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
   let total 
   let largo
   let porcentaje
   if(idSession.items){
+  
    total = idSession.totalItems
-   largo = idSession.items.filter(Element => Element.status === 'picked').length
+   largo = idSession.items.filter(Element => Element.status === 'picked' ).length
+  
   }
   if(largo !== 0){
-  porcentaje = (largo/total)*100 -10
+    porcentaje = (largo/total)*100 -10
   }
+
 
  
   return idSession.items ? (

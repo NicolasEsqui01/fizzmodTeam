@@ -64,6 +64,7 @@ export const ContenedorFlecha = styled.div`
 export const FlechaAtras = styled.img`
   height: 27px;
   width: auto;
+  cursor: pointer;
   @media ${device.tablet} {
   width: auto;
   height: 22px;
@@ -74,6 +75,7 @@ export const FlechaAtras = styled.img`
 export const OvaloCantidad = styled.button`
   margin-left: 50px;  
   display: flex;
+  cursor: pointer;
   justify-content: center;
   width: 77px;
   height: 26px;
