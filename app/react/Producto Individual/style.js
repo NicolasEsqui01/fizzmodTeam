@@ -8,6 +8,26 @@ export const Header = styled.div`
   height: 56px;
 `;
 
+export const DivStatus = styled.div`
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:86vh;
+  background-color:${({status}) => status === 'picked' ? '#2979FF' : '#F13B70'};
+`
+export const StatusP = styled.p`
+  height: 16px;
+  width: 10%;
+  color: #FFFFFF;
+  font-family: Roboto;
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 16px;
+`
+
 export const Img = styled.img`
 height: 24px;
 width: 24px;
@@ -55,13 +75,14 @@ height: 100%;
 `;
 
 export const Cont = styled.div`
-width: 100%;
-height: auto;
+width: 98%;
+height: 80vh;
 display: flex;
+background-color:#FFFFFF;
 justify-content: center;
 flex-direction: row;
-margin-top:70px;
 align-items:center;
+margin-top:30px;
 @media ${device.mobile} {
   flex-direction: column;
   margin-top:0px;

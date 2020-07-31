@@ -24,7 +24,7 @@ const ProductoIndividualcontainer = ({
   match,
   auth,
   setIdItems,
-  idItems
+  idItems,
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
@@ -42,32 +42,29 @@ const ProductoIndividualcontainer = ({
   }, []);
 
   useEffect(() => {
-    setIndice(match.params.indice)
-    if(items.length){
-      setIdItems(items[match.params.indice - 1].id)
+    setIndice(match.params.indice);
+    if (items.length) {
+      setIdItems(items[match.params.indice - 1].id);
     }
-  }, [match.params.indice , items.length]);
+  }, [match.params.indice, items.length]);
 
-  
   const handleBtnClick = (n) => {
     Activar(n);
   };
 
-
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if(showInput)
-    inputRef.current.focus();
+    if (showInput) inputRef.current.focus();
   }, [showInput]);
 
   useEffect(() => {
-    if(inputRef.current && input!=0) inputRef.current.value="";
+    if (inputRef.current && input != 0) inputRef.current.value = '';
   }, [wheights]);
 
   const ItemPicked = (iditems, qty, pesable) => {
-    let data ={}
-    if(pesable == true){
+    let data = {};
+    if (pesable == true) {
       let dataPesable = {
         token: token,
         items: [
@@ -76,9 +73,9 @@ const ProductoIndividualcontainer = ({
             pickedQuantity: pesoTotal,
           },
         ],
-      }
-      data = dataPesable
-    } else{
+      };
+      data = dataPesable;
+    } else {
       let dataNoPesable = {
         token: token,
         items: [
@@ -87,23 +84,21 @@ const ProductoIndividualcontainer = ({
             pickedQuantity: qty,
           },
         ],
-      }
-      data = dataNoPesable
+      };
+      data = dataNoPesable;
     }
 
     if (Number(indice) === items.length) {
-      localStorage.setItem('final', true)
+      localStorage.setItem('final', true);
       history.push({
-                pathname: '/confirmacion',
-                state: { idSession: idSession,
-                         data: data
-                       }
-                     })
+        pathname: '/confirmacion',
+        state: { idSession: idSession, data: data },
+      });
       setWheights([]);
       setPesoTotal(0);
-      setCount(0)
+      setCount(0);
     } else {
-        sendItemPicked(idSession, data)
+      sendItemPicked(idSession, data)
         .then(() => {
           let newIndice = Number(indice) + 1;
           setWheights([]);
@@ -120,29 +115,28 @@ const ProductoIndividualcontainer = ({
 
   const handleSubmit = (event, id, name, ean, image) => {
     event.preventDefault();
-    const itemPesable={
+    const itemPesable = {
       id: id,
       name: name,
       ean: ean,
       img: image,
-      qty: input
-    }
+      qty: input,
+    };
     let nuevoPeso = pesoTotal + input;
-    setPesoTotal(nuevoPeso)
-    setWheights([...wheights,itemPesable])
+    setPesoTotal(nuevoPeso);
+    setWheights([...wheights, itemPesable]);
   };
 
   const handleRemoveItem = (idx) => {
     if (idx > -1) {
-    let restarPeso = wheights[idx].qty
-    wheights.splice(idx,1)
-    setWheights([...wheights]);
-    let nuevoPeso = pesoTotal - restarPeso;
-    setPesoTotal(nuevoPeso)
-  }
-  if (wheights.length == 0) handleCloseClick();
+      let restarPeso = wheights[idx].qty;
+      wheights.splice(idx, 1);
+      setWheights([...wheights]);
+      let nuevoPeso = pesoTotal - restarPeso;
+      setPesoTotal(nuevoPeso);
+    }
+    if (wheights.length == 0) handleCloseClick();
   };
-
 
   return (
     <>
@@ -173,14 +167,13 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
-
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking
     items: state.sessionReducer.sessionPicking.items, // los items de la session
     active: state.popupReducer.numero,
     auth: JSON.stringify(localStorage.getItem('auth')),
-    idItems:state.sessionReducer.idItems
+    idItems: state.sessionReducer.idItems,
   };
 };
 
@@ -191,7 +184,7 @@ const MapDispatchToProps = (dispatch) => {
     Activar: (n) => dispatch(Activacion(n)),
     handleCloseClick: () => dispatch(Desactivacion()),
     setBooleano: (boolean) => dispatch(setBooleano(boolean)),
-    setIdItems: (id) =>  dispatch(setIdItems(id)),
+    setIdItems: (id) => dispatch(setIdItems(id)),
   };
 };
 
