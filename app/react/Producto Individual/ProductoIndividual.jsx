@@ -375,7 +375,7 @@ export default ({
                               />
                               <FlechitaDesplegableNone />
                             </>
-                          ) : count >= session[idx].purchasedQuantity ? (
+                          ) : count >= session[indice].purchasedQuantity ? (
                             <>
                               <FlechitaDesplegableNone />
                               <FlechitaDesplegable
@@ -666,7 +666,7 @@ export default ({
                             />
                             <FlechitaDesplegableNone />
                           </>
-                        ) : count >= session[idx].purchasedQuantity ? (
+                        ) : count >= session[indice].purchasedQuantity ? (
                           <>
                             <FlechitaDesplegableNone />
                             <FlechitaDesplegable
