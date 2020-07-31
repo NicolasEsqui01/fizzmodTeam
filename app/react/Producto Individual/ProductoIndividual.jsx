@@ -113,6 +113,7 @@ export default ({
   pesoTotal,
   handleRemoveItem
 }) => {
+  console.log("session", session)
   let idx = 0;
   return (
     <>
@@ -338,7 +339,7 @@ export default ({
                       / {session[indice].purchasedQuantity}
                     </H1CantidadNum>
                     <ContFlechitas>
-                      {count == 0 ? (
+                      { count == 0 ? (
                         <>
                           <FlechitaDesplegable
                             src={flechaDesplegableArriba}
@@ -346,7 +347,7 @@ export default ({
                           />
                           <FlechitaDesplegableNone />
                         </>
-                      ) : count >= session[idx].purchasedQuantity ? (
+                      ) : count >= session[indice].purchasedQuantity ? (
                         <>
                           <FlechitaDesplegableNone />
                           <FlechitaDesplegable

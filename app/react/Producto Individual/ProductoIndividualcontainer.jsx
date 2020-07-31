@@ -62,6 +62,10 @@ const ProductoIndividualcontainer = ({
   }, [showInput]);
 
   useEffect(() => {
+    console.log("count", count)
+  }, [count]);
+
+  useEffect(() => {
     if(inputRef.current && input!=0) inputRef.current.value="";
   }, [wheights]);
 
