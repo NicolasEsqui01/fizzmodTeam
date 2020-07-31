@@ -17,3 +17,19 @@ background-color: #FF4343;
 opacity:1;
 border-radius:50px;
 `
+
+export const ProgressTotal2 = styled.div`
+display: flex;
+width: 90%;
+height:3%;
+border-radius:50px;
+background-color:#fcaba9;
+margin-top:5%
+`
+
+export const ProgressDone2 = styled.div`
+${props => props.Done !==0 ?`width:${props.Done}%;`:null}
+background-color: #FF4343;
+opacity:1;
+border-radius:50px;
+`

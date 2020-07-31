@@ -94,9 +94,9 @@ const ProductoIndividualcontainer = ({
         pathname: '/confirmacion',
         state: { idSession: idSession, data: data },
       });
-      setWheights([]);
-      setPesoTotal(0);
-      setCount(0);
+      // setWheights([]);
+      // setPesoTotal(0);
+      // setCount(0)
     } else {
       sendItemPicked(idSession, data)
         .then(() => {

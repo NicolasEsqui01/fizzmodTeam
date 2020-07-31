@@ -36,7 +36,7 @@ import {
   TotalesGris,
   ImgLineaRoja,
 } from './style';
-
+import ProgressBarFinal from '../ProgressBar/ProgressBarFinal'
 import basket from '../../images/basket_gris.svg';
 import basketVerde from '../../images/basket_verde.svg';
 import basketNegro from '../../images/basket_negro.svg';
@@ -45,7 +45,14 @@ import AprobadoCirculo from '../../images/check_circulo.svg';
 import keyboard from '../../images/icn_keyboard.svg';
 //import tecladoGris from "../../images/tecladoGris.png";
 
-export default ({handleClick}) => {
+export default ({handleClick, idSession}) => {
+  let total 
+  let largo
+  let porcentaje
+  if(idSession.items){
+   total = idSession.totalItems
+   largo = idSession.items.filter(Element => Element.status === 'picked' ).length 
+  }
   return (
     <Container>
       <Izquierdo>
@@ -66,9 +73,9 @@ export default ({handleClick}) => {
             <TituloTotales>TOTALES</TituloTotales>
             <Pickeados>Pickeados: 738</Pickeados>
             <TotalesGris>Totales: 1000</TotalesGris>
-            <ImgLineaRoja />
           </ColuInfoDerecha>
         </ParteInferiorIzq>
+           <ProgressBarFinal Done={largo} Total={total}></ProgressBarFinal>
       </Izquierdo>
       <Derecho>
         <div>
