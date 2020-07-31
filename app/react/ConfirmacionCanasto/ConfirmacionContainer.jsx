@@ -6,10 +6,10 @@ import { itemPicked } from '../../action/picking';
 import history from '../../utils/history'
 
 
-const ConfirmacionContainer = (props) => {
+const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location}) => {
   const handleClick = () =>{
-    props.setBooleano(false);
-    props.sendItemPicked(props.location.state.idSession,props.location.state.data)
+    setBooleano(false);
+    sendItemPicked(location.state.idSession, location.state.data)
     .then(()=>{
       localStorage.removeItem('token');
       localStorage.removeItem('sessionid');
@@ -17,10 +17,17 @@ const ConfirmacionContainer = (props) => {
     })
   };
 
-  return <ConfirmacionCanasto handleClick={handleClick}/>;
+  return <ConfirmacionCanasto handleClick={handleClick} idSession={idSession}/>;
 };
 
-const MapStateToProps = () => {};
+const mapStateToProps = (state) => {
+ 
+  return{
+
+    idSession: state.sessionReducer.sessionPicking,
+  }
+
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -29,4 +36,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(null, mapDispatchToProps)(ConfirmacionContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ConfirmacionContainer);
