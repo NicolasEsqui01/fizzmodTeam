@@ -150,7 +150,6 @@ ${({active}) => active === 1 ? null : 'display:none'}
 `
 
 export const Loadingg = styled.div`
- border:1px solid black;
  margin:0 auto;
 `
 

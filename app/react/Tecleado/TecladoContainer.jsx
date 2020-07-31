@@ -19,7 +19,7 @@ let texto = event.target.value
  )
 }
 const mapStateToProps = (state, ownProps) => {
-    console.log(state.tecladoReducer.input)
+
    return{
        contenido: state.tecladoReducer.input
    }

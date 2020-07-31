@@ -18,13 +18,19 @@ const PopUpContainer = ({
   Activar,
   sendItemPicked,
   idSession,
-  idItems
+  idItems,
+  getSessionPicking
 }) => {
   const [battery, setBattery] = useState(null);
   const [cerrar, setCerrar] = useState(true);
   const handleBtnClick = (n) => {
     Activar(n);
   };
+  const [id ,setId] = useState(localStorage.getItem('sessionid'))
+
+  useEffect(() =>{
+    getSessionPicking(id)
+  }, [idSession])
 
   const closeAlerts = () => {
     setCerrar(false);
@@ -65,7 +71,7 @@ const PopUpContainer = ({
   }
   setInterval(() => {
     getBattery();
-  }, 10000);
+  }, 300000);
 
   if (battery < 0.2 && battery > 0.18) {
     setCerrar(true);
@@ -85,6 +91,7 @@ const PopUpContainer = ({
         Activar={handleBtnClick}
         onCloseClick={handleCloseClick}
         idSession={idSession}
+        idItems={idItems}
       />
       <PopUpInfoPicker active={active} onCloseClick={handleCloseClick} />
       <PopUpObservacion

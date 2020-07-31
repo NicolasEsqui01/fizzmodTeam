@@ -52,7 +52,7 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
             <DivH>
               <ButtonM>
                 <ImgO src={PrePick} />
-                <Significado>Pre-picker</Significado>
+                <Significado>Pre-pickear</Significado>
               </ButtonM>
             </DivH>
             <DivH>
@@ -66,7 +66,7 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
             <DivH>
               <ButtonM>
                 <ImgO src={FullBasket} />
-                <Significado>Canasto lleno</Significado>
+                <Significado>Canasto Lleno</Significado>
               </ButtonM>
             </DivH>
             <DivH>
@@ -88,13 +88,13 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
           <DivH>
             <ButtonM onClick={() => Activar(5)}>
               <ImgO src={BoxCircle} />
-              <Significado>Informacion de la orden</Significado>
+              <Significado>Informacion de la Orden</Significado>
             </ButtonM>
           </DivH>
           <DivH>
             <ButtonM>
               <ImgO src={unPick} />
-              <Significado>Despicker</Significado>
+              <Significado>Despickear</Significado>
             </ButtonM>
           </DivH>
         </DivN>
