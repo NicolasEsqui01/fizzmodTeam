@@ -19,18 +19,17 @@ const NavbarContainer = ({ time, status, booleano, items, itemsPicking, sessionI
 
   const [pickeados, setPickeados] = useState(0);
 
+  const volverDelFinal = () => {
+    if(final) localStorage.removeItem('final');
+    history.goBack();
+  }
+
   useEffect(() => {
     if (itemsPicking != undefined) {
       setPickeados(itemsPicking.length);
     }
   }, [itemsPicking]);
 
-  useEffect(() => {
-    if(final) {
-      setPickeados(0)
-    }
-  }, [final]);
-  
   return (
     <Navbar
       qtyPicked={pickeados}
@@ -40,6 +39,7 @@ const NavbarContainer = ({ time, status, booleano, items, itemsPicking, sessionI
       booleano={booleano}
       sessionId={sessionId}
       final={final}
+      volverDelFinal={volverDelFinal}
     />
   );
 };

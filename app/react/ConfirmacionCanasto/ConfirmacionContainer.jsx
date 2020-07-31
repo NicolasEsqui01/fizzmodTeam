@@ -8,6 +8,11 @@ import history from '../../utils/history'
 
 
 const ConfirmacionContainer = (props) => {
+
+  useEffect(() => {
+    console.log("props.location.state.  ",props.location.state)
+  }, []);
+
   const handleClick = () =>{
     props.setBooleano(false);
     props.sendItemPicked(props.location.state.idSession,props.location.state.data)

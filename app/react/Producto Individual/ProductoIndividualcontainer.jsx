@@ -48,11 +48,9 @@ const ProductoIndividualcontainer = ({
     }
   }, [match.params.indice , items.length]);
 
-  
   const handleBtnClick = (n) => {
     Activar(n);
   };
-
 
   const inputRef = useRef(null);
 
@@ -99,9 +97,9 @@ const ProductoIndividualcontainer = ({
                          data: data
                        }
                      })
-      setWheights([]);
-      setPesoTotal(0);
-      setCount(0)
+      // setWheights([]);
+      // setPesoTotal(0);
+      // setCount(0)
     } else {
         sendItemPicked(idSession, data)
         .then(() => {
