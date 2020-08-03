@@ -35,6 +35,8 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
   let start;
   let end;
   let duration;
+  let durationDias;
+  let tiempo;
   let arrFractionable = 0;
   let arrWeighable = 0;
   let arrFresh = 0;
@@ -59,6 +61,7 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
+           
 
             element.items.map((el) => {
 
@@ -143,6 +146,12 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
+            durationDias = moment.duration(end.diff(start)).asDays();
+
+            parseInt(duration * 10, 10) < 1440? tiempo= parseInt(duration * 10, 10) + " min" : tiempo= parseInt(durationDias * 10, 10) + " días"
+
+            
+           
             return element.status == "picked" ?
               (
 
@@ -161,7 +170,7 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                         <Num>{element.totalItems}</Num> Items/
                         </Text>
                       <Text>
-                        <Num>{parseInt(duration * 10, 10)}</Num>min
+                        <Num>{tiempo}</Num>
                         </Text>
                     </DivT>
                     <DivP>
@@ -212,7 +221,7 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
                           <Num>{element.totalItems}</Num> Items/
                         </Text>
                     <Text>
-                      <Num>{parseInt(duration * 10, 10)}</Num>min
+                      <Num>{tiempo}</Num>
                         </Text>
                       </DivT>
                       <DivP>
