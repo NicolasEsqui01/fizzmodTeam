@@ -31,7 +31,7 @@ import fraction from "../../images/fraction.svg";
 import store from '../../images/store.svg';
 import moment from 'moment';
 
-export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, valor }) => {
+export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => {
   let start;
   let end;
   let duration;
@@ -39,14 +39,7 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
   let arrWeighable = 0;
   let arrFresh = 0;
   let arrFrozen = 0;
-  
- 
-  
-
-
-
-
-
+  console.log("pickSessiones",pickSessiones)
   return (
     <>
       <DivScroll>
@@ -69,7 +62,6 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
 
             })
 
-           
             return (
               <ListOrdenes
                 key={element.id}
@@ -125,134 +117,76 @@ export default ({ pendSessions, pickedAndPikcingSessions, status, handleClick, v
           })
           )
           :
-          (pickedAndPikcingSessions.map((element) => {
+          (pickSessiones.map((element) => {
             arrFractionable = 0;
             arrWeighable = 0;
             arrFresh = 0;
             arrFrozen = 0;
 
-            element.items.map((el)=>{
-              
+            element.items.map((el)=>{  
               el.isFresh==true? arrFresh +=1 : null;
               el.isWeighable==true? arrWeighable += 1: null;
               el.isFractionable==true? arrFractionable +=1 : null;
               el.isFrozen==true? arrFrozen +=1 : null;
-              
-           })
+            })
 
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-            return element.status == "picked" ?
-              (
-
-                <ListOrdenes
-                  className="picked"
-                  key={element.id}
-                  permitir={valor}
-                  div={element.id}
-                  estadoOrden={element.status}
-                  onClick={() => handleClick(element.id, 'picked')}>
-                  <ImgPicked src={box} />
-                  <DivN>
-                    <Numero>Nro.{element.id} </Numero>
-                    <DivT>
-                      <Text>
-                        <Num>{element.totalItems}</Num> Items/
-                        </Text>
-                      <Text>
-                        <Num>{parseInt(duration * 10, 10)}</Num>min
-                        </Text>
-                    </DivT>
-                    <DivP>
-                      <Peso>
-                        <ImgP src={balance} />
-                        <NumP>{arrWeighable}</NumP>
-                        </Peso>
-                        <Frio>
-                          <ImgP src={snow} />
-                        <NumP>{arrFrozen}</NumP>
-                        </Frio>
-                        <Aire>
-                          <ImgP src={waves} />
-                          <NumP>{arrFresh}</NumP>
-                        </Aire>
-                        <Aire>
-                      <ImgP src={fraction} />
-                    <NumP>{arrFractionable}</NumP>
-                    </Aire>
-                      </DivP>
-                      <DivS>
-                        <Marca>
-                          <ImgP src={substitute} />
-                          <Info>= Marca, = Gramage</Info>
-                        </Marca>
-                      </DivS>
-                      <DivS>
-                        <Marca2>
-                          <ImgP src={store} />
-                          <Info>Retiro por tienda</Info>
-                        </Marca2>
-                      </DivS>
-                    </DivN>
-                  </ListOrdenes>)
-                :
-                (<ListOrdenes
+            return (
+              <ListOrdenes
                   className="picking"
                   key={element.id}
                   permitir={valor}
                   div={element.id}
                   estadoOrden={element.status}
                   onClick={() => handleClick(element.id,'picking')}>
-                    <ImgPicking src={box} />
-                    <DivN>
-                      <Numero>Nro.{element.id} </Numero>
-                      <DivT>
-                        <Text>
-                          <Num>{element.totalItems}</Num> Items/
-                        </Text>
+                <ImgPicking src={box} />
+                <DivN>
+                  <Numero>Nro.{element.id} </Numero>
+                  <DivT>
+                    <Text>
+                      <Num>{element.totalItems}</Num> Items/
+                    </Text>
                     <Text>
                       <Num>{parseInt(duration * 10, 10)}</Num>min
-                        </Text>
-                      </DivT>
-                      <DivP>
-                        <Peso>
-                          <ImgP src={balance} />
-                          <NumP>{arrWeighable}</NumP>
-                        </Peso>
-                        <Frio>
-                          <ImgP src={snow} />
-                          <NumP>{arrFrozen}</NumP>
-                        </Frio>
-                        <Aire>
-                          <ImgP src={waves} />
-                          <NumP>{arrFresh}</NumP>
-                        </Aire>
-                        <Aire>
+                    </Text>
+                  </DivT>
+                  <DivP>
+                    <Peso>
+                      <ImgP src={balance} />
+                      <NumP>{arrWeighable}</NumP>
+                    </Peso>
+                    <Frio>
+                      <ImgP src={snow} />
+                    <NumP>{arrFrozen}</NumP>
+                    </Frio>
+                    <Aire>
+                      <ImgP src={waves} />
+                      <NumP>{arrFresh}</NumP>
+                    </Aire>
+                    <Aire>
                       <ImgP src={fraction} />
                     <NumP>{arrFractionable}</NumP>
                     </Aire>
-                      </DivP>
-                      <DivS>
-                        <Marca>
-                          <ImgP src={substitute} />
-                          <Info>= Marca, = Gramage</Info>
-                        </Marca>
-                      </DivS>
-                      <DivS>
-                        <Marca2>
-                          <ImgP src={store} />
-                          <Info>Retiro por tienda</Info>
-                        </Marca2>
-                      </DivS>
-                    </DivN>
-                  </ListOrdenes>
-                )
-               }
-              )
-          
+                  </DivP>
+                  <DivS>
+                    <Marca>
+                      <ImgP src={substitute} />
+                      <Info>= Marca, = Gramage</Info>
+                    </Marca>
+                  </DivS>
+                  <DivS>
+                    <Marca2>
+                      <ImgP src={store} />
+                      <Info>Retiro por tienda</Info>
+                    </Marca2>
+                  </DivS>
+                </DivN>
+              </ListOrdenes>
+            );
+          })
           )
-          
         }
       </DivScroll>
     </>
