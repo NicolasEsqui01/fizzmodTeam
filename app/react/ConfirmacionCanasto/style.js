@@ -195,6 +195,7 @@ export const Button = styled.button`
   outline: none;
   bottom: 0px;
   margin-bottom:5px;
+  cursor: pointer;
 
   @media ${device.mobile} {
     width: 35%;

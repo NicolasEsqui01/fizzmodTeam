@@ -28,9 +28,6 @@ const PopUpContainer = ({
   };
   const [id ,setId] = useState(localStorage.getItem('sessionid'))
 
-  useEffect(() =>{
-    getSessionPicking(id)
-  }, [idSession])
 
   const closeAlerts = () => {
     setCerrar(false);
