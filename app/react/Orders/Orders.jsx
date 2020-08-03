@@ -35,6 +35,8 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
   let start;
   let end;
   let duration;
+  let durationDias;
+  let tiempo;
   let arrFractionable = 0;
   let arrWeighable = 0;
   let arrFresh = 0;
@@ -52,6 +54,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
+           
 
             element.items.map((el) => {
 
@@ -133,8 +136,11 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
+            durationDias = moment.duration(end.diff(start)).asDays();
+            parseInt(duration * 10, 10) < 1440? tiempo= parseInt(duration * 10, 10) + " min" : tiempo= parseInt(durationDias * 10, 10) + " días"
+            
             return (
-              <ListOrdenes
+                <ListOrdenes
                   className="picking"
                   key={element.id}
                   permitir={valor}
@@ -149,7 +155,8 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                       <Num>{element.totalItems}</Num> Items/
                     </Text>
                     <Text>
-                      <Num>{parseInt(duration * 10, 10)}</Num>min
+                      <Num>{tiempo}
+                      </Num>
                     </Text>
                   </DivT>
                   <DivP>
@@ -159,7 +166,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                     </Peso>
                     <Frio>
                       <ImgP src={snow} />
-                    <NumP>{arrFrozen}</NumP>
+                      <NumP>{arrFrozen}</NumP>
                     </Frio>
                     <Aire>
                       <ImgP src={waves} />
@@ -167,7 +174,8 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                     </Aire>
                     <Aire>
                       <ImgP src={fraction} />
-                    <NumP>{arrFractionable}</NumP>
+                    <NumP>{arrFractionable}
+                    </NumP>
                     </Aire>
                   </DivP>
                   <DivS>
