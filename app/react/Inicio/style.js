@@ -466,6 +466,7 @@ export const Button = styled.button`
   border-radius: 3px;
   background-color: #1db779;
   outline:none;
+  cursor: pointer;
 `;
 
 
@@ -491,5 +492,6 @@ export const ButtonRetomar = styled.button`
   border-radius: 3px;
   background-color: #F13B70;
   outline:none;
+  cursor: pointer;
 `;
 

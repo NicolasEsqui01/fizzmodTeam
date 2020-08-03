@@ -103,7 +103,9 @@ const ProductoIndividualcontainer = ({
           let newIndice = Number(indice) + 1;
           setWheights([]);
           setPesoTotal(0);
+          getSessionPicking(idSession);
           return history.push(`/productoindividual/${idSession}/${newIndice}`);
+
         })
         .then(() => setCount(0));
     }

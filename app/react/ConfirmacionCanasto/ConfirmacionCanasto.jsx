@@ -36,7 +36,7 @@ import {
   TotalesGris,
   ImgLineaRoja,
 } from './style';
-import ProgressBarFinal from '../ProgressBar/ProgressBarFinal'
+import ProgressBarContainer from '../ProgressBar/ProgressBarContainer';
 import basket from '../../images/basket_gris.svg';
 import basketVerde from '../../images/basket_verde.svg';
 import basketNegro from '../../images/basket_negro.svg';
@@ -75,7 +75,7 @@ export default ({handleClick, idSession}) => {
             <TotalesGris>Totales: 1000</TotalesGris>
           </ColuInfoDerecha>
         </ParteInferiorIzq>
-           <ProgressBarFinal Done={largo} Total={total}></ProgressBarFinal>
+           <ProgressBarContainer/>
       </Izquierdo>
       <Derecho>
         <div>

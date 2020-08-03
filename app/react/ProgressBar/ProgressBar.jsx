@@ -8,9 +8,9 @@ import {
 /* {idSession.items.map((Element , indice) => <Barrita>{indice + 1}</Barrita>)} */
 const ProgressBar = ({Done,Total})=>{
 
-    let porcentaje = (Done/Total)*100
+    let porcentaje = (Done/Total)*100 -7
 
-
+console.log(porcentaje)
 
 return(
     <ProgressTotal Total={Total} >
@@ -22,11 +22,11 @@ return(
 }
 const mapStateToProps = (state, ownProps)=>{
  
-    return({
+    return ({
         Done: ownProps.Done,
-        Total: ownProps.Total
+        Total: ownProps.Total,
     })
-
+  
 }
 
 export default connect(mapStateToProps, null)(ProgressBar)
