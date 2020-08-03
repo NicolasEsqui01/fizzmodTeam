@@ -8,9 +8,9 @@ import {
   ChangePickedAndPicking,
 } from '../../action/inicio';
 import { Redirect } from 'react-router-dom';
-import { setDatosUser as DatosUser } from '../../action/login'
-import { getStartSession , setBooleano } from '../../action/session'
-import history from '../../utils/history'
+import { setDatosUser as DatosUser } from '../../action/login';
+import { getStartSession, setBooleano } from '../../action/session';
+import history from '../../utils/history';
 
 const mapStateToProps = (state) => {
   return {
@@ -31,10 +31,11 @@ const mapDispatchToProps = (dispatch) => {
     getSessions: () => dispatch(fetchSessions()),
     getPickers: () => dispatch(fetchPickers()),
     sessionsPending: (totalSessions) => dispatch(ChangePending(totalSessions)),
-    sessionsPickedAndPicking: (totalSessions) => dispatch(ChangePickedAndPicking(totalSessions)),
+    sessionsPickedAndPicking: (totalSessions) =>
+      dispatch(ChangePickedAndPicking(totalSessions)),
     setDatosUser: () => dispatch(DatosUser()),
-    getStartSession : (id) => dispatch(getStartSession(id)),
-    setBooleano: (booleano) => dispatch(setBooleano(booleano))
+    getStartSession: (id) => dispatch(getStartSession(id)),
+    setBooleano: (booleano) => dispatch(setBooleano(booleano)),
   };
 };
 
@@ -55,35 +56,35 @@ const InicioContainer = ({
   auth,
   setDatosUser,
   getStartSession,
-  setBooleano
+  setBooleano,
 }) => {
   useEffect(() => {
-    if(auth !== 'null'){
-      getSessions()
+    if (auth !== 'null') {
+      getSessions();
       getPickers();
       setDatosUser();
     }
   }, []);
 
   useEffect(() => {
-    if(totalSessions !== 0){
+    if (totalSessions !== 0) {
       setPending(totalSessions);
-    }  
+    }
   }, [totalSessions]);
 
   useEffect(() => {
-    if (statusOrderSelected=="picking")setOkBoton("picking")
-    if (statusOrderSelected=="pending")setOkBoton("pending")
-    if (statusOrderSelected=="picked")setOkBoton("picked")
+    if (statusOrderSelected == 'picking') setOkBoton('picking');
+    if (statusOrderSelected == 'pending') setOkBoton('pending');
+    if (statusOrderSelected == 'picked') setOkBoton('picked');
   }, [statusOrderSelected]);
 
-  const [okBoton, setOkBoton] = useState('')
+  const [okBoton, setOkBoton] = useState('');
 
   const handleClickSession = () => {
-    getStartSession(sessionId).then(() =>{
-      localStorage.setItem('sessionid', sessionId)
-      setBooleano(true)
-      return history.push(`/productoindividual/${sessionId}/1`)
+    getStartSession(sessionId).then(() => {
+      localStorage.setItem('sessionid', sessionId);
+      setBooleano(true);
+      return history.push(`/productoindividual/${sessionId}/1`);
     });
   };
 
@@ -95,30 +96,25 @@ const InicioContainer = ({
     sessionsPickedAndPicking(totalSessions);
   };
 
-  const handleClick = (id) => {
-    setValue(id)
-    SessionId(id)
-  };
-
   return (
     <>
       {auth === 'null' ? (
         <Redirect to="/" />
       ) : (
         <>
-        <Inicio
-          pickers={pickers}
-          sessions={totalSessions}
-          totalPending={totalPendings}
-          totalPicked={totalPickeds}
-          totalPicking={totalPickings}
-          handleClickSession={handleClickSession}
-          status={status}
-          statusOrderSelected={statusOrderSelected}
-          okBoton={okBoton}
-          getSessionPicked={setPicked}
-          getSessionPending={setPending}
-        ></Inicio>
+          <Inicio
+            pickers={pickers}
+            sessions={totalSessions}
+            totalPending={totalPendings}
+            totalPicked={totalPickeds}
+            totalPicking={totalPickings}
+            handleClickSession={handleClickSession}
+            status={status}
+            statusOrderSelected={statusOrderSelected}
+            okBoton={okBoton}
+            getSessionPicked={setPicked}
+            getSessionPending={setPending}
+          ></Inicio>
         </>
       )}
     </>

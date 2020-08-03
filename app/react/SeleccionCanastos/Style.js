@@ -105,14 +105,11 @@ margin-top: 5%;
 
 
 export const DivMedio = styled.div`
-display: flex;
-//margin-top: 4%;
-//margin-left: 15%;
-margin-right: 15%;
-width: 70%;
-height: 100%;
-//border: 1px solid #939598;
-flex-direction: column;
+  display: flex;
+  margin-right: 15%;
+  width: 70%;
+  height: 100%;
+  flex-direction: column;
 `;
 
 
@@ -128,12 +125,8 @@ height: auto;
 `;
 
 export const DivUno = styled.div`
-display: flex;
 background-color: white;
-//margin-top: 1%;
-//margin-bottom: 1%;
 border-radius: 3px 3px 3px 3px;
-//margin-left: 2%;
 margin-right: 2%;
 height: 140px;
 width: 40%;
@@ -257,7 +250,7 @@ ${({ key }) => {
 `;
 
 export const EstructuraCaja = styled.div`
-
+//margin-top:40px;
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -278,16 +271,16 @@ height: 15%;
 `;
 
 export const BarritasArribaizq = styled.img`
-height: 18px;
-width: 23px;
+height: 22px;
+width: 30px;
 //margin-left: 100%;
 
 `;
 
 export const ImagengrandeDiv = styled.div`
-display: flex;
-flex-direction: row;
-//justify-content: center;
+// display: flex;
+// flex-direction: row;
+// justify-content: center;
 //margin-left: 20%,
 padding-top: 10% ;
 padding-bottom: 10%;
@@ -339,7 +332,6 @@ flex-direction: row;
 `;
 
 export const NumCanastoGris = styled.p`
-display: flex;
 position: absolute;
 margin-top: 4%;
 color: #D5D7DB;
@@ -398,3 +390,44 @@ export const Comenzar = styled.button`
   font-size: 18px;
 }
   `;
+
+export const ImgX = styled.img`
+  width:50px;
+  height:50px;
+`
+
+export const DivPopup = styled.div`
+  width:750px;
+  height:400px;
+  display:flex;
+  background-color:#1DB779;
+  align-items:center;
+  margin-top:3%;
+  margin-left:15%;
+  position:fixed;
+  ${({valor , elementos}) => valor === elementos ? null : 'display:none'};
+`
+
+export const SubDivPopup = styled.div`
+  padding:30px;
+  margin:0 auto;
+`
+
+export const FormPopup = styled.form`
+  display:flex;
+  flex-direction:column;
+  margin-top:20px;
+`
+export const Input = styled.input`
+  width:200px;
+  border:1px solid #1DB779;
+  outline:none;
+`
+
+export const InputSubmit = styled.input`
+  border-radius:20px;
+  margin-top:20px;
+  border:2px solid black;
+  outline:none;
+`
+

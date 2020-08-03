@@ -45,6 +45,7 @@ import lapiz from '../../images/edit.svg';
 import BasketDashed from '../../images/basket_dashed_grey.svg';
 import BasketFull from '../../images/basket_full.svg';
 import BasketFullAzul from '../../images/basket_full_azul.svg';
+import X from '../../images/cross_light.svg';
 
 export default () => {
 

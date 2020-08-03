@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {
-    ProgressTotal,
-    ProgressDone
+    ProgressTotal2,
+    ProgressDone2
 } from './style'
 
 /* {idSession.items.map((Element , indice) => <Barrita>{indice + 1}</Barrita>)} */
@@ -13,15 +13,15 @@ const ProgressBar = ({Done,Total})=>{
 
 
 return(
-    <ProgressTotal Total={Total} >
-        <ProgressDone Done={porcentaje}>
-        </ProgressDone>
-    </ProgressTotal>
+    <ProgressTotal2 Total={Total} >
+        <ProgressDone2 Done={porcentaje}>
+        </ProgressDone2>
+    </ProgressTotal2>
 
 )
 }
 const mapStateToProps = (state, ownProps)=>{
- 
+
     return({
         Done: ownProps.Done,
         Total: ownProps.Total
@@ -30,6 +30,3 @@ const mapStateToProps = (state, ownProps)=>{
 }
 
 export default connect(mapStateToProps, null)(ProgressBar)
-
-
-
