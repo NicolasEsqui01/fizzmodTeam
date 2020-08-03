@@ -6,9 +6,11 @@ import { device } from '../../utils/mediaQuerys';
 
 
 export const Header = styled.div`
-  //background-color: red;
+  background-color: white;
   width: 100%;
   height: 50px;
+  
+  
 `;
 
 export const DivIconoHeader = styled.div`
@@ -34,7 +36,7 @@ export const H1Header = styled.div`
 height: 24px;
 //width: 178px;
 color: #273947;
-font-family: Roboto;
+//font-family: Roboto !important;
 font-size: 24px;
 letter-spacing: 0;
 line-height: 24px;
@@ -48,6 +50,7 @@ display: flex;
 width: 100%;
 height: 70vh;
 background-color: #E8EAF6;
+//padding-bottom: 
 //flex-direction:column;
 `;
 
@@ -136,6 +139,8 @@ height: 140px;
 width: 40%;
 flex-direction: column;
 //align-items: center;
+
+
 `;
 
 
@@ -168,7 +173,7 @@ export const Uno = styled.div`
   display: flex;
   flex-direction: row;
   color: #273947;
-  font-family: Roboto;
+  //font-family: Roboto;
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 0;
@@ -208,7 +213,7 @@ export const H1Cod = styled.div`
 height: 14px;
   width: 150px;
   color: #273947;
-  font-family: Roboto;
+  //font-family: Roboto;
   font-size: 16px;
   letter-spacing: 0;
   line-height: 14px;
@@ -219,7 +224,7 @@ export const H1Caja = styled.div`
 height: 14px;
   width: 150px;
   color: #939598;
-  font-family: Roboto;
+  //font-family: Roboto;
   font-size: 16px;
   letter-spacing: 0;
   line-height: 14px;
@@ -233,16 +238,22 @@ height: 14px;
 export const DivDos = styled.div`
 display: flex;
 background-color: white;
-//margin-top: 1%;
-//margin-bottom: 1%;
 border-radius: 3px 3px 3px 3px;
-margin-left: 2%;
 margin-right: 2%;
 height: 140px;
 width: 40%;
 flex-direction: column;
 //align-items: center;
-border: #2979FF 1px solid;
+
+
+/////////////////////// SELECCIONAR CANASTO Y PINTARLO AZUL /////////////
+${({ key }) => {
+    
+  if(key == 'si'){
+     return 'border: #2979FF 1px solid !important;'
+    
+  } 
+}}
 `;
 
 export const EstructuraCaja = styled.div`
@@ -251,12 +262,19 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+height: 80%;
+//background-image: url('../../images/basket_full.svg ');
+//background-repeat: no-repeat;
+
+
+
 
 `;
 
 export const DivIconoBarritas = styled.div`
 display: flex;
 justify-content: flex-end !important;
+height: 15%;
 `;
 
 export const BarritasArribaizq = styled.img`
@@ -274,57 +292,69 @@ flex-direction: row;
 padding-top: 10% ;
 padding-bottom: 10%;
 align-items: center !important;
+position: relative;
 
 `;
 
 export const ImagenGrande = styled.img`
   height: 98px;
   width: 140px;
+  position: relative;
 `;
 
 export const H1PickearCanasto = styled.div`
   display: flex;
   flex-direction: row;
-  color: #2979FF;
+  color: white;
   font-family: Roboto;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 11px;
-  //text-align: center;
-  //align-items: center;
   justify-content: center;
+  height: 15%;
+
+///////////////// CANASTO SELECCIONADO PINTAR DE AZUL "PICKEAR CANASTO" ////////////////
+//color: #2979FF;
 
 `;
 
-export const NumCanasto = styled.p`
+export const NumCanasto = styled.h1`
 display: flex;
 position: absolute;
-margin-top: 4%;
-color: #2979FF;
-font-family: Roboto;
-font-size: 34px;
-//justify-content: center;
-flex-direction: row;
-margin-left: 10%;
-margin-right: auto;
-margin-top: 4%;
+margin-top: auto;
 margin-bottom: auto;
+height: 90px;
+//margin-top: 4%;
+color: #D5D7DB;
+//font-family: Roboto;
+font-size: 32px;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+// margin-left: 10%;
+// margin-right: auto;
+// margin-top: 4%;
+// margin-bottom: auto;
 `;
 
 export const NumCanastoGris = styled.p`
 display: flex;
 position: absolute;
-//margin-top: 4%;
-color: #D5D7DB;
-font-family: Roboto;
-font-size: 34px;
-flex-direction: row;
-margin-left: 10%;
-margin-right: auto;
 margin-top: 4%;
-margin-bottom: auto;
+color: #D5D7DB;
+//font-family: Roboto;
+font-size: 34px;
+justify-content: center;
+align-items: center;
+flex-direction: row;
+// margin-left: 10%;
+// margin-right: auto;
+// margin-top: 4%;
+// margin-bottom: auto;
 `;
+
+
 ///////////////////////////////////////// FILA DE CAJAS DOS /////////////////////////
 
 export const DivFilaDos = styled.div`
@@ -341,7 +371,11 @@ export const Footer = styled.div`
 display: flex;
 flex-direction: row;
 justify-content: center;
-margin-top:8%;
+//margin-top:8%;
+background-color: #E8EAF6;
+height: 15vh;
+padding-bottom: 1%;
+
 `;
 
 export const Comenzar = styled.button`
@@ -351,7 +385,7 @@ export const Comenzar = styled.button`
   background-color: #1DB779;
   border:1px solid #1DB779;
   color: #ffffff;
-  font-family: Roboto;
+  //font-family: Roboto;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: 0;

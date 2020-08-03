@@ -143,7 +143,7 @@ export const DivScroll = styled.div`
 // Numeros
 export const Num = styled.div`
   height: 16px;
-  width: 20px;
+  width: auto;
   color: #939598;
   font-family: Roboto;
   font-size: 17px;
@@ -151,6 +151,7 @@ export const Num = styled.div`
   letter-spacing: 0;
   line-height: 16px;
   color: #939598;
+  margin-right: 5px;
 `;
 export const NumP = styled.div`
 margin-top:53%
@@ -168,7 +169,7 @@ export const Text = styled.div`
   display: flex;
   flex-direction: row;
   height: 16px;
-  width: 100px;
+  width: auto;
   color: #d5d7db;
   font-family: Roboto;
   font-size: 20px;
@@ -177,10 +178,11 @@ export const Text = styled.div`
   color: #d5d7db;
 `;
 
+
 export const Peso = styled.div`
   @media ${device.tablet} {
     width: 70%;
-    height: 50px;
+    height: 45px;
     margin: 5px;
   }
   margin-right: 3%;
@@ -198,7 +200,7 @@ export const Peso = styled.div`
 export const Frio = styled.div`
   @media ${device.tablet} {
     width: 70%;
-    height: 50px;
+    height: 45px;
     margin: 5px;
   }
   margin-right: 3%;
@@ -216,7 +218,7 @@ export const Frio = styled.div`
 export const Aire = styled.div`
   @media ${device.tablet} {
     width: 70%;
-    height: 50px;
+    height: 45px;
     margin: 5px;
   }
   margin-right: 3%;

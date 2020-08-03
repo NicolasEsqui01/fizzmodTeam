@@ -65,7 +65,7 @@ const PopUpContainer = ({
   }
   setInterval(() => {
     getBattery();
-  }, 10000);
+  }, 3000000);
 
   if (battery < 0.2 && battery > 0.18) {
     setCerrar(true);

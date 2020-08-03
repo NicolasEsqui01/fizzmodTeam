@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-   
   Header,
   DivIconoHeader,
-  IconoCanasta,
-  Div1,
-  DivA,
   IconoHeader,
   H1Header,
   DivGeneral,
@@ -46,27 +42,23 @@ import IconoHeaderImg from '../../images/icono_Header.png';
 import IconoIzq from '../../images/Icono_izq.png';
 import BoxGris from '../../images/box_gris.svg';
 import lapiz from '../../images/edit.svg';
-import BasketDashed from '../../images/basket_dashed.svg';
+import BasketDashed from '../../images/basket_dashed_grey.svg';
 import BasketFull from '../../images/basket_full.svg';
 import BasketFullAzul from '../../images/basket_full_azul.svg';
 
 export default () => {
+
+    let seleccionado = "no";
+    function Seleccionar (){
+        seleccionado = "si";
+        return seleccionado
+    }
+
   return (
-    
     <div>
       <Header>
         <DivIconoHeader>
           <IconoHeader src={IconoHeaderImg} />
-          {/* <IconoCanasta>
-                <DivA>
-                  <Div1></Div1>
-                  <Div1></Div1>
-                </DivA>
-                <DivA>
-                  <Div1></Div1>
-                  <Div1></Div1>
-                </DivA>
-              </IconoCanasta> */}
           <H1Header>Pickee los canastos</H1Header>
         </DivIconoHeader>
       </Header>
@@ -97,56 +89,62 @@ export default () => {
             </DivUno>
             <DivDos>
               <DivIconoBarritas>
-                <BarritasArribaizq src={barCodeAzul} />
+                <BarritasArribaizq src={barCodeGris} />
               </DivIconoBarritas>
               <EstructuraCaja>
-                <ImagenGrande src={BasketFullAzul} />
-
-                <H1PickearCanasto>PICKEAR CANASTO</H1PickearCanasto>
+                <ImagenGrande src={BasketFull} />
+                <NumCanasto>2</NumCanasto>
               </EstructuraCaja>
-              <NumCanasto>2</NumCanasto>
+              <H1PickearCanasto>PICKEAR CANASTO</H1PickearCanasto>
             </DivDos>
-            <DivUno>
+            <DivDos>
               <DivIconoBarritas>
                 <BarritasArribaizq src={barCodeGris} />
               </DivIconoBarritas>
               <EstructuraCaja>
                 <ImagenGrande src={BasketFull} />
+                <NumCanasto>3</NumCanasto>
               </EstructuraCaja>
-              <NumCanastoGris>3</NumCanastoGris>
-            </DivUno>
+              <H1PickearCanasto>PICKEAR CANASTO</H1PickearCanasto>
+            </DivDos>
           </DivFilaUno>
           <DivFilaDos>
-            <DivUno>
+            <DivDos>
               <DivIconoBarritas>
                 <BarritasArribaizq src={barCodeGris} />
               </DivIconoBarritas>
               <EstructuraCaja>
                 <ImagenGrande src={BasketFull} />
+                <NumCanasto>4</NumCanasto>
               </EstructuraCaja>
-              <NumCanastoGris>4</NumCanastoGris>
-            </DivUno>
-            <DivUno>
-              <EstructuraCaja>
-                <ImagengrandeDiv>
-                  <ImagenGrande src={BasketDashed} />
-                </ImagengrandeDiv>
-              </EstructuraCaja>
-            </DivUno>
-            <DivUno>
-              <EstructuraCaja>
-                <ImagengrandeDiv>
-                  <ImagenGrande src={BasketDashed} />
-                </ImagengrandeDiv>
-              </EstructuraCaja>
-            </DivUno>
-          </DivFilaDos>
+              <H1PickearCanasto>PICKEAR CANASTO</H1PickearCanasto>
+            </DivDos>
 
-          <Footer>
-            <Comenzar>COMENZAR</Comenzar>
-          </Footer>
+            <DivDos>
+              <DivIconoBarritas></DivIconoBarritas>
+              <EstructuraCaja>
+                <ImagenGrande src={BasketDashed} />
+                <NumCanastoGris></NumCanastoGris>
+              </EstructuraCaja>
+              <H1PickearCanasto></H1PickearCanasto>
+            </DivDos>
+
+            <DivDos onClick={() => Seleccionar()}
+            key={seleccionado}>
+              <DivIconoBarritas></DivIconoBarritas>
+              <EstructuraCaja>
+                <ImagenGrande src={BasketDashed} />
+                <NumCanastoGris></NumCanastoGris>
+              </EstructuraCaja>
+              <H1PickearCanasto></H1PickearCanasto>
+            </DivDos>
+          </DivFilaDos>
         </DivMedio>
       </DivGeneral>
+      <Footer>
+        <Comenzar>COMENZAR</Comenzar>
+      </Footer>
     </div>
   );
 };
+
