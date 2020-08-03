@@ -19,7 +19,7 @@ const PopUpContainer = ({
   sendItemPicked,
   idSession,
   idItems,
-  getSessionPicking
+  getSessionPicking,
 }) => {
   const [battery, setBattery] = useState(null);
   const [cerrar, setCerrar] = useState(true);
@@ -28,6 +28,11 @@ const PopUpContainer = ({
   };
   const [id ,setId] = useState(localStorage.getItem('sessionid'))
 
+  useEffect(() =>{
+    if(id !== null){
+      getSessionPicking(id)
+    }
+  }, [idSession])
 
   const closeAlerts = () => {
     setCerrar(false);

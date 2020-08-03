@@ -1,15 +1,13 @@
 import styled from 'styled-components';
-import fondoImag from '../../images/Janis-login-image.jpg'
+import fondoImag from '../../images/Janis-login-image.jpg';
 import { device } from '../../utils/mediaQuerys';
-
 
 export const DivContenedor = styled.div`
   background-color: white;
   display: flex;
-  height:100%;
-  @media screen and (max-width: 1023px){
+  height: 100%;
+  @media screen and (max-width: 1023px) {
     flex-direction: column;
-
   }
 `;
 export const DivImage = styled.div`
@@ -65,8 +63,8 @@ export const DivLogoImg = styled.div`
   `;
 
 export const ImgLogo = styled.img`
-height: 35px;
-width: 110px;
+  height: 35px;
+  width: 110px;
 `;
 
 export const Image = styled.img`
@@ -77,39 +75,38 @@ export const Image = styled.img`
 export const DivLogoLetras = styled.div``;
 
 export const DivContectForm = styled.div`
+  @media ${device.tablet} {
+    margin-top: 100px;
+  }
 
-@media ${device.tablet} {
-  margin-top: 100px;
-}
-
-   display: flex;
-   flex-direction: column;
-   -webkit-box-pack: center;
-   justify-content: center;
-   width: 64vw;
-   position: relative;
-   margin: auto;
-   min-height: 425px;
-   padding: 0px 10%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 64vw;
+  position: relative;
+  margin: auto;
+  min-height: 425px;
+  padding: 0px 10%;
 `;
 
 export const DivForm = styled.div`
-   display: flex;
-   flex-direction: column;
-   -webkit-box-pack: center;
-   justify-content: center;
-   position: relative;
-   height: 480px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  height: 480px;
 `;
 
 export const DivTitle = styled.div`
   display: flex;
   flex-direction: column;
-  @media screen and (max-width: 1023px){
+  @media screen and (max-width: 1023px) {
     -webkit-box-align: center;
     align-items: center;
     margin-bottom: 39px;
-}
+  }
 `;
 export const H1 = styled.h1`
   color: rgb(39, 57, 71);
@@ -117,8 +114,8 @@ export const H1 = styled.h1`
   //font-size: 26px;
   font-weight: bold;
   line-height: 36px;
-  @media screen and (max-width:1023){
-    margin-top:20px;
+  @media screen and (max-width: 1023) {
+    margin-top: 20px;
   }
 `;
 
@@ -129,8 +126,8 @@ export const H3 = styled.h3`
   line-height: 15px;
   font-weight: normal;
   margin-bottom: 20px;
-  @media screen and (max-width:1023){
-    margin-top:6px;
+  @media screen and (max-width: 1023) {
+    margin-top: 6px;
   }
 `;
 export const Form = styled.form`
@@ -138,21 +135,27 @@ export const Form = styled.form`
 `;
 
 export const FormInput = styled.div`
-   display: flex;
-   flex-direction: column;
-   margin-top: 46px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 46px;
 `;
 
 export const DivLoading = styled.div`
-display:flex;
-position:fixed;
-${({active}) => active === 1 ? null : 'display:none'}
-`
+  display: flex;
+  position: fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  justify-content:center;
+  align-items:center;
+  margin-left: 30pc;
+  ${({ active }) => (active === 1 ? null : 'display:none')}
+`;
 
 export const Loadingg = styled.div`
- margin:0 auto;
-`
-
+  margin: 0 auto;
+`;
 
 export const SubInput = styled.div`
   height: 58px;
@@ -160,42 +163,43 @@ export const SubInput = styled.div`
 `;
 
 export const DivInput = styled.div`
-   width: 100%;
+  width: 100%;
 `;
 export const DivInput1 = styled.div`
-   position: relative;
-   width: 100%;
+  position: relative;
+  width: 100%;
 `;
 export const DivInput2 = styled.div`
-   position: relative;
-   width: 100%;
+  position: relative;
+  width: 100%;
 `;
 export const DivInput3 = styled.div`
-   position: absolute;
-   font-size: 14px;
-   font-weight: 400;
-   color: rgb(147, 149, 152);
-   height: 30px;
-   line-height: 30px;
-   bottom: 0px;
-   left: 0px;
-   pointer-events: none;
-   transform-origin: left top;
-   transform: translate(0px, -18px) scale(0.75);
-   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  position: absolute;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(147, 149, 152);
+  height: 30px;
+  line-height: 30px;
+  bottom: 0px;
+  left: 0px;
+  pointer-events: none;
+  transform-origin: left top;
+  transform: translate(0px, -18px) scale(0.75);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 `;
 
 export const FormButtom = styled.div`
   display: flex;
-  flex-direction:column;
-  @media screen and (max-width: 1023px){
+  flex-direction: column;
+  @media screen and (max-width: 1023px) {
     align-self: center;
     -webkit-box-align: center;
     align-items: center;
     flex-direction: column-reverse;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    width: 100%;}
+    width: 100%;
+  }
 `;
 
 export const Forgot = styled.div`
@@ -228,8 +232,8 @@ export const Button = styled.button`
   position: relative;
   z-index: 0;
   padding: 0px 16px;
-  outline:none;
-  @media screen and (max-width: 1023px){
+  outline: none;
+  @media screen and (max-width: 1023px) {
     margin-bottom: 18px;
     width: 160px;
     height: 42px;
@@ -245,7 +249,8 @@ export const Label = styled.label`
   font-size: 13px;
   font-family: Roboto, sans-serif;
   flex-shrink: 0;
-  color: ${props => props.colors === '' ? 'rgb(255, 67, 67)' : 'rgb(147, 149, 152)'};
+  color: ${(props) =>
+    props.colors === '' ? 'rgb(255, 67, 67)' : 'rgb(147, 149, 152)'};
   width: 100%;
   line-height: 16px;
 `;
@@ -265,9 +270,12 @@ export const Input = styled.input`
   border-style: none none solid;
   border-image: initial;
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  border-bottom: ${props => props.colors === '' ? '1px solid rgb(255, 67, 67)' : '1px solid rgb(213, 215, 219)' };
+  border-bottom: ${(props) =>
+    props.colors === ''
+      ? '1px solid rgb(255, 67, 67)'
+      : '1px solid rgb(213, 215, 219)'};
   border-radius: 0px;
-  outline:none;
+  outline: none;
 `;
 
 export const ErrorLabel = styled.label`
@@ -276,7 +284,7 @@ export const ErrorLabel = styled.label`
   font-size: 14px;
   font-weight: bold;
   line-height: 16px;
-`
+`;
 
 export const Span = styled.span`
   color: rgb(255, 67, 67);
@@ -284,4 +292,4 @@ export const Span = styled.span`
   line-height: 14px;
   transform: translateY(-6px);
   word-break: break-word;
-`
+`;
