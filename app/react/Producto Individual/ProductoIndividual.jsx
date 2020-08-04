@@ -115,6 +115,7 @@ export default ({
   wheights,
   pesoTotal,
   handleRemoveItem,
+  date,
   next,
   despickear,
 }) => {
@@ -165,18 +166,17 @@ export default ({
                     <ColuIconos>
                       <Sup>
                         <ContainerGrillCuadros>
-                          <CuadroGrill />
-                          <CuadroGrill />
+                          {[1,2,3,4,5,6].map((Element , indice) =>{
+                            return (
+                              <CuadroGrill 
+                                key={indice} 
+                                numeros={indice}
+                                datos={date.value}
+                              />
+                            )
+                          })}
                         </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                          <CuadroGrill className="bkgColor" />
-                          <CuadroGrill />
-                        </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                          <CuadroGrill />
-                          <CuadroGrill />
-                        </ContainerGrillCuadros>
-                        <NumCuadrados>3</NumCuadrados>
+                        <NumCuadrados>{date.value + 1}</NumCuadrados>
                       </Sup>
                       <ContStock>
                         Stock
@@ -346,19 +346,18 @@ export default ({
                   <ColIzq>
                     <ColuIconos>
                       <Sup>
-                        <ContainerGrillCuadros>
-                          <CuadroGrill />
-                          <CuadroGrill />
+                      <ContainerGrillCuadros>
+                          {[1,2,3,4,5,6].map((Element , indice) =>{
+                            return (
+                              <CuadroGrill 
+                                key={indice} 
+                                numeros={indice}
+                                datos={date.value}
+                              />
+                            )
+                          })}
                         </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                          <CuadroGrill className="bkgColor" />
-                          <CuadroGrill />
-                        </ContainerGrillCuadros>
-                        <ContainerGrillCuadros>
-                          <CuadroGrill />
-                          <CuadroGrill />
-                        </ContainerGrillCuadros>
-                        <NumCuadrados>3</NumCuadrados>
+                        <NumCuadrados>{date.value + 1}</NumCuadrados>
                       </Sup>
                     </ColuIconos>
                     {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
@@ -505,19 +504,18 @@ export default ({
                   />
                   <ColuIconos>
                     <Sup>
-                      <ContainerGrillCuadros>
-                        <CuadroGrill />
-                        <CuadroGrill />
-                      </ContainerGrillCuadros>
-                      <ContainerGrillCuadros>
-                        <CuadroGrill className="bkgColor" />
-                        <CuadroGrill />
-                      </ContainerGrillCuadros>
-                      <ContainerGrillCuadros>
-                        <CuadroGrill />
-                        <CuadroGrill />
-                      </ContainerGrillCuadros>
-                      <NumCuadrados>3</NumCuadrados>
+                    <ContainerGrillCuadros>
+                          {[1,2,3,4,5,6].map((Element , indice) =>{
+                            return (
+                              <CuadroGrill 
+                                key={indice} 
+                                numeros={indice}
+                                datos={date.value}
+                              />
+                            )
+                          })}
+                        </ContainerGrillCuadros>
+                        <NumCuadrados>{date.value + 1}</NumCuadrados>
                     </Sup>
                     <ContStock>
                       Stock
@@ -663,19 +661,18 @@ export default ({
                 <ColIzq>
                   <ColuIconos>
                     <Sup>
-                      <ContainerGrillCuadros>
-                        <CuadroGrill />
-                        <CuadroGrill />
-                      </ContainerGrillCuadros>
-                      <ContainerGrillCuadros>
-                        <CuadroGrill className="bkgColor" />
-                        <CuadroGrill />
-                      </ContainerGrillCuadros>
-                      <ContainerGrillCuadros>
-                        <CuadroGrill />
-                        <CuadroGrill />
-                      </ContainerGrillCuadros>
-                      <NumCuadrados>3</NumCuadrados>
+                    <ContainerGrillCuadros>
+                          {[1,2,3,4,5,6].map((Element , indice) =>{
+                            return (
+                              <CuadroGrill 
+                                key={indice} 
+                                numeros={indice}
+                                datos={date.value}
+                              />
+                            )
+                          })}
+                        </ContainerGrillCuadros>
+                        <NumCuadrados>{date.value + 1}</NumCuadrados>
                     </Sup>
                   </ColuIconos>
                   {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}

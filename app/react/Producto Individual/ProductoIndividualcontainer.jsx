@@ -31,6 +31,8 @@ const ProductoIndividualcontainer = ({
   const [input, setInput] = useState(0);
   const [pesoTotal, setPesoTotal] = useState(0);
   const [wheights, setWheights] = useState([]);
+  const inputRef = useRef(null);
+  const date = JSON.parse(localStorage.getItem('canasto'))
 
   useEffect(() => {
     if (auth !== 'null') {
@@ -46,12 +48,6 @@ const ProductoIndividualcontainer = ({
     }
   }, [match.params.indice, items.length]);
 
-  const handleBtnClick = (n) => {
-    Activar(n);
-  };
-
-  const inputRef = useRef(null);
-
   useEffect(() => {
     if (showInput) inputRef.current.focus();
   }, [showInput]);
@@ -59,6 +55,10 @@ const ProductoIndividualcontainer = ({
   useEffect(() => {
     if(inputRef.current && input!=0) inputRef.current.value="";
   }, [wheights]);
+
+  const handleBtnClick = (n) => {
+    Activar(n);
+  };
 
   const next = () => {
     if (Number(indice) === items.length) {
@@ -82,6 +82,7 @@ const ProductoIndividualcontainer = ({
           {
             id: iditems,
             pickedQuantity: pesoTotal,
+            basket:date.nameCanasto[data.value + 1]
           },
         ],
       };
@@ -93,6 +94,7 @@ const ProductoIndividualcontainer = ({
           {
             id: iditems,
             pickedQuantity: qty,
+            basket:date.nameCanasto[data.value + 1]
           },
         ],
       };
@@ -103,7 +105,7 @@ const ProductoIndividualcontainer = ({
       localStorage.setItem('final', true);
       history.push({
         pathname: '/confirmacion',
-        state: { idSession: idSession, data: data },
+        state: { idSession: idSession, data: data , datosCanasto:date },
       });
       if (bolleanDespickear==true)despickear(false);
     } else {
@@ -148,6 +150,8 @@ const ProductoIndividualcontainer = ({
     }
     if (wheights.length == 0) handleCloseClick();
   };
+
+
   return (
     <>
       {auth === 'null' ? (
@@ -171,6 +175,7 @@ const ProductoIndividualcontainer = ({
           wheights={wheights}
           pesoTotal={pesoTotal}
           handleRemoveItem={handleRemoveItem}
+          date={date}
           pesoTotal={pesoTotal}
           despickear={bolleanDespickear}
         />
