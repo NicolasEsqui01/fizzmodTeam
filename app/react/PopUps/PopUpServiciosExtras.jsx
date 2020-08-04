@@ -37,12 +37,11 @@ export default ({ active, onCloseClick }) => {
             <ul>
               {Prueba.map((element) => {
                 return (
-                  <>
-                    <DivLI>
+                    <DivLI key={element.id}>
                       <DivPunto>
                         <Punto />
                       </DivPunto>
-                      <Servicios key={element.id}>
+                      <Servicios >
                         Así podemos hacer que la lista esté definida por puntos
                         negros (li type=”disc”), por puntos con el fondo blanco
                         (li type=”circle”) o por cuadrados (li type=”square”).
@@ -51,7 +50,6 @@ export default ({ active, onCloseClick }) => {
                         mismos atributos.
                       </Servicios>
                     </DivLI>
-                  </>
                 );
               })}
             </ul>
