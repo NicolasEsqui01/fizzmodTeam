@@ -9,7 +9,7 @@ import PopUpServiciosExtras from './PopUpServiciosExtras';
 import PopUpInfoPicker from './PopUpInfoPicker';
 import PopUpControlDePeso from './PopUpControlDePeso';
 import PopUpBaterry from './PopUpBaterry';
-import { getSessionPicking } from '../../action/session';
+import { getSessionPicking, setDespickear } from '../../action/session';
 import history from '../../utils/history';
 
 const PopUpContainer = ({
@@ -20,6 +20,8 @@ const PopUpContainer = ({
   idSession,
   idItems,
   getSessionPicking,
+  bolleanDespickear,
+  despickear
 }) => {
   const [battery, setBattery] = useState(null);
   const [cerrar, setCerrar] = useState(true);
@@ -27,12 +29,6 @@ const PopUpContainer = ({
     Activar(n);
   };
   const [id ,setId] = useState(localStorage.getItem('sessionid'))
-
-  useEffect(() =>{
-    if(id !== null){
-      getSessionPicking(id)
-    }
-  }, [idSession])
 
   const closeAlerts = () => {
     setCerrar(false);
@@ -109,6 +105,7 @@ const PopUpContainer = ({
         Activar={handleBtnClick}
         onCloseClick={handleCloseClick}
         handleLogout={handleLogout}
+        despickear={despickear}
       />
       <PopUpControlDePeso
         pickeado={ItemPicked}
@@ -123,6 +120,7 @@ const mapStateToProps = (state, ownProp) => {
     active: state.popupReducer.numero,
     idSession: state.sessionReducer.sessionPicking,
     idItems: state.sessionReducer.idItems,
+    bolleanDespickear: state.sessionReducer.despickear,
   };
 };
 
@@ -132,6 +130,7 @@ const mapDispatchToProps = (dispatch, ownProp) => {
     handleCloseClick: () => dispatch(Desactivacion()),
     getSessionPicking: (id) => dispatch(getSessionPicking(id)),
     sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
+    despickear: (boolean) => dispatch(setDespickear(boolean)),
   };
 };
 

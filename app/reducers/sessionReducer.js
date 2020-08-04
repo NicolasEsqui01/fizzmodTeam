@@ -4,7 +4,8 @@ const initialState = {
   sessionPicking:{},
   booleano:false,
   statusOrderSelected: 'pending',
-  idItems:''
+  idItems:'',
+  despickear: false,
 };
 
 export default (state = initialState, action) => {
@@ -21,7 +22,9 @@ export default (state = initialState, action) => {
     case 'SET_TYPE_OF_ORDER_SELECTED' : 
       return {...state , statusOrderSelected: action.string }
     case 'IDITEMS' : 
-      return {...state , idItems:action.id }  
+      return {...state , idItems:action.id }
+    case 'DESPICKEAR_ITEM' : 
+      return {...state , despickear:action.booleano }    
     default:
       return state;
   }

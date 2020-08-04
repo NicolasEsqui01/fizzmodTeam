@@ -31,7 +31,7 @@ import unPick from '../../images/icn_unpick.svg';
 import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
 
-export default ({ active, onCloseClick, Activar , handleLogout}) => {
+export default ({ active, onCloseClick, Activar , handleLogout, despickear}) => {
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -92,7 +92,7 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
             </ButtonM>
           </DivH>
           <DivH>
-            <ButtonM>
+            <ButtonM onClick={()=>despickear(true)}>
               <ImgO src={unPick} />
               <Significado>Despickear</Significado>
             </ButtonM>
