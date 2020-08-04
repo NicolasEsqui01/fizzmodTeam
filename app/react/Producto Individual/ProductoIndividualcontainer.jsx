@@ -139,7 +139,6 @@ const ProductoIndividualcontainer = ({
     }
     if (wheights.length == 0) handleCloseClick();
   };
-
   return (
     <>
       {auth === 'null' ? (

@@ -10,7 +10,7 @@ const ProgressBar = ({Done,Total})=>{
 
     let porcentaje = (Done/Total)*100 -7
 
-console.log(porcentaje)
+
 
 return(
     <ProgressTotal Total={Total} >

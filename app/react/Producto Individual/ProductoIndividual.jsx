@@ -95,7 +95,7 @@ import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
-import TecladoContainer from '../Tecleado/TecladoContainer';
+
 
 export default ({
   session,
@@ -116,7 +116,9 @@ export default ({
   handleRemoveItem,
 }) => {
   let idx = 0;
+
   return (
+  
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
       <ContGral>

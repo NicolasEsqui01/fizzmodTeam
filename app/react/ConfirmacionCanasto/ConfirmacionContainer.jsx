@@ -8,6 +8,7 @@ import history from '../../utils/history'
 
 
 const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal}) => {
+
   const handleClick = () =>{
     setBooleano(false);
     sendItemPicked(location.state.idSession, location.state.data)
@@ -24,7 +25,7 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
 };
 
 const mapStateToProps = (state) => {
- 
+
   return{
 
     idSession: state.sessionReducer.sessionPicking,
@@ -38,6 +39,7 @@ const mapDispatchToProps = (dispatch) => {
         sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
         setBooleano: (booleano) => dispatch(setBooleano(booleano)),
         sendFinal: () => dispatch(itemFinalPick()),
+
     }
 };
 

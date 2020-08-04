@@ -31,7 +31,8 @@ import unPick from '../../images/icn_unpick.svg';
 import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
 
-export default ({ active, onCloseClick, Activar , handleLogout}) => {
+export default ({active, onCloseClick, Activar , handleLogout, handleCanastos, Despickear}) => {
+
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -64,13 +65,18 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
           </DivA>
           <DivB>
             <DivH>
-              <ButtonM>
+              <ButtonM 
+              onClick={()=> {
+                handleCanastos()
+                onCloseClick()}}>
                 <ImgO src={FullBasket} />
                 <Significado>Canasto Lleno</Significado>
               </ButtonM>
             </DivH>
             <DivH>
-              <ButtonM>
+              <ButtonM onClick={()=> {
+                 handleCanastos()
+                 onCloseClick()} }>
                 <ImgO src={Seal} />
                 <Significado>Precinto</Significado>
               </ButtonM>
@@ -92,7 +98,7 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
             </ButtonM>
           </DivH>
           <DivH>
-            <ButtonM>
+            <ButtonM onClick ={()=> Despickear()}>
               <ImgO src={unPick} />
               <Significado>Despickear</Significado>
             </ButtonM>
