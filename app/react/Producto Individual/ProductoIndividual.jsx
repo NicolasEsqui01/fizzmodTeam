@@ -120,7 +120,6 @@ export default ({
 }) => {
   let idx = 0;
 
-  console.log(despickear, 'des')
   return (
   
     <>
@@ -145,8 +144,8 @@ export default ({
         {session.length === 0 ? (
           <div>Cargando</div>
         ) : session[indice].status === 'picked' ||
-          session[indice].status === 'omitido' && despickear === false ? (
-          <DivStatus status={session[indice].status}>
+          session[indice].status === 'omitido'? (
+          <DivStatus status={session[indice].status} despickear ={despickear}>
             {despickear === false ? <StatusP>PICKEADO</StatusP>  : <StatusP>OMITIDO</StatusP> }
             <Cont>
               {
@@ -299,7 +298,7 @@ export default ({
                     <Botones>
                     {despickear === false ? 
                       <><BotIzq>
-                        <Siguiente onClick={() =>next(session[indice].id, count, false)}>
+                        <Siguiente onClick={() =>next()}>
                           {' '}
                           SIGUIENTE
                         </Siguiente>{' '}
@@ -398,6 +397,10 @@ export default ({
                       </BarritasCont>
                       <CodProdu>{session[indice].ean}</CodProdu>
                     </ContBarras>
+                    {despickear === false ? 
+                    <ContImagenes>
+                    </ContImagenes>
+                    :
                     <ContImagenes>
                       <RecuadroCantidadNormal>
                         <H1Cantidad>Cantidad</H1Cantidad>
@@ -443,28 +446,43 @@ export default ({
                         </ContStock>
                       </DivImageStock>
                     </ContImagenes>
+                    }
                     <Botones>
-                      <BotIzq>
-                        <Omitir>
-                          <CruzOmitir src={ImageCruzOmitir} />
-                          OMITIR
-                        </Omitir>
-                        <BotonTeclado>
-                          <Teclado src={TecladoIcono} />
-                        </BotonTeclado>
-                        <Siguiente
-                          onClick={() => {
-                            pickeado(session[indice].id, count, false);
-                          }}
-                        >
-                          {' '}
-                          SIGUIENTE
-                        </Siguiente>{' '}
-                        {/*CHEQUEAR QUE SUME 1 BIEN*/}
-                      </BotIzq>
+                      {despickear === false ? 
+                       <><BotIzq>
+                          <Siguiente onClick={() =>next()}>
+                            {' '}
+                            SIGUIENTE
+                          </Siguiente>{' '}
+                          {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                        </BotIzq>
                       <BotDer onClick={() => Activar(4)}>
                         <PlusCircle src={masBlanco}></PlusCircle>
-                      </BotDer>
+                      </BotDer></>
+                      :
+                      <>
+                        <BotIzq>
+                          <Omitir>
+                            <CruzOmitir src={ImageCruzOmitir} />
+                            OMITIR
+                          </Omitir>
+                          <BotonTeclado>
+                            <Teclado src={TecladoIcono} />
+                          </BotonTeclado>
+                          <Siguiente
+                            onClick={() => {
+                              pickeado(session[indice].id, count, false);
+                            }}
+                          >
+                            {' '}
+                            SIGUIENTE
+                          </Siguiente>{' '}
+                          {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                        </BotIzq>
+                        <BotDer onClick={() => Activar(4)}>
+                          <PlusCircle src={masBlanco}></PlusCircle>
+                        </BotDer>
+                      </>}
                     </Botones>
                   </ColDerecha>
                 </>

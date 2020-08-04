@@ -31,8 +31,10 @@ import SealSlash from '../../images/icn_single-product.svg';
 import unPick from '../../images/icn_unpick.svg';
 import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
+import InfoUser from '../../images/icn_picker-info.svg'
 
-export default ({ active, onCloseClick, Activar , handleLogout, despickear, reiniciar}) => {
+export default ({active, onCloseClick, Activar , handleLogout, despickear, reiniciar, handleCanastos}) => {
+  
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -91,6 +93,12 @@ export default ({ active, onCloseClick, Activar , handleLogout, despickear, rein
         </DivM>
         <Espacio4></Espacio4>
         <DivN>
+        <DivH>
+            <ButtonM onClick={() => Activar(7)}>
+              <ImgO src={InfoUser} />
+              <Significado>Informacion del picker</Significado>
+            </ButtonM>
+          </DivH>
           <DivH>
             <ButtonM onClick={() => Activar(5)}>
               <ImgO src={BoxCircle} />

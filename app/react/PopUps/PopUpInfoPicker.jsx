@@ -18,13 +18,13 @@ import {
   DivText2,
 } from './style';
 import X from '../../images/cross_light.svg';
-import user from '../../images/user_opened.svg';
+import InfoUser from '../../images/icn_picker-info.svg';
 import totals from '../../images/totals.svg';
 import catalogo from '../../images/catalogue.svg';
 import exit from '../../images/arrow_alt_from_left.svg';
 import store from '../../images/store.svg';
 
-export default ({ active, onCloseClick }) => {
+export default ({ active, onCloseClick, datosPicker }) => {
   const Prueba = [1, 2, 3, 4];
 
   return (
@@ -33,8 +33,11 @@ export default ({ active, onCloseClick }) => {
         <Color></Color>
         <DivV>
           <DivCXL>
-            <ImgM src={user} />
-            <TituloOb> Nicolas Esquivel </TituloOb>
+            <ImgM src={InfoUser} />
+            <TituloOb>
+              {' '}
+              {datosPicker.firstname} {datosPicker.lastname}{' '}
+            </TituloOb>
             <ButtonX onClick={onCloseClick}>
               <ImgX src={X} />
             </ButtonX>
@@ -42,7 +45,7 @@ export default ({ active, onCloseClick }) => {
           <DivControl>
             <ImgP src={totals} />
             <DivText>
-              <PPP>ASDGSDFHSFHSGFHDFGH</PPP>
+              <PPP>{datosPicker.profileId}</PPP>
               <Abajo>Code 123</Abajo>
             </DivText>
           </DivControl>
@@ -58,7 +61,7 @@ export default ({ active, onCloseClick }) => {
           <DivControl>
             <ImgP src={store} />
             <DivText2>
-              <PPP>ASDGSDFHSFHSGFHDFGH</PPP>
+              <PPP>{datosPicker.clientCode}</PPP>
               <Abajo>Tienda</Abajo>
             </DivText2>
           </DivControl>

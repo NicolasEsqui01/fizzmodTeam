@@ -39,13 +39,6 @@ const ProductoIndividualcontainer = ({
     }
   }, []);
 
-/*    useEffect(() => {
-    if (booleanReiniciar === true) {
-      despickear(false)
-      history.push(`/productoindividual/${idSession}/1`)
-    }
-  }, [booleanReiniciar]); 
- */
   useEffect(() => {
     setIndice(match.params.indice);
     if (items.length) {
@@ -119,7 +112,7 @@ const ProductoIndividualcontainer = ({
           let newIndice = Number(indice) + 1;
           setWheights([]);
           setPesoTotal(0);
-          if (bolleanDespickear==true) despickear(false);
+          if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
           getSessionPicking(idSession);
           return history.push(`/productoindividual/${idSession}/${newIndice}`);
 
@@ -187,7 +180,6 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
-
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking
@@ -214,6 +206,6 @@ const MapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  MapStateToProps,
+    MapStateToProps,
   MapDispatchToProps,
 )(ProductoIndividualcontainer);

@@ -15,7 +15,7 @@ export const DivStatus = styled.div`
   align-items:center;
   justify-content:center;
   height:86vh;
-  background-color:${({status}) => status === 'picked' ? '#2979FF' : '#F13B70'};
+  background-color:${({status, despickear}) => status === 'picked' && despickear !== true ? '#2979FF' : '#FFFFFF'};
   @media ${device.mobile} {
     height:87vh;
   }

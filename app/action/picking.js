@@ -17,6 +17,7 @@ const pickFinal = () => {
 
 
 export const itemPicked = (sessionId, obj) => {
+  console.log(obj)
   return (dispatch) => {
     return axios
       .post(`https://picking.janis.in/api/session/${sessionId}/pick`, obj , headers())
@@ -25,7 +26,7 @@ export const itemPicked = (sessionId, obj) => {
       })
       .catch(err =>{
         return err.response.data
-      });
+      }); 
   };
 };
 

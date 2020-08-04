@@ -37,7 +37,7 @@ export const setDespickear = (booleano) => {
 };
 
 export const setReiniciar = (booleano)=>{
-console.log('llegamos')
+
   return{
     type: 'REINICIAR',
     booleano,

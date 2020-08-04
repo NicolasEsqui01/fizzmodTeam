@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Desactivacion, Activacion } from '../../action/popup';
 import PopUpObservacion from './PopUpObservacion';
@@ -9,9 +9,13 @@ import PopUpServiciosExtras from './PopUpServiciosExtras';
 import PopUpInfoPicker from './PopUpInfoPicker';
 import PopUpControlDePeso from './PopUpControlDePeso';
 import PopUpBaterry from './PopUpBaterry';
-import { getSessionPicking, setDespickear, setReiniciar } from '../../action/session';
+import {
+  getSessionPicking,
+  setDespickear,
+  setReiniciar,
+} from '../../action/session';
 import history from '../../utils/history';
-import {itemPicked } from '../../action/picking'
+import { itemPicked } from '../../action/picking';
 
 const PopUpContainer = ({
   active,
@@ -20,7 +24,7 @@ const PopUpContainer = ({
   idSession,
   idItems,
   despickear,
-  reiniciar
+  datosPicker,
 }) => {
   const [battery, setBattery] = useState(null);
   const [cerrar, setCerrar] = useState(true);
@@ -28,7 +32,7 @@ const PopUpContainer = ({
   const handleBtnClick = (n) => {
     Activar(n);
   };
-  const [id ,setId] = useState(localStorage.getItem('sessionid'))
+  const [id, setId] = useState(localStorage.getItem('sessionid'));
 
   const closeAlerts = () => {
     setCerrar(true);
@@ -39,15 +43,13 @@ const PopUpContainer = ({
     return history.push('/');
   };
   const handleCanastos = () => {
-   
     return history.push('/seleccion');
   };
 
-  const reinicio = ()=>{
-
-    return history.push(`/productoindividual/${idSession}/1`)
-  }
-
+  const reinicio = () => {
+    despickear(true);
+    return history.push(`/productoindividual/${idSession.id}/1`);
+  };
 
   async function getBattery() {
     let battery = await navigator.getBattery();
@@ -62,7 +64,6 @@ const PopUpContainer = ({
     setCerrar(true);
   }
 
-   
   return (
     <>
       <PopUpBaterry
@@ -79,31 +80,30 @@ const PopUpContainer = ({
         idSession={idSession}
         idItems={idItems}
       />
-      <PopUpInfoPicker active={active} onCloseClick={handleCloseClick} />
+      <PopUpInfoPicker
+        active={active}
+        onCloseClick={handleCloseClick}
+        datosPicker={datosPicker}
+      />
       <PopUpObservacion
         active={active}
         onCloseClick={handleCloseClick}
         idSession={idSession}
         idItems={idItems}
-      
       />
       <PopUpSustitucion active={active} onCloseClick={handleCloseClick} />
       <PopUpServiciosExtras active={active} onCloseClick={handleCloseClick} />
       <PopUpOpciones
-        idSession = {idSession}
+        idSession={idSession}
         active={active}
         Activar={handleBtnClick}
         onCloseClick={handleCloseClick}
         handleLogout={handleLogout}
         handleCanastos={handleCanastos}
         despickear={despickear}
-        reiniciar = {reinicio} 
-       
-       
+        reiniciar={reinicio}
       />
-      <PopUpControlDePeso
-        onCloseClick={handleCloseClick}
-      />
+      <PopUpControlDePeso onCloseClick={handleCloseClick} />
     </>
   );
 };
@@ -114,7 +114,7 @@ const mapStateToProps = (state, ownProp) => {
     active: state.popupReducer.numero,
     idSession: state.sessionReducer.sessionPicking,
     idItems: state.sessionReducer.idItems,
-   
+    datosPicker: state.loginReducer.datos,
   };
 };
 
@@ -125,7 +125,7 @@ const mapDispatchToProps = (dispatch, ownProp) => {
     getSessionPicking: (id) => dispatch(getSessionPicking(id)),
     sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
     despickear: (boolean) => dispatch(setDespickear(boolean)),
-    reiniciar: (boolean) => dispatch(setReiniciar(boolean))
+    reiniciar: (boolean) => dispatch(setReiniciar(boolean)),
   };
 };
 
