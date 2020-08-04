@@ -7,13 +7,8 @@ import { itemFinalPick } from '../../action/picking';
 import history from '../../utils/history'
 
 
-<<<<<<< HEAD
-const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal, reiniciar}) => {
-
-=======
 const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal, reiniciar}) => {
   let datos = JSON.parse(localStorage.getItem('canasto'))
->>>>>>> 0b8bf13a9e63e4f6a4da5e859d3f2e43c8fb926f
   const handleClick = () =>{
     setBooleano(false);
     sendItemPicked(location.state.idSession, location.state.data)
