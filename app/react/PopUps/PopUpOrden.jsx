@@ -53,7 +53,7 @@ export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
   if(largo !== 0){
     porcentaje = (largo/total)*100 -5
   }
-  console.log(porcentaje, 'flechita')
+ 
 
 
  

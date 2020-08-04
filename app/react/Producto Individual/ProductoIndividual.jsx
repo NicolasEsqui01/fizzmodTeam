@@ -96,7 +96,7 @@ import Stock from '../../images/stock.png';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
-import TecladoContainer from '../Tecleado/TecladoContainer';
+
 
 export default ({
   session,
@@ -117,10 +117,12 @@ export default ({
   handleRemoveItem,
   date,
   next,
-  despickear
+  despickear,
 }) => {
   let idx = 0;
+
   return (
+  
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
       <ContGral>
@@ -143,8 +145,8 @@ export default ({
         {session.length === 0 ? (
           <div>Cargando</div>
         ) : session[indice].status === 'picked' ||
-          session[indice].status === 'omitido' ? (
-          <DivStatus status={session[indice].status}>
+          session[indice].status === 'omitido'? (
+          <DivStatus status={session[indice].status} despickear ={despickear}>
             {despickear === false ? <StatusP>PICKEADO</StatusP>  : <StatusP>OMITIDO</StatusP> }
             <Cont>
               {

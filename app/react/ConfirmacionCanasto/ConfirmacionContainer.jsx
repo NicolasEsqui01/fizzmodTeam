@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import ConfirmacionCanasto from './ConfirmacionCanasto';
-import { setBooleano } from '../../action/session';
+import { setBooleano , setReiniciar} from '../../action/session';
 import { itemPicked } from '../../action/picking';
 import { itemFinalPick } from '../../action/picking';
 import history from '../../utils/history'
 
 
-const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal}) => {
+const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal, reiniciar}) => {
   let datos = JSON.parse(localStorage.getItem('canasto'))
   const handleClick = () =>{
     setBooleano(false);
@@ -18,6 +18,8 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
       localStorage.removeItem('final');
       localStorage.removeItem('canasto')
       sendFinal();
+      reiniciar(false)
+
       return history.push('/inicio')
     })
   };
@@ -25,7 +27,7 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
 };
 
 const mapStateToProps = (state) => {
- 
+
   return{
     idSession: state.sessionReducer.sessionPicking,
   }
@@ -38,6 +40,8 @@ const mapDispatchToProps = (dispatch) => {
         sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
         setBooleano: (booleano) => dispatch(setBooleano(booleano)),
         sendFinal: () => dispatch(itemFinalPick()),
+        reiniciar: (boolean) => dispatch(setReiniciar(boolean))
+
     }
 };
 

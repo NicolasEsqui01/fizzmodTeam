@@ -17,15 +17,13 @@ const ProgressBarContainer = ({idSession, location, idItems})=>{
     if(largo !== 0){
       porcentaje = (largo/total)*100 -5
     }
-    console.log(idItems, 'id')
+    
   
    
   
     useEffect(()=>{
         getSessionPicking(id)
     },[idItems])
-
-    console.log(idSession.items)
     return(
     <>
     {location === 'productoindividual'?
