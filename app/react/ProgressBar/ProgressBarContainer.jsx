@@ -17,7 +17,7 @@ const ProgressBarContainer = ({idSession, location, idItems})=>{
     if(largo !== 0){
       porcentaje = (largo/total)*100 -5
     }
-  
+      
     useEffect(()=>{
         getSessionPicking(id)
     },[idItems])

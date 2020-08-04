@@ -41,6 +41,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
   let arrWeighable = 0;
   let arrFresh = 0;
   let arrFrozen = 0;
+
   return (
     <>
       <DivScroll>

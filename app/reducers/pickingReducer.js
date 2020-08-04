@@ -8,6 +8,8 @@ export default (state = inicialState, action) => {
       return { ...state, ItemsPicked: [...state.ItemsPicked, action.items] };
     case 'FINAL':
       return { ...state, ItemsPicked: [] };
+    case 'DESPICKED':
+      return { ...state, ItemsPicked: [...state.ItemsPicked, action.items] };
     default:
       return state;
   }

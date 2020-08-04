@@ -6,6 +6,7 @@ const initialState = {
   statusOrderSelected: 'pending',
   idItems:'',
   despickear: false,
+  reiniciar : null,
 };
 
 export default (state = initialState, action) => {
@@ -25,6 +26,8 @@ export default (state = initialState, action) => {
       return {...state , idItems:action.id }
     case 'DESPICKEAR_ITEM' : 
       return {...state , despickear:action.booleano }    
+      case 'REINICIAR' : 
+      return {...state , reiniciar:action.booleano } 
     default:
       return state;
   }

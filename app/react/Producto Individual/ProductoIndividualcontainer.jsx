@@ -22,6 +22,7 @@ const ProductoIndividualcontainer = ({
   setIdItems,
   idItems,
   bolleanDespickear,
+  booleanReiniciar,
   despickear
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
@@ -113,7 +114,7 @@ const ProductoIndividualcontainer = ({
           let newIndice = Number(indice) + 1;
           setWheights([]);
           setPesoTotal(0);
-          if (bolleanDespickear==true) despickear(false);
+          if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
           getSessionPicking(idSession);
           return history.push(`/productoindividual/${idSession}/${newIndice}`);
 
@@ -191,7 +192,9 @@ const MapStateToProps = (state, ownProps) => {
     active: state.popupReducer.numero,
     auth: JSON.stringify(localStorage.getItem('auth')),
     idItems: state.sessionReducer.idItems,
-    bolleanDespickear: state.sessionReducer.despickear
+    bolleanDespickear: state.sessionReducer.despickear,
+    booleanReiniciar: state.sessionReducer.reiniciar,
+    
   };
 };
 

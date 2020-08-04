@@ -26,6 +26,7 @@ import scanner from '../../images/scanner.svg';
 import trash from '../../images/trash.svg';
 
  export default ({active, onCloseClick, wheights, handleRemoveItem})=>{
+
      return(
          <>
             <DivZ active={active}>
