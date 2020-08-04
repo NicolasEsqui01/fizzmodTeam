@@ -7,20 +7,36 @@ const CronometroContainer = ({}) => {
   const [interv, setInterv] = useState();
   const [booleano , setBooleano] = useState(false)
 
-  let updatedS = time.s , updatedM = time.m , updatedH = time.h;
+  if(localStorage.getItem('cronometro')) {
+    let {s,m,h} = JSON.parse(localStorage.getItem('cronometro'))
+    var updatedS = s, updatedM = m , updatedH = h;
+  } else {var updatedS = time.s, updatedM = time.m , updatedH = time.h}
 
   const start = () => {
-    run();
-    setInterv(setInterval(run, 1000));
+    if(localStorage.getItem('cronometro')) {
+      let tiempoEnStorage = JSON.parse(localStorage.getItem('cronometro'))
+      setTime(tiempoEnStorage)
+      run(tiempoEnStorage);
+      setInterv(setInterval(run, 1000));
+    } else {
+      run();
+      setInterv(setInterval(run, 1000));
+    }
   };
 
   useEffect(() => {
+    start();
     return () => {
       clearInterval(interv)
     };
   }, []);
 
-  const run = () => {
+  useEffect(() => {
+    localStorage.setItem('cronometro', JSON.stringify(time))
+  }, [time]);
+
+  const run = (timer) => {
+
     if (updatedM === 60) {
       updatedH++;
       updatedM = 0;
@@ -30,16 +46,12 @@ const CronometroContainer = ({}) => {
       updatedS = 0;
     }
     updatedS++;
-    return setTime({ s: updatedS, m: updatedM, h: updatedH })
+
+    if(timer) {
+      return setTime(timer)
+    }
+      else return setTime({ s: updatedS, m: updatedM, h: updatedH })
   };
-
-  localStorage.setItem('cronometro', JSON.stringify(time))
-
-  if (!booleano) {
-      start()
-      setBooleano(!booleano)
-  }
-
 
   return (
     <Cronometro time={time}/>

@@ -15,6 +15,7 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
       localStorage.removeItem('token');
       localStorage.removeItem('sessionid');
       localStorage.removeItem('final');
+      localStorage.removeItem('cronometro')
       sendFinal();
       return history.push('/inicio')
     })
