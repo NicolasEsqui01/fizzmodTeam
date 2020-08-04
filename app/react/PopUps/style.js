@@ -30,6 +30,7 @@ height: 50px;
 `   
 export const ImgM = styled.img`
 width: 75px;
+border-radius:10px;
   height: 100px;
   @media ${device.tablet} {
     width: 50px;
@@ -211,7 +212,7 @@ export const PopUpProduAcum = styled.div`
  align-items: center;
  background-color:#FFFFFF;
  border-radius: 10px;
-
+ margin-bottom:10px;
 `
 export const HeaderDiv = styled.div `
 @media ${device.tablet} {

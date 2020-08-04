@@ -18,6 +18,7 @@ import {
   Significado,
   ButtonM,
 } from './style';
+
 import X from '../../images/cross_light.svg';
 import Salir from '../../images/icn_logout.svg';
 import PickingLibre from '../../images/icn_picking-libre.svg';
@@ -31,8 +32,7 @@ import unPick from '../../images/icn_unpick.svg';
 import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
 
-export default ({active, onCloseClick, Activar , handleLogout, handleCanastos, Despickear}) => {
-
+export default ({ active, onCloseClick, Activar , handleLogout, despickear, reiniciar}) => {
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -57,7 +57,7 @@ export default ({active, onCloseClick, Activar , handleLogout, handleCanastos, D
               </ButtonM>
             </DivH>
             <DivH>
-              <ButtonM>
+              <ButtonM onClick={reiniciar}>
                 <ImgO src={Restart} />
                 <Significado>Reiniciar</Significado>
               </ButtonM>
@@ -98,7 +98,7 @@ export default ({active, onCloseClick, Activar , handleLogout, handleCanastos, D
             </ButtonM>
           </DivH>
           <DivH>
-            <ButtonM onClick ={()=> Despickear()}>
+            <ButtonM onClick={()=>despickear(true)}>
               <ImgO src={unPick} />
               <Significado>Despickear</Significado>
             </ButtonM>

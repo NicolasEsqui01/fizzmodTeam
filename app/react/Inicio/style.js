@@ -157,12 +157,11 @@ export const Line = styled.div`
 
 export const Pickers = styled.div`
   display:flex;
-  height: 14px;
+  flex-direction: column;
   color: #d0d3e3;
   font-family: Roboto;
   font-size: 15px;
-  letter-spacing: 0;
-  line-height: 14px;
+  line-height: 22px;
   text-align: center;
   @media ${device.laptop} {
     font-size: 20px;
@@ -236,6 +235,7 @@ export const Item = styled.div`
   font-size: 12px;
   text-align: center;
   margin-left: 10px;
+  margin-right: 10px;
   @media ${device.laptop} {
     font-size: 14px;
   }
@@ -267,7 +267,7 @@ export const Percentage = styled.div`
 
 export const Indicadores = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-top: 70px;
   margin-bottom: 35px;
   @media ${device.tablet} {
@@ -414,7 +414,7 @@ export const PrePickeadas = styled.button`
   text-align: center;
   background-color: #ffffff;
   border: 2px solid #ffffff;
-  border-bottom:${props => props.status === 'pickedAndPicking' ?  '4px solid #273947' : null};
+  border-bottom:${props => props.status === 'picking' ?  '4px solid #273947' : null};
   outline:none;
   cursor: pointer;
   

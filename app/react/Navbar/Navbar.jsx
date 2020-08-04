@@ -16,11 +16,7 @@ import flechaAtras from '../../images/arrow_short_prev.svg';
 import history from '../../utils/history';
 import CronometroContainer from '../cronometro/Loadable';
 
-export default ({ booleano , items, qtyPicked , sessionId, final, volverDelFinal }) => {
-  let totalItems =0;
-  if (items) {
-    totalItems = items.length;
-  }
+export default ({ booleano , totalItems, qtyPicked , sessionId, final, volverDelFinal }) => {
   return (
     <NavCont>
       {booleano ? (
