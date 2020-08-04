@@ -8,6 +8,7 @@ import history from '../../utils/history'
 
 
 const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal}) => {
+  let datos = JSON.parse(localStorage.getItem('canasto'))
   const handleClick = () =>{
     setBooleano(false);
     sendItemPicked(location.state.idSession, location.state.data)
@@ -16,18 +17,17 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
       localStorage.removeItem('sessionid');
       localStorage.removeItem('final');
       localStorage.removeItem('cronometro')
+      localStorage.removeItem('canasto')
       sendFinal();
       return history.push('/inicio')
     })
   };
-
-  return <ConfirmacionCanasto handleClick={handleClick} idSession={idSession}/>;
+  return <ConfirmacionCanasto handleClick={handleClick} idSession={idSession} datosCanasto={datos}/>;
 };
 
 const mapStateToProps = (state) => {
  
   return{
-
     idSession: state.sessionReducer.sessionPicking,
   }
 
