@@ -31,7 +31,6 @@ const ProductoIndividualcontainer = ({
   const [showInput, setShowInput] = useState(false);
   const [input, setInput] = useState(0);
   const [pesoTotal, setPesoTotal] = useState(0);
-  const [difPeso, setDifPeso] = useState(0);
   const [wheights, setWheights] = useState([]);
 
   useEffect(() => {
@@ -94,9 +93,6 @@ const ProductoIndividualcontainer = ({
         pathname: '/confirmacion',
         state: { idSession: idSession, data: data },
       });
-      // setWheights([]);
-      // setPesoTotal(0);
-      // setCount(0)
     } else {
       sendItemPicked(idSession, data)
         .then(() => {
@@ -124,8 +120,7 @@ const ProductoIndividualcontainer = ({
       img: image,
       qty: input,
     };
-    let nuevoPeso = pesoTotal + input;
-    setPesoTotal(nuevoPeso);
+    setPesoTotal(pesoTotal+input)
     setWheights([...wheights, itemPesable]);
   };
 
@@ -162,6 +157,7 @@ const ProductoIndividualcontainer = ({
           wheights={wheights}
           pesoTotal={pesoTotal}
           handleRemoveItem={handleRemoveItem}
+          pesoTotal={pesoTotal}
         />
       ) : null}
     </>

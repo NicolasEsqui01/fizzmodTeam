@@ -37,7 +37,7 @@ function App({ location }) {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      {/* <PopUpContainer /> */}
+      {/*<PopUpContainer/>*/} 
 
       {location !== '/' ? <Navbar /> : null}
       <Switch>

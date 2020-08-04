@@ -40,6 +40,7 @@ import {
   ContImagenes,
   CuadritoUno,
   PesoCuadro,
+  PesoCuadroWarining,
   CuadritoDos,
   ImgBalanzasUno,
   Form,
@@ -143,8 +144,11 @@ export default ({
           <DivStatus status={session[indice].status}>
             {session[indice].status === 'picked' ? <StatusP>PICKEADO</StatusP>  : <StatusP>OMITIDO</StatusP> }
             <Cont>
-              {session[indice].isWeighable ? (
+              {
+                (session[indice].isWeighable ? 
+                
                 ///////////////// PRODUCTO PESABLE /////////////////
+                (
                 <>
                   <ColIzq>
                     <PopUpPesables
@@ -152,6 +156,7 @@ export default ({
                       onCloseClick={onCloseClick}
                       wheights={wheights}
                       handleRemoveItem={handleRemoveItem}
+                      qtyPurch={session[indice].purchasedQuantity}
                     />
                     <ColuIconos>
                       <Sup>
@@ -223,10 +228,17 @@ export default ({
                           </QtyPesables>
                         ) : null}
                         <ImgBalanzasUno src={ImagenBalanza} />
-                        <PesoCuadro>
-                          {session[indice].purchasedQuantity}
+                        {pesoTotal > session[indice].purchasedQuantity ? (
+                          <PesoCuadroWarining>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadroWarining>
+                        ) : (
+                          <PesoCuadro>
+                          {pesoTotal}
                           kgs.
                         </PesoCuadro>
+                        )}
                       </CuadritoUno>
                       <Form
                         onSubmit={() => {
@@ -235,7 +247,7 @@ export default ({
                             session[indice].id,
                             session[indice].name,
                             session[indice].ean,
-                            session[indice].imageUrl,
+                            session[indice].imageUrl
                           );
                         }}
                       >
@@ -252,16 +264,13 @@ export default ({
                       <CuadritoDos>
                         <ImgBalanzasMas
                           src={ImagenBalanzaMas}
-                          onClick={() => {
-                            setShowInput(true);
-                          }}
+                          onClick={() => setShowInput(true)}
                         />
                       </CuadritoDos>
                     </ContImagenes>
                     {pesoTotal > session[indice].purchasedQuantity ? (
                       <InstruccionesWarning>
-                        Supera la Cantidad Solicitada por el Cliente (
-                        {session[indice].purchasedQuantity} kgs.)
+                        Superaste el umbral de peso por {pesoTotal-session[indice].purchasedQuantity} kgs.
                       </InstruccionesWarning>
                     ) : (
                       <Instrucciones>
@@ -301,7 +310,7 @@ export default ({
                     </Botones>
                   </ColDerecha>
                 </>
-              ) : (
+                ) : (
                 ////////////////// PRODUCTO NORMAL //////////////////
                 <>
                   <ColIzq>
@@ -428,7 +437,9 @@ export default ({
                     </Botones>
                   </ColDerecha>
                 </>
-              )}
+                    )
+                )
+              }
             </Cont>
           </DivStatus>
         ) : (
@@ -513,10 +524,17 @@ export default ({
                         </QtyPesables>
                       ) : null}
                       <ImgBalanzasUno src={ImagenBalanza} />
-                      <PesoCuadro>
-                        {session[indice].purchasedQuantity}
-                        kgs.
-                      </PesoCuadro>
+                      {pesoTotal > session[indice].purchasedQuantity ? (
+                          <PesoCuadroWarining>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadroWarining>
+                        ) : (
+                          <PesoCuadro>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadro>
+                        )}
                     </CuadritoUno>
                     <Form
                       onSubmit={() => {
@@ -549,10 +567,9 @@ export default ({
                     </CuadritoDos>
                   </ContImagenes>
                   {pesoTotal > session[indice].purchasedQuantity ? (
-                    <InstruccionesWarning>
-                      Supera la Cantidad Solicitada por el Cliente (
-                      {session[indice].purchasedQuantity} kgs.)
-                    </InstruccionesWarning>
+                      <InstruccionesWarning>
+                        Superaste el umbral de peso por {pesoTotal-session[indice].purchasedQuantity} kgs.
+                      </InstruccionesWarning>
                   ) : (
                     <Instrucciones>
                       Coloca el producto sobre la balanza
