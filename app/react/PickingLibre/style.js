@@ -6,7 +6,10 @@ display: flex;
 width: 100%;
 height: 93vh;
 //flex-direction: row;
-
+@media ${device.tablet} {
+    
+    flex-direction: column;
+  }
 `;
 
 ///////////////////////////// COLUMNA IZQUIERDA /////////////////////////////
@@ -16,6 +19,12 @@ width: 35%;
 height: 100%;
 flex-direction: column;
 background-color: white;
+@media ${device.tablet} {
+    width: 100%;
+    height:90%;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const PickingTituloDiv = styled.div`
@@ -29,13 +38,17 @@ align-items: center;
 export const PickingLogoDiv = styled.div`
 display: flex;
 //height: 10px;
-;
-margin-left: 5%;                                
+margin-left: 5%;
+
 `;
 
 export const PickingLogo = styled.img`
 height: 60px;
 width: 70px;
+@media ${device.tablet} {
+    height: 30px;
+    width: 35px;
+}
 `;
 
 export const PickingTitulo = styled.div`
@@ -134,7 +147,7 @@ display: flex;
 //height: 35%;
 width: 73%;
 flex-direction: column;
-
+justify-content: center;
 align-items: center;
 
 `;
@@ -143,13 +156,21 @@ export const ImagenProduDiv = styled.div`
 display:flex;
 height:180px;
 width: 200px;
-
+@media ${device.tablet} {
+    height:90px;
+    width: 100px;
+    margin-left: 30%;
+  }
 `;
 
 export const ImagenProduImg = styled.img`
 display:flex;
 height:180px;
 width: 200px;
+@media ${device.tablet} {
+    height:90px;
+    width: 100px;
+  }
 `;
 
 export const DescriProdu = styled.div`
@@ -162,7 +183,11 @@ export const DescriProdu = styled.div`
   //font-family: Roboto;
   font-size: 18px;
   text-align: center;
+  
   border-bottom: 2px solid #E8EAF6;
+  @media ${device.tablet} {
+    margin-bottom: 13px;
+  }
 `;
 
 export const Linea = styled.div`
@@ -181,6 +206,10 @@ height: 10%;
 width: 100%;
 flex-direction: row;
 margin-top: 26px;
+@media ${device.tablet} {
+height: 70px;
+//margin-top: 30px;
+}
 
 `;
 
@@ -235,7 +264,11 @@ width: 110px;
 align-items: center;
 justify-content: center;
 text-align: center;
-border: 1px solid #E8EAF6;;
+border: 1px solid #E8EAF6;
+@media ${device.tablet} {
+    height: 40px;
+    
+}
 `;
 
 
@@ -247,7 +280,9 @@ export const H1Peso = styled.h1`
   letter-spacing: 0;
   line-height: 19px;
   text-align: center;
-
+  @media ${device.tablet} {
+    font-size: 18   px;
+  }
 `;
 /////////////////////////////// COLUMNA DERECHA //////////////////////////
 export const ColuDerecha = styled.div`
@@ -258,7 +293,12 @@ flex-direction: column;
 background-color: #E8EAF6;
 //justify-content: space-evenly;
 align-items:center;
-
+@media ${device.tablet} {
+    width: 100%;
+    height:90%;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const LogoDerechoDiv = styled.div`
@@ -272,11 +312,19 @@ margin-top: 7%;
 export const ImagenGrandeDiv = styled.div`
 height: 135px;
 width: 125px;
+@media ${device.tablet} {
+    height: 65px;
+    width: 85px;
+}
 `;
 
 export const ImagenGrande = styled.img`
 height: 135px;
 width: 125px;
+@media ${device.tablet} {
+    height: 65px;
+    width: 85px;
+}
 `;
 
 export const H1PickingLibre = styled.div`
@@ -284,6 +332,9 @@ export const H1PickingLibre = styled.div`
   //font-family: Roboto;
   font-size: 33px;
   margin-top: 6%;
+  @media ${device.tablet} {
+    font-size: 23px;
+  }
 `;
 
 export const H1Comenzar = styled.div`
@@ -291,6 +342,9 @@ export const H1Comenzar = styled.div`
   //font-family: Roboto;
   font-size: 22px;
   margin-top: 8%;
+  @media ${device.tablet} {
+    font-size: 19px;
+  }
 `;
 
 ////////////////////////// FORM BUSCAR PRODUCTOS ////////////////
