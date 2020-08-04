@@ -45,7 +45,7 @@ import AprobadoCirculo from '../../images/check_circulo.svg';
 import keyboard from '../../images/icn_keyboard.svg';
 //import tecladoGris from "../../images/tecladoGris.png";
 
-export default ({handleClick, idSession}) => {
+export default ({handleClick, idSession , datosCanasto}) => {
   let total 
   let largo
   let porcentaje
@@ -86,7 +86,7 @@ export default ({handleClick, idSession}) => {
         <ParteCentral1>
           <ParteCentralIzq>
             <IconoCanastoVerde src={basketVerde} />
-            <NombreCanasto>Canasto 017</NombreCanasto>
+            <NombreCanasto>Canasto {datosCanasto ? datosCanasto.nameCanasto[datosCanasto.value + 1] : null}</NombreCanasto>
           </ParteCentralIzq>
           <DivIconoAprobado>
             <IconoAprobado src={Aprobado} />

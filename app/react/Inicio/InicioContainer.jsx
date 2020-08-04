@@ -34,7 +34,6 @@ const mapDispatchToProps = (dispatch) => {
     sessionsPickedAndPicking: (totalSessions) =>
       dispatch(ChangePickedAndPicking(totalSessions)),
     setDatosUser: () => dispatch(DatosUser()),
-    getStartSession: (id) => dispatch(getStartSession(id)),
     setBooleano: (booleano) => dispatch(setBooleano(booleano)),
   };
 };
@@ -55,7 +54,6 @@ const InicioContainer = ({
   status,
   auth,
   setDatosUser,
-  getStartSession,
   setBooleano,
 }) => {
   useEffect(() => {
@@ -81,11 +79,9 @@ const InicioContainer = ({
   const [okBoton, setOkBoton] = useState('');
 
   const handleClickSession = () => {
-    getStartSession(sessionId).then(() => {
-      localStorage.setItem('sessionid', sessionId);
-      setBooleano(true);
-      return history.push(`/productoindividual/${sessionId}/1`);
-    });
+    localStorage.setItem('sessionid', sessionId);
+    setBooleano(true)
+    return history.push('/seleccion')
   };
 
   const setPending = () => {
