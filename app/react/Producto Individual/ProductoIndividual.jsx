@@ -115,6 +115,9 @@ export default ({
   wheights,
   pesoTotal,
   handleRemoveItem,
+  next,
+  despickear,
+  setDespickear,
 }) => {
   let idx = 0;
   return (
@@ -220,7 +223,19 @@ export default ({
                         {session[indice].purchasedQuantity}Kgs
                       </PesoProdu>
                     </ContBarras>
+                    {despickear === false ? 
                     <ContImagenes>
+                      <CuadritoUno>
+                        <ImgBalanzasUno src={ImagenBalanza} />
+                          <PesoCuadro>
+                          {session[indice].purchasedQuantity}
+                          kgs.
+                        </PesoCuadro>
+                      </CuadritoUno>
+                    </ContImagenes>
+                    :
+                    (<>
+                      <ContImagenes>
                       <CuadritoUno>
                         {wheights.length > 0 ? (
                           <QtyPesables onClick={() => Activar(3)}>
@@ -268,17 +283,30 @@ export default ({
                         />
                       </CuadritoDos>
                     </ContImagenes>
-                    {pesoTotal > session[indice].purchasedQuantity ? (
-                      <InstruccionesWarning>
-                        Superaste el umbral de peso por {pesoTotal-session[indice].purchasedQuantity} kgs.
-                      </InstruccionesWarning>
-                    ) : (
-                      <Instrucciones>
-                        Coloca el producto sobre la balanza
-                      </Instrucciones>
-                    )}
+                      {pesoTotal > session[indice].purchasedQuantity ? (
+                        <InstruccionesWarning>
+                          Superaste el umbral de peso por {pesoTotal-session[indice].purchasedQuantity} kgs.
+                        </InstruccionesWarning>
+                      ) : (
+                        <Instrucciones>
+                          Coloca el producto sobre la balanza
+                        </Instrucciones>
+                      )}
+                    </>)
+                    }
                     <Botones>
-                      <BotIzq>
+                    {despickear === false ? 
+                      <><BotIzq>
+                        <Siguiente onClick={() =>next(session[indice].id, count, false)}>
+                          {' '}
+                          SIGUIENTE
+                        </Siguiente>{' '}
+                      </BotIzq>
+                      <BotDer onClick={() => Activar(4)}>
+                        <PlusCircle src={masBlanco}></PlusCircle>
+                      </BotDer></>
+                      : 
+                      <><BotIzq>
                         <Omitir>
                           <CruzOmitir src={ImageCruzOmitir} />
                           OMITIR
@@ -306,7 +334,8 @@ export default ({
                       </BotIzq>
                       <BotDer onClick={() => Activar(4)}>
                         <PlusCircle src={masBlanco}></PlusCircle>
-                      </BotDer>
+                      </BotDer></>
+                    }
                     </Botones>
                   </ColDerecha>
                 </>

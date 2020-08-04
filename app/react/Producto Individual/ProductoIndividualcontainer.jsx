@@ -32,6 +32,7 @@ const ProductoIndividualcontainer = ({
   const [input, setInput] = useState(0);
   const [pesoTotal, setPesoTotal] = useState(0);
   const [wheights, setWheights] = useState([]);
+  const [despickear, setDespickear] = useState(false);
 
   useEffect(() => {
     if (auth !== 'null') {
@@ -60,6 +61,19 @@ const ProductoIndividualcontainer = ({
   useEffect(() => {
     if(inputRef.current && input!=0) inputRef.current.value="";
   }, [wheights]);
+
+  const next = () => {
+    if (Number(indice) === items.length) {
+      localStorage.setItem('final', true);
+      history.push({
+        pathname: '/confirmacion',
+        state: { idSession: idSession, data: null },
+      });
+    } else {
+      let newIndice = Number(indice) + 1;
+      history.push(`/productoindividual/${idSession}/${newIndice}`)
+    };
+  }
 
   const ItemPicked = (iditems, qty, pesable) => {
     let data = {};
@@ -146,6 +160,7 @@ const ProductoIndividualcontainer = ({
           onCloseClick={handleCloseClick}
           session={items}
           pickeado={ItemPicked}
+          next={next}
           indice={indice - 1}
           count={count}
           setCount={setCount}
@@ -158,6 +173,8 @@ const ProductoIndividualcontainer = ({
           pesoTotal={pesoTotal}
           handleRemoveItem={handleRemoveItem}
           pesoTotal={pesoTotal}
+          despickear={despickear}
+          setDespickear={setDespickear}
         />
       ) : null}
     </>
