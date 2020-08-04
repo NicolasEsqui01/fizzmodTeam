@@ -180,7 +180,6 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
-  console.log("state en prod ind", state)
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking
@@ -205,6 +204,6 @@ const MapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  MapStateToProps,
+    MapStateToProps,
   MapDispatchToProps,
 )(ProductoIndividualcontainer);
