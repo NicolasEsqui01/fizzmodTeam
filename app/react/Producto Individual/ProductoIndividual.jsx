@@ -116,10 +116,10 @@ export default ({
   pesoTotal,
   handleRemoveItem,
   next,
-  despickear,
-  setDespickear,
+  despickear
 }) => {
   let idx = 0;
+  console.log("despickear.  !!! ",despickear)
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -145,7 +145,7 @@ export default ({
         ) : session[indice].status === 'picked' ||
           session[indice].status === 'omitido' ? (
           <DivStatus status={session[indice].status}>
-            {session[indice].status === 'picked' ? <StatusP>PICKEADO</StatusP>  : <StatusP>OMITIDO</StatusP> }
+            {despickear === false ? <StatusP>PICKEADO</StatusP>  : <StatusP>OMITIDO</StatusP> }
             <Cont>
               {
                 (session[indice].isWeighable ? 
