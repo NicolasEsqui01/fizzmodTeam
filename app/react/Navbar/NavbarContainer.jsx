@@ -6,7 +6,7 @@ import { getSessionPicking } from '../../action/session';
 
 import Navbar from './Navbar';
 
-const mapStateToProps = (state, ownProps) => { 
+const mapStateToProps = (state, ownProps) => {
   return {
     items: state.sessionReducer.sessionPicking.items,
     itemsPicking: state.pickingReducer.ItemsPicked,
