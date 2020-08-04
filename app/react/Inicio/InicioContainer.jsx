@@ -13,7 +13,6 @@ import { getStartSession, setBooleano } from '../../action/session';
 import history from '../../utils/history';
 
 const mapStateToProps = (state) => {
-  console.log("state",state)
   return {
     sessionId: state.sessionReducer.sessionId, 
     totalSessions: state.inicioReducer.totalSessions,
