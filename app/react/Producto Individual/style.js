@@ -506,6 +506,19 @@ export const PesoCuadro = styled.h1`
   text-align: center;
 `;
 
+export const PesoCuadroWarining = styled.h1`
+  margin-top: 10%;  
+  height: 18px;
+  width: 85px;
+  color: #FF4343;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 18px;
+  text-align: center;
+`;
+
 export const PesoCuadroInput = styled.input`
   height: 54px;
   width: 109px;

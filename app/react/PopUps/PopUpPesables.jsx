@@ -26,6 +26,7 @@ import scanner from '../../images/scanner.svg';
 import trash from '../../images/trash.svg';
 
  export default ({active, onCloseClick, wheights, handleRemoveItem})=>{
+    console.log("wheights",wheights)
      return(
          <>
             <DivZ active={active}>
@@ -37,9 +38,8 @@ import trash from '../../images/trash.svg';
                     <TextB2>CANTIDAD</TextB2>
                   </HeaderDiv>
                   <DivScroll>
-                    {wheights.map((elem, idx) => (
-                      <>
-                        <PopUpProduAcum key={elem.id}>
+                    {wheights.map((elem, idx) => (      
+                        <PopUpProduAcum key={idx}>
                           <DivR>
                             <ImgM src={elem.img} />
                             <DivX>
@@ -55,8 +55,6 @@ import trash from '../../images/trash.svg';
                             <ImgT src={trash} onClick={()=>{handleRemoveItem(idx)}} />
                           </DivR>
                         </PopUpProduAcum>
-                        <Espacio></Espacio>
-                      </>
                     ))}
                   </DivScroll>
                 </DivZ>

@@ -55,12 +55,11 @@ import NotFoundPage from '../NotFoundPage/Loadable';
 
 export default ({
   sessions,
-  pickers,
+  picker,
   handleClickSession,
   getSessionPending,
-  getSessionPicked,
+  getSessionPicking,
   totalPicking,
-  totalPicked,
   totalPending,
   status,
   statusOrderSelected,
@@ -80,8 +79,8 @@ export default ({
             <Oval>
               <OvalInt>
                 <Pickers>
-                  <div> PICKERS </div>
-                  <div> {pickers.length} </div>
+                  <div> PICKER </div>
+                  <div> {picker.firstname} </div>
                 </Pickers>
                 <Qty>{sessions}</Qty>{' '}
                 {sessions == 0 ? (
@@ -104,11 +103,11 @@ export default ({
                 <PNumbers>{totalPicking}</PNumbers>
                 <PNames>PICKING</PNames>
               </Icos24>
-              <Icos24>
+              {/*<Icos24>
                 <Logos src={boxGreen} alt="box" />
                 <PNumbers>{totalPicked}</PNumbers>
                 <PNames>PICKED</PNames>
-              </Icos24>
+              </Icos24>*/}
             </Indicadores>
           </InicioA>
           <InicioB>
@@ -119,13 +118,13 @@ export default ({
             <EstadTiempo>
               <Icos24Hor>
                 <Logos src={clockWhite} alt="clock" />
-                <Item>TIEMPO POR PRODUCTO</Item>
+                <Item> ' 3  TIEMPO POR PRODUCTO  </Item>
                 {/*tiempoPromedioPorProducto !== 0 ? (
                   <Time>''{tiempoPromedioPorProducto}</Time>
                 ) : (
                   <Time>0</Time>
                 )*/}
-                XX
+                  
                 <ContNumGreen>
                   <Percentage>7%</Percentage>
                   <LogoStad src={down} alt="clock" />
@@ -136,13 +135,13 @@ export default ({
             <EstadTiempo>
               <Icos24Hor>
                 <Logos src={squareWhite} alt="clock" />
-                <Item>TIEMPO POR ORDEN</Item>
+                <Item> ' 14  TIEMPO POR ORDEN  </Item>
                 {/*tiempoPromedioOrden !== 0 ? (
                   <Time>''{tiempoPromedioOrden}</Time>
                 ) : (
                   <Time>0</Time>
                 )*/}
-                XX
+                  
                 <ContNumRed>
                   <Percentage>7%</Percentage>
                   <LogoStad src={up} alt="clock" />
@@ -161,7 +160,7 @@ export default ({
               </ONuevas>
             </DivJ>
             <DivP>
-              <PrePickeadas onClick={getSessionPicked} status={status}>
+              <PrePickeadas onClick={getSessionPicking} status={status}>
                 {' '}
                 <ImgH src={slashBox} />
                 PRE-PRICKEADAS
@@ -172,14 +171,10 @@ export default ({
           <OrdersContainer />
 
           <OrdenFooter>
-            { okBoton == 'picking' ? 
+            { status == 'picking' ? 
             (<ButtonRetomar onClick={handleClickSession}>Retomar</ButtonRetomar>)
             :
-            ( okBoton == 'pending' ? 
-              (<Button onClick={handleClickSession}>Comenzar</Button>)
-               :
-              (<Button onClick={handleClickSession}>Revisar</Button>)
-            )
+            (<Button onClick={handleClickSession}>Comenzar</Button>)
             }
           </OrdenFooter>
         </LDerecho>

@@ -21,7 +21,7 @@ border-radius:50px;
 export const ProgressTotal2 = styled.div`
 display: flex;
 width: 90%;
-height:3%;
+height:7%;
 border-radius:50px;
 background-color:#fcaba9;
 margin-top:5%

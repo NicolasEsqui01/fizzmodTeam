@@ -40,6 +40,7 @@ import {
   ContImagenes,
   CuadritoUno,
   PesoCuadro,
+  PesoCuadroWarining,
   CuadritoDos,
   ImgBalanzasUno,
   Form,
@@ -114,7 +115,9 @@ export default ({
   wheights,
   pesoTotal,
   handleRemoveItem,
-  date
+  date,
+  next,
+  despickear
 }) => {
   let idx = 0;
   return (
@@ -142,10 +145,13 @@ export default ({
         ) : session[indice].status === 'picked' ||
           session[indice].status === 'omitido' ? (
           <DivStatus status={session[indice].status}>
-            {session[indice].status === 'picked' ? <StatusP>PICKEADO</StatusP>  : <StatusP>OMITIDO</StatusP> }
+            {despickear === false ? <StatusP>PICKEADO</StatusP>  : <StatusP>OMITIDO</StatusP> }
             <Cont>
-              {session[indice].isWeighable ? (
+              {
+                (session[indice].isWeighable ? 
+                
                 ///////////////// PRODUCTO PESABLE /////////////////
+                (
                 <>
                   <ColIzq>
                     <PopUpPesables
@@ -153,6 +159,7 @@ export default ({
                       onCloseClick={onCloseClick}
                       wheights={wheights}
                       handleRemoveItem={handleRemoveItem}
+                      qtyPurch={session[indice].purchasedQuantity}
                     />
                     <ColuIconos>
                       <Sup>
@@ -215,7 +222,19 @@ export default ({
                         {session[indice].purchasedQuantity}Kgs
                       </PesoProdu>
                     </ContBarras>
+                    {despickear === false ? 
                     <ContImagenes>
+                      <CuadritoUno>
+                        <ImgBalanzasUno src={ImagenBalanza} />
+                          <PesoCuadro>
+                          {session[indice].purchasedQuantity}
+                          kgs.
+                        </PesoCuadro>
+                      </CuadritoUno>
+                    </ContImagenes>
+                    :
+                    (<>
+                      <ContImagenes>
                       <CuadritoUno>
                         {wheights.length > 0 ? (
                           <QtyPesables onClick={() => Activar(3)}>
@@ -223,10 +242,17 @@ export default ({
                           </QtyPesables>
                         ) : null}
                         <ImgBalanzasUno src={ImagenBalanza} />
-                        <PesoCuadro>
-                          {session[indice].purchasedQuantity}
+                        {pesoTotal > session[indice].purchasedQuantity ? (
+                          <PesoCuadroWarining>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadroWarining>
+                        ) : (
+                          <PesoCuadro>
+                          {pesoTotal}
                           kgs.
                         </PesoCuadro>
+                        )}
                       </CuadritoUno>
                       <Form
                         onSubmit={() => {
@@ -235,7 +261,7 @@ export default ({
                             session[indice].id,
                             session[indice].name,
                             session[indice].ean,
-                            session[indice].imageUrl,
+                            session[indice].imageUrl
                           );
                         }}
                       >
@@ -252,24 +278,34 @@ export default ({
                       <CuadritoDos>
                         <ImgBalanzasMas
                           src={ImagenBalanzaMas}
-                          onClick={() => {
-                            setShowInput(true);
-                          }}
+                          onClick={() => setShowInput(true)}
                         />
                       </CuadritoDos>
                     </ContImagenes>
-                    {pesoTotal > session[indice].purchasedQuantity ? (
-                      <InstruccionesWarning>
-                        Supera la Cantidad Solicitada por el Cliente (
-                        {session[indice].purchasedQuantity} kgs.)
-                      </InstruccionesWarning>
-                    ) : (
-                      <Instrucciones>
-                        Coloca el producto sobre la balanza
-                      </Instrucciones>
-                    )}
+                      {pesoTotal > session[indice].purchasedQuantity ? (
+                        <InstruccionesWarning>
+                          Superaste el umbral de peso por {pesoTotal-session[indice].purchasedQuantity} kgs.
+                        </InstruccionesWarning>
+                      ) : (
+                        <Instrucciones>
+                          Coloca el producto sobre la balanza
+                        </Instrucciones>
+                      )}
+                    </>)
+                    }
                     <Botones>
-                      <BotIzq>
+                    {despickear === false ? 
+                      <><BotIzq>
+                        <Siguiente onClick={() =>next()}>
+                          {' '}
+                          SIGUIENTE
+                        </Siguiente>{' '}
+                      </BotIzq>
+                      <BotDer onClick={() => Activar(4)}>
+                        <PlusCircle src={masBlanco}></PlusCircle>
+                      </BotDer></>
+                      : 
+                      <><BotIzq>
                         <Omitir>
                           <CruzOmitir src={ImageCruzOmitir} />
                           OMITIR
@@ -297,11 +333,12 @@ export default ({
                       </BotIzq>
                       <BotDer onClick={() => Activar(4)}>
                         <PlusCircle src={masBlanco}></PlusCircle>
-                      </BotDer>
+                      </BotDer></>
+                    }
                     </Botones>
                   </ColDerecha>
                 </>
-              ) : (
+                ) : (
                 ////////////////// PRODUCTO NORMAL //////////////////
                 <>
                   <ColIzq>
@@ -357,6 +394,10 @@ export default ({
                       </BarritasCont>
                       <CodProdu>{session[indice].ean}</CodProdu>
                     </ContBarras>
+                    {despickear === false ? 
+                    <ContImagenes>
+                    </ContImagenes>
+                    :
                     <ContImagenes>
                       <RecuadroCantidadNormal>
                         <H1Cantidad>Cantidad</H1Cantidad>
@@ -402,32 +443,49 @@ export default ({
                         </ContStock>
                       </DivImageStock>
                     </ContImagenes>
+                    }
                     <Botones>
-                      <BotIzq>
-                        <Omitir>
-                          <CruzOmitir src={ImageCruzOmitir} />
-                          OMITIR
-                        </Omitir>
-                        <BotonTeclado>
-                          <Teclado src={TecladoIcono} />
-                        </BotonTeclado>
-                        <Siguiente
-                          onClick={() => {
-                            pickeado(session[indice].id, count, false);
-                          }}
-                        >
-                          {' '}
-                          SIGUIENTE
-                        </Siguiente>{' '}
-                        {/*CHEQUEAR QUE SUME 1 BIEN*/}
-                      </BotIzq>
+                      {despickear === false ? 
+                       <><BotIzq>
+                          <Siguiente onClick={() =>next()}>
+                            {' '}
+                            SIGUIENTE
+                          </Siguiente>{' '}
+                          {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                        </BotIzq>
                       <BotDer onClick={() => Activar(4)}>
                         <PlusCircle src={masBlanco}></PlusCircle>
-                      </BotDer>
+                      </BotDer></>
+                      :
+                      <>
+                        <BotIzq>
+                          <Omitir>
+                            <CruzOmitir src={ImageCruzOmitir} />
+                            OMITIR
+                          </Omitir>
+                          <BotonTeclado>
+                            <Teclado src={TecladoIcono} />
+                          </BotonTeclado>
+                          <Siguiente
+                            onClick={() => {
+                              pickeado(session[indice].id, count, false);
+                            }}
+                          >
+                            {' '}
+                            SIGUIENTE
+                          </Siguiente>{' '}
+                          {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                        </BotIzq>
+                        <BotDer onClick={() => Activar(4)}>
+                          <PlusCircle src={masBlanco}></PlusCircle>
+                        </BotDer>
+                      </>}
                     </Botones>
                   </ColDerecha>
                 </>
-              )}
+                    )
+                )
+              }
             </Cont>
           </DivStatus>
         ) : (
@@ -511,10 +569,17 @@ export default ({
                         </QtyPesables>
                       ) : null}
                       <ImgBalanzasUno src={ImagenBalanza} />
-                      <PesoCuadro>
-                        {session[indice].purchasedQuantity}
-                        kgs.
-                      </PesoCuadro>
+                      {pesoTotal > session[indice].purchasedQuantity ? (
+                          <PesoCuadroWarining>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadroWarining>
+                        ) : (
+                          <PesoCuadro>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadro>
+                        )}
                     </CuadritoUno>
                     <Form
                       onSubmit={() => {
@@ -547,10 +612,9 @@ export default ({
                     </CuadritoDos>
                   </ContImagenes>
                   {pesoTotal > session[indice].purchasedQuantity ? (
-                    <InstruccionesWarning>
-                      Supera la Cantidad Solicitada por el Cliente (
-                      {session[indice].purchasedQuantity} kgs.)
-                    </InstruccionesWarning>
+                      <InstruccionesWarning>
+                        Superaste el umbral de peso por {pesoTotal-session[indice].purchasedQuantity} kgs.
+                      </InstruccionesWarning>
                   ) : (
                     <Instrucciones>
                       Coloca el producto sobre la balanza
