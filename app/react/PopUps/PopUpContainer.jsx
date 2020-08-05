@@ -105,6 +105,7 @@ const PopUpContainer = ({
         pickeado={ItemPicked}
         onCloseClick={handleCloseClick}
       />
+
     </>
   );
 };
