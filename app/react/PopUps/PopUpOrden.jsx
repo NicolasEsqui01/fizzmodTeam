@@ -53,6 +53,7 @@ export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
   if(largo !== 0){
     porcentaje = (largo/total)*100 -5
   }
+ 
   return idSession.items ? (
     <DIV5 active={active}>
       <Color></Color>

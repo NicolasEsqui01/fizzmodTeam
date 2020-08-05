@@ -15,7 +15,10 @@ export const DivStatus = styled.div`
   align-items:center;
   justify-content:center;
   height:86vh;
-  background-color:${({status}) => status === 'picked' ? '#2979FF' : '#F13B70'};
+  background-color:${({status, despickear}) => status === 'picked' && despickear !== true ? '#2979FF' : '#FFFFFF'};
+  @media ${device.mobile} {
+    height:87vh;
+  }
 `
 export const StatusP = styled.p`
   height: 16px;
@@ -26,6 +29,12 @@ export const StatusP = styled.p`
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 16px;
+  margin-top:20px;
+  @media ${device.mobile} {
+    margin-top:10px;
+    height: 30px;
+    width: 130px;
+  }
 `
 
 export const Img = styled.img`
@@ -82,7 +91,7 @@ background-color:#FFFFFF;
 justify-content: center;
 flex-direction: row;
 align-items:center;
-margin-top:30px;
+margin-top:15px;
 @media ${device.mobile} {
   flex-direction: column;
   margin-top:0px;
@@ -530,7 +539,7 @@ export const PesoCuadroInput = styled.input`
   margin-left:20px;
   border: 2px solid #0368FF;
   ${props => props.showInput == false ? `display:none` : null};
-  ${props => props.active == 2 || props.active == 6  || props.active == 1 ? `display:none` : null};
+  ${props => props.active == 2 || props.active == 6  || props.active == 1 || props.active == 4 ? `display:none` : null};
   @media ${device.tablet} {
 
 } 

@@ -26,7 +26,7 @@ import scanner from '../../images/scanner.svg';
 import trash from '../../images/trash.svg';
 
  export default ({active, onCloseClick, wheights, handleRemoveItem})=>{
-    console.log("wheights",wheights)
+
      return(
          <>
             <DivZ active={active}>

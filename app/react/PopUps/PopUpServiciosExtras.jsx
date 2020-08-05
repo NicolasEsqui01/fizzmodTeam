@@ -35,9 +35,8 @@ export default ({ active, onCloseClick }) => {
           </DivC>
           <DivP>
             <ul>
-              {Prueba.map((element) => {
-                return (
-                    <DivLI key={element.id}>
+              {Prueba.map((element,idx) => (
+                    <DivLI key={idx}>
                       <DivPunto>
                         <Punto />
                       </DivPunto>
@@ -50,8 +49,7 @@ export default ({ active, onCloseClick }) => {
                         mismos atributos.
                       </Servicios>
                     </DivLI>
-                );
-              })}
+                ))}
             </ul>
           </DivP>
         </DivV>

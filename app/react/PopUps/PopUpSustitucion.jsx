@@ -31,9 +31,7 @@ export default ({ active, onCloseClick }) => {
             </ButtonX>
           </DivC>
           <DivP>
-            {Prueba.map((element) => {
-              return <PopUpProdu key={element.id}>{element}</PopUpProdu>;
-            })}
+            {Prueba.map((element,idx) => <PopUpProdu key={idx}>{element}</PopUpProdu>)}
           </DivP>
         </DivV>
       </DIV>
