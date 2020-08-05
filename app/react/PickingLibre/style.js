@@ -22,7 +22,7 @@ flex-direction: column;
 background-color: white;
 @media ${device.tablet} {
     width: 100%;
-    height:90%;
+    height:50%;
     display: flex;
     flex-direction: column;
   }
@@ -78,7 +78,7 @@ margin-top: 3%;
 export const ParteIzqDiv = styled.div`
 display: flex;
 height: 100%;
-width: 27%;
+width: 20%;
 flex-direction: column;
 align-items: center;
 
@@ -146,7 +146,7 @@ width: 60px;
 export const ParteDerDiv = styled.div`
 display: flex;
 //height: 35%;
-width: 73%;
+width: 100%;
 flex-direction: column;
 justify-content: center;
 align-items: center;
@@ -352,6 +352,7 @@ export const H1Comenzar = styled.div`
 
 
 export const DivBuscador = styled.div`
+${props => props.value === ''?`
 display: flex;
 height:70px;
 align-itens: center;
@@ -360,12 +361,30 @@ border-radius: 50px;
 background-color: white;
 width:400px;  
 margin-top: 7%;
-margin-bottom: 10%;  
-`;
+margin-bottom: 10%; `
+:
+`
+display: flex;
+height:70px;
+//align-itens: center;
+//justify-content: center;
+border-radius: 50px;
+background-color: white;
+width:90%;  
+margin-top: 3%;
+margin-left: 5%;
+margin-right: 5%;
+@media ${device.tablet} {
+  margin-top: 5%;
+  height:40px;
+}`}
+`
+
+
+
 export const DivImagenBuscador = styled.button`
 display: flex;
-margin-left: 40px;
-margin-top: 10px;
+margin-left: 30px;
 height: 40px;
 width: 40px;
 border: none;
@@ -373,41 +392,54 @@ background-color: transparent;
 align-items:center;
 justify-content: center;
 //outline: none;
+@media ${device.mobile} {
+  ${props => props.value !==''? `margin-top: 0
+  ` :`margin-top: 20px;
+  `};
+}  
+
 `;
 
 export const ImagenLupa = styled.img`
-height: 40px;
-width: 40px;
-`;
+   height: 40px;
+   width: 40px;
+   margin-top:25px;
+@media ${device.mobile} {
+  ${props => props.value ===''? 
+  `height: 40px;
+   width: 40px;
+   ` :
+  `height: 30px;
+   width: 30px; 
+   margin-top:0px;
+   `};`
+
 
 
 export const FormBusqueda = styled.form`
 display: flex;
-width: 300px;
+width: 100%;
 height: 70px;
 //border-radius: 50px;
 @media ${device.tablet} {
     margin-left: 20px;
-    
+    height: 30px;
   } 
 `;
 
 export const InputBusqueda = styled.input`
 display: flex;
-width: 300px;
+width: 100%;
 height: 70px;
-text-align: center;
-font-size: 20px;
+font-size: 30px;
 color: #939598;
 padding-left: 3%;
 border: none;
 background-color: transparent;
 outline: none;
 //border-radius: 50px;
-`;
-
-
-
+${props => props.value !== ''? `@media ${device.tablet} {
+  height: 30px;}`:null}`;
 
 //////////////////////// FOOTER BOTONES ////////////////////////
 
@@ -416,10 +448,7 @@ export const Botones = styled.div`
     width: 100%;
     margin-top: 10%;
     flex-direction: row;
-    //align-items: center;
-    justify-content: center;
-    //bottom: 0px;
-        
+    justify-content: center;   
     @media ${device.mobile} {
     margin-bottom:20px;
 }     
@@ -505,47 +534,22 @@ export const Siguiente = styled.button`
   `;
 
     //////////////////////////// BARRA BUSCADOR /////////////////////////////
-  export const DivBuscadorDos = styled.div`
-display: flex;
-height:70px;
-//align-itens: center;
-//justify-content: center;
-border-radius: 50px;
-background-color: white;
-width:90%;  
-margin-top: 3%;
-margin-left: 5%;
-margin-right: 5%;
-@media ${device.tablet} {
-    margin-top: 16%;
+
+
+ export const DivScroll = styled.div`
+ display:flex;
+ flex-direction:column;
+ aling-items:center;
+ margin-top:5%;
+ height:60%;
+ overflow:auto;
+ @media ${device.tablet} {
+      
+  height:45%;
 }
-`;
+ `
 
 
-export const FormBusquedaDos = styled.form`
-display: flex;
-width: 500px;
-height: 70px;
-//border-radius: 50px;
-@media ${device.tablet} {
-    margin-left: 20px;
-    
-  } 
-`;
-
-export const InputBusquedaDos = styled.input`
-display: flex;
-width: 500px;
-height: 70px;
-//text-align: center;
-font-size: 20px;
-color: #939598;
-padding-left: 3%;
-border: none;
-background-color: transparent;
-outline: none;
-//border-radius: 50px;
-`;
 ///////////////////////////// TITULO PRODUCTO Y CANTIDAD ///////////////////////
 
 export const ProductoCantidadDiv = styled.div`
@@ -553,6 +557,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-around;
 width: 90%;
+height:10%;
 //align-items: center;
 margin-left: 5%;
 margin-right: 5%;
@@ -634,7 +639,7 @@ height: auto;
 export const DescriProducto = styled.div`
 display: flex;
 flex-direction: column;
-//width: 80%;
+width: 600px;
 justify-content: space-evenly;
 margin-left: 20px;
 @media ${device.tablet} {
@@ -647,7 +652,7 @@ margin-left: 20px;
 
 export const H1Descri = styled.div`
 height: 40px;
-  //width: 100%;
+  width: 100%;
   color: #939598;
   //font-family: Roboto;
   font-size: 17px;
@@ -742,4 +747,100 @@ width: 10px;
 background-color: #08C4C4;
 border-radius: 0 3px 3px 0; 
 
+`;
+
+///////Producto cantidad
+
+export const DivCantidadStock = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+margin-top: 5%;
+`;
+export const DivCantidadProdu = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  height: 65px;
+  width: 155px;
+  border: 1px solid #E8EAF6;
+  border-radius: 3px;
+  text-align: center;
+  justify-content: center;
+`;
+export const H1CantidadDeProdu = styled.h1`
+color: #273947;
+  //font-family: Roboto;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 24px;
+`;
+export const StockLetras = styled.div`
+  margin-left: auto;
+  margin-right: auto;  
+  height: 25px;
+  color: #1DB779;
+  font-family: Roboto;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 18px;
+  text-align: center;
+`;
+export const ContStock = styled.div`
+  display: flex;
+  margin-left: 7%;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  color:#1DB779;
+  @media ${device.mobile} {
+  font-size: 16px;
+  margin-bottom:5px;
+}
+`;
+export const StockCien = styled.div`
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 1px solid #1DB779;
+  color:#1DB779;
+  padding: 3px 10px 3px 10px;
+  @media ${device.mobile} {
+    font-size: 15px;
+    padding: 1px 5px 1px 5px;
+}
+`;
+export const LineaFina = styled.div`
+  display: flex;  
+  height: 70%;
+  width: 2px;
+  flex-direction: column;
+  margin-left: 25%;
+  background-color: #E8EAF6;
+  @media ${device.tablet} {
+    margin-left: 5%;
+}
+`;
+export const CantidadSeleccionadaProdu = styled.div`
+text-align: center;
+justify-content: center;
+margin-left: 3%;
+@media ${device.tablet} {
+    margin-left: 0%;
+  }
+`;
+export const CantidadSeleccionadaProduH1 = styled.h1`
+  color: #273947;
+  //font-family: Roboto;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 24px;
+  @media ${device.tablet} {
+    font-size: 16px;
+  }
 `;

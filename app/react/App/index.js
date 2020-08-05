@@ -18,7 +18,7 @@ import PopUpContainer from '../PopUps/PopUpContainer';
 import Navbar from '../Navbar/NavbarContainer';
 import BuscadorContainer from "../Buscador/Loadable";
 import PickingLibreContainer from "../PickingLibre/Loadable";
-import PickingLibreConfirmacion from "../PickingLibreConfirmacion/Loadable";
+
 
 
 
@@ -45,7 +45,6 @@ function App({ location }) {
         <Route path="/confirmacion" component={ConfirmacionContainer} />
         <Route path="/buscador" component={BuscadorContainer} />
         <Route path="/pickinglibre" component={PickingLibreContainer} />
-        <Route path="/pickinglibreconfirmacion" component={PickingLibreConfirmacion} />
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />

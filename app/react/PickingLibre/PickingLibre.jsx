@@ -13,8 +13,6 @@ import {
   CuadroGrill,
   ContainerGrillCuadros,
   NumCuadrados,
-  LogoCajitasDiv,
-  LogoCajitasImg,
   ParteDerDiv,
   ImagenProduDiv,
   ImagenProduImg,
@@ -42,16 +40,41 @@ import {
   BotonTeclado,
   Teclado,
   Siguiente,
+  ProductosDiv,
+  DivIzqProducto,
+  ImgProdu,
+  ImagenProdu,
+  DescriProducto,
+  H1Descri,
+  DivFilaBarritas,
+  ImagenBarritasProdu,
+  H1codBarras,
+  Kilos,
+  TrashDiv,
+  TrashImagen,
+  LineaDeColor,
+  DivScroll,
+  DivCantidadStock,
+  DivCantidadProdu,
+  H1CantidadDeProdu,
+  StockLetras,
+  ContStock,
+  StockCien,
+  LineaFina,
+  CantidadSeleccionadaProdu,
+  CantidadSeleccionadaProduH1,
 } from './style';
 
 import IconoHeaderImg from '../../images/icono_Header.png';
 import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
 import Lupita from '../../images/search.svg';
 import TecladoIcono from '../../images/tecladoIcono.png';
-import IconoIzq from '../../images/Icono_izq.png';
 import Carne from '../../images/carne.png';
+import Trash from '../../images/trashVerde.svg';
+import Barritas from '../../images/bar_code.svg';
 
-export default () => {
+export default ({ value, handleChange, /* showInput, setShowInput */}) => {
+  const arr = [1, 2, 3, 4, 5];
   return (
     <Container>
       <ColuIzquierda>
@@ -64,10 +87,6 @@ export default () => {
 
         <DivInfoProdu>
           <ParteIzqDiv>
-            {/* <LogoCajitasDiv>
-              <LogoCajitasImg src={IconoIzq} />
-            </LogoCajitasDiv> */}
-
             <Sup>
               <ContainerGrillCuadros>
                 <CuadroGrill />
@@ -107,31 +126,64 @@ export default () => {
         </DivGralPrecio>
       </ColuIzquierda>
       <ColuDerecha>
-        <LogoDerechoDiv>
-          <ImagenGrandeDiv>
-            <ImagenGrande src={ImgPickingLibre} />
-          </ImagenGrandeDiv>
-          <H1PickingLibre>Picking Libre</H1PickingLibre>
-          <H1Comenzar>Comienza a pickear los productos</H1Comenzar>
-        </LogoDerechoDiv>
-
-        <DivBuscador>
+        {value === '' ? (
+          <>
+            <LogoDerechoDiv>
+              <ImagenGrandeDiv>
+                <ImagenGrande src={ImgPickingLibre} />
+              </ImagenGrandeDiv>
+              <H1PickingLibre>Picking Libre</H1PickingLibre>
+              <H1Comenzar>Comienza a pickear los productos</H1Comenzar>
+            </LogoDerechoDiv>
+          </>
+        ) : null}
+        <DivBuscador value = {value}>
           <DivImagenBuscador type="submit">
-            <ImagenLupa src={Lupita} />
+            <ImagenLupa value={value} src={Lupita} />
           </DivImagenBuscador>
           <FormBusqueda>
             <InputBusqueda
-              // handleChange={handlerChange}
-
+              onChange={handleChange}
+              value={value}
               type="text"
               placeholder="Buscar productos "
             ></InputBusqueda>
           </FormBusqueda>
         </DivBuscador>
-
+        {value !== '' ? (
+          <DivScroll>
+            {arr &&
+              arr.map((element) => {
+                return (
+                  <ProductosDiv>
+                    <DivIzqProducto>
+                      <ImgProdu>
+                        <ImagenProdu src={Carne} />
+                      </ImgProdu>
+                      <DescriProducto>
+                        <H1Descri>
+                          Nombre del producto con doble linea lorem ipsum dolor
+                          sit amet
+                        </H1Descri>
+                        <DivFilaBarritas>
+                          <ImagenBarritasProdu src={Barritas} />
+                          <H1codBarras>4676283905037772</H1codBarras>
+                        </DivFilaBarritas>
+                      </DescriProducto>
+                    </DivIzqProducto>
+                    <Kilos>0 kgs</Kilos>
+                    <TrashDiv>
+                      <TrashImagen src={Trash} />
+                    </TrashDiv>
+                    <LineaDeColor />
+                  </ProductosDiv>
+                );
+              })}
+          </DivScroll>
+        ) : null}
         <Botones>
           <Cancelar>CANCELAR</Cancelar>
-          <BotonTeclado>
+          <BotonTeclado /* onClick={() => {setShowInput(true);}} */>
             <Teclado src={TecladoIcono} />
           </BotonTeclado>
           <Siguiente>SIGUIENTE</Siguiente>
