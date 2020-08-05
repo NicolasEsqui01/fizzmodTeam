@@ -45,6 +45,9 @@ const PopUpContainer = ({
   const handleCanastos = () => {
     return history.push('/seleccion');
   };
+  const handlePickingLibre = () => {
+    return history.push('/pickinglibre');
+  };
 
   const reinicio = () => {
     despickear(true);
@@ -100,6 +103,7 @@ const PopUpContainer = ({
         onCloseClick={handleCloseClick}
         handleLogout={handleLogout}
         handleCanastos={handleCanastos}
+        handlePickingLibre = {handlePickingLibre}
         despickear={despickear}
         reiniciar={reinicio}
       />

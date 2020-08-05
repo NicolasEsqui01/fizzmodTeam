@@ -27,6 +27,16 @@ const ScaleCenter = keyframes`
   transform: scale(1);
 }
 `
+const ScaleDown = keyframes`
+0% {
+  transform: scaleY(0.4);
+  transform-origin: 100% 0%;
+}
+100% {
+  transform: scaleY(1);
+  transform-origin: 100% 0%;
+}`
+
 export const ImgX = styled.img`
 width: 50px;   
 height: 50px;   
@@ -508,13 +518,13 @@ export const DivZ = styled.div`
 display: flex;    
 position:fixed;
 background-color:#273947;
-width: 50%;
+width: 45%;
 flex-direction: column;
 opacity: 95%;
 margin-top:-6%;
 height:75%;
-animation: ${slideRight} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-${props => props.active === 3 ? null : `display:none`};
+animation: ${ScaleDown} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+${props => props.active === 3? null: `display:none`};
 @media ${device.mobile} {
 width: 90%;
 margin-top: 0%;
