@@ -44,8 +44,9 @@ export const DivGeneral = styled.div`
   width: 100%;
   height: 70vh;
   background-color: #e8eaf6;
-  //padding-bottom:
-  //flex-direction:column;
+  @media screen and (max-width : 768px){
+    heigth:100%
+  }
 `;
 
 export const IconoCanasta = styled.div`
@@ -86,6 +87,11 @@ export const ColuIzquierda = styled.div`
   margin-top: 4%;
   margin-right:30px;
   align-items: center;
+  @media screen and (max-width : 768px) {
+    margin-right:15px;
+    margin-left:15px;
+    margin-top:5%;
+  }
 `;
 
 export const IconoDosCuadrados = styled.img`
@@ -223,6 +229,9 @@ export const DivDos = styled.div`
   border: ${({ NumDiv, valueClick , status}) => {
       return NumDiv === valueClick && status !== true ? '2px solid #2979FF;' : null 
     }
+  };
+  @media screen and (max-width : 812px) {
+    width:45%;
   }
 `;
 
@@ -327,6 +336,9 @@ export const Footer = styled.div`
   background-color: #e8eaf6;
   height: 15vh;
   padding-bottom: 1%;
+  @media screen and (max-width : 768px){
+    height:8vh;
+  }
 `;
 
 export const Comenzar = styled.button`
@@ -336,17 +348,16 @@ export const Comenzar = styled.button`
   background-color: #1db779;
   border: 1px solid #1db779;
   color: #ffffff;
-  //font-family: Roboto;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;
-  margin-left: 5px;
   outline: none;
   @media ${device.mobile} {
-    width: 35%;
-    height: 40px;
+    width: 100%;
+    height: 100%;
     font-size: 18px;
+    margin-top:8px;
   }
 `;
 
@@ -456,6 +467,10 @@ export const ContainerGrillCuadros = styled.div`
   justify-content: center;
   align-content: center;
   box-sizing: border-box;
+  @media screen and (max-width : 768px) {
+    width:80%;
+    justify-content:space-between;
+  }
 `
 
 export const CuadroGrill = styled.div`
@@ -470,6 +485,12 @@ export const CuadroGrill = styled.div`
   margin: 4px 6px 4px 0px;
   justify-content:center;
   align-items:center;
+  @media screen and (max-width : 768px) {
+    width:45%;
+    margin-bottom:3px;
+    margin:0px;
+    margin-bottom:3px;
+  }
 `
 export const DivImgTilde = styled.img`
   width:20px;
