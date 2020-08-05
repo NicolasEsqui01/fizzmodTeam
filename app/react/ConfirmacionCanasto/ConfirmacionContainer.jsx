@@ -9,7 +9,7 @@ import history from '../../utils/history'
 
 const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal, reiniciar}) => {
   
-  console.log(idSession, 'id')
+  
   
   let datos = JSON.parse(localStorage.getItem('canasto'))
   const handleClick = () =>{
