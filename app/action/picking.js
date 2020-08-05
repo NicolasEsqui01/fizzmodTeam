@@ -8,10 +8,16 @@ const Picked = (items) => {
   };
 };
 
-
 const pickFinal = () => {
   return {
     type: 'FINAL',
+  };
+};
+
+const listProduct = (items) => {
+  return {
+    type: 'LIST_ITEMS_SEARCHED',
+    items,
   };
 };
 
@@ -29,10 +35,17 @@ export const itemPicked = (sessionId, obj) => {
   };
 };
 
-
-
 export const itemFinalPick = () => {
   return (dispatch) => {
         dispatch(pickFinal()) 
       }
 };
+
+export const itemSearch = (sku) => {
+  return (dispatch) => {
+    return axios
+      .post(`https://catalog.janis.in/api/${sku}`, headers())
+      .then((list) => dispatch(listProduct(list)))
+  }
+};
+

@@ -120,7 +120,7 @@ export default ({
   despickear,
 }) => {
   let idx = 0;
-
+  console.log("session", session)
   return (
   
     <>
@@ -325,7 +325,7 @@ export default ({
                             pickeado(
                               session[indice].id,
                               session[indice].purchasedQuantity,
-                              true,
+                              true
                             )
                           }
                         >

@@ -18,9 +18,10 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
       localStorage.removeItem('final');
       localStorage.removeItem('cronometro')
       localStorage.removeItem('canasto')
+      if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
+      if (localStorage.getItem('withSubstitute'))localStorage.removeItem('withSubstitute');
       sendFinal();
       reiniciar(false)
-
       return history.push('/inicio')
     })
   };
