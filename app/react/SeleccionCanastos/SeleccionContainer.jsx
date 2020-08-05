@@ -32,6 +32,30 @@ const SeleccionContainer = ({ getStartSession }) => {
     false,
   ]);
   const [boolean, setBoolean] = useState(false);
+  
+
+  useEffect(() => {
+    let objLocal = JSON.parse(localStorage.getItem('canasto'))
+    if (
+      localStorage.getItem('cuadradoChico') &&
+      localStorage.getItem('cuadradoGrande') && 
+      localStorage.getItem('canasto')
+    ) {
+      setCuadros(
+        localStorage
+          .getItem('cuadradoChico')
+          .split(',')
+          .map((Element) => (Element === 'true' ? true : false)),
+      );
+      setCanasto(
+        localStorage
+          .getItem('cuadradoGrande')
+          .split(',')
+          .map((Element) => (Element === 'true' ? true : false)),
+      );
+      setNameCanasto(objLocal.nameCanasto)
+    }
+  }, []);
 
   const handleClick = (id) => {
     setValue(id);
@@ -75,15 +99,21 @@ const SeleccionContainer = ({ getStartSession }) => {
       i === indice ? true : Element,
     );
     setCanasto(nuevoCanasto);
-    setCuadros(nuevoCuadrado)
+    setCuadros(nuevoCuadrado);
   };
 
   const handleStartSession = () => {
     let idSession = localStorage.getItem('sessionid');
-    localStorage.setItem('canasto' , JSON.stringify({nameCanasto , value}))
+
+    localStorage.setItem(
+      'canasto',
+      JSON.stringify({ nameCanasto , value }),
+    );
+    localStorage.setItem('cuadradoGrande', canasto);
+    localStorage.setItem('cuadradoChico', cuadros);
     getStartSession(idSession).then(() => {
       return history.push({
-        pathname: `/productoindividual/${idSession}/1`, 
+        pathname: `/productoindividual/${idSession}/1`,
       });
     });
   };

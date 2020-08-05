@@ -845,7 +845,10 @@ export const PlusCircle = styled.img`
   padding: 6px;
 `;
 
-
+export const DivImgTilde = styled.img`
+  width:20px;
+  height:20px;
+`
 
 
 

@@ -45,14 +45,18 @@ import AprobadoCirculo from '../../images/check_circulo.svg';
 import keyboard from '../../images/icn_keyboard.svg';
 //import tecladoGris from "../../images/tecladoGris.png";
 
-export default ({handleClick, idSession , datosCanasto}) => {
-  let total 
-  let largo
-  let porcentaje
-  if(idSession.items){
-   total = idSession.totalItems
-   largo = idSession.items.filter(Element => Element.status === 'picked' ).length 
+export default ({ handleClick, idSession, datosCanasto }) => {
+  let total;
+  let largo;
+  let porcentaje;
+  if (idSession.items) {
+    total = idSession.totalItems;
+    largo = idSession.items.filter((Element) => Element.status === 'picked')
+      .length;
   }
+  let Name = datosCanasto && Object.values(datosCanasto.nameCanasto).filter(
+    (Element) => Element !== '',
+  );
   return (
     <Container>
       <Izquierdo>
@@ -75,38 +79,44 @@ export default ({handleClick, idSession , datosCanasto}) => {
             <TotalesGris>Totales: {total}</TotalesGris>
           </ColuInfoDerecha>
         </ParteInferiorIzq>
-           <ProgressBarContainer/>
+        <ProgressBarContainer />
       </Izquierdo>
       <Derecho>
         <div>
-        <ParteSuperior>
-          <IconoCanastoOscuro src={basket} />
-          <TituloCanasto>CANASTOS</TituloCanasto>
-        </ParteSuperior>
-        <ParteCentral1>
-          <ParteCentralIzq>
-            <IconoCanastoVerde src={basketVerde} />
-            <NombreCanasto>Canasto {datosCanasto ? datosCanasto.nameCanasto[datosCanasto.value + 1] : null}</NombreCanasto>
-          </ParteCentralIzq>
-          <DivIconoAprobado>
-            <IconoAprobado src={Aprobado} />
-          </DivIconoAprobado>
-        </ParteCentral1>
-        <LineaBlanca />
-        <ParteCentral2>
-          <ParteCentral2Izq>
-            <IconoCanastoGris src={basketNegro} />
-            <NombreCargarCanasto>Cargar Nuevo Canasto</NombreCargarCanasto>
-          </ParteCentral2Izq>
-          <IconoTeclado src={keyboard} />
-        </ParteCentral2>
+          <ParteSuperior>
+            <IconoCanastoOscuro src={basket} />
+            <TituloCanasto>CANASTOS</TituloCanasto>
+          </ParteSuperior>
+          {Name.map((Element) => {
+            return (
+              <>
+                <ParteCentral1>
+                  <ParteCentralIzq>
+                    <IconoCanastoVerde src={basketVerde} />
+                    <NombreCanasto>Canasto {Element}</NombreCanasto>
+                  </ParteCentralIzq>
+                  <DivIconoAprobado>
+                    <IconoAprobado src={Aprobado} />
+                  </DivIconoAprobado>
+                </ParteCentral1>
+                <LineaBlanca />
+              </>
+            );
+          })}
+          <ParteCentral2>
+            <ParteCentral2Izq>
+              <IconoCanastoGris src={basketNegro} />
+              <NombreCargarCanasto>Cargar Nuevo Canasto</NombreCargarCanasto>
+            </ParteCentral2Izq>
+            <IconoTeclado src={keyboard} />
+          </ParteCentral2>
         </div>
         <div>
-        <ParteInferior>
-          <OrdenFooter>
-            <Button onClick={handleClick}>FINALIZAR</Button>
-          </OrdenFooter>
-        </ParteInferior>
+          <ParteInferior>
+            <OrdenFooter>
+              <Button onClick={handleClick}>FINALIZAR</Button>
+            </OrdenFooter>
+          </ParteInferior>
         </div>
       </Derecho>
     </Container>

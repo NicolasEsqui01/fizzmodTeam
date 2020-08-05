@@ -76,6 +76,7 @@ import {
   Atencion,
   DivStatus,
   StatusP,
+  DivImgTilde
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -98,6 +99,7 @@ import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
 import PopUpOmitir from '../PopUps/PopUpOmitir';
 import TecladoContainer from '../Tecleado/TecladoContainer';
+import Tilde from '../../images/check_bold.svg';
 
 export default ({
   session,
@@ -122,7 +124,7 @@ export default ({
   despickear,
 }) => {
   let idx = 0;
-
+  let cuadrados = localStorage.getItem('cuadradoChico') && localStorage.getItem('cuadradoChico').split(',').map(Element => Element === 'true' ? true : false)
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -167,13 +169,15 @@ export default ({
                             <ColuIconos>
                               <Sup>
                                 <ContainerGrillCuadros>
-                                  {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                                  {cuadrados.map((Element, indice) => {
                                     return (
                                       <CuadroGrill
                                         key={indice}
                                         numeros={indice}
                                         datos={date.value}
-                                      />
+                                      >
+                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                      </CuadroGrill>
                                     )
                                   })}
                                 </ContainerGrillCuadros>
@@ -356,13 +360,15 @@ export default ({
                             <ColuIconos>
                               <Sup>
                                 <ContainerGrillCuadros>
-                                  {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                                  {cuadrados.map((Element, indice) => {
                                     return (
                                       <CuadroGrill
                                         key={indice}
                                         numeros={indice}
                                         datos={date.value}
-                                      />
+                                      >
+                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                      </CuadroGrill>
                                     )
                                   })}
                                 </ContainerGrillCuadros>
@@ -521,13 +527,17 @@ export default ({
                       <ColuIconos>
                         <Sup>
                           <ContainerGrillCuadros>
-                            {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                            {cuadrados.map((Element, indice) => {
                               return (
+                                <>
                                 <CuadroGrill
                                   key={indice}
                                   numeros={indice}
                                   datos={date.value}
-                                />
+                                >
+                                { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                </CuadroGrill>
+                                </>
                               )
                             })}
                           </ContainerGrillCuadros>
@@ -684,13 +694,17 @@ export default ({
                         <ColuIconos>
                           <Sup>
                             <ContainerGrillCuadros>
-                              {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                              {cuadrados.map((Element, indice) => {
                                 return (
+                                  <>
                                   <CuadroGrill
                                     key={indice}
                                     numeros={indice}
                                     datos={date.value}
-                                  />
+                                  >
+                                  {Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                  </CuadroGrill>
+                                  </>
                                 )
                               })}
                             </ContainerGrillCuadros>
