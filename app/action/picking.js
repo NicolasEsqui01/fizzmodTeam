@@ -8,31 +8,27 @@ const Picked = (items) => {
   };
 };
 
-
 const pickFinal = () => {
   return {
     type: 'FINAL',
   };
 };
 
-
 export const itemPicked = (sessionId, obj) => {
   return (dispatch) => {
     return axios
-      .post(`https://picking.janis.in/api/session/${sessionId}/pick`, obj , headers())
-      .then(() => { 
-        dispatch(Picked(obj.items)) 
+      .post(`https://picking.janis.in/api/session/${sessionId}/pick`, obj, headers())
+      .then(() => {
+        dispatch(Picked(obj.items))
       })
-      .catch(err =>{
+      .catch(err => {
         return err.response.data
-      }); 
+      });
   };
 };
 
-
-
 export const itemFinalPick = () => {
   return (dispatch) => {
-        dispatch(pickFinal()) 
-      }
+    dispatch(pickFinal())
+  }
 };

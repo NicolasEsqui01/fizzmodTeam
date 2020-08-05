@@ -51,12 +51,19 @@ export const estadoOrdenSelected = (string) => {
   };
 };
 
-export const setIdItems = (id) =>{
+export const setIdItems = (id) => {
   return {
-    type:'IDITEMS',
+    type: 'IDITEMS',
     id
   }
 };
+
+export const setItems = (productos) => {
+  return {
+    type: 'PRODUCTOS',
+    productos
+  }
+}
 
 export const getStartSession = (id) => {
   return (dispatch) => {
