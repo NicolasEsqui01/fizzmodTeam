@@ -12,6 +12,7 @@ height: 93vh;
   }
 `;
 
+
 ///////////////////////////// COLUMNA IZQUIERDA /////////////////////////////
 export const ColuIzquierda = styled.div`
 display: flex;
@@ -413,10 +414,12 @@ outline: none;
 export const Botones = styled.div`
     display: flex;
     width: 100%;
-    margin-top: 15px;
+    margin-top: 10%;
     flex-direction: row;
-    align-items: center;
+    //align-items: center;
     justify-content: center;
+    //bottom: 0px;
+        
     @media ${device.mobile} {
     margin-bottom:20px;
 }     
@@ -428,14 +431,14 @@ export const Cancelar = styled.button`
    border-radius: 3px;
    background-color: #FF4343;
    color: #ffffff;
-   border: 1px solid #FFFFFF;
+   border: 1px solid #FF4343;
    cursor:pointer;
   //font-family: Roboto;
   font-size: 23px;
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;
-  margin-right: 7px;
+  margin-right: 18px;
   outline:none;
  
   @media ${device.mobile} {
@@ -455,10 +458,11 @@ export const BotonTeclado = styled.button`
   `;
 
 export const Teclado = styled.img`
-  width:auto;
+  width:90px;
   height:70px;
   @media ${device.mobile} {
-  height:40px;
+    width: 50px;
+    height:40px;
 }
 `;
 
@@ -474,7 +478,7 @@ export const Siguiente = styled.button`
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;
-  margin-left: 7px;
+  margin-left: 18px;
   outline:none;
   cursor: pointer;
   @media ${device.mobile} {
@@ -483,3 +487,259 @@ export const Siguiente = styled.button`
   font-size: 18px;
 }
   `;
+
+
+    ////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////// VISTA PLCONFIRMACION CONTAINER ////////////////
+
+  export const ContainerGeneral = styled.div`
+  display: flex;
+  width: 100%;
+  height: 93vh;
+  //flex-direction: row;
+  @media ${device.tablet} {
+      
+      flex-direction: column;
+      height: 145vh;
+    }
+  `;
+
+    //////////////////////////// BARRA BUSCADOR /////////////////////////////
+  export const DivBuscadorDos = styled.div`
+display: flex;
+height:70px;
+//align-itens: center;
+//justify-content: center;
+border-radius: 50px;
+background-color: white;
+width:90%;  
+margin-top: 3%;
+margin-left: 5%;
+margin-right: 5%;
+@media ${device.tablet} {
+    margin-top: 16%;
+}
+`;
+
+
+export const FormBusquedaDos = styled.form`
+display: flex;
+width: 500px;
+height: 70px;
+//border-radius: 50px;
+@media ${device.tablet} {
+    margin-left: 20px;
+    
+  } 
+`;
+
+export const InputBusquedaDos = styled.input`
+display: flex;
+width: 500px;
+height: 70px;
+//text-align: center;
+font-size: 20px;
+color: #939598;
+padding-left: 3%;
+border: none;
+background-color: transparent;
+outline: none;
+//border-radius: 50px;
+`;
+///////////////////////////// TITULO PRODUCTO Y CANTIDAD ///////////////////////
+
+export const ProductoCantidadDiv = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+width: 90%;
+//align-items: center;
+margin-left: 5%;
+margin-right: 5%;
+margin-bottom: 2%;
+padding-top: 4%;
+@media ${device.tablet} {
+justify-content: space-between;
+}
+`;
+
+export const ProductoTitulo = styled.div`
+  color: #273947;
+  //font-family: Roboto;
+  font-size: 16px;
+  width: 45%;
+  @media ${device.tablet} {
+    font-size: 12px;    
+  } 
+`;
+
+export const CantidadTitulo = styled.div`
+color: #273947;
+  //font-family: Roboto;
+  font-size: 16px;
+  margin-left: 28   %;
+  width: 80px;
+  @media ${device.tablet} {
+    font-size: 12px;  
+  } 
+`;
+
+///////////////////////////// PRODUCTOS BUSCADOS ////////////////////////////
+
+
+export const ProductosDiv = styled.div`
+display: flex;
+//height: 110px;
+width: 90%;
+margin-left: 5%;
+margin-right: 5%;
+background-color: white;
+margin-bottom: 3%;
+align-items: center;
+justify-content: space-between;
+border-top: 6 px solid #08C4C4;
+border-left: red;
+`;
+
+export const DivIzqProducto = styled.div`
+display: flex;
+//flex-direction: column;
+width: 50%;
+//height: 
+//justify-content: flex-start;
+margin: 10px;
+@media ${device.tablet} {
+    //font-size: 12px;
+    width: 100%;
+    
+  } 
+
+`;
+
+export const ImgProdu = styled.div`
+//width: 50%;
+//height: 100%;
+flex-direction: column;
+`;
+
+export const ImagenProdu = styled.img`
+width: 100px;
+height: auto;
+@media ${device.tablet} {
+    width: 70px;    
+    height: auto;
+  } 
+
+`;
+export const DescriProducto = styled.div`
+display: flex;
+flex-direction: column;
+//width: 80%;
+justify-content: space-evenly;
+margin-left: 20px;
+@media ${device.tablet} {
+    width: 200px;    
+    height: auto;
+  } 
+
+
+`;
+
+export const H1Descri = styled.div`
+height: 40px;
+  //width: 100%;
+  color: #939598;
+  //font-family: Roboto;
+  font-size: 17px;
+  letter-spacing: 1px;
+  line-height: 21px;
+  @media ${device.tablet} {
+    font-size: 10px;
+    letter-spacing: 0;
+    line-height: 10px;
+  } 
+
+`;
+
+export const DivFilaBarritas = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+
+`;
+
+export const ImagenBarritasProdu = styled.img`
+height: 20px;
+width: 24px;
+@media ${device.tablet} {
+    height: 16px;
+     width: 18px;
+    
+    
+  }
+`;
+
+export const H1codBarras = styled.div`
+  height: 14px;
+  //width: 97px;
+  color: #273947;
+  //font-family: Roboto;
+  font-size: 15px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 14px;
+  margin-left: 10px;
+  @media ${device.tablet} {
+    font-size: 10px; 
+  }
+`;
+
+export const Kilos = styled.div`
+  display: flex;  
+  height: 49px;
+  width: 96px;
+  color: #273947;
+  //font-family: Roboto;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 13%;
+  border: 1px solid #E8EAF6;
+  border-radius: 50px;
+  box-sizing: border-box;
+  @media ${device.tablet} {
+    font-size: 10px;
+    justify-content: flex-start;
+    width: 80px;
+    margin-left: 0%;
+    border: none;
+  } 
+`;
+
+export const TrashDiv = styled.div`
+  display: flex; 
+  margin-right: 2%;
+  height: 29px;
+  width: 29px;
+  justify-content: flex-end;
+  //align-items: center;
+`;
+
+export const TrashImagen = styled.img`
+height: 29px;
+  width: 29px;
+
+`;
+
+export const LineaDeColor = styled.div`
+display: flex;
+flex-direction: column;
+height: 100%;
+width: 10px;
+background-color: #08C4C4;
+border-radius: 0 3px 3px 0; 
+
+`;

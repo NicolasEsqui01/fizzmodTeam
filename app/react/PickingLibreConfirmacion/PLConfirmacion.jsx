@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Container,
+  ContainerGeneral,
   ColuIzquierda,
   PickingTituloDiv,
   PickingLogoDiv,
@@ -27,22 +27,34 @@ import {
   Peso,
   H1Peso,
   ColuDerecha,
-  LogoDerechoDiv,
-  ImagenGrandeDiv,
-  ImagenGrande,
-  H1PickingLibre,
-  H1Comenzar,
-  DivBuscador,
+  DivBuscadorDos,
   DivImagenBuscador,
   ImagenLupa,
-  FormBusqueda,
-  InputBusqueda,
+  FormBusquedaDos,
+  InputBusquedaDos,
+  ProductoCantidadDiv,
+  ProductoTitulo,
+  CantidadTitulo,  
+
+  ProductosDiv,
+  DivIzqProducto,
+  ImgProdu,
+  ImagenProdu,
+  DescriProducto,
+  H1Descri,
+  DivFilaBarritas,
+  ImagenBarritasProdu,
+  H1codBarras,
+  Kilos,
+  TrashDiv,
+  TrashImagen,
+  LineaDeColor,
   Botones,
   Cancelar,
   BotonTeclado,
   Teclado,
   Siguiente,
-} from './style';
+} from '../PickingLibre/style';
 
 import IconoHeaderImg from '../../images/icono_Header.png';
 import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
@@ -50,10 +62,12 @@ import Lupita from '../../images/search.svg';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import IconoIzq from '../../images/Icono_izq.png';
 import Carne from '../../images/carne.png';
+import Trash from "../../images/trashVerde.svg";
+import Barritas from '../../images/bar_code.svg';
 
 export default () => {
   return (
-    <Container>
+    <ContainerGeneral>
       <ColuIzquierda>
         <PickingTituloDiv>
           <PickingLogoDiv>
@@ -65,8 +79,8 @@ export default () => {
         <DivInfoProdu>
           <ParteIzqDiv>
             {/* <LogoCajitasDiv>
-              <LogoCajitasImg src={IconoIzq} />
-            </LogoCajitasDiv> */}
+                <LogoCajitasImg src={IconoIzq} />
+              </LogoCajitasDiv> */}
 
             <Sup>
               <ContainerGrillCuadros>
@@ -107,28 +121,64 @@ export default () => {
         </DivGralPrecio>
       </ColuIzquierda>
       <ColuDerecha>
-        <LogoDerechoDiv>
-          <ImagenGrandeDiv>
-            <ImagenGrande src={ImgPickingLibre} />
-          </ImagenGrandeDiv>
-          <H1PickingLibre>Picking Libre</H1PickingLibre>
-          <H1Comenzar>Comienza a pickear los productos</H1Comenzar>
-        </LogoDerechoDiv>
-
-        <DivBuscador>
+        <DivBuscadorDos>
           <DivImagenBuscador type="submit">
             <ImagenLupa src={Lupita} />
           </DivImagenBuscador>
-          <FormBusqueda>
-            <InputBusqueda
+          <FormBusquedaDos>
+            <InputBusquedaDos
               // handleChange={handlerChange}
 
               type="text"
               placeholder="Buscar productos "
-            ></InputBusqueda>
-          </FormBusqueda>
-        </DivBuscador>
+            ></InputBusquedaDos>
+          </FormBusquedaDos>
+        </DivBuscadorDos>
 
+        <ProductoCantidadDiv>
+          <ProductoTitulo>PRODUCTO</ProductoTitulo>
+          <CantidadTitulo>CANTIDAD</CantidadTitulo>
+          </ProductoCantidadDiv>
+
+        <ProductosDiv>
+          <DivIzqProducto>
+            <ImgProdu>
+              <ImagenProdu src={Carne} />
+            </ImgProdu>
+            <DescriProducto>
+              <H1Descri>
+                Nombre del producto con doble linea lorem ipsum dolor sit amet
+              </H1Descri>
+              <DivFilaBarritas>
+                <ImagenBarritasProdu src={Barritas} />
+                <H1codBarras>4676283905037772</H1codBarras>
+              </DivFilaBarritas>
+            </DescriProducto>
+          </DivIzqProducto>
+          <Kilos>0 kgs</Kilos>
+          <TrashDiv><TrashImagen src={Trash}/></TrashDiv>
+          <LineaDeColor/>
+        </ProductosDiv>
+
+        <ProductosDiv>
+          <DivIzqProducto>
+            <ImgProdu>
+              <ImagenProdu src={Carne} />
+            </ImgProdu>
+            <DescriProducto>
+              <H1Descri>
+                Nombre del producto con doble linea lorem ipsum dolor sit amet
+              </H1Descri>
+              <DivFilaBarritas>
+                <ImagenBarritasProdu src={Barritas} />
+                <H1codBarras>4676283905037772</H1codBarras>
+              </DivFilaBarritas>
+            </DescriProducto>
+          </DivIzqProducto>
+          <Kilos>0 kgs</Kilos>
+          <TrashDiv><TrashImagen src={Trash}/></TrashDiv>
+          <LineaDeColor/>
+        </ProductosDiv>
         <Botones>
           <Cancelar>CANCELAR</Cancelar>
           <BotonTeclado>
@@ -137,6 +187,8 @@ export default () => {
           <Siguiente>SIGUIENTE</Siguiente>
         </Botones>
       </ColuDerecha>
-    </Container>
+    </ContainerGeneral>
   );
 };
+
+
