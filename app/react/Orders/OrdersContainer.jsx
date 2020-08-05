@@ -5,7 +5,7 @@ import { SessionId, estadoOrdenSelected } from '../../action/session'
 
 const OrdersContainer = ({
   pendingSessions,
-  pickedAndPickingSessiones,
+  pickingSessiones,
   status,
   SessionId,
   typeOrder
@@ -18,22 +18,19 @@ const OrdersContainer = ({
     typeOrder(estado)
   };
 
-  return <Orders pendSessions={pendingSessions} pickedAndPikcingSessions={pickedAndPickingSessiones} handleClick={handleClick} valor={value} status={status}/>;
+  return <Orders pendSessions={pendingSessions} pickSessiones={pickingSessiones} handleClick={handleClick} valor={value} status={status}/>;
 };
 
 const mapStateToProps = function (state, ownProps) {
   return {
     pendingSessions: state.inicioReducer.sessionsPending,
-    pickedAndPickingSessiones:state.inicioReducer.sessionsPickedAndPicking,
+    pickingSessiones:state.inicioReducer.sessionsPicking,
     status: state.inicioReducer.status,
   };
 };
 
 const mapDispatchToProps = function (dispatch, ownProps) {
   return {
-    findingSessions: () => {
-      dispatch(fetchSessions());
-    },
     SessionId: (id) => dispatch(SessionId(id)),
     typeOrder: (type)=>dispatch(estadoOrdenSelected(type))
   };

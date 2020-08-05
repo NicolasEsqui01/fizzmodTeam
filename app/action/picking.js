@@ -8,11 +8,13 @@ const Picked = (items) => {
   };
 };
 
+
 const pickFinal = () => {
   return {
     type: 'FINAL',
   };
 };
+
 
 export const itemPicked = (sessionId, obj) => {
   return (dispatch) => {
@@ -23,9 +25,11 @@ export const itemPicked = (sessionId, obj) => {
       })
       .catch(err =>{
         return err.response.data
-      });
+      }); 
   };
 };
+
+
 
 export const itemFinalPick = () => {
   return (dispatch) => {

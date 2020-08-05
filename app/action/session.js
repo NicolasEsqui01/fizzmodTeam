@@ -29,6 +29,21 @@ export const setBooleano = (booleano) => {
   };
 };
 
+export const setDespickear = (booleano) => {
+  return {
+    type: 'DESPICKEAR_ITEM',
+    booleano,
+  };
+};
+
+export const setReiniciar = (booleano)=>{
+
+  return{
+    type: 'REINICIAR',
+    booleano,
+  }
+}
+
 export const estadoOrdenSelected = (string) => {
   return {
     type: 'SET_TYPE_OF_ORDER_SELECTED',

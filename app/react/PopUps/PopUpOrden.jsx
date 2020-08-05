@@ -28,7 +28,7 @@ import {
   DivCON,
   DivMN,
 } from './style';
-import ProgressBar from '../ProgressBar/ProgressBar'
+import ProgressBarContainer from '../ProgressBar/ProgressBarContainer'
 import box from '../../images/boxWhite.svg';
 import X from '../../images/cross_light.svg';
 import totals from '../../images/totals.svg';
@@ -51,10 +51,8 @@ export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
   
   }
   if(largo !== 0){
-    porcentaje = (largo/total)*100 -10
+    porcentaje = (largo/total)*100 -5
   }
-
-
  
   return idSession.items ? (
     <DIV5 active={active}>
@@ -81,11 +79,11 @@ export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
               <PP>Pickeados:</PP>
               <NN>{largo}</NN>
               <Nn> / {total} </Nn>
-             <ProgressBar Done ={largo} Total={total}/>
-             <FlechitaDone Done ={porcentaje}>
-               <ImgFlechi src={flechita}/>
+             <ProgressBarContainer />
+              {porcentaje ?<FlechitaDone Done ={porcentaje}>
+            <ImgFlechi src={flechita}/>
               <NumeroFlechi>{largo}</NumeroFlechi>
-             </FlechitaDone>
+             </FlechitaDone>: null}
             </DivCON>
           </DivVC>
         </DivQ>

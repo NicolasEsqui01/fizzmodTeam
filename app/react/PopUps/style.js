@@ -30,6 +30,7 @@ height: 50px;
 `   
 export const ImgM = styled.img`
 width: 75px;
+border-radius:10px;
   height: 100px;
   @media ${device.tablet} {
     width: 50px;
@@ -133,19 +134,20 @@ export const ImgFlechi = styled.img`
 `
 export const NumeroFlechi = styled.p `
 height: 30px;
-width: 15px;
+width: 40px;
 color: #273947;
 font-family: Roboto;
 font-size: 20px;
 letter-spacing: 0;
 line-height: 16px;
+text-align: center;
 `
 export const  FlechitaDone = styled.div`
 display:flex;
 flex-direction:column;
-width:5%;
-margin-left:${props => props.Done}%;
-align-items:center;
+width:${props => props.Done}%;
+justify-content:center;
+align-items:flex-end;
 `
 
 export const ButtonX4 = styled.button`
@@ -210,7 +212,7 @@ export const PopUpProduAcum = styled.div`
  align-items: center;
  background-color:#FFFFFF;
  border-radius: 10px;
-
+ margin-bottom:10px;
 `
 export const HeaderDiv = styled.div `
 @media ${device.tablet} {

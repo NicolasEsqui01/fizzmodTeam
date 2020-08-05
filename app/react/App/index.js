@@ -1,12 +1,3 @@
-/**
- *
- * App.js
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- *
- */
-
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -40,7 +31,7 @@ function App({ location }) {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <PopUpContainer />
+      <PopUpContainer/>
 
       {location !== '/' ? <Navbar /> : null}
       <Switch>

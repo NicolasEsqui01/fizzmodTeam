@@ -15,7 +15,10 @@ export const DivStatus = styled.div`
   align-items:center;
   justify-content:center;
   height:86vh;
-  background-color:${({status}) => status === 'picked' ? '#2979FF' : '#F13B70'};
+  background-color:${({status, despickear}) => status === 'picked' && despickear !== true ? '#2979FF' : '#FFFFFF'};
+  @media ${device.mobile} {
+    height:87vh;
+  }
 `
 export const StatusP = styled.p`
   height: 16px;
@@ -26,6 +29,12 @@ export const StatusP = styled.p`
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 16px;
+  margin-top:20px;
+  @media ${device.mobile} {
+    margin-top:10px;
+    height: 30px;
+    width: 130px;
+  }
 `
 
 export const Img = styled.img`
@@ -82,7 +91,7 @@ background-color:#FFFFFF;
 justify-content: center;
 flex-direction: row;
 align-items:center;
-margin-top:30px;
+margin-top:15px;
 @media ${device.mobile} {
   flex-direction: column;
   margin-top:0px;
@@ -104,18 +113,21 @@ export const ColIzq = styled.div`
 
 export const CuadroGrill = styled.div`
   display: flex;    
-  width: 50%;
-  height: auto;
+  width: 25%;
+  height: 20px;
   flex-direction: row;
-  border: 1px solid #939598;
   border-radius:10%;
   margin: 4px 6px 4px 0px;
+  background-color:${({numeros , datos}) => numeros === datos ?  '#2979FF' : 'white'};
+  border:${({numeros , datos }) =>  numeros === datos ? '1px solid #2979FF' : '1px solid #D1D3D4'};
+  justify-content:center;
+  align-items:center;
 `
 
 export const ContainerGrillCuadros = styled.div`
   display: flex;    
   width: 60%;
-  height: 30px;
+  flex-wrap:wrap;
   flex-direction: row;
   justify-content: center;
   align-content: center;
@@ -129,17 +141,16 @@ export const NumCuadrados = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border-bottom: 3px solid #A27BDB;
+  border-bottom: 3px solid #2979FF;
   font-size: 25px;
   color: #273947;
   font-family: Roboto;
   font-weight: 900;
   letter-spacing: 0;
   @media ${device.mobile} {
-  font-size: 20px;
-  height: 30px;
-}
-  
+    font-size: 20px;
+    height: 30px;
+  }
 `
 
 ////// FOTO PRODUCTO ////////////////
@@ -504,6 +515,19 @@ export const PesoCuadro = styled.h1`
   text-align: center;
 `;
 
+export const PesoCuadroWarining = styled.h1`
+  margin-top: 10%;  
+  height: 18px;
+  width: 85px;
+  color: #FF4343;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 18px;
+  text-align: center;
+`;
+
 export const PesoCuadroInput = styled.input`
   height: 54px;
   width: 109px;
@@ -515,7 +539,7 @@ export const PesoCuadroInput = styled.input`
   margin-left:20px;
   border: 2px solid #0368FF;
   ${props => props.showInput == false ? `display:none` : null};
-  ${props => props.active == 2 || props.active == 6  || props.active == 1 ? `display:none` : null};
+  ${props => props.active == 2 || props.active == 6  || props.active == 1 || props.active == 4 ? `display:none` : null};
   @media ${device.tablet} {
 
 } 

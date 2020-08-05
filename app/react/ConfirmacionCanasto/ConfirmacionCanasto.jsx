@@ -36,7 +36,7 @@ import {
   TotalesGris,
   ImgLineaRoja,
 } from './style';
-import ProgressBarFinal from '../ProgressBar/ProgressBarFinal'
+import ProgressBarContainer from '../ProgressBar/ProgressBarContainer';
 import basket from '../../images/basket_gris.svg';
 import basketVerde from '../../images/basket_verde.svg';
 import basketNegro from '../../images/basket_negro.svg';
@@ -45,7 +45,7 @@ import AprobadoCirculo from '../../images/check_circulo.svg';
 import keyboard from '../../images/icn_keyboard.svg';
 //import tecladoGris from "../../images/tecladoGris.png";
 
-export default ({handleClick, idSession}) => {
+export default ({handleClick, idSession , datosCanasto}) => {
   let total 
   let largo
   let porcentaje
@@ -75,7 +75,7 @@ export default ({handleClick, idSession}) => {
             <TotalesGris>Totales: 1000</TotalesGris>
           </ColuInfoDerecha>
         </ParteInferiorIzq>
-           <ProgressBarFinal Done={largo} Total={total}></ProgressBarFinal>
+           <ProgressBarContainer/>
       </Izquierdo>
       <Derecho>
         <div>
@@ -86,7 +86,7 @@ export default ({handleClick, idSession}) => {
         <ParteCentral1>
           <ParteCentralIzq>
             <IconoCanastoVerde src={basketVerde} />
-            <NombreCanasto>Canasto 017</NombreCanasto>
+            <NombreCanasto>Canasto {datosCanasto ? datosCanasto.nameCanasto[datosCanasto.value + 1] : null}</NombreCanasto>
           </ParteCentralIzq>
           <DivIconoAprobado>
             <IconoAprobado src={Aprobado} />

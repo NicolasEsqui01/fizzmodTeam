@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import ProductoIndividual from './ProductoIndividual';
 import { itemPicked } from '../../action/picking';
 import { Desactivacion, Activacion } from '../../action/popup';
-import {
-  getSessionPicking,
-  setBooleano,
-  setIdItems,
-} from '../../action/session';
+import {  getSessionPicking,  setBooleano, setIdItems, setDespickear } from '../../action/session';
 import history from '../../utils/history';
 import { Redirect } from 'react-router-dom';
 
@@ -25,14 +21,18 @@ const ProductoIndividualcontainer = ({
   auth,
   setIdItems,
   idItems,
+  bolleanDespickear,
+  booleanReiniciar,
+  despickear
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
   const [showInput, setShowInput] = useState(false);
   const [input, setInput] = useState(0);
   const [pesoTotal, setPesoTotal] = useState(0);
-  const [difPeso, setDifPeso] = useState(0);
   const [wheights, setWheights] = useState([]);
+  const inputRef = useRef(null);
+  const date = JSON.parse(localStorage.getItem('canasto'))
 
   useEffect(() => {
     if (auth !== 'null') {
@@ -48,12 +48,6 @@ const ProductoIndividualcontainer = ({
     }
   }, [match.params.indice, items.length]);
 
-  const handleBtnClick = (n) => {
-    Activar(n);
-  };
-
-  const inputRef = useRef(null);
-
   useEffect(() => {
     if (showInput) inputRef.current.focus();
   }, [showInput]);
@@ -61,6 +55,23 @@ const ProductoIndividualcontainer = ({
   useEffect(() => {
     if(inputRef.current && input!=0) inputRef.current.value="";
   }, [wheights]);
+
+  const handleBtnClick = (n) => {
+    Activar(n);
+  };
+
+  const next = () => {
+    if (Number(indice) === items.length) {
+      localStorage.setItem('final', true);
+      history.push({
+        pathname: '/confirmacion',
+        state: { idSession: idSession, data: null },
+      });
+    } else {
+      let newIndice = Number(indice) + 1;
+      history.push(`/productoindividual/${idSession}/${newIndice}`)
+    };
+  }
 
   const ItemPicked = (iditems, qty, pesable) => {
     let data = {};
@@ -71,6 +82,7 @@ const ProductoIndividualcontainer = ({
           {
             id: iditems,
             pickedQuantity: pesoTotal,
+            basket:date.nameCanasto[data.value + 1]
           },
         ],
       };
@@ -82,6 +94,7 @@ const ProductoIndividualcontainer = ({
           {
             id: iditems,
             pickedQuantity: qty,
+            basket:date.nameCanasto[data.value + 1]
           },
         ],
       };
@@ -92,18 +105,19 @@ const ProductoIndividualcontainer = ({
       localStorage.setItem('final', true);
       history.push({
         pathname: '/confirmacion',
-        state: { idSession: idSession, data: data },
+        state: { idSession: idSession, data: data , datosCanasto:date },
       });
-      // setWheights([]);
-      // setPesoTotal(0);
-      // setCount(0)
+      if (bolleanDespickear==true)despickear(false);
     } else {
       sendItemPicked(idSession, data)
         .then(() => {
           let newIndice = Number(indice) + 1;
           setWheights([]);
           setPesoTotal(0);
+          if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
+          getSessionPicking(idSession);
           return history.push(`/productoindividual/${idSession}/${newIndice}`);
+
         })
         .then(() => setCount(0));
     }
@@ -122,8 +136,7 @@ const ProductoIndividualcontainer = ({
       img: image,
       qty: input,
     };
-    let nuevoPeso = pesoTotal + input;
-    setPesoTotal(nuevoPeso);
+    setPesoTotal(pesoTotal+input)
     setWheights([...wheights, itemPesable]);
   };
 
@@ -138,6 +151,7 @@ const ProductoIndividualcontainer = ({
     if (wheights.length == 0) handleCloseClick();
   };
 
+
   return (
     <>
       {auth === 'null' ? (
@@ -149,6 +163,7 @@ const ProductoIndividualcontainer = ({
           onCloseClick={handleCloseClick}
           session={items}
           pickeado={ItemPicked}
+          next={next}
           indice={indice - 1}
           count={count}
           setCount={setCount}
@@ -160,6 +175,9 @@ const ProductoIndividualcontainer = ({
           wheights={wheights}
           pesoTotal={pesoTotal}
           handleRemoveItem={handleRemoveItem}
+          date={date}
+          pesoTotal={pesoTotal}
+          despickear={bolleanDespickear}
         />
       ) : null}
     </>
@@ -174,6 +192,9 @@ const MapStateToProps = (state, ownProps) => {
     active: state.popupReducer.numero,
     auth: JSON.stringify(localStorage.getItem('auth')),
     idItems: state.sessionReducer.idItems,
+    bolleanDespickear: state.sessionReducer.despickear,
+    booleanReiniciar: state.sessionReducer.reiniciar,
+    
   };
 };
 
@@ -185,10 +206,11 @@ const MapDispatchToProps = (dispatch) => {
     handleCloseClick: () => dispatch(Desactivacion()),
     setBooleano: (boolean) => dispatch(setBooleano(boolean)),
     setIdItems: (id) => dispatch(setIdItems(id)),
+    despickear: (boolean) => dispatch(setDespickear(boolean)),
   };
 };
 
 export default connect(
-  MapStateToProps,
+    MapStateToProps,
   MapDispatchToProps,
 )(ProductoIndividualcontainer);
