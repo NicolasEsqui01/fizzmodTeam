@@ -17,6 +17,7 @@ import GlobalStyle from '../../global-styles';
 import PopUpContainer from '../PopUps/PopUpContainer';
 import Navbar from '../Navbar/NavbarContainer';
 import BuscadorContainer from "../Buscador/Loadable";
+import PickingLibreContainer from "../PickingLibre/Loadable";
 
 
 
@@ -43,7 +44,7 @@ function App({ location }) {
         <Route path="/seleccion" component={SeleccionContainer} />
         <Route path="/confirmacion" component={ConfirmacionContainer} />
         <Route path="/buscador" component={BuscadorContainer} />
-        
+        <Route path="/pickinglibre" component={PickingLibreContainer} />
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />

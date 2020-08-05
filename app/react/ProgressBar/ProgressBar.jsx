@@ -6,19 +6,19 @@ import {
 } from './style'
 
 /* {idSession.items.map((Element , indice) => <Barrita>{indice + 1}</Barrita>)} */
-const ProgressBar = ({Done,Total})=>{
+const ProgressBar = ({ Done, Total }) => {
 
-let porcentaje = (Done/Total)*100 -7
+    let porcentaje = (Done / Total) * 100 - 7
 
-return(
-    <ProgressTotal Total={Total} >
-        <ProgressDone Done={porcentaje}>
-        </ProgressDone>
-    </ProgressTotal>
+    return (
+        <ProgressTotal Total={Total} >
+            <ProgressDone Done={porcentaje}>
+            </ProgressDone>
+        </ProgressTotal>
     )
 }
 
-const mapStateToProps = (state, ownProps)=>{
+const mapStateToProps = (state, ownProps) => {
     return ({
         Done: ownProps.Done,
         Total: ownProps.Total,

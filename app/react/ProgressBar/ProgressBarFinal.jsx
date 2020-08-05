@@ -8,7 +8,7 @@ import {
 /* {idSession.items.map((Element , indice) => <Barrita>{indice + 1}</Barrita>)} */
 const ProgressBar = ({Done,Total})=>{
 
-    let porcentaje = (Done/Total)*100
+    let porcentaje = ((Done+1)/Total)*100
 
 
 

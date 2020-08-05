@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 import ProductoIndividual from './ProductoIndividual';
-import { itemPicked } from '../../action/picking';
+import { itemPicked, itemPending } from '../../action/picking';
 import { Desactivacion, Activacion } from '../../action/popup';
-import {  getSessionPicking,  setBooleano, setIdItems, setDespickear } from '../../action/session';
+import { getSessionPicking, setBooleano, setIdItems, setItems, setDespickear } from '../../action/session';
 import history from '../../utils/history';
 import { Redirect } from 'react-router-dom';
 
@@ -21,6 +21,7 @@ const ProductoIndividualcontainer = ({
   auth,
   setIdItems,
   idItems,
+  setItems,
   bolleanDespickear,
   booleanReiniciar,
   despickear
@@ -53,11 +54,24 @@ const ProductoIndividualcontainer = ({
   }, [showInput]);
 
   useEffect(() => {
-    if(inputRef.current && input!=0) inputRef.current.value="";
+    if (inputRef.current && input != 0) inputRef.current.value = "";
   }, [wheights]);
 
   const handleBtnClick = (n) => {
     Activar(n);
+  };
+
+  const itemPending = (id) => {
+
+    const newSession = items.filter(element => {
+      return element.id !== id
+    })
+    const productId = items.filter(element => element.id === id)
+    let newArray = [...newSession, ...productId]
+    let newIndice = Number(indice) + 1;
+    handleCloseClick()
+    setItems(newArray)
+    return history.push(`/productoindividual/${idSession}/${newIndice}`)
   };
 
   const next = () => {
@@ -82,7 +96,7 @@ const ProductoIndividualcontainer = ({
           {
             id: iditems,
             pickedQuantity: pesoTotal,
-            basket:date.nameCanasto[data.value + 1]
+            basket: date.nameCanasto[data.value + 1]
           },
         ],
       };
@@ -94,7 +108,7 @@ const ProductoIndividualcontainer = ({
           {
             id: iditems,
             pickedQuantity: qty,
-            basket:date.nameCanasto[data.value + 1]
+            basket: date.nameCanasto[data.value + 1]
           },
         ],
       };
@@ -105,9 +119,9 @@ const ProductoIndividualcontainer = ({
       localStorage.setItem('final', true);
       history.push({
         pathname: '/confirmacion',
-        state: { idSession: idSession, data: data , datosCanasto:date },
+        state: { idSession: idSession, data: data, datosCanasto: date },
       });
-      if (bolleanDespickear==true)despickear(false);
+      if (bolleanDespickear == true) despickear(false);
     } else {
       sendItemPicked(idSession, data)
         .then(() => {
@@ -136,7 +150,7 @@ const ProductoIndividualcontainer = ({
       img: image,
       qty: input,
     };
-    setPesoTotal(pesoTotal+input)
+    setPesoTotal(pesoTotal + input)
     setWheights([...wheights, itemPesable]);
   };
 
@@ -151,7 +165,6 @@ const ProductoIndividualcontainer = ({
     if (wheights.length == 0) handleCloseClick();
   };
 
-
   return (
     <>
       {auth === 'null' ? (
@@ -159,6 +172,7 @@ const ProductoIndividualcontainer = ({
       ) : items ? (
         <ProductoIndividual
           Activar={handleBtnClick}
+          Pending={itemPending}
           active={active}
           onCloseClick={handleCloseClick}
           session={items}
@@ -194,7 +208,7 @@ const MapStateToProps = (state, ownProps) => {
     idItems: state.sessionReducer.idItems,
     bolleanDespickear: state.sessionReducer.despickear,
     booleanReiniciar: state.sessionReducer.reiniciar,
-    
+
   };
 };
 
@@ -206,11 +220,12 @@ const MapDispatchToProps = (dispatch) => {
     handleCloseClick: () => dispatch(Desactivacion()),
     setBooleano: (boolean) => dispatch(setBooleano(boolean)),
     setIdItems: (id) => dispatch(setIdItems(id)),
+    setItems: (arrayProducts) => dispatch(setItems(arrayProducts)),
     despickear: (boolean) => dispatch(setDespickear(boolean)),
   };
 };
 
 export default connect(
-    MapStateToProps,
+  MapStateToProps,
   MapDispatchToProps,
 )(ProductoIndividualcontainer);
