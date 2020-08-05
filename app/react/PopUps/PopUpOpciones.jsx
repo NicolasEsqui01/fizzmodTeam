@@ -18,6 +18,7 @@ import {
   Significado,
   ButtonM,
 } from './style';
+
 import X from '../../images/cross_light.svg';
 import Salir from '../../images/icn_logout.svg';
 import PickingLibre from '../../images/icn_picking-libre.svg';
@@ -30,8 +31,10 @@ import SealSlash from '../../images/icn_single-product.svg';
 import unPick from '../../images/icn_unpick.svg';
 import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
+import InfoUser from '../../images/icn_picker-info.svg'
 
-export default ({ active, onCloseClick, Activar , handleLogout}) => {
+export default ({active, onCloseClick, Activar , handleLogout, despickear, reiniciar, handleCanastos}) => {
+  
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -52,11 +55,11 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
             <DivH>
               <ButtonM>
                 <ImgO src={PrePick} />
-                <Significado>Pre-picker</Significado>
+                <Significado>Pre-pickear</Significado>
               </ButtonM>
             </DivH>
             <DivH>
-              <ButtonM>
+              <ButtonM onClick={reiniciar}>
                 <ImgO src={Restart} />
                 <Significado>Reiniciar</Significado>
               </ButtonM>
@@ -64,13 +67,18 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
           </DivA>
           <DivB>
             <DivH>
-              <ButtonM>
+              <ButtonM 
+              onClick={()=> {
+                handleCanastos()
+                onCloseClick()}}>
                 <ImgO src={FullBasket} />
-                <Significado>Canasto lleno</Significado>
+                <Significado>Canasto Lleno</Significado>
               </ButtonM>
             </DivH>
             <DivH>
-              <ButtonM>
+              <ButtonM onClick={()=> {
+                 handleCanastos()
+                 onCloseClick()} }>
                 <ImgO src={Seal} />
                 <Significado>Precinto</Significado>
               </ButtonM>
@@ -85,16 +93,22 @@ export default ({ active, onCloseClick, Activar , handleLogout}) => {
         </DivM>
         <Espacio4></Espacio4>
         <DivN>
-          <DivH>
-            <ButtonM onClick={() => Activar(5)}>
-              <ImgO src={BoxCircle} />
-              <Significado>Informacion de la orden</Significado>
+        <DivH>
+            <ButtonM onClick={() => Activar(7)}>
+              <ImgO src={InfoUser} />
+              <Significado>Informacion del picker</Significado>
             </ButtonM>
           </DivH>
           <DivH>
-            <ButtonM>
+            <ButtonM onClick={() => Activar(5)}>
+              <ImgO src={BoxCircle} />
+              <Significado>Informacion de la Orden</Significado>
+            </ButtonM>
+          </DivH>
+          <DivH>
+            <ButtonM onClick={()=>despickear(true)}>
               <ImgO src={unPick} />
-              <Significado>Despicker</Significado>
+              <Significado>Despickear</Significado>
             </ButtonM>
           </DivH>
         </DivN>

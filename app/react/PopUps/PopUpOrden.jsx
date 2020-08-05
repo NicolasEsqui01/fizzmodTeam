@@ -28,7 +28,7 @@ import {
   DivCON,
   DivMN,
 } from './style';
-import ProgressBar from '../ProgressBar/ProgressBar'
+import ProgressBarContainer from '../ProgressBar/ProgressBarContainer'
 import box from '../../images/boxWhite.svg';
 import X from '../../images/cross_light.svg';
 import totals from '../../images/totals.svg';
@@ -40,18 +40,19 @@ import phone from '../../images/phone_outline.svg';
 import back from '../../images/arrow_left.svg';
 import flechita from '../../images/arrow_up_flatBlack.svg'
 
-export default ({ active, onCloseClick, Activar, idSession }) => {
+export default ({ active, onCloseClick, Activar, idSession,  idItems }) => {
   let total 
   let largo
   let porcentaje
   if(idSession.items){
+  
    total = idSession.totalItems
-   largo = idSession.items.filter(Element => Element.status === 'picked').length
+   largo = idSession.items.filter(Element => Element.status === 'picked' ).length
+  
   }
   if(largo !== 0){
-  porcentaje = (largo/total)*100 -10
+    porcentaje = (largo/total)*100 -5
   }
-
  
   return idSession.items ? (
     <DIV5 active={active}>
@@ -78,11 +79,11 @@ export default ({ active, onCloseClick, Activar, idSession }) => {
               <PP>Pickeados:</PP>
               <NN>{largo}</NN>
               <Nn> / {total} </Nn>
-             <ProgressBar Done ={largo} Total={total}/>
-             <FlechitaDone Done ={porcentaje}>
-               <ImgFlechi src={flechita}/>
+             <ProgressBarContainer />
+              {porcentaje ?<FlechitaDone Done ={porcentaje}>
+            <ImgFlechi src={flechita}/>
               <NumeroFlechi>{largo}</NumeroFlechi>
-             </FlechitaDone>
+             </FlechitaDone>: null}
             </DivCON>
           </DivVC>
         </DivQ>
