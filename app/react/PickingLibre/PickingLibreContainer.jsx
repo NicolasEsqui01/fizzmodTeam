@@ -66,6 +66,7 @@ const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
          goToPickSubstitue={goToPickSubstitue}
          itemsSelected={itemsSelected}
          item={item}
+         date={date}
         />
     )
 } 

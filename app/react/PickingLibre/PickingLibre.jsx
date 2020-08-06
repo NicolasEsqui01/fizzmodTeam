@@ -63,6 +63,7 @@ import {
   LineaFina,
   CantidadSeleccionadaProdu,
   CantidadSeleccionadaProduH1,
+  DivImgTilde,
 } from './style';
 import IconoHeaderImg from '../../images/icono_Header.png';
 import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
@@ -71,56 +72,80 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import Carne from '../../images/carne.png';
 import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
+import Tilde from '../../images/check_bold.svg';
 import Like from '../../images/like.svg';
 
-export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSelected, itemsSelected, item, BotonOK, dentro}) => {
-  const arr = [{
-            "id": "A488FDDC597647DB900819C605AE98DB",
-            "name": "Galletitas Rellenas Mana Limon Arcor 145g",
-            "refId": "0779089500486",
-            "ean": "123456",
-            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200378-100-100/mana_limon.jpg?v=636613011916900000",
-            "zoneName": "congelados",
-            "purchasedPrice": 50.99,
-            "isWeighable": true,
-            "isFresh": false,
-            "isFractionable": true,
-            "isFrozen": false,
-            "customerNote": null,
-            "groupIndex": 0,
-            "pickedQuantity":0
-            },
-            {
-            "ean": "2345897056432",
-            "groupIndex": 1,
-            "id": "1A3A124792624C4A952AA8673C85C4B0",
-            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200411-100-100/batidora_artisan.png?v=636791814171370000",
-            "isFractionable": true,
-            "isFresh": false,
-            "isFrozen": false,
-            "isWeighable": true,
-            "name": "Batidora Artisan KSM15WH",
-            "purchasedPrice": 32,
-            "refId": "KSM15WH",
-            "zoneName": "carnes",
-            "pickedQuantity":0
-            },
-            {
-            "ean": "7797470003633",
-            "groupIndex": 1,
-            "id": "861079FE7F1448DD9CF787D865BC154C",
-            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200410-100-100/image-1cfdaa5c355f4f30a59fe85858e1291e.jpg?v=636771889078630000",
-            "isFractionable": true,
-            "isFresh": false,
-            "isFrozen": false,
-            "isWeighable": false,
-            "name": "Tomate Triturado Marolio 980 Gr",
-            "purchasedPrice": 83,
-            "refId": "0779747000363",
-            "zoneName": "frescos",
-            "pickedQuantity":0
-            }
-          ]
+export default ({
+  value,
+  handleChange,
+  handleClick,
+  goToPickSubstitue,
+  idItemsSelected,
+  itemsSelected,
+  item,
+  BotonOK,
+  dentro,
+  date,
+}) => {
+  const arr = [
+    {
+      id: 'A488FDDC597647DB900819C605AE98DB',
+      name: 'Galletitas Rellenas Mana Limon Arcor 145g',
+      refId: '0779089500486',
+      ean: '123456',
+      imageUrl:
+        'https://fizzmodarg.vteximg.com.br/arquivos/ids/200378-100-100/mana_limon.jpg?v=636613011916900000',
+      zoneName: 'congelados',
+      purchasedPrice: 50.99,
+      isWeighable: true,
+      isFresh: false,
+      isFractionable: true,
+      isFrozen: false,
+      customerNote: null,
+      groupIndex: 0,
+      pickedQuantity: 0,
+    },
+    {
+      ean: '2345897056432',
+      groupIndex: 1,
+      id: '1A3A124792624C4A952AA8673C85C4B0',
+      imageUrl:
+        'https://fizzmodarg.vteximg.com.br/arquivos/ids/200411-100-100/batidora_artisan.png?v=636791814171370000',
+      isFractionable: true,
+      isFresh: false,
+      isFrozen: false,
+      isWeighable: true,
+      name: 'Batidora Artisan KSM15WH',
+      purchasedPrice: 32,
+      refId: 'KSM15WH',
+      zoneName: 'carnes',
+      pickedQuantity: 0,
+    },
+    {
+      ean: '7797470003633',
+      groupIndex: 1,
+      id: '861079FE7F1448DD9CF787D865BC154C',
+      imageUrl:
+        'https://fizzmodarg.vteximg.com.br/arquivos/ids/200410-100-100/image-1cfdaa5c355f4f30a59fe85858e1291e.jpg?v=636771889078630000',
+      isFractionable: true,
+      isFresh: false,
+      isFrozen: false,
+      isWeighable: false,
+      name: 'Tomate Triturado Marolio 980 Gr',
+      purchasedPrice: 83,
+      refId: '0779747000363',
+      zoneName: 'frescos',
+      pickedQuantity: 0,
+    },
+  ];
+
+  let cuadrados =
+    localStorage.getItem('cuadradoChico') &&
+    localStorage
+      .getItem('cuadradoChico')
+      .split(',')
+      .map((Element) => (Element === 'true' ? true : false));
+
   return (
     <Container>
       <ColuIzquierda>
@@ -135,18 +160,19 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
           <ParteIzqDiv>
             <Sup>
               <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
+                {cuadrados.map((Element, indice) => {
+                  return (
+                    <CuadroGrill
+                      key={Element}
+                      numeros={indice}
+                      datos={date.value}
+                    >
+                      {Element === true ? <DivImgTilde src={Tilde} /> : null}
+                    </CuadroGrill>
+                  );
+                })}
               </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill className="bkgColor" />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <NumCuadrados>3</NumCuadrados>
+              <NumCuadrados>{date.value + 1}</NumCuadrados>
             </Sup>
           </ParteIzqDiv>
           <ParteDerDiv>
@@ -161,7 +187,7 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
 
         <DivGralPrecio>
           <DivPrecio>
-          <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
+            <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
             <Precio>{item.purchasedPrice}</Precio>
           </DivPrecio>
           <PesoDiv>
@@ -201,21 +227,19 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
             {arr &&
               arr.map((element, idx) => {
                 return (
-                  <ProductosDiv 
-                  onClick={() => {
-                    handleClick(element) // CUANDO SEA REAL CAMBIARLO POR element.id
-                    }
-                  }
-                  selected={idItemsSelected}
-                  div={element.id}>
+                  <ProductosDiv
+                    onClick={() => {
+                      handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
+                    }}
+                    selected={idItemsSelected}
+                    div={element.id}
+                  >
                     <DivIzqProducto>
                       <ImgProdu>
                         <ImagenProdu src={element.imageUrl} />
                       </ImgProdu>
                       <DescriProducto>
-                        <H1Descri>
-                          {element.name}
-                        </H1Descri>
+                        <H1Descri>{element.name}</H1Descri>
                         <DivFilaBarritas>
                           <ImagenBarritasProdu src={Barritas} />
                           <H1codBarras>{element.ean}</H1codBarras>
@@ -235,11 +259,13 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
                       </TrashDiv>
                     ) : (
                       <TrashDiv color={false}>
-                        <TrashImagen src={Like} onClick={() =>{ 
-                          BotonOK(idx);
-                          handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
-                        }
-                          } />
+                        <TrashImagen
+                          src={Like}
+                          onClick={() => {
+                            BotonOK(idx);
+                            handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
+                          }}
+                        />
                       </TrashDiv>
                     )}
                     <LineaDeColor />

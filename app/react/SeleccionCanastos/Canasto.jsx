@@ -37,9 +37,21 @@ import BoxGris from '../../images/box_gris.svg';
 import barCode from '../../images/bar_code.svg';
 import X from '../../images/cross_light.svg';
 
-
-export default ({ handleClick, valor, numeros, status, date , activarPopUp , handleClickSalir , handleSubmit , handleChange}) => {
-  let idSession = localStorage.getItem('sessionid');
+export default ({
+  handleClick,
+  valor,
+  numeros,
+  status,
+  date,
+  activarPopUp,
+  handleClickSalir,
+  handleSubmit,
+  handleChange,
+  ordenes,
+  cantidad,
+  canastos,
+}) => {
+  let cuadradosMarcados = canastos.filter((Element) => Element === true).length;
 
   return (
     <>
@@ -47,7 +59,12 @@ export default ({ handleClick, valor, numeros, status, date , activarPopUp , han
         NumDiv={numeros}
         valueClick={valor}
         status={status}
-        onClick={() => (status === true ? null : handleClick(numeros))}
+        onClick={() =>
+          status === true ||
+          (ordenes && ordenes.length - cuadradosMarcados <= cantidad)
+            ? null
+            : handleClick(numeros)
+        }
       >
         {status === true ? (
           <FilaArriba>
@@ -74,7 +91,11 @@ export default ({ handleClick, valor, numeros, status, date , activarPopUp , han
             </CodigoBarrasDiv>
             <CodigoBarrasDiv>
               <CodBarras src={BoxGris} />
-              <H1Caja>{idSession}</H1Caja>
+              <H1Caja>
+                {ordenes &&
+                  ordenes
+                    .filter((Element, indice) => numeros === indice).join('')}
+              </H1Caja>
             </CodigoBarrasDiv>
           </SegundaParteCaja>
         ) : (
@@ -105,7 +126,7 @@ export default ({ handleClick, valor, numeros, status, date , activarPopUp , han
         <DivForm>
           <FormPopup onSubmit={(event) => handleSubmit(event, valor)}>
             <LabelPopup>Escribe El Codigo del Canasto</LabelPopup>
-            <Input type="text" name={valor + 1} onChange={handleChange}/>
+            <Input type="text" name={valor + 1} onChange={handleChange} />
             <InputSubmit type="submit" value="enter" />
           </FormPopup>
         </DivForm>
