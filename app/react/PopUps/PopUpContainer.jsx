@@ -47,7 +47,7 @@ const PopUpContainer = ({
     return history.push('/seleccion');
   };
   const handlePickingLibre = () => {
-    return history.push('/pickinglibre');
+    return history.push(`/pickinglibre/${idItems}`);
   };
 
   const reinicio = () => {
@@ -108,6 +108,7 @@ const PopUpContainer = ({
         despickear={despickear}
         reiniciar={reinicio}
         location={location}
+        idItems = { idItems}
       />
       <PopUpControlDePeso onCloseClick={handleCloseClick} />
     </>

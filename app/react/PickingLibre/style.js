@@ -176,7 +176,7 @@ width: 200px;
 
 export const DescriProdu = styled.div`
   //height: 36px;
-  //width: 174px;
+  width: 60%;
   margin-right:25px;
   margin-top: 15px;
   padding-bottom: 20px;
@@ -188,6 +188,7 @@ export const DescriProdu = styled.div`
   border-bottom: 2px solid #E8EAF6;
   @media ${device.tablet} {
     margin-bottom: 13px;
+    width: 40%;
   }
 `;
 
@@ -446,7 +447,7 @@ ${props => props.value !== ''? `@media ${device.tablet} {
 export const Botones = styled.div`
     display: flex;
     width: 100%;
-    margin-top: 10%;
+    margin-top:15%;
     flex-direction: row;
     justify-content: center;   
     @media ${device.mobile} {
@@ -542,6 +543,7 @@ export const Siguiente = styled.button`
  aling-items:center;
  margin-top:5%;
  height:60%;
+ width: 90%;
  overflow:auto;
  @media ${device.tablet} {
       
@@ -594,7 +596,7 @@ color: #273947;
 
 export const ProductosDiv = styled.div`
 display: flex;
-//height: 110px;
+height: 50%;
 width: 90%;
 margin-left: 5%;
 margin-right: 5%;
@@ -604,6 +606,12 @@ align-items: center;
 justify-content: space-between;
 border-top: 6 px solid #08C4C4;
 border-left: red;
+@media ${device.tablet} {
+  margin-left: 1%;
+  margin-right: 0%;
+  margin-bottom: 1%;
+  width: 95%;
+} 
   ${({ selected, div }) => {
       if(selected.includes(div)) return 'border: 4px solid #1db779 !important;'
   }}
@@ -612,7 +620,7 @@ border-left: red;
 export const DivIzqProducto = styled.div`
 display: flex;
 //flex-direction: column;
-width: 50%;
+width: 70%;
 //height: 
 //justify-content: flex-start;
 margin: 10px;
@@ -642,11 +650,12 @@ height: auto;
 export const DescriProducto = styled.div`
 display: flex;
 flex-direction: column;
-width: 600px;
+width: 80%;
 justify-content: space-evenly;
 margin-left: 20px;
 @media ${device.tablet} {
-    width: 200px;    
+  margin-left: 5px;
+    width: 60%;    
     height: auto;
   } 
 
@@ -714,7 +723,7 @@ export const Kilos = styled.div`
   line-height: 16px;
   justify-content: center;
   align-items: center;
-  margin-left: 13%;
+  margin-left: 3%;
   border: 1px solid #E8EAF6;
   border-radius: 50px;
   box-sizing: border-box;
@@ -727,19 +736,29 @@ export const Kilos = styled.div`
   } 
 `;
 
-export const TrashDiv = styled.div`
+export const TrashDiv = styled.button`
   display: flex; 
   margin-right: 2%;
-  height: 29px;
-  width: 29px;
-  justify-content: flex-end;
-  //align-items: center;
+  height: 45px;
+  width: 55px;
+  justify-content: center;
+  background-color:#FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius:15px;
+  cursor: pointer;
+  outline:none;
+  &:active{
+    border: 3px solid #000000;
+    ${props => props.color?
+    `background-color:#FF0000;`
+    :
+    'background-color: #08C4C4'
+  }}
 `;
 
 export const TrashImagen = styled.img`
-height: 29px;
-  width: 29px;
-
+height: 35px;
+width: 35px;
 `;
 
 export const LineaDeColor = styled.div`

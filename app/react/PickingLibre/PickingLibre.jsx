@@ -64,16 +64,16 @@ import {
   CantidadSeleccionadaProdu,
   CantidadSeleccionadaProduH1,
 } from './style';
-
 import IconoHeaderImg from '../../images/icono_Header.png';
 import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
 import Lupita from '../../images/search.svg';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import Carne from '../../images/carne.png';
-import Trash from '../../images/trashVerde.svg';
+import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
+import Like from '../../images/like.svg';
 
-export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSelected/* showInput, setShowInput */}) => {
+export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSelected, itemsSelected, item, BotonOK, dentro}) => {
   const arr = [{
             "id": "A488FDDC597647DB900819C605AE98DB",
             "name": "Galletitas Rellenas Mana Limon Arcor 145g",
@@ -120,7 +120,7 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
             "zoneName": "frescos",
             "pickedQuantity":0
             }
-          ];
+          ]
   return (
     <Container>
       <ColuIzquierda>
@@ -151,7 +151,7 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
           </ParteIzqDiv>
           <ParteDerDiv>
             <ImagenProduDiv>
-              <ImagenProduImg src={Carne} />
+              <ImagenProduImg src={item.imageUrl} />
             </ImagenProduDiv>
             <DescriProdu>
               Nombre del producto largo en dos lineas lorem ipsum
@@ -161,12 +161,12 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
 
         <DivGralPrecio>
           <DivPrecio>
-            <PrecioTachado>$1000,00</PrecioTachado>
-            <Precio>$1000,00</Precio>
+          <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
+            <Precio>{item.purchasedPrice}</Precio>
           </DivPrecio>
           <PesoDiv>
             <Peso>
-              <H1Peso>25 kgs</H1Peso>
+              <H1Peso>{item.purchasedQuantity} kgs</H1Peso>
             </Peso>
           </PesoDiv>
         </DivGralPrecio>
@@ -183,7 +183,7 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
             </LogoDerechoDiv>
           </>
         ) : null}
-        <DivBuscador value = {value}>
+        <DivBuscador value={value}>
           <DivImagenBuscador type="submit">
             <ImagenLupa value={value} src={Lupita} />
           </DivImagenBuscador>
@@ -199,7 +199,7 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
         {value !== '' ? (
           <DivScroll>
             {arr &&
-              arr.map((element) => {
+              arr.map((element, idx) => {
                 return (
                   <ProductosDiv 
                   onClick={() => {
@@ -207,8 +207,7 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
                     }
                   }
                   selected={idItemsSelected}
-                  div={element.id}
-                  >
+                  div={element.id}>
                     <DivIzqProducto>
                       <ImgProdu>
                         <ImagenProdu src={element.imageUrl} />
@@ -224,9 +223,25 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
                       </DescriProducto>
                     </DivIzqProducto>
                     <Kilos>0 kgs</Kilos>
-                    <TrashDiv>
-                      <TrashImagen src={Trash} />
-                    </TrashDiv>
+                    {dentro && dentro.includes(idx) ? (
+                      <TrashDiv color={true}>
+                        <TrashImagen
+                          src={Trash}
+                          onClick={() => {
+                            BotonBasura(idx);
+                            handleClick(element);
+                          }}
+                        />
+                      </TrashDiv>
+                    ) : (
+                      <TrashDiv color={false}>
+                        <TrashImagen src={Like} onClick={() =>{ 
+                          BotonOK(idx);
+                          handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
+                        }
+                          } />
+                      </TrashDiv>
+                    )}
                     <LineaDeColor />
                   </ProductosDiv>
                 );
