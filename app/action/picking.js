@@ -14,6 +14,20 @@ const pickFinal = () => {
   };
 };
 
+const listProduct = (items) => {
+  return {
+    type: 'LIST_ITEMS_SEARCHED',
+    items,
+  };
+};
+
+const listSustitutos = (items) => {
+  return {
+    type: 'SUSTITUIR',
+    items,
+  };
+};
+
 export const itemPicked = (sessionId, obj) => {
   return (dispatch) => {
     return axios
@@ -32,3 +46,18 @@ export const itemFinalPick = () => {
     dispatch(pickFinal())
   }
 };
+
+export const itemParaSustituir = (items) => {
+  return (dispatch) => {
+    dispatch(listSustitutos(items))
+  }
+};
+
+export const itemSearch = (sku) => {
+  return (dispatch) => {
+    return axios
+      .post(`https://catalog.janis.in/api/${sku}`, headers())
+      .then((list) => dispatch(listProduct(list)))
+  }
+};
+

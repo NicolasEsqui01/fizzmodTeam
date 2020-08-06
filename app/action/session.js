@@ -70,6 +70,7 @@ export const getStartSession = (id) => {
     return axios
       .post(`https://picking.janis.in/api/session/${id}/start`, {}, headers())
       .then((res) => {
+        localStorage.setItem('withSubstitute', false);
         return dispatch(startSession(res.data));
       });
   };

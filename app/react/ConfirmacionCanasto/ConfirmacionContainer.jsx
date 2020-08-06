@@ -19,13 +19,14 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
       localStorage.removeItem('token');
       localStorage.removeItem('sessionid');
       localStorage.removeItem('final');
-      localStorage.removeItem('cronometro');
-      localStorage.removeItem('canasto');
+      localStorage.removeItem('cronometro')
+      localStorage.removeItem('canasto')
       localStorage.removeItem('cuadradoChico');
       localStorage.removeItem('cuadradoGrande');
+      if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
+      if (localStorage.getItem('withSubstitute'))localStorage.removeItem('withSubstitute');
       sendFinal();
       reiniciar(false)
-
       return history.push('/inicio')
     })
   };

@@ -33,8 +33,7 @@ import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
 import InfoUser from '../../images/icn_picker-info.svg'
 
-export default ({active, onCloseClick, Activar ,handlePickingLibre , handleLogout, despickear, reiniciar, handleCanastos}) => {
-  
+export default ({active, onCloseClick, Activar ,handlePickingLibre , handleLogout, despickear, reiniciar, handleCanastos, location}) => { 
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -49,7 +48,8 @@ export default ({active, onCloseClick, Activar ,handlePickingLibre , handleLogou
             <DivH>
               <ButtonM 
               onClick={()=>{
-               handlePickingLibre()
+               handlePickingLibre();
+                localStorage.setItem("nextItem", location)
                 onCloseClick()}}>
                 <ImgO src={PickingLibre} />
                 <Significado>Picking Libre</Significado>
