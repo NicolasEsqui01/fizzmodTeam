@@ -70,10 +70,17 @@ import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
 import Lupita from '../../images/search.svg';
 import TecladoIcono from '../../images/tecladoIcono.png';
 import Carne from '../../images/carne.png';
-import Trash from '../../images/trashVerde.svg';
+import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
+import Like from '../../images/like.svg';
 
-export default ({ value, handleChange, /* showInput, setShowInput */}) => {
+export default ({
+  value,
+  handleChange,
+  BotonOK,
+  dentro,
+  BotonBasura /* showInput, setShowInput */,
+}) => {
   const arr = [1, 2, 3, 4, 5];
   return (
     <Container>
@@ -137,7 +144,7 @@ export default ({ value, handleChange, /* showInput, setShowInput */}) => {
             </LogoDerechoDiv>
           </>
         ) : null}
-        <DivBuscador value = {value}>
+        <DivBuscador value={value}>
           <DivImagenBuscador type="submit">
             <ImagenLupa value={value} src={Lupita} />
           </DivImagenBuscador>
@@ -153,7 +160,7 @@ export default ({ value, handleChange, /* showInput, setShowInput */}) => {
         {value !== '' ? (
           <DivScroll>
             {arr &&
-              arr.map((element) => {
+              arr.map((element, idx) => {
                 return (
                   <ProductosDiv>
                     <DivIzqProducto>
@@ -172,9 +179,18 @@ export default ({ value, handleChange, /* showInput, setShowInput */}) => {
                       </DescriProducto>
                     </DivIzqProducto>
                     <Kilos>0 kgs</Kilos>
-                    <TrashDiv>
-                      <TrashImagen src={Trash} />
+                  {dentro && dentro.includes(idx) ? (
+                    <TrashDiv color = {true}>
+                        <TrashImagen 
+                          src={Trash}
+                          onClick={() => BotonBasura(idx)}
+                        />
                     </TrashDiv>
+                      ) : (
+                        <TrashDiv color = {false}>
+                        <TrashImagen src={Like} onClick={() => BotonOK(idx)} />
+                      </TrashDiv>
+                      )}
                     <LineaDeColor />
                   </ProductosDiv>
                 );

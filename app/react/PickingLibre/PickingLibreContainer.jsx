@@ -3,29 +3,41 @@ import { connect } from 'react-redux';
 import PickingLibre from "./PickingLibre";
 
 
+
 const PickingLibreContainer = ({items})=> {
 
-  
-
+   
+    const [dentro, setDentro] = useState([])
     const [value, setValue] = useState('')
    /*  const [showInput, setShowInput] = useState(false); */
 
    const handleChange = (event)=>{
       let info = event.target.value
-
       setValue(info)
    }
  
+   const BotonOK = (n)=>{
+     setDentro([...dentro, n])
+   }
 
-/*    useEffect(() => {
-    if (showInput) inputRef.current.focus();
-  }, [showInput]);
- */
+   const BotonBasura = (n)=>{
+       const Filtrado = dentro.filter(element => element !== n)
+       setDentro(Filtrado)
+   }
+
+  useEffect(() => {
+   console.log(dentro)
+  }, [dentro]);
+ 
 
     return (
+
         <PickingLibre 
          value = {value}
          handleChange = {handleChange }
+         BotonOK = {BotonOK}
+         dentro = {dentro}
+         BotonBasura ={BotonBasura}
         /*  showInput={showInput}
          setShowInput={setShowInput} */
         />
