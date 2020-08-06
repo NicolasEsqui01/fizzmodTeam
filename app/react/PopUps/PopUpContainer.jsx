@@ -25,6 +25,7 @@ const PopUpContainer = ({
   idItems,
   despickear,
   datosPicker,
+  location
 }) => {
   const [battery, setBattery] = useState(null);
   const [cerrar, setCerrar] = useState(true);
@@ -44,6 +45,9 @@ const PopUpContainer = ({
   };
   const handleCanastos = () => {
     return history.push('/seleccion');
+  };
+  const handlePickingLibre = () => {
+    return history.push('/pickinglibre');
   };
 
   const reinicio = () => {
@@ -100,25 +104,28 @@ const PopUpContainer = ({
         onCloseClick={handleCloseClick}
         handleLogout={handleLogout}
         handleCanastos={handleCanastos}
+        handlePickingLibre = {handlePickingLibre}
         despickear={despickear}
         reiniciar={reinicio}
+        location={location}
       />
       <PopUpControlDePeso onCloseClick={handleCloseClick} />
     </>
   );
 };
 
-const mapStateToProps = (state, ownProp) => {
+const mapStateToProps = (state) => {
   return {
     token: localStorage.getItem('token'),
     active: state.popupReducer.numero,
     idSession: state.sessionReducer.sessionPicking,
     idItems: state.sessionReducer.idItems,
     datosPicker: state.loginReducer.datos,
+    location: state.router.location.pathname
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProp) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     Activar: (n) => dispatch(Activacion(n)),
     handleCloseClick: () => dispatch(Desactivacion()),

@@ -41,7 +41,6 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
   let arrWeighable = 0;
   let arrFresh = 0;
   let arrFrozen = 0;
-
   return (
     <>
       <DivScroll>
@@ -54,14 +53,14 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-           
+
 
             element.items.map((el) => {
 
               el.isFresh == true ? arrFresh += 1 : null;
               el.isWeighable == true ? arrWeighable += 1 : null;
               el.isFractionable == true ? arrFractionable += 1 : null;
-              el.isFrozen==true? arrFrozen +=1 : null;
+              el.isFrozen == true ? arrFrozen += 1 : null;
 
             })
 
@@ -91,7 +90,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                     </Peso>
                     <Frio>
                       <ImgP src={snow} />
-                    <NumP>{arrFrozen}</NumP>
+                      <NumP>{arrFrozen}</NumP>
                     </Frio>
                     <Aire>
                       <ImgP src={waves} />
@@ -99,7 +98,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                     </Aire>
                     <Aire>
                       <ImgP src={fraction} />
-                    <NumP>{arrFractionable}</NumP>
+                      <NumP>{arrFractionable}</NumP>
                     </Aire>
                   </DivP>
                   <DivS>
@@ -126,27 +125,28 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
             arrFresh = 0;
             arrFrozen = 0;
 
-            element.items.map((el)=>{  
-              el.isFresh==true? arrFresh +=1 : null;
-              el.isWeighable==true? arrWeighable += 1: null;
-              el.isFractionable==true? arrFractionable +=1 : null;
-              el.isFrozen==true? arrFrozen +=1 : null;
+            element.items.map((el) => {
+              el.isFresh == true ? arrFresh += 1 : null;
+              el.isWeighable == true ? arrWeighable += 1 : null;
+              el.isFractionable == true ? arrFractionable += 1 : null;
+              el.isFrozen == true ? arrFrozen += 1 : null;
+
             })
 
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
             durationDias = moment.duration(end.diff(start)).asDays();
-            parseInt(duration * 10, 10) < 1440? tiempo= parseInt(duration * 10, 10) + " min" : tiempo= parseInt(durationDias * 10, 10) + " días"
-            
+            parseInt(duration * 10, 10) < 1440 ? tiempo = parseInt(duration * 10, 10) + " min" : tiempo = parseInt(durationDias * 10, 10) + " días"
+
             return (
-                <ListOrdenes
-                  className="picking"
-                  key={element.id}
-                  permitir={valor}
-                  div={element.id}
-                  estadoOrden={element.status}
-                  onClick={() => handleClick(element.id,'picking')}>
+              <ListOrdenes
+                className="picking"
+                key={element.id}
+                permitir={valor}
+                div={element.id}
+                estadoOrden={element.status}
+                onClick={() => handleClick(element.id, 'picking')}>
                 <ImgPicking src={box} />
                 <DivN>
                   <Numero>Nro.{element.id} </Numero>
@@ -174,8 +174,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                     </Aire>
                     <Aire>
                       <ImgP src={fraction} />
-                    <NumP>{arrFractionable}
-                    </NumP>
+                      <NumP>{arrFractionable}</NumP>
                     </Aire>
                   </DivP>
                   <DivS>
