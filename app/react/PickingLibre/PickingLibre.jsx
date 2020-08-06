@@ -73,8 +73,54 @@ import Carne from '../../images/carne.png';
 import Trash from '../../images/trashVerde.svg';
 import Barritas from '../../images/bar_code.svg';
 
-export default ({ value, handleChange, handleClick, goToPickSubstitue, itemsSelected/* showInput, setShowInput */}) => {
-  const arr = [1, 2, 3, 4, 5];
+export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSelected/* showInput, setShowInput */}) => {
+  const arr = [{
+            "id": "A488FDDC597647DB900819C605AE98DB",
+            "name": "Galletitas Rellenas Mana Limon Arcor 145g",
+            "refId": "0779089500486",
+            "ean": "123456",
+            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200378-100-100/mana_limon.jpg?v=636613011916900000",
+            "zoneName": "congelados",
+            "purchasedPrice": 50.99,
+            "isWeighable": true,
+            "isFresh": false,
+            "isFractionable": true,
+            "isFrozen": false,
+            "customerNote": null,
+            "groupIndex": 0,
+            "pickedQuantity":0
+            },
+            {
+            "ean": "2345897056432",
+            "groupIndex": 1,
+            "id": "1A3A124792624C4A952AA8673C85C4B0",
+            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200411-100-100/batidora_artisan.png?v=636791814171370000",
+            "isFractionable": true,
+            "isFresh": false,
+            "isFrozen": false,
+            "isWeighable": true,
+            "name": "Batidora Artisan KSM15WH",
+            "purchasedPrice": 32,
+            "refId": "KSM15WH",
+            "zoneName": "carnes",
+            "pickedQuantity":0
+            },
+            {
+            "ean": "7797470003633",
+            "groupIndex": 1,
+            "id": "861079FE7F1448DD9CF787D865BC154C",
+            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200410-100-100/image-1cfdaa5c355f4f30a59fe85858e1291e.jpg?v=636771889078630000",
+            "isFractionable": true,
+            "isFresh": false,
+            "isFrozen": false,
+            "isWeighable": false,
+            "name": "Tomate Triturado Marolio 980 Gr",
+            "purchasedPrice": 83,
+            "refId": "0779747000363",
+            "zoneName": "frescos",
+            "pickedQuantity":0
+            }
+          ];
   return (
     <Container>
       <ColuIzquierda>
@@ -160,21 +206,20 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, itemsSele
                     handleClick(element) // CUANDO SEA REAL CAMBIARLO POR element.id
                     }
                   }
-                  selected={itemsSelected}
-                  div={element}
+                  selected={idItemsSelected}
+                  div={element.id}
                   >
                     <DivIzqProducto>
                       <ImgProdu>
-                        <ImagenProdu src={Carne} />
+                        <ImagenProdu src={element.imageUrl} />
                       </ImgProdu>
                       <DescriProducto>
                         <H1Descri>
-                          Nombre del producto con doble linea lorem ipsum dolor
-                          sit amet
+                          {element.name}
                         </H1Descri>
                         <DivFilaBarritas>
                           <ImagenBarritasProdu src={Barritas} />
-                          <H1codBarras>4676283905037772</H1codBarras>
+                          <H1codBarras>{element.ean}</H1codBarras>
                         </DivFilaBarritas>
                       </DescriProducto>
                     </DivIzqProducto>

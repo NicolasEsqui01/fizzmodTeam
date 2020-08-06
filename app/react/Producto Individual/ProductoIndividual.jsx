@@ -119,10 +119,11 @@ export default ({
   handleRemoveItem,
   date,
   next,
-  despickear
+  despickear,
+  sustituyendo,
+  prepickear
 }) => {
   let idx = 0;
-  console.log("session", session)
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -297,48 +298,54 @@ export default ({
                               </>)
                             }
                             <Botones>
-                              {despickear === false ?
+                              {despickear === false ? (
                                 <><BotIzq>
                                   <Siguiente onClick={() => next()}>
-                                    {' '}
-                          SIGUIENTE
-                        </Siguiente>{' '}
+                                    SIGUIENTE
+                                  </Siguiente>
                                 </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer></>
+                                  </BotDer></> )
                                 :
-                                <>
+                                (<>
                                   <PopUpOmitir
                                     activePopUp={active}
                                     onCloseClick={onCloseClick}
                                     PendingPopUp={Pending}
                                     IdProducto={session[indice].id}
                                   />
-
                                   <BotIzq>
                                     <Omitir onClick={() => Activar(10)}>
                                       <CruzOmitir src={ImageCruzOmitir} />
-                          OMITIR
-                        </Omitir>
-                        <BotonTeclado>
-                           <Teclado
-                              src={TecladoIcono}
-                              onClick={() => setShowInput(true)}
-                              />
-                              </BotonTeclado>
-                              <Siguiente
-                                onClick={() =>
-                                pickeado(session[indice].id, session[indice].purchasedQuantity,true )
-                              }>
-                              {' '}        
-
-                          SIGUIENTE
-                        </Siguiente>{' '}
+                                      OMITIR
+                                    </Omitir>
+                                    <BotonTeclado>
+                                      <Teclado src={TecladoIcono} onClick={() => setShowInput(true)} />
+                                    </BotonTeclado>
+                                    {sustituyendo === true ?
+                                      <Siguiente
+                                        onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                                        }>PRE-PICKEAR
+                                      </Siguiente>
+                                      :
+                                      (
+                                      <Siguiente
+                                        onClick={() =>
+                                        pickeado(session[indice].id, null,true )
+                                        }>SIGUIENTE
+                                      </Siguiente>
+                                      )
+                                    }
                                   </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer></>
+                                  </BotDer>
+                                </>
+                                )
                               }
                             </Botones>
                           </ColDerecha>
@@ -454,10 +461,8 @@ export default ({
                               {despickear === false ?
                                 <><BotIzq>
                                   <Siguiente onClick={() => next()}>
-                                    {' '}
-                            SIGUIENTE
-                          </Siguiente>{' '}
-                                  {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                                    SIGUIENTE
+                                  </Siguiente>
                                 </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
@@ -473,21 +478,29 @@ export default ({
                                   <BotIzq>
                                     <Omitir onClick={() => Activar(10)}>
                                       <CruzOmitir src={ImageCruzOmitir} />
-                            OMITIR
-                          </Omitir>
+                                    OMITIR
+                                  </Omitir>
                                     <BotonTeclado>
                                       <Teclado src={TecladoIcono} />
                                     </BotonTeclado>
-                                    <Siguiente
-                                      onClick={() => {
-                                        pickeado(session[indice].id, count, false);
-                                      }}
-                                    >
-                                      {' '}
-                            SIGUIENTE
-                          </Siguiente>{' '}
-                                    {/*CHEQUEAR QUE SUME 1 BIEN*/}
-                                  </BotIzq>
+                                    {sustituyendo === true ?
+                                      <Siguiente
+                                        onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                                        }>PRE-PICKEAR
+                                      </Siguiente>
+                                      :
+                                      (
+                                      <Siguiente
+                                        onClick={() =>
+                                        pickeado(session[indice].id, count,false )
+                                        }>SIGUIENTE
+                                      </Siguiente>
+                                      )
+                                    }
+                                    </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
                                   </BotDer>
@@ -652,18 +665,23 @@ export default ({
                               }}
                             />
                           </BotonTeclado>
-                          <Siguiente
-                            onClick={() =>
-                              pickeado(
-                                session[indice].id,
-                                session[indice].purchasedQuantity,
-                                true,
-                              )
-                            }
-                          >
-                            {' '}
-                        SIGUIENTE
-                      </Siguiente>{' '}
+                          {sustituyendo === true ?
+                            <Siguiente
+                              onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                              }>PRE-PICKEAR
+                            </Siguiente>
+                            :
+                            (
+                            <Siguiente
+                              onClick={() =>
+                              pickeado(session[indice].id, null,true )
+                              }>SIGUIENTE
+                            </Siguiente>
+                            )
+                          }
                         </BotIzq>
                         <BotDer onClick={() => Activar(4)}>
                           <PlusCircle src={masBlanco}></PlusCircle>
@@ -787,15 +805,23 @@ export default ({
                             <BotonTeclado>
                               <Teclado src={TecladoIcono} />
                             </BotonTeclado>
+                            {sustituyendo === true ?
                             <Siguiente
-                              onClick={() => {
-                                pickeado(session[indice].id, count, false);
-                              }}
-                            >
-                              {' '}
-                        SIGUIENTE
-                      </Siguiente>{' '}
-                            {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                              onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                              }>PRE-PICKEAR
+                            </Siguiente>
+                            :
+                            (
+                            <Siguiente
+                              onClick={() =>
+                              pickeado(session[indice].id, count,true )
+                              }>SIGUIENTE
+                            </Siguiente>
+                            )
+                            }
                           </BotIzq>
                           <BotDer onClick={() => Activar(4)}>
                             <PlusCircle src={masBlanco}></PlusCircle>
