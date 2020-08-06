@@ -2,9 +2,6 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { connect } from 'react-redux';
-
-// import { hot } from 'react-hot-loader/root';
-// import NotFoundPage from '../NotFoundPage/Loadable';
 import LoginContainer from '../login/Loadable'
 import InicioContainer from '../Inicio/Loadable';
 import ProductoIndividual from "../Producto Individual/Loadable"
@@ -20,8 +17,6 @@ import BuscadorContainer from "../Buscador/Loadable";
 import PickingLibreContainer from "../PickingLibre/Loadable";
 
 
-
-
 function App({ location }) {
   return (
     <div>
@@ -32,7 +27,6 @@ function App({ location }) {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <PopUpContainer/>
-
       {location !== '/' ? <Navbar /> : null}
       <Switch>
         <Route exact path='/' component={LoginContainer} />
@@ -45,7 +39,6 @@ function App({ location }) {
         <Route path="/confirmacion" component={ConfirmacionContainer} />
         <Route path="/buscador" component={BuscadorContainer} />
         <Route path="/pickinglibre" component={PickingLibreContainer} />
-        {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />
     </div>

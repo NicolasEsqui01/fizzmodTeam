@@ -11,7 +11,7 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
   
   
   
-  let datos = JSON.parse(localStorage.getItem('canasto'))
+  let datos = localStorage.getItem('canasto') &&JSON.parse(localStorage.getItem('canasto'))
   const handleClick = () =>{
     setBooleano(false);
     sendItemPicked(location.state.idSession, location.state.data)
@@ -19,8 +19,10 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
       localStorage.removeItem('token');
       localStorage.removeItem('sessionid');
       localStorage.removeItem('final');
-      localStorage.removeItem('cronometro')
-      localStorage.removeItem('canasto')
+      localStorage.removeItem('cronometro');
+      localStorage.removeItem('canasto');
+      localStorage.removeItem('cuadradoChico');
+      localStorage.removeItem('cuadradoGrande');
       sendFinal();
       reiniciar(false)
 

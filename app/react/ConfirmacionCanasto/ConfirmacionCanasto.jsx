@@ -54,9 +54,6 @@ export default ({ handleClick, idSession, datosCanasto }) => {
     largo = idSession.items.filter((Element) => Element.status === 'picked')
       .length;
   }
-  let Name = datosCanasto && Object.values(datosCanasto.nameCanasto).filter(
-    (Element) => Element !== '',
-  );
   return (
     <Container>
       <Izquierdo>
@@ -87,22 +84,25 @@ export default ({ handleClick, idSession, datosCanasto }) => {
             <IconoCanastoOscuro src={basket} />
             <TituloCanasto>CANASTOS</TituloCanasto>
           </ParteSuperior>
-          {Name.map((Element) => {
-            return (
-              <>
-                <ParteCentral1>
-                  <ParteCentralIzq>
-                    <IconoCanastoVerde src={basketVerde} />
-                    <NombreCanasto>Canasto {Element}</NombreCanasto>
-                  </ParteCentralIzq>
-                  <DivIconoAprobado>
-                    <IconoAprobado src={Aprobado} />
-                  </DivIconoAprobado>
-                </ParteCentral1>
-                <LineaBlanca />
-              </>
-            );
-          })}
+          {datosCanasto &&
+            Object.values(datosCanasto.nameCanasto)
+              .filter((Element) => Element !== '')
+              .map((Element) => {
+                return (
+                  <>
+                    <ParteCentral1>
+                      <ParteCentralIzq>
+                        <IconoCanastoVerde src={basketVerde} />
+                        <NombreCanasto>Canasto {Element}</NombreCanasto>
+                      </ParteCentralIzq>
+                      <DivIconoAprobado>
+                        <IconoAprobado src={Aprobado} />
+                      </DivIconoAprobado>
+                    </ParteCentral1>
+                    <LineaBlanca />
+                  </>
+                );
+              })}
           <ParteCentral2>
             <ParteCentral2Izq>
               <IconoCanastoGris src={basketNegro} />

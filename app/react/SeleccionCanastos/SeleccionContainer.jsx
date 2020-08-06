@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import SeleccionCanastos from './SeleccionCanastos';
-import { getStartSession } from '../../action/session';
+import { getStartSession, getSessionPicking } from '../../action/session';
 import history from '../../utils/history';
 
-const SeleccionContainer = ({ getStartSession }) => {
+const SeleccionContainer = ({
+  getStartSession,
+  getSessionPicking,
+  session,
+  auth,
+}) => {
   const [value, setValue] = useState('');
   const [nameCanasto, setNameCanasto] = useState({
     1: '',
@@ -32,13 +38,14 @@ const SeleccionContainer = ({ getStartSession }) => {
     false,
   ]);
   const [boolean, setBoolean] = useState(false);
-  
+  const [cantidad, setCantidad] = useState(0);
+  let idSession = localStorage.getItem('sessionid');
 
   useEffect(() => {
-    let objLocal = JSON.parse(localStorage.getItem('canasto'))
+    let objLocal = JSON.parse(localStorage.getItem('canasto'));
     if (
       localStorage.getItem('cuadradoChico') &&
-      localStorage.getItem('cuadradoGrande') && 
+      localStorage.getItem('cuadradoGrande') &&
       localStorage.getItem('canasto')
     ) {
       setCuadros(
@@ -53,13 +60,19 @@ const SeleccionContainer = ({ getStartSession }) => {
           .split(',')
           .map((Element) => (Element === 'true' ? true : false)),
       );
-      setNameCanasto(objLocal.nameCanasto)
+      setNameCanasto(objLocal.nameCanasto);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (auth !== 'null') {
+      getSessionPicking(idSession);
     }
   }, []);
 
   const handleClick = (id) => {
     setValue(id);
-    setBoolean(!boolean);
+    setCantidad(cantidad);
     setTimeout(() => {
       setActivar(1);
     }, 2000);
@@ -100,15 +113,11 @@ const SeleccionContainer = ({ getStartSession }) => {
     );
     setCanasto(nuevoCanasto);
     setCuadros(nuevoCuadrado);
+    setBoolean(true);
   };
 
   const handleStartSession = () => {
-    let idSession = localStorage.getItem('sessionid');
-
-    localStorage.setItem(
-      'canasto',
-      JSON.stringify({ nameCanasto , value }),
-    );
+    localStorage.setItem('canasto', JSON.stringify({ nameCanasto, value }));
     localStorage.setItem('cuadradoGrande', canasto);
     localStorage.setItem('cuadradoChico', cuadros);
     getStartSession(idSession).then(() => {
@@ -119,28 +128,41 @@ const SeleccionContainer = ({ getStartSession }) => {
   };
 
   return (
-    <SeleccionCanastos
-      handleClick={handleClick}
-      valor={value}
-      handleSubmit={handleSubmit}
-      activar={activar}
-      handleClickSalir={handleClickSalir}
-      handleStartSession={handleStartSession}
-      datosCanasto={nameCanasto}
-      canastos={canasto}
-      cuadrados={cuadros}
-      handleChange={handleChange}
-    />
+    <>
+      {auth === 'null' ? (
+        <Redirect to="/" />
+      ) : (
+        <SeleccionCanastos
+          handleClick={handleClick}
+          valor={value}
+          handleSubmit={handleSubmit}
+          activar={activar}
+          handleClickSalir={handleClickSalir}
+          handleStartSession={handleStartSession}
+          datosCanasto={nameCanasto}
+          canastos={canasto}
+          cuadrados={cuadros}
+          handleChange={handleChange}
+          ordenSession={session}
+          booleano={boolean}
+          cantidadOrders={cantidad}
+        />
+      )}
+    </>
   );
 };
 
 const MapStateToProps = (state) => {
-  return {};
+  return {
+    session: state.sessionReducer.sessionPicking.orderIds,
+    auth: JSON.stringify(localStorage.getItem('auth')),
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getStartSession: (id) => dispatch(getStartSession(id)),
+    getSessionPicking: (id) => dispatch(getSessionPicking(id)),
   };
 };
 

@@ -8,6 +8,7 @@ const PickingLibreContainer = ({items})=> {
   
 
     const [value, setValue] = useState('')
+    const date = JSON.parse(localStorage.getItem('canasto'))
    /*  const [showInput, setShowInput] = useState(false); */
 
    const handleChange = (event)=>{
@@ -26,6 +27,7 @@ const PickingLibreContainer = ({items})=> {
         <PickingLibre 
          value = {value}
          handleChange = {handleChange }
+         date={date}
         /*  showInput={showInput}
          setShowInput={setShowInput} */
         />

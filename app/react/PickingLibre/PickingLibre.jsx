@@ -63,6 +63,7 @@ import {
   LineaFina,
   CantidadSeleccionadaProdu,
   CantidadSeleccionadaProduH1,
+  DivImgTilde,
 } from './style';
 
 import IconoHeaderImg from '../../images/icono_Header.png';
@@ -72,9 +73,16 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import Carne from '../../images/carne.png';
 import Trash from '../../images/trashVerde.svg';
 import Barritas from '../../images/bar_code.svg';
+import Tilde from '../../images/check_bold.svg';
 
-export default ({ value, handleChange, /* showInput, setShowInput */}) => {
+export default ({ value, handleChange , date /* showInput, setShowInput */ }) => {
   const arr = [1, 2, 3, 4, 5];
+  let cuadrados =
+    localStorage.getItem('cuadradoChico') &&
+    localStorage
+      .getItem('cuadradoChico')
+      .split(',')
+      .map((Element) => (Element === 'true' ? true : false));
   return (
     <Container>
       <ColuIzquierda>
@@ -89,18 +97,15 @@ export default ({ value, handleChange, /* showInput, setShowInput */}) => {
           <ParteIzqDiv>
             <Sup>
               <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
+                {cuadrados.map((Element, indice) => {
+                  return (
+                    <CuadroGrill key={Element} numeros={indice} datos={date.value}>
+                      {Element === true ? <DivImgTilde src={Tilde} /> : null}
+                    </CuadroGrill>
+                  );
+                })}
               </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill className="bkgColor" />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <NumCuadrados>3</NumCuadrados>
+              <NumCuadrados>{date.value + 1}</NumCuadrados>
             </Sup>
           </ParteIzqDiv>
           <ParteDerDiv>
@@ -137,7 +142,7 @@ export default ({ value, handleChange, /* showInput, setShowInput */}) => {
             </LogoDerechoDiv>
           </>
         ) : null}
-        <DivBuscador value = {value}>
+        <DivBuscador value={value}>
           <DivImagenBuscador type="submit">
             <ImagenLupa value={value} src={Lupita} />
           </DivImagenBuscador>
