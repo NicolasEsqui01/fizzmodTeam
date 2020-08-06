@@ -24,7 +24,8 @@ const ProductoIndividualcontainer = ({
   setItems,
   bolleanDespickear,
   booleanReiniciar,
-  despickear
+  despickear,
+  location
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
@@ -89,7 +90,10 @@ const ProductoIndividualcontainer = ({
 
   const ItemPicked = (iditems, qty, pesable) => {
     let data = {};
-    if (pesable == true) {
+    // CHEQUEA SI SE ACTIVO EN LOCALSTORAGE LA ALARMA DE ITEM SUSTITUIDO
+    let objSubs = JSON.parse(localStorage.getItem('withSubstitute'))
+    //CONSTRUCCION DEL OBJETO PESABLE SIN SUSTITUTO, PARA ENVIAR AL BACKEND
+    if (pesable == true && objSubs == false) {
       let dataPesable = {
         token: token,
         items: [
@@ -101,7 +105,41 @@ const ProductoIndividualcontainer = ({
         ],
       };
       data = dataPesable;
-    } else {
+    }
+    //CONSTRUCCION DEL OBJETO PESABLE CON SUSTITUTO, PARA ENVIAR AL BACKEND
+    if (pesable == true && objSubs == true) {
+      let objSubs = localStorage.getItem('substitutes')
+      let dataNoPesable = {
+        token: token,
+        items: [
+          {
+            id: iditems,
+            pickedQuantity: pesoTotal,
+            basket:date.nameCanasto[data.value + 1],
+            substitutes: objSubs,
+          },
+        ],
+      };
+      data = dataNoPesable;
+    }
+    //CONSTRUCCION DEL OBJETO SUELTO CON SUSTITUTO, PARA ENVIAR AL BACKEND
+    if (pesable == false && objSubs == true) {
+      let objSubs = localStorage.getItem('substitutes')
+      let dataWithSubs = {
+        token: token,
+        items: [
+          {
+            id: iditems,
+            pickedQuantity: qty,
+            basket:date.nameCanasto[data.value + 1],
+            substitutes: objSubs
+          },
+        ],
+      };
+      data = dataWithSubs;
+    }
+    //CONSTRUCCION DEL OBJETO SUELTO CON SUSTITUTO, PARA ENVIAR AL BACKEND
+    if (pesable == false && objSubs == false) {
       let dataNoPesable = {
         token: token,
         items: [
@@ -115,14 +153,15 @@ const ProductoIndividualcontainer = ({
       data = dataNoPesable;
     }
 
+    //CHEQUEA SI ES EL ULTIMO ITEM DE LA LISTA, PARA PASAR A LA PAGINA DE CONFIRMACION FINAL
     if (Number(indice) === items.length) {
       localStorage.setItem('final', true);
-      history.push({
+      history.push({ //UTILIZA HISTORY PARA ENVIARLE A LA PAG DE CONFIRMACION LOS DATOS CONTRUIDOS Y TERMINAR EL PICKEO DESDE ALLI
         pathname: '/confirmacion',
         state: { idSession: idSession, data: data, datosCanasto: date },
       });
-      if (bolleanDespickear == true) despickear(false);
-    } else {
+      if (bolleanDespickear==true)despickear(false);
+    } else { //SI NO ES EL ULTIMO, DISPARA EL ACTION CREATOR PARA PICKEAR EL ITEM
       sendItemPicked(idSession, data)
         .then(() => {
           let newIndice = Number(indice) + 1;
@@ -130,8 +169,9 @@ const ProductoIndividualcontainer = ({
           setPesoTotal(0);
           if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
           getSessionPicking(idSession);
+          if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
+          if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);
           return history.push(`/productoindividual/${idSession}/${newIndice}`);
-
         })
         .then(() => setCount(0));
     }
@@ -192,6 +232,7 @@ const ProductoIndividualcontainer = ({
           date={date}
           pesoTotal={pesoTotal}
           despickear={bolleanDespickear}
+          location={location}
         />
       ) : null}
     </>

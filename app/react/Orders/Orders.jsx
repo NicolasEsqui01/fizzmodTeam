@@ -58,6 +58,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
             element.items.map((el) => {
 
               el.isFresh == true ? arrFresh += 1 : null;
+            arrFrozen = 0
               el.isWeighable == true ? arrWeighable += 1 : null;
               el.isFractionable == true ? arrFractionable += 1 : null;
               el.isFrozen == true ? arrFrozen += 1 : null;
