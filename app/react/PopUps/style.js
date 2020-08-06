@@ -600,6 +600,7 @@ export const DivN = styled.div`
   @media ${device.mobile} {
     justify-content: space-around;
     align-items: center;
+    place-self: center;
     width: 100%;
   }
 `;

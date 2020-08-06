@@ -296,6 +296,12 @@ export default ({
                                   )}
                               </>)
                             }
+                            <PopUpOmitir
+                              activePopUp={active}
+                              onCloseClick={onCloseClick}
+                              PendingPopUp={Pending}
+                              IdProducto={session[indice].id}
+                            />
                             <Botones>
                               {despickear === false ?
                                 <><BotIzq>
@@ -309,12 +315,7 @@ export default ({
                                   </BotDer></>
                                 :
                                 <>
-                                  <PopUpOmitir
-                                    activePopUp={active}
-                                    onCloseClick={onCloseClick}
-                                    PendingPopUp={Pending}
-                                    IdProducto={session[indice].id}
-                                  />
+
 
                                   <BotIzq>
                                     <Omitir onClick={() => Activar(10)}>
@@ -455,6 +456,12 @@ export default ({
                                 </DivImageStock>
                               </ContImagenes>
                             }
+                            <PopUpOmitir
+                              activePopUp={active}
+                              onCloseClick={onCloseClick}
+                              PendingPopUp={Pending}
+                              IdProducto={session[indice].id}
+                            />
 
                             <Botones>
                               {despickear === false ?
@@ -470,12 +477,7 @@ export default ({
                                   </BotDer></>
                                 :
                                 <>
-                                  <PopUpOmitir
-                                    activePopUp={active}
-                                    onCloseClick={onCloseClick}
-                                    PendingPopUp={Pending}
-                                    IdProducto={session[indice].id}
-                                  />
+
                                   <BotIzq>
                                     <Omitir onClick={() => Activar(10)}>
                                       <CruzOmitir src={ImageCruzOmitir} />
