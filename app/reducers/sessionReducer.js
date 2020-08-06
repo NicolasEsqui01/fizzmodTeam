@@ -6,7 +6,7 @@ const initialState = {
   statusOrderSelected: 'pending',
   idItems: '',
   despickear: false,
-  reiniciar: null,
+  reiniciar: false,
 };
 
 export default (state = initialState, action) => {

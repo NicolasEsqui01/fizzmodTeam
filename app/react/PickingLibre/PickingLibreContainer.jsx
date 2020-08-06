@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import history from '../../utils/history';
-import PickingLibre from './PickingLibre';
+import PickingLibre from "./PickingLibre";
+import { itemParaSustituir } from '../../action/picking';
 import { element } from 'prop-types';
 
-const PickingLibreContainer = ({ items, IdItem }) => {
-  console.log(items)
-  console.log(IdItem)
+const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
+
+  const date = JSON.parse(localStorage.getItem('canasto'))
+  const idSession = localStorage.getItem('sessionid')
+  const [value, setValue] = useState('')
+  const [itemsSelected, setItemsSelected] = useState([])
+  const [idItems, setIdItems] = useState([])
   const [dentro, setDentro] = useState([]);
-  const [value, setValue] = useState('');
-  const date = JSON.parse(localStorage.getItem('canasto'));
-  const idSession = localStorage.getItem('sessionid');
-  const [itemsSelected, setItemsSelected] = useState([]);
-  /*  const [showInput, setShowInput] = useState(false); */
 
-let Items = items.filter(element => element.id === IdItem)
-let item = Items[0]
-
-console.log(item)
+  let Items = items.filter(element => element.id === IdItem)
+  let item = Items[0]
 
   const handleChange = (event) => {
     let info = event.target.value;
@@ -37,43 +35,40 @@ console.log(item)
     console.log(dentro);
   }, [dentro]);
 
-  const handleClick = (itemId) => {
-    if (itemsSelected.length > 0 && itemsSelected.includes(itemId)) {
-      setItemsSelected(itemsSelected.filter((item) => item != itemId));
-    } else setItemsSelected((oldArray) => [...oldArray, itemId]);
-  };
+  const handleClick = (itemSelect) => {
+    if (idItems.length >0 && idItems.includes(itemSelect.id)) {
+      setIdItems(idItems.filter((item)=> item != itemSelect.id))
+      setItemsSelected(itemsSelected.filter((item)=> item.id != itemSelect.id))
+      } else {
+        setIdItems(oldArray => [...oldArray, itemSelect.id])
+        setItemsSelected(oldArray => [...oldArray, itemSelect])
+      }
+  }
 
   const goToPickSubstitue = () => {
+    console.log("estoy por ir al action de pick. con;  ", itemsSelected)
+    itemsSustituir(itemsSelected)
     //localStorage.setItem('substitutes',JSON.stringify(itemsSelected))
-    history.push({
-      //UTILIZA HISTORY PARA ENVIARLE A LA PAG DE CONFIRMACION LOS DATOS CONTRUIDOS Y TERMINAR EL PICKEO DESDE ALLI
-      pathname: '/productoindividual',
-      state: { idSession: idSession, data: itemsSelected, datosCanasto: date },
-    });
-  };
+    localStorage.setItem('withSubstitute', true)
+    return history.push(`/sustitutos/${idSession}/1`)
+  }
 
-  /*    useEffect(() => {
-    if (showInput) inputRef.current.focus();
-  }, [showInput]);
- */
-
-  return (
-    <PickingLibre
-      value={value}
-      handleChange={handleChange}
-      BotonOK={BotonOK}
-      dentro={dentro}
-      BotonBasura={BotonBasura}
-      itemsSelected={itemsSelected}
-      handleChange={handleChange}
-      handleClick={handleClick}
-      goToPickSubstitue={goToPickSubstitue}
-      item = {item}
-      /*  showInput={showInput}
-         setShowInput={setShowInput} */
-    />
-  );
-};
+    return (
+        <PickingLibre 
+         value = {value}
+         handleChange={handleChange}
+         BotonOK={BotonOK}
+         dentro={dentro}
+         BotonBasura={BotonBasura}
+         idItemsSelected={idItems}
+         handleChange = {handleChange}
+         handleClick={handleClick}
+         goToPickSubstitue={goToPickSubstitue}
+         itemsSelected={itemsSelected}
+         item={item}
+        />
+    )
+} 
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -82,6 +77,10 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = () => {};
+const mapDispatchToProps = (dispatch) => {
+    return{
+      itemsSustituir: (obj) => dispatch(itemParaSustituir(obj))
+  }
+};
 
-export default connect(mapStateToProps, null)(PickingLibreContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PickingLibreContainer);

@@ -18,6 +18,7 @@ import PopUpContainer from '../PopUps/PopUpContainer';
 import Navbar from '../Navbar/NavbarContainer';
 import BuscadorContainer from "../Buscador/Loadable";
 import PickingLibreContainer from "../PickingLibre/Loadable";
+import SustitutosContainer from '../Sustitutos/Loadable';
 
 
 
@@ -39,7 +40,7 @@ function App({ location }) {
         <Route path="/inicio" component={InicioContainer} />
         <Route path="/session/:id" component={SessionConteniner} />
         <Route exact path="/productoindividual/:id/:indice" component={ProductoIndividual} />
-        <Route path="/productoindividual" component={ProductoIndividual} />
+        <Route path="/sustitutos/:id/:indice" component={SustitutosContainer} />
         <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/canastos" component={CanastosContainer} />
         <Route path="/seleccion" component={SeleccionContainer} />
