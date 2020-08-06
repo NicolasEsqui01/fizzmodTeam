@@ -612,6 +612,9 @@ border-left: red;
   margin-bottom: 1%;
   width: 95%;
 } 
+  ${({ selected, div }) => {
+      if(selected.includes(div)) return 'border: 4px solid #1db779 !important;'
+  }}
 `;
 
 export const DivIzqProducto = styled.div`

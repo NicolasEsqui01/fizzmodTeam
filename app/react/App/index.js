@@ -38,13 +38,14 @@ function App({ location }) {
         <Route exact path='/' component={LoginContainer} />
         <Route path="/inicio" component={InicioContainer} />
         <Route path="/session/:id" component={SessionConteniner} />
-        <Route path="/productoindividual/:id/:indice" component={ProductoIndividual} />
+        <Route exact path="/productoindividual/:id/:indice" component={ProductoIndividual} />
+        <Route path="/productoindividual" component={ProductoIndividual} />
         <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/canastos" component={CanastosContainer} />
         <Route path="/seleccion" component={SeleccionContainer} />
         <Route path="/confirmacion" component={ConfirmacionContainer} />
         <Route path="/buscador" component={BuscadorContainer} />
-        <Route path="/pickinglibre" component={PickingLibreContainer} />
+        <Route path="/pickinglibre/:id" component={PickingLibreContainer} />
         {/* <Route exact path="" component={NotFoundPage} /> */}
       </Switch>
       <GlobalStyle />

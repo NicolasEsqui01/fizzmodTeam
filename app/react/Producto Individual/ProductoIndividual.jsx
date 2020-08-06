@@ -119,10 +119,10 @@ export default ({
   handleRemoveItem,
   date,
   next,
-  despickear,
+  despickear
 }) => {
   let idx = 0;
-
+  console.log("session", session)
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -321,24 +321,18 @@ export default ({
                                       <CruzOmitir src={ImageCruzOmitir} />
                           OMITIR
                         </Omitir>
-                                    <BotonTeclado>
-                                      <Teclado
-                                        src={TecladoIcono}
-                                        onClick={() => {
-                                          setShowInput(true);
-                                        }}
-                                      />
-                                    </BotonTeclado>
-                                    <Siguiente
-                                      onClick={() =>
-                                        pickeado(
-                                          session[indice].id,
-                                          session[indice].purchasedQuantity,
-                                          true,
-                                        )
-                                      }
-                                    >
-                                      {' '}
+                        <BotonTeclado>
+                           <Teclado
+                              src={TecladoIcono}
+                              onClick={() => setShowInput(true)}
+                              />
+                              </BotonTeclado>
+                              <Siguiente
+                                onClick={() =>
+                                pickeado(session[indice].id, session[indice].purchasedQuantity,true )
+                              }>
+                              {' '}        
+
                           SIGUIENTE
                         </Siguiente>{' '}
                                   </BotIzq>

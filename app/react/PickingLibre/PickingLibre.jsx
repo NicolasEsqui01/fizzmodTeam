@@ -80,6 +80,10 @@ export default ({
   BotonOK,
   dentro,
   BotonBasura /* showInput, setShowInput */,
+  handleClick,
+  goToPickSubstitue,
+  itemsSelected,
+  item
 }) => {
   const arr = [1, 2, 3, 4, 5];
   return (
@@ -112,7 +116,7 @@ export default ({
           </ParteIzqDiv>
           <ParteDerDiv>
             <ImagenProduDiv>
-              <ImagenProduImg src={Carne} />
+              <ImagenProduImg src={item.imageUrl} />
             </ImagenProduDiv>
             <DescriProdu>
               Nombre del producto largo en dos lineas lorem ipsum
@@ -122,12 +126,12 @@ export default ({
 
         <DivGralPrecio>
           <DivPrecio>
-            <PrecioTachado>$1000,00</PrecioTachado>
-            <Precio>$1000,00</Precio>
+          <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
+            <Precio>{item.purchasedPrice}</Precio>
           </DivPrecio>
           <PesoDiv>
             <Peso>
-              <H1Peso>25 kgs</H1Peso>
+              <H1Peso>{item.purchasedQuantity} kgs</H1Peso>
             </Peso>
           </PesoDiv>
         </DivGralPrecio>
@@ -162,7 +166,10 @@ export default ({
             {arr &&
               arr.map((element, idx) => {
                 return (
-                  <ProductosDiv>
+                  <ProductosDiv
+                    selected={itemsSelected}
+                    div={element}
+                  >
                     <DivIzqProducto>
                       <ImgProdu>
                         <ImagenProdu src={Carne} />
@@ -179,18 +186,25 @@ export default ({
                       </DescriProducto>
                     </DivIzqProducto>
                     <Kilos>0 kgs</Kilos>
-                  {dentro && dentro.includes(idx) ? (
-                    <TrashDiv color = {true}>
-                        <TrashImagen 
+                    {dentro && dentro.includes(idx) ? (
+                      <TrashDiv color={true}>
+                        <TrashImagen
                           src={Trash}
-                          onClick={() => BotonBasura(idx)}
+                          onClick={() => {
+                            BotonBasura(idx);
+                            handleClick(element);
+                          }}
                         />
-                    </TrashDiv>
-                      ) : (
-                        <TrashDiv color = {false}>
-                        <TrashImagen src={Like} onClick={() => BotonOK(idx)} />
                       </TrashDiv>
-                      )}
+                    ) : (
+                      <TrashDiv color={false}>
+                        <TrashImagen src={Like} onClick={() =>{ 
+                          BotonOK(idx);
+                          handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
+                        }
+                          } />
+                      </TrashDiv>
+                    )}
                     <LineaDeColor />
                   </ProductosDiv>
                 );
@@ -202,7 +216,7 @@ export default ({
           <BotonTeclado /* onClick={() => {setShowInput(true);}} */>
             <Teclado src={TecladoIcono} />
           </BotonTeclado>
-          <Siguiente>SIGUIENTE</Siguiente>
+          <Siguiente onClick={goToPickSubstitue}>SIGUIENTE</Siguiente>
         </Botones>
       </ColuDerecha>
     </Container>
