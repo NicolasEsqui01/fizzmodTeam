@@ -26,6 +26,9 @@ export default (state = initialState, action) => {
       return { ...state, idItems: action.id }
     case 'PRODUCTOS':
       return { ...state, sessionPicking: { ...state.sessionPicking, items: action.productos } }
+    case 'FINAL_SESSION':
+      console.log("entro al finlllll")
+      return { ...state, sessionPicking: { ...state.sessionPicking, items: [] } }
     case 'DESPICKEAR_ITEM':
       return { ...state, despickear: action.booleano }
     case 'REINICIAR':

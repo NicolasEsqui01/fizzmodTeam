@@ -125,8 +125,10 @@ export default ({
   next,
   despickear,
   sustituyendo,
-  prepickear
+  prepickear,
+  Faltente
 }) => {
+  console.log("session",session)
   let idx = 0;
   let cuadrados = localStorage.getItem('cuadradoChico') && localStorage.getItem('cuadradoChico').split(',').map(Element => Element === 'true' ? true : false)
   return (
@@ -340,6 +342,7 @@ export default ({
                                     activePopUp={active}
                                     onCloseClick={onCloseClick}
                                     PendingPopUp={Pending}
+                                    FaltentePopUp={Faltente}
                                     IdProducto={session[indice].id}
                                   />
                                   <BotIzq>
@@ -355,7 +358,7 @@ export default ({
                                         onClick={() =>{
                                           console.log("session[indice].id",session[indice].id)
                                         
-                                        prepickear(session[indice].id,count, true )}
+                                        prepickear(session[indice].id,null, true )}
                                         }>PRE-PICKEAR
                                       </Siguiente>
                                       :
@@ -503,6 +506,7 @@ export default ({
                                     onCloseClick={onCloseClick}
                                     PendingPopUp={Pending}
                                     IdProducto={session[indice].id}
+                                    FaltentePopUp={Faltente}
                                   />
                                   <BotIzq>
                                     <Omitir onClick={() => Activar(10)}>
@@ -517,7 +521,7 @@ export default ({
                                         onClick={() =>{
                                           console.log("session[indice].id",session[indice].id)
                                         
-                                        prepickear(session[indice].id,count, true )}
+                                        prepickear(session[indice].id,count, false )}
                                         }>PRE-PICKEAR
                                       </Siguiente>
                                       :
@@ -683,6 +687,7 @@ export default ({
                         onCloseClick={onCloseClick}
                         PendingPopUp={Pending}
                         IdProducto={session[indice].id}
+                        FaltentePopUp={Faltente}
                       />
                       <Botones>
                         <BotIzq>
@@ -703,7 +708,7 @@ export default ({
                               onClick={() =>{
                                           console.log("session[indice].id",session[indice].id)
                                         
-                                        prepickear(session[indice].id,count, true )}
+                                        prepickear(session[indice].id,null, true )}
                               }>PRE-PICKEAR
                             </Siguiente>
                             :
@@ -832,6 +837,7 @@ export default ({
                           onCloseClick={onCloseClick}
                           PendingPopUp={Pending}
                           IdProducto={session[indice].id}
+                          FaltentePopUp={Faltente}
                         />
                         <Botones>
                           <BotIzq>
@@ -847,14 +853,14 @@ export default ({
                               onClick={() =>{
                                           console.log("session[indice].id",session[indice].id)
                                         
-                                        prepickear(session[indice].id,count, true )}
+                                        prepickear(session[indice].id,count, false )}
                               }>PRE-PICKEAR
                             </Siguiente>
                             :
                             (
                             <Siguiente
                               onClick={() =>
-                              pickeado(session[indice].id, count,true )
+                              pickeado(session[indice].id, count,false )
                               }>SIGUIENTE
                             </Siguiente>
                             )

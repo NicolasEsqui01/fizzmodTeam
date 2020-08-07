@@ -2,27 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import history from '../../utils/history';
 import { Redirect } from 'react-router-dom';
-import { getSessionPicking } from '../../action/session';
 
 import Navbar from './Navbar';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("state.sessionReducer.sessionPicking.items NAVBAR", state.sessionReducer.sessionPicking.items)
   return {
     items: state.sessionReducer.sessionPicking.items,
-    itemsPicking: state.pickingReducer.ItemsPicked,
     booleano: state.sessionReducer.booleano,
     sessionId: localStorage.getItem('sessionid'),
     final: localStorage.getItem('final'),
   };
 };
 
-const MapDispatchToProps = (dispatch) => {
-  return {
-    getSessionPicking: (id) => dispatch(getSessionPicking(id)),
-  };
-};
-
-const NavbarContainer = ({ time, status, booleano, items, itemsPicking, sessionId, location, final }) => {
+const NavbarContainer = ({ time, status, booleano, items, sessionId, location, final }) => {
 
   const [pickeados, setPickeados] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -35,24 +28,12 @@ const NavbarContainer = ({ time, status, booleano, items, itemsPicking, sessionI
   useEffect(() => {
     let pickeds=0;
     if(items && items.length > 0){
+        console.log("estoy dentro del MAP de navbar con", items)
         setTotalItems(items.length);
         items.map((item)=>item.status === "picked" ? (pickeds=pickeds+1) : (null))
         setPickeados(pickeds);
     }
   }, [items]);
-
-
-  // useEffect(() => {
-  //   // if (itemsPicking != undefined) {
-  //   //   setPickeados(itemsPicking.length);
-  //   // }
-  //   // if(items && items.length > 0){
-  //   //   let pickeds=0;
-  //   //   items.map((item)=>item.satuts === "picked" ? pickeds+1 : null)
-  //   //   setPickeados(pickeds);
-  //   // }
-  //   getSessionPicking(sessionId)
-  // }, [itemsPicking]);
 
   return (
     <Navbar
@@ -68,4 +49,4 @@ const NavbarContainer = ({ time, status, booleano, items, itemsPicking, sessionI
   );
 };
 
-export default connect(mapStateToProps, MapDispatchToProps)(NavbarContainer);
+export default connect(mapStateToProps)(NavbarContainer);
