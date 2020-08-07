@@ -1,17 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
-import ProductoIndividual from './ProductoIndividual';
-import { itemPicked, itemPending } from '../../action/picking';
+import ProductoIndividual from '../Producto Individual/ProductoIndividual';
+import { itemPending, itemParaSustituir } from '../../action/picking';
 import { Desactivacion, Activacion } from '../../action/popup';
 import { getSessionPicking, setBooleano, setIdItems, setItems, setDespickear } from '../../action/session';
 import history from '../../utils/history';
 import { Redirect } from 'react-router-dom';
 
-const ProductoIndividualcontainer = ({
-  items = [],
+const SustitucionContainer = ({
   idSession,
   getSessionPicking,
-  sendItemPicked,
   token,
   Activar,
   active,
@@ -25,7 +23,8 @@ const ProductoIndividualcontainer = ({
   bolleanDespickear,
   booleanReiniciar,
   despickear,
-  location
+  items,
+  sustitutionQty
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
@@ -34,10 +33,8 @@ const ProductoIndividualcontainer = ({
   const [pesoTotal, setPesoTotal] = useState(0);
   const [wheights, setWheights] = useState([]);
   const inputRef = useRef(null);
+  const [sustituyendo, setSustituyendo] = useState(false);
   const date = JSON.parse(localStorage.getItem('canasto'))
-
- 
-  console.log(items, 'items')
 
   useEffect(() => {
     if (auth !== 'null') {
@@ -54,6 +51,10 @@ const ProductoIndividualcontainer = ({
   }, [match.params.indice, items.length]);
 
   useEffect(() => {
+    setSustituyendo(JSON.parse(localStorage.getItem('withSubstitute')))
+  }, [localStorage.getItem('withSubstitute')]);
+
+  useEffect(() => {
     if (showInput) inputRef.current.focus();
   }, [showInput]);
 
@@ -66,7 +67,6 @@ const ProductoIndividualcontainer = ({
   };
 
   const itemPending = (id) => {
-
     const newSession = items.filter(element => {
       return element.id !== id
     })
@@ -75,7 +75,7 @@ const ProductoIndividualcontainer = ({
     let newIndice = Number(indice) + 1;
     handleCloseClick()
     setItems(newArray)
-    return history.push(`/productoindividual/${idSession}/${newIndice}`)
+    return history.push(`/sustitutos/${idSession}/${newIndice}`)
   };
 
   const next = () => {
@@ -87,100 +87,67 @@ const ProductoIndividualcontainer = ({
       });
     } else {
       let newIndice = Number(indice) + 1;
-      history.push(`/productoindividual/${idSession}/${newIndice}`)
+      history.push(`/sustitutos/${idSession}/${newIndice}`)
     };
   }
 
-  const ItemPicked = (iditems, qty, pesable) => {
+  const ItemPrePicked = (iditems, qty, pesable) => {
     let data = {};
-    // CHEQUEA SI SE ACTIVO EN LOCALSTORAGE LA ALARMA DE ITEM SUSTITUIDO
-    let objSubs = JSON.parse(localStorage.getItem('withSubstitute'))
-    //CONSTRUCCION DEL OBJETO PESABLE SIN SUSTITUTO, PARA ENVIAR AL BACKEND
-    if (pesable == true && objSubs == false) {
+    if (pesable == true) {
       let dataPesable = {
-        token: token,
-        items: [
+        items: 
           {
             id: iditems,
             pickedQuantity: pesoTotal,
             basket: date.nameCanasto[data.value + 1]
           },
-        ],
       };
       data = dataPesable;
-    }
-    //CONSTRUCCION DEL OBJETO PESABLE CON SUSTITUTO, PARA ENVIAR AL BACKEND
-    if (pesable == true && objSubs == true) {
-      let objSubs = localStorage.getItem('substitutes')
+
+      let itemsConfirmed = [...items.map((item)=>{
+        if (item.id === iditems) {
+          const field = { ...item }
+          field.pickedQuantity = pesoTotal
+          return field
+        }
+          else return item
+      })]
+      sustitutionQty(itemsConfirmed)
+    } else {
       let dataNoPesable = {
-        token: token,
-        items: [
-          {
-            id: iditems,
-            pickedQuantity: pesoTotal,
-            basket:date.nameCanasto[data.value + 1],
-            substitutes: objSubs,
-          },
-        ],
-      };
-      data = dataNoPesable;
-    }
-    //CONSTRUCCION DEL OBJETO SUELTO CON SUSTITUTO, PARA ENVIAR AL BACKEND
-    if (pesable == false && objSubs == true) {
-      let objSubs = localStorage.getItem('substitutes')
-      let dataWithSubs = {
-        token: token,
-        items: [
-          {
-            id: iditems,
-            pickedQuantity: qty,
-            basket:date.nameCanasto[data.value + 1],
-            substitutes: objSubs
-          },
-        ],
-      };
-      data = dataWithSubs;
-    }
-    //CONSTRUCCION DEL OBJETO SUELTO CON SUSTITUTO, PARA ENVIAR AL BACKEND
-    if (pesable == false && objSubs == false) {
-      let dataNoPesable = {
-        token: token,
-        items: [
+        items: 
           {
             id: iditems,
             pickedQuantity: qty,
             basket: date.nameCanasto[data.value + 1]
           },
-        ],
+        
       };
       data = dataNoPesable;
+      let itemsConfirmed = [...items.map((item)=>{
+        if (item.id === iditems) {
+          const field = { ...item };
+          field.pickedQuantity = qty;
+          return field
+        }
+          else return item
+      })]
+      sustitutionQty(itemsConfirmed)
     }
+    
+    let newIndice = Number(indice) + 1;
+    setWheights([]);
+    setPesoTotal(0);
+    setCount(0)
 
-    //CHEQUEA SI ES EL ULTIMO ITEM DE LA LISTA, PARA PASAR A LA PAGINA DE CONFIRMACION FINAL
-    if (Number(indice) === items.length) {
-      localStorage.setItem('final', true);
-      history.push({ //UTILIZA HISTORY PARA ENVIARLE A LA PAG DE CONFIRMACION LOS DATOS CONTRUIDOS Y TERMINAR EL PICKEO DESDE ALLI
-        pathname: '/confirmacion',
-        state: { idSession: idSession, data: data, datosCanasto: date },
-      });
-      if (bolleanDespickear==true)despickear(false);
-    } else { //SI NO ES EL ULTIMO, DISPARA EL ACTION CREATOR PARA PICKEAR EL ITEM
-      sendItemPicked(idSession, data)
-        .then(() => {
-          let newIndice = Number(indice) + 1;
-          setWheights([]);
-          setPesoTotal(0);
-          if (bolleanDespickear === true && booleanReiniciar === false){
-            despickear(false)
-          }
-          getSessionPicking(idSession);
-          if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
-          if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);
-          return history.push(`/productoindividual/${idSession}/${newIndice}`);
-        })
-        .then(() => setCount(0));
-    }
-  };
+    if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
+    getSessionPicking(idSession);
+    if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
+    if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);
+
+    return history.push(`/sustitutos/${idSession}/${newIndice}`) 
+  }
+
 
   const handleChange = (event) => {
     setInput(Number(event.target.value));
@@ -221,7 +188,7 @@ const ProductoIndividualcontainer = ({
           active={active}
           onCloseClick={handleCloseClick}
           session={items}
-          pickeado={ItemPicked}
+          prepickear={ItemPrePicked}
           next={next}
           indice={indice - 1}
           count={count}
@@ -237,7 +204,7 @@ const ProductoIndividualcontainer = ({
           date={date}
           pesoTotal={pesoTotal}
           despickear={bolleanDespickear}
-          location={location}
+          sustituyendo={sustituyendo}
         />
       ) : null}
     </>
@@ -245,22 +212,22 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
+  console.log("state",state)
   return {
-    idSession: ownProps.match.params.id, // id de la sesssion
+    idSession: localStorage.getItem('sessionid'),
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking
-    items: state.sessionReducer.sessionPicking.items, // los items de la session
     active: state.popupReducer.numero,
     auth: JSON.stringify(localStorage.getItem('auth')),
     idItems: state.sessionReducer.idItems,
     bolleanDespickear: state.sessionReducer.despickear,
     booleanReiniciar: state.sessionReducer.reiniciar,
-
+    items: state.pickingReducer.ItemsParaSustituir
   };
 };
 
 const MapDispatchToProps = (dispatch) => {
   return {
-    sendItemPicked: (id, obj) => dispatch(itemPicked(id, obj)),
+    sustitutionQty: (obj) => dispatch(itemParaSustituir(obj)),
     getSessionPicking: (id) => dispatch(getSessionPicking(id)),
     Activar: (n) => dispatch(Activacion(n)),
     handleCloseClick: () => dispatch(Desactivacion()),
@@ -271,7 +238,4 @@ const MapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(
-  MapStateToProps,
-  MapDispatchToProps,
-)(ProductoIndividualcontainer);
+export default connect( MapStateToProps, MapDispatchToProps )(SustitucionContainer);

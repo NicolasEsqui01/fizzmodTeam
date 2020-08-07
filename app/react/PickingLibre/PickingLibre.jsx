@@ -73,7 +73,6 @@ import {
   PesoVerde,
   H1PesoVerde,
 } from './style';
-
 import IconoHeaderImg from '../../images/icono_Header.png';
 import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
 import Lupita from '../../images/search.svg';
@@ -81,6 +80,7 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import Carne from '../../images/carne.png';
 import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
+import Tilde from '../../images/check_bold.svg';
 import Like from '../../images/like.svg';
 import IconoTotals from "../../images/totals.svg";
 import PopUpControlDePeso  from '../PopUps/PopUpControlDePeso'
@@ -89,11 +89,9 @@ import PopUpControlDePeso  from '../PopUps/PopUpControlDePeso'
 export default ({
   value,
   handleChange,
-  BotonOK,
-  dentro,
-  BotonBasura /* showInput, setShowInput */,
   handleClick,
   goToPickSubstitue,
+  idItemsSelected,
   itemsSelected,
   item,
   acum,
@@ -125,18 +123,19 @@ export default ({
           <ParteIzqDiv>
             <Sup>
               <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
+                {cuadrados.map((Element, indice) => {
+                  return (
+                    <CuadroGrill
+                      key={Element}
+                      numeros={indice}
+                      datos={date.value}
+                    >
+                      {Element === true ? <DivImgTilde src={Tilde} /> : null}
+                    </CuadroGrill>
+                  );
+                })}
               </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill className="bkgColor" />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <NumCuadrados>3</NumCuadrados>
+              <NumCuadrados>{date.value + 1}</NumCuadrados>
             </Sup>
           </ParteIzqDiv>
           <ParteDerDiv>
@@ -237,22 +236,19 @@ export default ({
                   <ProductosDiv selected={itemsSelected} div={element}>
                     <DivIzqProducto>
                       <ImgProdu>
-                        <ImagenProdu src={Carne} />
+                        <ImagenProdu src={element.imageUrl} />
                       </ImgProdu>
                       <DescriProducto>
-                        <H1Descri>
-                          Nombre del producto con doble linea lorem ipsum dolor
-                          sit amet
-                        </H1Descri>
+                        <H1Descri>{element.name}</H1Descri>
                         <DivFilaBarritas>
                           <ImagenBarritasProdu src={Barritas} />
-                          <H1codBarras>4676283905037772</H1codBarras>
+                          <H1codBarras>{element.ean}</H1codBarras>
                         </DivFilaBarritas>
                       </DescriProducto>
                     </DivIzqProducto>
                   {/*  { element.isWeighable ? */}
                     <Kilos>1 kgs</Kilos>
-                    :{/* 
+                    {/* 
                     <>
                     <LineaFina />
                     <CantidadSeleccionadaProdu>

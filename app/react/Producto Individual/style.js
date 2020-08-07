@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device } from '../../utils/mediaQuerys';
+import { stubArray } from "lodash";
 
 ///////// HEADER ////////////////
 export const Header = styled.div`
@@ -351,6 +352,37 @@ export const MarcaH1 = styled.h1`
 }
 
 `;
+export const NoSus = styled.h1`
+height: 21px;
+width: 150px;
+color: #273947;
+font-family: Roboto;
+font-size: 18px;
+letter-spacing: 0;
+  line-height: 21px;
+  text-align: right;
+  margin-right: 7px;
+  margin-left: 7px;
+
+`
+export const CantiSus = styled.div`
+display:flex;
+height: 21px;
+width: 150px;
+font-size: 15px;
+border-radius: 15px;
+background-color:#FFFFFF
+`
+export const NumeroAzul = styled.p`
+height: 19px;
+width: 33px;
+color: #2979FF;
+font-family: Roboto;
+font-size: 16px;
+font-weight: bold;
+letter-spacing: 0;
+line-height: 19px;
+`
 
 export const Descri = styled.div`
   margin-top:20px;
@@ -845,7 +877,10 @@ export const PlusCircle = styled.img`
   padding: 6px;
 `;
 
-
+export const DivImgTilde = styled.img`
+  width:20px;
+  height:20px;
+`
 
 
 

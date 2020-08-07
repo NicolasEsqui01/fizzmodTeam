@@ -76,6 +76,10 @@ import {
   Atencion,
   DivStatus,
   StatusP,
+  DivImgTilde,
+  NoSus,
+  CantiSus,
+  NumeroAzul
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -97,7 +101,7 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
 import PopUpOmitir from '../PopUps/PopUpOmitir';
-import TecladoContainer from '../Tecleado/TecladoContainer';
+import Tilde from '../../images/check_bold.svg';
 
 export default ({
   session,
@@ -119,10 +123,12 @@ export default ({
   handleRemoveItem,
   date,
   next,
-  despickear
+  despickear,
+  sustituyendo,
+  prepickear
 }) => {
   let idx = 0;
-  
+  let cuadrados = localStorage.getItem('cuadradoChico') && localStorage.getItem('cuadradoChico').split(',').map(Element => Element === 'true' ? true : false)
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -134,13 +140,26 @@ export default ({
                 <Img src={Sustituto} />
               </Button>
             </div>
+            { sustituyendo ?
+            <NoSus>No Sustituible</NoSus>
+            :
+            <>
             <div>
               <Marca> = Marca, </Marca>
             </div>
             <div>
               <Gramaje> = Gramaje </Gramaje>
             </div>
+            </>
+           }
           </Cuadro>
+          {sustituyendo ? 
+          <CantiSus>
+          <NumeroAzul>1</NumeroAzul>
+          /
+          <NumeroAzul>2</NumeroAzul>
+          </CantiSus>
+          :null}
         </Header>
 
         {session.length === 0 ? (
@@ -167,13 +186,15 @@ export default ({
                             <ColuIconos>
                               <Sup>
                                 <ContainerGrillCuadros>
-                                  {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                                  {cuadrados.map((Element, indice) => {
                                     return (
                                       <CuadroGrill
                                         key={indice}
                                         numeros={indice}
                                         datos={date.value}
-                                      />
+                                      >
+                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                      </CuadroGrill>
                                     )
                                   })}
                                 </ContainerGrillCuadros>
@@ -304,48 +325,54 @@ export default ({
                               </>)
                             }
                             <Botones>
-                              {despickear === false ?
+                              {despickear === false ? (
                                 <><BotIzq>
                                   <Siguiente onClick={() => next()}>
-                                    {' '}
-                          SIGUIENTE
-                        </Siguiente>{' '}
+                                    SIGUIENTE
+                                  </Siguiente>
                                 </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer></>
+                                  </BotDer></> )
                                 :
-                                <>
+                                (<>
                                   <PopUpOmitir
                                     activePopUp={active}
                                     onCloseClick={onCloseClick}
                                     PendingPopUp={Pending}
                                     IdProducto={session[indice].id}
                                   />
-
                                   <BotIzq>
                                     <Omitir onClick={() => Activar(10)}>
                                       <CruzOmitir src={ImageCruzOmitir} />
-                          OMITIR
-                        </Omitir>
-                        <BotonTeclado>
-                           <Teclado
-                              src={TecladoIcono}
-                              onClick={() => setShowInput(true)}
-                              />
-                              </BotonTeclado>
-                              <Siguiente
-                                onClick={() =>
-                                pickeado(session[indice].id, session[indice].purchasedQuantity,true )
-                              }>
-                              {' '}        
-
-                          SIGUIENTE
-                        </Siguiente>{' '}
+                                      OMITIR
+                                    </Omitir>
+                                    <BotonTeclado>
+                                      <Teclado src={TecladoIcono} onClick={() => setShowInput(true)} />
+                                    </BotonTeclado>
+                                    {sustituyendo === true ?
+                                      <Siguiente
+                                        onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                                        }>PRE-PICKEAR
+                                      </Siguiente>
+                                      :
+                                      (
+                                      <Siguiente
+                                        onClick={() =>
+                                        pickeado(session[indice].id, null,true )
+                                        }>SIGUIENTE
+                                      </Siguiente>
+                                      )
+                                    }
                                   </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer></>
+                                  </BotDer>
+                                </>
+                                )
                               }
                             </Botones>
                           </ColDerecha>
@@ -357,13 +384,15 @@ export default ({
                             <ColuIconos>
                               <Sup>
                                 <ContainerGrillCuadros>
-                                  {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                                  {cuadrados.map((Element, indice) => {
                                     return (
                                       <CuadroGrill
                                         key={indice}
                                         numeros={indice}
                                         datos={date.value}
-                                      />
+                                      >
+                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                      </CuadroGrill>
                                     )
                                   })}
                                 </ContainerGrillCuadros>
@@ -461,10 +490,8 @@ export default ({
                               {despickear === false ?
                                 <><BotIzq>
                                   <Siguiente onClick={() => next()}>
-                                    {' '}
-                            SIGUIENTE
-                          </Siguiente>{' '}
-                                  {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                                    SIGUIENTE
+                                  </Siguiente>
                                 </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
@@ -480,21 +507,29 @@ export default ({
                                   <BotIzq>
                                     <Omitir onClick={() => Activar(10)}>
                                       <CruzOmitir src={ImageCruzOmitir} />
-                            OMITIR
-                          </Omitir>
+                                    OMITIR
+                                  </Omitir>
                                     <BotonTeclado>
                                       <Teclado src={TecladoIcono} />
                                     </BotonTeclado>
-                                    <Siguiente
-                                      onClick={() => {
-                                        pickeado(session[indice].id, count, false);
-                                      }}
-                                    >
-                                      {' '}
-                            SIGUIENTE
-                          </Siguiente>{' '}
-                                    {/*CHEQUEAR QUE SUME 1 BIEN*/}
-                                  </BotIzq>
+                                    {sustituyendo === true ?
+                                      <Siguiente
+                                        onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                                        }>PRE-PICKEAR
+                                      </Siguiente>
+                                      :
+                                      (
+                                      <Siguiente
+                                        onClick={() =>
+                                        pickeado(session[indice].id, count,false )
+                                        }>SIGUIENTE
+                                      </Siguiente>
+                                      )
+                                    }
+                                    </BotIzq>
                                   <BotDer onClick={() => Activar(4)}>
                                     <PlusCircle src={masBlanco}></PlusCircle>
                                   </BotDer>
@@ -522,13 +557,17 @@ export default ({
                       <ColuIconos>
                         <Sup>
                           <ContainerGrillCuadros>
-                            {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                            {cuadrados.map((Element, indice) => {
                               return (
+                                <>
                                 <CuadroGrill
                                   key={indice}
                                   numeros={indice}
                                   datos={date.value}
-                                />
+                                >
+                                { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                </CuadroGrill>
+                                </>
                               )
                             })}
                           </ContainerGrillCuadros>
@@ -659,18 +698,23 @@ export default ({
                               }}
                             />
                           </BotonTeclado>
-                          <Siguiente
-                            onClick={() =>
-                              pickeado(
-                                session[indice].id,
-                                session[indice].purchasedQuantity,
-                                true,
-                              )
-                            }
-                          >
-                            {' '}
-                        SIGUIENTE
-                      </Siguiente>{' '}
+                          {sustituyendo === true ?
+                            <Siguiente
+                              onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                              }>PRE-PICKEAR
+                            </Siguiente>
+                            :
+                            (
+                            <Siguiente
+                              onClick={() =>
+                              pickeado(session[indice].id, null,true )
+                              }>SIGUIENTE
+                            </Siguiente>
+                            )
+                          }
                         </BotIzq>
                         <BotDer onClick={() => Activar(4)}>
                           <PlusCircle src={masBlanco}></PlusCircle>
@@ -685,13 +729,17 @@ export default ({
                         <ColuIconos>
                           <Sup>
                             <ContainerGrillCuadros>
-                              {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                              {cuadrados.map((Element, indice) => {
                                 return (
+                                  <>
                                   <CuadroGrill
                                     key={indice}
                                     numeros={indice}
                                     datos={date.value}
-                                  />
+                                  >
+                                  {Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                  </CuadroGrill>
+                                  </>
                                 )
                               })}
                             </ContainerGrillCuadros>
@@ -794,15 +842,23 @@ export default ({
                             <BotonTeclado>
                               <Teclado src={TecladoIcono} />
                             </BotonTeclado>
+                            {sustituyendo === true ?
                             <Siguiente
-                              onClick={() => {
-                                pickeado(session[indice].id, count, false);
-                              }}
-                            >
-                              {' '}
-                        SIGUIENTE
-                      </Siguiente>{' '}
-                            {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                              onClick={() =>{
+                                          console.log("session[indice].id",session[indice].id)
+                                        
+                                        prepickear(session[indice].id,count, true )}
+                              }>PRE-PICKEAR
+                            </Siguiente>
+                            :
+                            (
+                            <Siguiente
+                              onClick={() =>
+                              pickeado(session[indice].id, count,true )
+                              }>SIGUIENTE
+                            </Siguiente>
+                            )
+                            }
                           </BotIzq>
                           <BotDer onClick={() => Activar(4)}>
                             <PlusCircle src={masBlanco}></PlusCircle>
