@@ -81,11 +81,11 @@ export default ({
   handleClick,
   goToPickSubstitue,
   idItemsSelected,
-  itemsSelected,
   item,
   BotonOK,
   dentro,
   date,
+  sustitutos,
 }) => {
   const arr = [
     {
@@ -200,13 +200,17 @@ export default ({
       <ColuDerecha>
         {value === '' ? (
           <>
-            <LogoDerechoDiv>
-              <ImagenGrandeDiv>
-                <ImagenGrande src={ImgPickingLibre} />
-              </ImagenGrandeDiv>
-              <H1PickingLibre>Picking Libre</H1PickingLibre>
-              <H1Comenzar>Comienza a pickear los productos</H1Comenzar>
-            </LogoDerechoDiv>
+            {sustitutos.length ? null : (
+              <>
+                <LogoDerechoDiv>
+                  <ImagenGrandeDiv>
+                    <ImagenGrande src={ImgPickingLibre} />
+                  </ImagenGrandeDiv>
+                  <H1PickingLibre>Picking Libre</H1PickingLibre>
+                  <H1Comenzar>Comienza a pickear los productos</H1Comenzar>
+                </LogoDerechoDiv>
+              </>
+            )}
           </>
         ) : null}
         <DivBuscador value={value}>
@@ -273,7 +277,41 @@ export default ({
                 );
               })}
           </DivScroll>
-        ) : null}
+        ) : (
+          <>
+            {sustitutos.length ? (
+              <DivScroll>
+                {sustitutos.map((Element) => {
+                  return (
+                    <ProductosDiv
+                      onClick={() => {
+                        handleClick(Element); // CUANDO SEA REAL CAMBIARLO POR Element.id
+                      }}
+                      selected={idItemsSelected}
+                      div={Element.id}
+                    >
+                      <DivIzqProducto>
+                        <ImgProdu>
+                          <ImagenProdu src={Element.imageUrl} />
+                        </ImgProdu>
+                        <DescriProducto>
+                          <H1Descri>{Element.name}</H1Descri>
+                          <DivFilaBarritas>
+                            <ImagenBarritasProdu src={Barritas} />
+                            <H1codBarras>{Element.ean}</H1codBarras>
+                          </DivFilaBarritas>
+                        </DescriProducto>
+                      </DivIzqProducto>
+                      <Kilos>{Element.pickedQuantity}kgs</Kilos>
+                      )}
+                      <LineaDeColor />
+                    </ProductosDiv>
+                  );
+                })}
+              </DivScroll>
+            ) : null}
+          </>
+        )}
         <Botones>
           <Cancelar>CANCELAR</Cancelar>
           <BotonTeclado /* onClick={() => {setShowInput(true);}} */>

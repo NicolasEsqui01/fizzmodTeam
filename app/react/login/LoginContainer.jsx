@@ -17,14 +17,14 @@ const LoginContainer = ({ setLogin }) => {
       email: event.target[0].value,
       password: event.target[1].value,
     };
-    // setLogin(data).then((data) => {
-    //   if (data && data.message) {
-    //     setMesssage(data.message);
-    //     setError(!err);
-    //   } else {
-    //     return history.push('/inicio');
-    //   }
-    // });
+    setLogin(data).then((data) => {
+      if (data && data.message) {
+        setMesssage(data.message);
+        setError(!err);
+      } else {
+        return history.push('/inicio');
+      }
+    });
   };
 
   const handleClick = () => {

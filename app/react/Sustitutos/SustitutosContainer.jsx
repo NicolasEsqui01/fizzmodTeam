@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import ProductoIndividual from '../Producto Individual/ProductoIndividual';
 import { itemPending, itemParaSustituir } from '../../action/picking';
 import { Desactivacion, Activacion } from '../../action/popup';
-import { getSessionPicking, setBooleano, setIdItems, setItems, setDespickear } from '../../action/session';
+import {
+  getSessionPicking,
+  setBooleano,
+  setIdItems,
+  setItems,
+  setDespickear,
+} from '../../action/session';
 import history from '../../utils/history';
 import { Redirect } from 'react-router-dom';
 
@@ -24,7 +30,7 @@ const SustitucionContainer = ({
   booleanReiniciar,
   despickear,
   items,
-  sustitutionQty
+  sustitutionQty,
 }) => {
   const [indice, setIndice] = useState(match.params.indice);
   const [count, setCount] = useState(0);
@@ -34,7 +40,7 @@ const SustitucionContainer = ({
   const [wheights, setWheights] = useState([]);
   const inputRef = useRef(null);
   const [sustituyendo, setSustituyendo] = useState(false);
-  const date = JSON.parse(localStorage.getItem('canasto'))
+  const date = JSON.parse(localStorage.getItem('canasto'));
 
   useEffect(() => {
     if (auth !== 'null') {
@@ -51,7 +57,7 @@ const SustitucionContainer = ({
   }, [match.params.indice, items.length]);
 
   useEffect(() => {
-    setSustituyendo(JSON.parse(localStorage.getItem('withSubstitute')))
+    setSustituyendo(JSON.parse(localStorage.getItem('withSubstitute')));
   }, [localStorage.getItem('withSubstitute')]);
 
   useEffect(() => {
@@ -59,7 +65,7 @@ const SustitucionContainer = ({
   }, [showInput]);
 
   useEffect(() => {
-    if (inputRef.current && input != 0) inputRef.current.value = "";
+    if (inputRef.current && input != 0) inputRef.current.value = '';
   }, [wheights]);
 
   const handleBtnClick = (n) => {
@@ -67,15 +73,15 @@ const SustitucionContainer = ({
   };
 
   const itemPending = (id) => {
-    const newSession = items.filter(element => {
-      return element.id !== id
-    })
-    const productId = items.filter(element => element.id === id)
-    let newArray = [...newSession, ...productId]
+    const newSession = items.filter((element) => {
+      return element.id !== id;
+    });
+    const productId = items.filter((element) => element.id === id);
+    let newArray = [...newSession, ...productId];
     let newIndice = Number(indice) + 1;
-    handleCloseClick()
-    setItems(newArray)
-    return history.push(`/sustitutos/${idSession}/${newIndice}`)
+    handleCloseClick();
+    setItems(newArray);
+    return history.push(`/sustitutos/${idSession}/${newIndice}`);
   };
 
   const next = () => {
@@ -87,67 +93,69 @@ const SustitucionContainer = ({
       });
     } else {
       let newIndice = Number(indice) + 1;
-      history.push(`/sustitutos/${idSession}/${newIndice}`)
-    };
-  }
+      history.push(`/sustitutos/${idSession}/${newIndice}`);
+    }
+  };
 
   const ItemPrePicked = (iditems, qty, pesable) => {
     let data = {};
     if (pesable == true) {
       let dataPesable = {
-        items: 
-          {
-            id: iditems,
-            pickedQuantity: pesoTotal,
-            basket: date.nameCanasto[data.value + 1]
-          },
+        items: {
+          id: iditems,
+          pickedQuantity: pesoTotal,
+          basket: date.nameCanasto[data.value + 1],
+        },
       };
       data = dataPesable;
 
-      let itemsConfirmed = [...items.map((item)=>{
-        if (item.id === iditems) {
-          const field = { ...item }
-          field.pickedQuantity = pesoTotal
-          return field
-        }
-          else return item
-      })]
-      sustitutionQty(itemsConfirmed)
+      let itemsConfirmed = [
+        ...items.map((item) => {
+          if (item.id === iditems) {
+            const field = { ...item };
+            field.pickedQuantity = pesoTotal;
+            return field;
+          } else return item;
+        }),
+      ];
+      sustitutionQty(itemsConfirmed);
     } else {
       let dataNoPesable = {
-        items: 
-          {
-            id: iditems,
-            pickedQuantity: qty,
-            basket: date.nameCanasto[data.value + 1]
-          },
-        
+        items: {
+          id: iditems,
+          pickedQuantity: qty,
+          basket: date.nameCanasto[data.value + 1],
+        },
       };
       data = dataNoPesable;
-      let itemsConfirmed = [...items.map((item)=>{
-        if (item.id === iditems) {
-          const field = { ...item };
-          field.pickedQuantity = qty;
-          return field
-        }
-          else return item
-      })]
-      sustitutionQty(itemsConfirmed)
+      let itemsConfirmed = [
+        ...items.map((item) => {
+          if (item.id === iditems) {
+            const field = { ...item };
+            field.pickedQuantity = qty;
+            return field;
+          } else return item;
+        }),
+      ];
+      sustitutionQty(itemsConfirmed);
     }
-    
-    let newIndice = Number(indice) + 1;
     setWheights([]);
     setPesoTotal(0);
-    setCount(0)
-
-    if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
-    getSessionPicking(idSession);
-    if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
-    if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);
-
-    return history.push(`/sustitutos/${idSession}/${newIndice}`) 
-  }
-
+    setCount(0);
+    if (localStorage.getItem('substitutes')){
+      localStorage.removeItem('substitutes');
+    }
+    if (localStorage.getItem('withSubstitute') == true){
+      localStorage.setItem('withSubstitute', false);
+    }
+    if(Number(indice) === items.length){
+      let url = localStorage.getItem('pikingLibre')
+      return history.push(url)
+    }else{
+      let newIndice = Number(indice) + 1;
+      return history.push(`/sustitutos/${idSession}/${newIndice}`);
+    }
+  };
 
   const handleChange = (event) => {
     setInput(Number(event.target.value));
@@ -162,7 +170,7 @@ const SustitucionContainer = ({
       img: image,
       qty: input,
     };
-    setPesoTotal(pesoTotal + input)
+    setPesoTotal(pesoTotal + input);
     setWheights([...wheights, itemPesable]);
   };
 
@@ -212,7 +220,6 @@ const SustitucionContainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
-  console.log("state",state)
   return {
     idSession: localStorage.getItem('sessionid'),
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking
@@ -221,7 +228,7 @@ const MapStateToProps = (state, ownProps) => {
     idItems: state.sessionReducer.idItems,
     bolleanDespickear: state.sessionReducer.despickear,
     booleanReiniciar: state.sessionReducer.reiniciar,
-    items: state.pickingReducer.ItemsParaSustituir
+    items: state.pickingReducer.ItemsParaSustituir,
   };
 };
 
@@ -238,4 +245,7 @@ const MapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect( MapStateToProps, MapDispatchToProps )(SustitucionContainer);
+export default connect(
+  MapStateToProps,
+  MapDispatchToProps,
+)(SustitucionContainer);

@@ -5,14 +5,14 @@ import PickingLibre from "./PickingLibre";
 import { itemParaSustituir } from '../../action/picking';
 import { element } from 'prop-types';
 
-const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
-
+const PickingLibreContainer = ({items, itemsSustituir, IdItem , match , sustitutos})=> {
   const date = JSON.parse(localStorage.getItem('canasto'))
   const idSession = localStorage.getItem('sessionid')
   const [value, setValue] = useState('')
   const [itemsSelected, setItemsSelected] = useState([])
   const [idItems, setIdItems] = useState([])
   const [dentro, setDentro] = useState([]);
+
 
   let Items = items.filter(element => element.id === IdItem)
   let item = Items[0]
@@ -46,9 +46,8 @@ const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
   }
 
   const goToPickSubstitue = () => {
-    console.log("estoy por ir al action de pick. con;  ", itemsSelected)
     itemsSustituir(itemsSelected)
-    //localStorage.setItem('substitutes',JSON.stringify(itemsSelected))
+    localStorage.setItem('pikingLibre', match.url)
     localStorage.setItem('withSubstitute', true)
     return history.push(`/sustitutos/${idSession}/1`)
   }
@@ -67,6 +66,7 @@ const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
          itemsSelected={itemsSelected}
          item={item}
          date={date}
+         sustitutos={sustitutos}
         />
     )
 } 
@@ -75,6 +75,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     IdItem : ownProps.match.params.id,
     items: state.sessionReducer.sessionPicking.items, // los items de la session
+    sustitutos:state.pickingReducer.ItemsParaSustituir
   };
 };
 
