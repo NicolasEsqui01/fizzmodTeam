@@ -59,6 +59,7 @@ export const setIdItems = (id) => {
 };
 
 export const setItems = (productos) => {
+  console.log("estoy en action de SetItems con", productos)
   return {
     type: 'PRODUCTOS',
     productos

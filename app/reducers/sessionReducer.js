@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
     case 'IDITEMS':
       return { ...state, idItems: action.id }
     case 'PRODUCTOS':
+    console.log("estoy en reducer de SetItems con", action.productos)
       return { ...state, sessionPicking: { ...state.sessionPicking, items: action.productos } }
     case 'DESPICKEAR_ITEM':
       return { ...state, despickear: action.booleano }
