@@ -63,6 +63,15 @@ import {
   LineaFina,
   CantidadSeleccionadaProdu,
   CantidadSeleccionadaProduH1,
+  DivGralBalanza,
+  ColuPesoTotal,
+  TotalTitulo,
+  ImporteDiv,
+  H1Importe,
+  IconoCuentaDiv,
+  IconoCuentaImg,
+  PesoVerde,
+  H1PesoVerde,
 } from './style';
 
 import IconoHeaderImg from '../../images/icono_Header.png';
@@ -73,7 +82,10 @@ import Carne from '../../images/carne.png';
 import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
 import Like from '../../images/like.svg';
+import IconoTotals from "../../images/totals.svg";
+import PopUpControlDePeso  from '../PopUps/PopUpControlDePeso'
 
+/* isWeighable */
 export default ({
   value,
   handleChange,
@@ -83,10 +95,23 @@ export default ({
   handleClick,
   goToPickSubstitue,
   itemsSelected,
-  item
+  item,
+  acum,
+  sumar,
+  restar,
+  total,
+  valorTotal,
+  valorResta,
+  Activar,
+  active, 
+  onCloseClick
 }) => {
   const arr = [1, 2, 3, 4, 5];
+ 
+ 
   return (
+    <>
+    <PopUpControlDePeso acum={acum} active={active} onClickClose={onCloseClick} principal={item.purchasedQuantity}/>
     <Container>
       <ColuIzquierda>
         <PickingTituloDiv>
@@ -123,18 +148,61 @@ export default ({
             </DescriProdu>
           </ParteDerDiv>
         </DivInfoProdu>
-
         <DivGralPrecio>
           <DivPrecio>
-          <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
+            <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
             <Precio>{item.purchasedPrice}</Precio>
           </DivPrecio>
-          <PesoDiv>
-            <Peso>
-              <H1Peso>{item.purchasedQuantity} kgs</H1Peso>
+          { item.isWeighable ?
+           <PesoDiv>
+             <Peso>
+              <H1Peso>{item.purchasedQuantity}kgs</H1Peso>
             </Peso>
-          </PesoDiv>
+          </PesoDiv> : null}
         </DivGralPrecio>
+        {item.isWeighable === false?
+        <DivCantidadStock>
+          <DivCantidadProdu>
+            <H1CantidadDeProdu>x {purchasedQuantity}</H1CantidadDeProdu>
+          </DivCantidadProdu>
+          <ContStock>
+            Stock
+            <StockCien>+100</StockCien>
+          </ContStock>
+        </DivCantidadStock>:null}
+
+        { item.isWeighable && acum !== 0 ?
+         item.purchasedQuantity < acum ?
+         <DivGralBalanza color = {true}>
+           <ColuPesoTotal>
+           <TotalTitulo>TOTAL</TotalTitulo>  
+           <ImporteDiv>
+             <IconoCuentaDiv>
+               <IconoCuentaImg src={IconoTotals}/>
+             </IconoCuentaDiv>
+             <H1Importe color = {true}> ${total}</H1Importe>
+           </ImporteDiv>
+           </ColuPesoTotal>
+           <PesoVerde color = {true}>
+               <H1PesoVerde color = {true}>{acum} kgs</H1PesoVerde>
+             </PesoVerde>
+         </DivGralBalanza>
+         :
+        <DivGralBalanza>
+          <ColuPesoTotal>
+          <TotalTitulo>TOTAL</TotalTitulo>  
+          <ImporteDiv>
+            <IconoCuentaDiv>
+              <IconoCuentaImg src={IconoTotals}/>
+            </IconoCuentaDiv>
+            <H1Importe>${total}</H1Importe>
+          </ImporteDiv>
+          </ColuPesoTotal>
+          <PesoVerde>
+              <H1PesoVerde>{acum} kgs</H1PesoVerde>
+            </PesoVerde>
+        </DivGralBalanza>:null} 
+
       </ColuIzquierda>
       <ColuDerecha>
         {value === '' ? (
@@ -166,10 +234,7 @@ export default ({
             {arr &&
               arr.map((element, idx) => {
                 return (
-                  <ProductosDiv
-                    selected={itemsSelected}
-                    div={element}
-                  >
+                  <ProductosDiv selected={itemsSelected} div={element}>
                     <DivIzqProducto>
                       <ImgProdu>
                         <ImagenProdu src={Carne} />
@@ -185,7 +250,18 @@ export default ({
                         </DivFilaBarritas>
                       </DescriProducto>
                     </DivIzqProducto>
-                    <Kilos>0 kgs</Kilos>
+                  {/*  { element.isWeighable ? */}
+                    <Kilos>1 kgs</Kilos>
+                    :{/* 
+                    <>
+                    <LineaFina />
+                    <CantidadSeleccionadaProdu>
+                      <CantidadSeleccionadaProduH1>
+                        x 1
+                      </CantidadSeleccionadaProduH1>
+                    </CantidadSeleccionadaProdu>
+                    </>
+                    } */}
                     {dentro && dentro.includes(idx) ? (
                       <TrashDiv color={true}>
                         <TrashImagen
@@ -193,16 +269,24 @@ export default ({
                           onClick={() => {
                             BotonBasura(idx);
                             handleClick(element);
+                            restar(1)
+                            valorResta(50)
+
                           }}
                         />
                       </TrashDiv>
                     ) : (
                       <TrashDiv color={false}>
-                        <TrashImagen src={Like} onClick={() =>{ 
-                          BotonOK(idx);
-                          handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
-                        }
-                          } />
+                        <TrashImagen
+                          src={Like}
+                          onClick={() => {
+                        /*     element.isWeighable?  */
+                            BotonOK(idx);
+                            handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
+                            sumar(1);
+                            valorTotal(50)
+                          }}
+                        />
                       </TrashDiv>
                     )}
                     <LineaDeColor />
@@ -216,9 +300,10 @@ export default ({
           <BotonTeclado /* onClick={() => {setShowInput(true);}} */>
             <Teclado src={TecladoIcono} />
           </BotonTeclado>
-          <Siguiente onClick={goToPickSubstitue}>SIGUIENTE</Siguiente>
+          <Siguiente /* onClick={goToPickSubstitue} */ onClick={()=>Activar(8)}>SIGUIENTE</Siguiente>
         </Botones>
       </ColuDerecha>
     </Container>
+    </>
   );
 };

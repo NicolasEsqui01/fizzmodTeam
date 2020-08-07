@@ -347,7 +347,7 @@ export const MarcaH1 = styled.h1`
   margin-bottom:15px;
   font-size: 15px;
   height: 2px;
-  width:50%;
+  width:100%;
 }
 
 `;
@@ -497,7 +497,7 @@ export const CuadritoUno = styled.div`
   box-sizing: border-box;
   height: 55px;
   width: 167px;
-  border: 1px solid #939598;
+  ${ props=> props.color ? 'border: 1px solid #FF4343;': 'border: 1px solid #939598;'}
   border-radius: 3px;
   background-color: #FFFFFF;
 `;
@@ -575,7 +575,7 @@ export const QtyPesables = styled.div`
   width: 25px;
   color: white;
   text-align:center;
-  background-color: #0368FF;
+  ${props => props.color? 'background-color: #FF4343;':'background-color: #0368FF;'}
   border-radius: 50px;
   padding: 2px;
   font-family: Roboto;

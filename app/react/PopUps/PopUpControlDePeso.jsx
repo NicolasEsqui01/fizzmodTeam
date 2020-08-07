@@ -10,29 +10,55 @@ import {
   VolverAPesar,
 } from './style';
 
-export default ({ pickeado, onClickClose }) => {
-  return (
-    <DIV8>
+export default ({ pickeado, onClickClose, acum, principal, active }) => {
+let numero = acum - principal
+   return(
+    acum > principal ? (
+    <DIV8 active={active} >
       <Color></Color>
       <Advertencia>
         <DivCC>
           <PPPP>Superaste el umbral de Peso</PPPP>
-          <Peso>5 kg</Peso>
+          <Peso>{numero} kg</Peso>
         </DivCC>
         <DivCC>
+          <VolverAPesar onClick={() => onClickClose()}>
+            Volver a pesar
+          </VolverAPesar>
           <Siguiente
-            onClick={() => {
+            /* onClick={() => {
               pickeado(session[indice].id, session[indice].purchasedQuantity);
-            }}
+            }} */
           >
             {' '}
             CONTINUAR
           </Siguiente>{' '}
-          <VolverAPesar onClick={() => onClickClose}>
-            Volver a pesar
-          </VolverAPesar>
         </DivCC>
       </Advertencia>
-    </DIV8>
-  );
+    </DIV8>) :
+    acum === principal?(
+     <DIV8>
+     <Color></Color>
+     <Advertencia>
+       <DivCC>
+         <PPPP>Te faltan</PPPP>
+         <Peso>{numero} kg</Peso>
+         <PPPP>para llegar al peso indicado</PPPP>
+       </DivCC>
+       <DivCC>
+         <VolverAPesar onClick={() => onClickClose()}>
+           Volver a pesar
+         </VolverAPesar>
+         <Siguiente
+           /* onClick={() => {
+             pickeado(session[indice].id, session[indice].purchasedQuantity);
+           }} */
+         >
+           {' '}
+           CONTINUAR
+         </Siguiente>{' '}
+       </DivCC>
+     </Advertencia>
+   </DIV8>):null)
+ 
 };

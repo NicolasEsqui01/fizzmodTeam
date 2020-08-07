@@ -447,7 +447,7 @@ ${props => props.value !== ''? `@media ${device.tablet} {
 export const Botones = styled.div`
     display: flex;
     width: 100%;
-    margin-top:15%;
+    margin-top:5%;
     flex-direction: row;
     justify-content: center;   
     @media ${device.mobile} {
@@ -841,7 +841,6 @@ export const LineaFina = styled.div`
   height: 70%;
   width: 2px;
   flex-direction: column;
-  margin-left: 25%;
   background-color: #E8EAF6;
   @media ${device.tablet} {
     margin-left: 5%;
@@ -864,5 +863,77 @@ export const CantidadSeleccionadaProduH1 = styled.h1`
   line-height: 24px;
   @media ${device.tablet} {
     font-size: 16px;
+  }
+`;
+
+//////////////////// TOTALES CALCULADOS DE BALANZA ///////////////////////
+export const DivGralBalanza = styled.div`
+display: flex;
+width: 100%;
+margin-top: 6%;
+${props => props.color? 'border-top: 6px solid #FF4343;' : 'border-top: 6px solid #1DB779;'}               // cambiar a color rojo: #FF4343
+padding-top: 5%;
+padding-left: 7%;
+padding-right: 7%;
+padding-bottom: 5%;
+justify-content: space-between;
+flex-direction:row;
+background-color: rgba(244,245,251,0.5);
+`;
+export const ColuPesoTotal = styled.div`
+display: flex;
+flex-direction: column;
+width: 65%;
+//margin-top: 5%;
+`;
+export const TotalTitulo = styled.div`
+color: #273947;
+  //font-family: Roboto;
+  font-size: 28px;
+`;
+export const ImporteDiv = styled.div`
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-top: 2%;
+`;
+export const IconoCuentaDiv = styled.div`
+align-items: center;
+`;
+export const IconoCuentaImg = styled.img`
+height: 40px;
+width; 40px;
+`;
+export const H1Importe = styled.div`
+  ${props => props.color? 'color:#FF4343':'color:#1DB779;'}
+  //font-family: Roboto;
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 4%;
+`;
+export const PesoVerde = styled.div`
+display: flex;
+height: 60px;
+width: 110px;
+//margin-left: 22%;
+margin-top: 2%;
+align-items: center;
+justify-content: center;
+text-align: center;
+${props => props.color?'border: 1px solid #FF4343;':'border: 1px solid #1DB779;'}                 
+@media ${device.tablet} {
+    height: 40px;
+}
+`;
+export const H1PesoVerde = styled.h1`
+${props => props.color? 'color:#FF4343;':'color:#1DB779;'}
+  //font-family: Roboto;
+  font-size: 23px;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 19px;
+  text-align: center;
+  @media ${device.tablet} {
+    font-size: 18   px;
   }
 `;

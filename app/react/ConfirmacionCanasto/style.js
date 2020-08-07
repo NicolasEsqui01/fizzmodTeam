@@ -8,6 +8,7 @@ export const Container = styled.div`
   @media ${device.mobile} {
     display: flex;
     flex-direction: column;
+    height: 93vh;
   }
 `;
 
@@ -24,6 +25,7 @@ export const Derecho = styled.div`
   justify-content:space-between;
   @media ${device.mobile} {
     width: 100%;
+    height: 550px;
   }
 `;
 
@@ -152,7 +154,7 @@ export const IconoTeclado = styled.img`
   height: 58px;
   width: 58px;
   border-radius: 50px;
-
+  cursor:pointer;
   padding: 17px;
   background-color: #6b8a96;
 `;
@@ -218,7 +220,7 @@ export const Izquierdo = styled.div`
 
   @media ${device.mobile} {
     width: 100%;
-    height: 80%;
+    height: 50%;
   }
 `;
 

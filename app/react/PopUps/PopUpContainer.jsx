@@ -110,7 +110,6 @@ const PopUpContainer = ({
         location={location}
         idItems = { idItems}
       />
-      <PopUpControlDePeso onCloseClick={handleCloseClick} />
     </>
   );
 };

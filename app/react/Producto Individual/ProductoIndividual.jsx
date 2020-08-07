@@ -122,7 +122,7 @@ export default ({
   despickear
 }) => {
   let idx = 0;
-  console.log("session", session)
+  
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -238,25 +238,32 @@ export default ({
                               :
                               (<>
                                 <ContImagenes>
-                                  <CuadritoUno>
+                                {pesoTotal > session[indice].purchasedQuantity ? (
+                                  <CuadritoUno color ={true}>
                                     {wheights.length > 0 ? (
-                                      <QtyPesables onClick={() => Activar(3)}>
+                                      <QtyPesables onClick={() => Activar(3) } color ={true}>
                                         {wheights.length}
                                       </QtyPesables>
                                     ) : null}
                                     <ImgBalanzasUno src={ImagenBalanza} />
-                                    {pesoTotal > session[indice].purchasedQuantity ? (
                                       <PesoCuadroWarining>
                                         {pesoTotal}
                           kgs.
                                       </PesoCuadroWarining>
-                                    ) : (
-                                        <PesoCuadro>
-                                          {pesoTotal}
-                          kgs.
-                                        </PesoCuadro>
-                                      )}
                                   </CuadritoUno>
+                                ): <CuadritoUno>
+                                {wheights.length > 0 ? (
+                                  <QtyPesables onClick={() => Activar(3)}>
+                                    {wheights.length}
+                                  </QtyPesables>
+                                ) : null}
+                                <ImgBalanzasUno src={ImagenBalanza} />
+                      
+                                    <PesoCuadro>
+                                      {pesoTotal}
+                         kgs.
+                                    </PesoCuadro>
+                              </CuadritoUno>}
                                   <Form
                                     onSubmit={() => {
                                       handleSubmit(

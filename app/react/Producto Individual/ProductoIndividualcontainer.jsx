@@ -36,6 +36,9 @@ const ProductoIndividualcontainer = ({
   const inputRef = useRef(null);
   const date = JSON.parse(localStorage.getItem('canasto'))
 
+ 
+  console.log(items, 'items')
+
   useEffect(() => {
     if (auth !== 'null') {
       getSessionPicking(idSession);
