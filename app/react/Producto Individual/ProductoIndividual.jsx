@@ -76,7 +76,10 @@ import {
   Atencion,
   DivStatus,
   StatusP,
-  DivImgTilde
+  DivImgTilde,
+  NoSus,
+  CantiSus,
+  NumeroAzul
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -98,7 +101,6 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
 import PopUpOmitir from '../PopUps/PopUpOmitir';
-import TecladoContainer from '../Tecleado/TecladoContainer';
 import Tilde from '../../images/check_bold.svg';
 
 export default ({
@@ -138,13 +140,26 @@ export default ({
                 <Img src={Sustituto} />
               </Button>
             </div>
+            { sustituyendo ?
+            <NoSus>No Sustituible</NoSus>
+            :
+            <>
             <div>
               <Marca> = Marca, </Marca>
             </div>
             <div>
               <Gramaje> = Gramaje </Gramaje>
             </div>
+            </>
+           }
           </Cuadro>
+          {sustituyendo ? 
+          <CantiSus>
+          <NumeroAzul>1</NumeroAzul>
+          /
+          <NumeroAzul>2</NumeroAzul>
+          </CantiSus>
+          :null}
         </Header>
 
         {session.length === 0 ? (
@@ -244,25 +259,32 @@ export default ({
                               :
                               (<>
                                 <ContImagenes>
-                                  <CuadritoUno>
+                                {pesoTotal > session[indice].purchasedQuantity ? (
+                                  <CuadritoUno color ={true}>
                                     {wheights.length > 0 ? (
-                                      <QtyPesables onClick={() => Activar(3)}>
+                                      <QtyPesables onClick={() => Activar(3) } color ={true}>
                                         {wheights.length}
                                       </QtyPesables>
                                     ) : null}
                                     <ImgBalanzasUno src={ImagenBalanza} />
-                                    {pesoTotal > session[indice].purchasedQuantity ? (
                                       <PesoCuadroWarining>
                                         {pesoTotal}
                           kgs.
                                       </PesoCuadroWarining>
-                                    ) : (
-                                        <PesoCuadro>
-                                          {pesoTotal}
-                          kgs.
-                                        </PesoCuadro>
-                                      )}
                                   </CuadritoUno>
+                                ): <CuadritoUno>
+                                {wheights.length > 0 ? (
+                                  <QtyPesables onClick={() => Activar(3)}>
+                                    {wheights.length}
+                                  </QtyPesables>
+                                ) : null}
+                                <ImgBalanzasUno src={ImagenBalanza} />
+                      
+                                    <PesoCuadro>
+                                      {pesoTotal}
+                         kgs.
+                                    </PesoCuadro>
+                              </CuadritoUno>}
                                   <Form
                                     onSubmit={() => {
                                       handleSubmit(
