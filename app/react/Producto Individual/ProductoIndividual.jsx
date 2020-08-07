@@ -76,6 +76,10 @@ import {
   Atencion,
   DivStatus,
   StatusP,
+  DivImgTilde,
+  NoSus,
+  CantiSus,
+  NumeroAzul
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -97,7 +101,7 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
 import PopUpOmitir from '../PopUps/PopUpOmitir';
-import TecladoContainer from '../Tecleado/TecladoContainer';
+import Tilde from '../../images/check_bold.svg';
 
 export default ({
   session,
@@ -126,6 +130,7 @@ export default ({
 }) => {
   console.log("session",session)
   let idx = 0;
+  let cuadrados = localStorage.getItem('cuadradoChico') && localStorage.getItem('cuadradoChico').split(',').map(Element => Element === 'true' ? true : false)
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -137,13 +142,26 @@ export default ({
                 <Img src={Sustituto} />
               </Button>
             </div>
+            { sustituyendo ?
+            <NoSus>No Sustituible</NoSus>
+            :
+            <>
             <div>
               <Marca> = Marca, </Marca>
             </div>
             <div>
               <Gramaje> = Gramaje </Gramaje>
             </div>
+            </>
+           }
           </Cuadro>
+          {sustituyendo ? 
+          <CantiSus>
+          <NumeroAzul>1</NumeroAzul>
+          /
+          <NumeroAzul>2</NumeroAzul>
+          </CantiSus>
+          :null}
         </Header>
 
         {session.length === 0 ? (
@@ -170,13 +188,15 @@ export default ({
                             <ColuIconos>
                               <Sup>
                                 <ContainerGrillCuadros>
-                                  {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                                  {cuadrados.map((Element, indice) => {
                                     return (
                                       <CuadroGrill
                                         key={indice}
                                         numeros={indice}
                                         datos={date.value}
-                                      />
+                                      >
+                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                      </CuadroGrill>
                                     )
                                   })}
                                 </ContainerGrillCuadros>
@@ -241,25 +261,32 @@ export default ({
                               :
                               (<>
                                 <ContImagenes>
-                                  <CuadritoUno>
+                                {pesoTotal > session[indice].purchasedQuantity ? (
+                                  <CuadritoUno color ={true}>
                                     {wheights.length > 0 ? (
-                                      <QtyPesables onClick={() => Activar(3)}>
+                                      <QtyPesables onClick={() => Activar(3) } color ={true}>
                                         {wheights.length}
                                       </QtyPesables>
                                     ) : null}
                                     <ImgBalanzasUno src={ImagenBalanza} />
-                                    {pesoTotal > session[indice].purchasedQuantity ? (
                                       <PesoCuadroWarining>
                                         {pesoTotal}
                           kgs.
                                       </PesoCuadroWarining>
-                                    ) : (
-                                        <PesoCuadro>
-                                          {pesoTotal}
-                          kgs.
-                                        </PesoCuadro>
-                                      )}
                                   </CuadritoUno>
+                                ): <CuadritoUno>
+                                {wheights.length > 0 ? (
+                                  <QtyPesables onClick={() => Activar(3)}>
+                                    {wheights.length}
+                                  </QtyPesables>
+                                ) : null}
+                                <ImgBalanzasUno src={ImagenBalanza} />
+                      
+                                    <PesoCuadro>
+                                      {pesoTotal}
+                         kgs.
+                                    </PesoCuadro>
+                              </CuadritoUno>}
                                   <Form
                                     onSubmit={() => {
                                       handleSubmit(
@@ -360,13 +387,15 @@ export default ({
                             <ColuIconos>
                               <Sup>
                                 <ContainerGrillCuadros>
-                                  {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                                  {cuadrados.map((Element, indice) => {
                                     return (
                                       <CuadroGrill
                                         key={indice}
                                         numeros={indice}
                                         datos={date.value}
-                                      />
+                                      >
+                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                      </CuadroGrill>
                                     )
                                   })}
                                 </ContainerGrillCuadros>
@@ -532,13 +561,17 @@ export default ({
                       <ColuIconos>
                         <Sup>
                           <ContainerGrillCuadros>
-                            {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                            {cuadrados.map((Element, indice) => {
                               return (
+                                <>
                                 <CuadroGrill
                                   key={indice}
                                   numeros={indice}
                                   datos={date.value}
-                                />
+                                >
+                                { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                </CuadroGrill>
+                                </>
                               )
                             })}
                           </ContainerGrillCuadros>
@@ -701,13 +734,17 @@ export default ({
                         <ColuIconos>
                           <Sup>
                             <ContainerGrillCuadros>
-                              {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                              {cuadrados.map((Element, indice) => {
                                 return (
+                                  <>
                                   <CuadroGrill
                                     key={indice}
                                     numeros={indice}
                                     datos={date.value}
-                                  />
+                                  >
+                                  {Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
+                                  </CuadroGrill>
+                                  </>
                                 )
                               })}
                             </ContainerGrillCuadros>

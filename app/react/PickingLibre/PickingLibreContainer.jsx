@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import history from '../../utils/history';
-import PickingLibre from "./PickingLibre";
-import { itemParaSustituir } from '../../action/picking';
-import { element } from 'prop-types';
+import PickingLibre from './PickingLibre';
+import {Activacion, Desactivacion } from '../../action/popup';
+import {itemParaSustituir} from '../../action/picking'
+const PickingLibreContainer = ({ items, IdItem, Activar, active, handleCloseClick }) => {
+  console.log(items)
 
-const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
-
-  const date = JSON.parse(localStorage.getItem('canasto'))
-  const idSession = localStorage.getItem('sessionid')
-  const [value, setValue] = useState('')
-  const [itemsSelected, setItemsSelected] = useState([])
-  const [idItems, setIdItems] = useState([])
   const [dentro, setDentro] = useState([]);
+  const [value, setValue] = useState('');
+  const date = JSON.parse(localStorage.getItem('canasto'));
+  const idSession = localStorage.getItem('sessionid');
+  const [itemsSelected, setItemsSelected] = useState([]);
+  const [total , setTotal] = useState(0)
+  const [acum, setAcum] = useState(0)
+  /*  const [showInput, setShowInput] = useState(false); */
 
-  let Items = items.filter(element => element.id === IdItem)
-  let item = Items[0]
+if(items === undefined) return history.push(`/productoindividual/${idSession}/1`);
+let Items = items.filter(element => element.id === IdItem)
+let item = Items[0]
 
   const handleChange = (event) => {
     let info = event.target.value;
@@ -31,8 +34,30 @@ const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
     setDentro(Filtrado);
   };
 
+  
+  const sumar = (n)=>{
+   let Num = acum + n
+    setAcum(Num)
+  };
+  
+  const restar = (n)=>{
+    let Num = acum - n
+     setAcum(Num)
+   };
+
+   const valorTotal = (n) =>{
+     let Num = total + n
+     setTotal(Num)
+   }
+
+   const valorResta = (n) =>{
+     let Num = total - n
+     setTotal(Num)
+ 
+  }
+ 
   useEffect(() => {
-    console.log(dentro);
+     
   }, [dentro]);
 
   const handleClick = (itemSelect) => {
@@ -51,34 +76,46 @@ const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
     localStorage.setItem('withSubstitute', true)
     return history.push(`/sustitutos/${idSession}/1`)
   }
-
-    return (
-        <PickingLibre 
-         value = {value}
-         handleChange={handleChange}
-         BotonOK={BotonOK}
-         dentro={dentro}
-         BotonBasura={BotonBasura}
-         idItemsSelected={idItems}
-         handleChange = {handleChange}
-         handleClick={handleClick}
-         goToPickSubstitue={goToPickSubstitue}
-         itemsSelected={itemsSelected}
-         item={item}
-        />
-    )
-} 
+  return (
+    
+    <PickingLibre
+      Activar={Activar}
+      total = {total}
+      valorTotal = {valorTotal}
+      valorResta = {valorResta}
+      acum ={acum}
+      restar = {restar}
+      sumar={sumar}
+      value={value}
+      handleChange={handleChange}
+      BotonOK={BotonOK}
+      dentro={dentro}
+      BotonBasura={BotonBasura}
+      itemsSelected={itemsSelected}
+      handleChange={handleChange}
+      handleClick={handleClick}
+      goToPickSubstitue={goToPickSubstitue}
+      item = {item}
+      active ={active}
+      onCloseClick={handleCloseClick}
+    />
+  );
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
     IdItem : ownProps.match.params.id,
     items: state.sessionReducer.sessionPicking.items, // los items de la session
+    active: state.popupReducer.numero,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return{
-      itemsSustituir: (obj) => dispatch(itemParaSustituir(obj))
+
+  return{
+    Activar: (n) => dispatch(Activacion(n)),
+    handleCloseClick: () => dispatch(Desactivacion()),
+    itemsSustituir: (obj) => dispatch(itemParaSustituir(obj))
   }
 };
 

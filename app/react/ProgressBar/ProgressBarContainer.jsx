@@ -24,10 +24,10 @@ const ProgressBarContainer = ({idSession, location, idItems})=>{
 
     return(
     <>
-    {location === 'productoindividual'?
-    <ProgressBar idSession={idSession} Done={largo} Total ={total}/>
-    :
+    {location === '/confirmacion'?
     <ProgressBarFinal idSession={idSession}  Done={largo} Total ={total}/>
+    :
+    <ProgressBar idSession={idSession} Done={largo} Total ={total}/>
     }
     </>
     )

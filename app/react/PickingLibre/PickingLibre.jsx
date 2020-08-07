@@ -63,6 +63,15 @@ import {
   LineaFina,
   CantidadSeleccionadaProdu,
   CantidadSeleccionadaProduH1,
+  DivGralBalanza,
+  ColuPesoTotal,
+  TotalTitulo,
+  ImporteDiv,
+  H1Importe,
+  IconoCuentaDiv,
+  IconoCuentaImg,
+  PesoVerde,
+  H1PesoVerde,
 } from './style';
 import IconoHeaderImg from '../../images/icono_Header.png';
 import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
@@ -71,57 +80,36 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import Carne from '../../images/carne.png';
 import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
+import Tilde from '../../images/check_bold.svg';
 import Like from '../../images/like.svg';
+import IconoTotals from "../../images/totals.svg";
+import PopUpControlDePeso  from '../PopUps/PopUpControlDePeso'
 
-export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSelected, itemsSelected, item, BotonOK, dentro}) => {
-  const arr = [{
-            "id": "A488FDDC597647DB900819C605AE98DB",
-            "name": "Galletitas Rellenas Mana Limon Arcor 145g",
-            "refId": "0779089500486",
-            "ean": "123456",
-            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200378-100-100/mana_limon.jpg?v=636613011916900000",
-            "zoneName": "congelados",
-            "purchasedPrice": 50.99,
-            "isWeighable": true,
-            "isFresh": false,
-            "isFractionable": true,
-            "isFrozen": false,
-            "customerNote": null,
-            "groupIndex": 0,
-            "pickedQuantity":0
-            },
-            {
-            "ean": "2345897056432",
-            "groupIndex": 1,
-            "id": "1A3A124792624C4A952AA8673C85C4B0",
-            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200411-100-100/batidora_artisan.png?v=636791814171370000",
-            "isFractionable": true,
-            "isFresh": false,
-            "isFrozen": false,
-            "isWeighable": true,
-            "name": "Batidora Artisan KSM15WH",
-            "purchasedPrice": 32,
-            "refId": "KSM15WH",
-            "zoneName": "carnes",
-            "pickedQuantity":0
-            },
-            {
-            "ean": "7797470003633",
-            "groupIndex": 1,
-            "id": "861079FE7F1448DD9CF787D865BC154C",
-            "imageUrl": "https://fizzmodarg.vteximg.com.br/arquivos/ids/200410-100-100/image-1cfdaa5c355f4f30a59fe85858e1291e.jpg?v=636771889078630000",
-            "isFractionable": true,
-            "isFresh": false,
-            "isFrozen": false,
-            "isWeighable": false,
-            "name": "Tomate Triturado Marolio 980 Gr",
-            "purchasedPrice": 83,
-            "refId": "0779747000363",
-            "zoneName": "frescos",
-            "pickedQuantity":0
-            }
-          ]
+/* isWeighable */
+export default ({
+  value,
+  handleChange,
+  handleClick,
+  goToPickSubstitue,
+  idItemsSelected,
+  itemsSelected,
+  item,
+  acum,
+  sumar,
+  restar,
+  total,
+  valorTotal,
+  valorResta,
+  Activar,
+  active, 
+  onCloseClick
+}) => {
+  const arr = [1, 2, 3, 4, 5];
+ 
+ 
   return (
+    <>
+    <PopUpControlDePeso acum={acum} active={active} onClickClose={onCloseClick} principal={item.purchasedQuantity}/>
     <Container>
       <ColuIzquierda>
         <PickingTituloDiv>
@@ -135,18 +123,19 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
           <ParteIzqDiv>
             <Sup>
               <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
+                {cuadrados.map((Element, indice) => {
+                  return (
+                    <CuadroGrill
+                      key={Element}
+                      numeros={indice}
+                      datos={date.value}
+                    >
+                      {Element === true ? <DivImgTilde src={Tilde} /> : null}
+                    </CuadroGrill>
+                  );
+                })}
               </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill className="bkgColor" />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <ContainerGrillCuadros>
-                <CuadroGrill />
-                <CuadroGrill />
-              </ContainerGrillCuadros>
-              <NumCuadrados>3</NumCuadrados>
+              <NumCuadrados>{date.value + 1}</NumCuadrados>
             </Sup>
           </ParteIzqDiv>
           <ParteDerDiv>
@@ -158,18 +147,61 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
             </DescriProdu>
           </ParteDerDiv>
         </DivInfoProdu>
-
         <DivGralPrecio>
           <DivPrecio>
-          <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
+            <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
             <Precio>{item.purchasedPrice}</Precio>
           </DivPrecio>
-          <PesoDiv>
-            <Peso>
-              <H1Peso>{item.purchasedQuantity} kgs</H1Peso>
+          { item.isWeighable ?
+           <PesoDiv>
+             <Peso>
+              <H1Peso>{item.purchasedQuantity}kgs</H1Peso>
             </Peso>
-          </PesoDiv>
+          </PesoDiv> : null}
         </DivGralPrecio>
+        {item.isWeighable === false?
+        <DivCantidadStock>
+          <DivCantidadProdu>
+            <H1CantidadDeProdu>x {purchasedQuantity}</H1CantidadDeProdu>
+          </DivCantidadProdu>
+          <ContStock>
+            Stock
+            <StockCien>+100</StockCien>
+          </ContStock>
+        </DivCantidadStock>:null}
+
+        { item.isWeighable && acum !== 0 ?
+         item.purchasedQuantity < acum ?
+         <DivGralBalanza color = {true}>
+           <ColuPesoTotal>
+           <TotalTitulo>TOTAL</TotalTitulo>  
+           <ImporteDiv>
+             <IconoCuentaDiv>
+               <IconoCuentaImg src={IconoTotals}/>
+             </IconoCuentaDiv>
+             <H1Importe color = {true}> ${total}</H1Importe>
+           </ImporteDiv>
+           </ColuPesoTotal>
+           <PesoVerde color = {true}>
+               <H1PesoVerde color = {true}>{acum} kgs</H1PesoVerde>
+             </PesoVerde>
+         </DivGralBalanza>
+         :
+        <DivGralBalanza>
+          <ColuPesoTotal>
+          <TotalTitulo>TOTAL</TotalTitulo>  
+          <ImporteDiv>
+            <IconoCuentaDiv>
+              <IconoCuentaImg src={IconoTotals}/>
+            </IconoCuentaDiv>
+            <H1Importe>${total}</H1Importe>
+          </ImporteDiv>
+          </ColuPesoTotal>
+          <PesoVerde>
+              <H1PesoVerde>{acum} kgs</H1PesoVerde>
+            </PesoVerde>
+        </DivGralBalanza>:null} 
+
       </ColuIzquierda>
       <ColuDerecha>
         {value === '' ? (
@@ -201,28 +233,31 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
             {arr &&
               arr.map((element, idx) => {
                 return (
-                  <ProductosDiv 
-                  onClick={() => {
-                    handleClick(element) // CUANDO SEA REAL CAMBIARLO POR element.id
-                    }
-                  }
-                  selected={idItemsSelected}
-                  div={element.id}>
+                  <ProductosDiv selected={itemsSelected} div={element}>
                     <DivIzqProducto>
                       <ImgProdu>
                         <ImagenProdu src={element.imageUrl} />
                       </ImgProdu>
                       <DescriProducto>
-                        <H1Descri>
-                          {element.name}
-                        </H1Descri>
+                        <H1Descri>{element.name}</H1Descri>
                         <DivFilaBarritas>
                           <ImagenBarritasProdu src={Barritas} />
                           <H1codBarras>{element.ean}</H1codBarras>
                         </DivFilaBarritas>
                       </DescriProducto>
                     </DivIzqProducto>
-                    <Kilos>0 kgs</Kilos>
+                  {/*  { element.isWeighable ? */}
+                    <Kilos>1 kgs</Kilos>
+                    {/* 
+                    <>
+                    <LineaFina />
+                    <CantidadSeleccionadaProdu>
+                      <CantidadSeleccionadaProduH1>
+                        x 1
+                      </CantidadSeleccionadaProduH1>
+                    </CantidadSeleccionadaProdu>
+                    </>
+                    } */}
                     {dentro && dentro.includes(idx) ? (
                       <TrashDiv color={true}>
                         <TrashImagen
@@ -230,16 +265,24 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
                           onClick={() => {
                             BotonBasura(idx);
                             handleClick(element);
+                            restar(1)
+                            valorResta(50)
+
                           }}
                         />
                       </TrashDiv>
                     ) : (
                       <TrashDiv color={false}>
-                        <TrashImagen src={Like} onClick={() =>{ 
-                          BotonOK(idx);
-                          handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
-                        }
-                          } />
+                        <TrashImagen
+                          src={Like}
+                          onClick={() => {
+                        /*     element.isWeighable?  */
+                            BotonOK(idx);
+                            handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
+                            sumar(1);
+                            valorTotal(50)
+                          }}
+                        />
                       </TrashDiv>
                     )}
                     <LineaDeColor />
@@ -253,9 +296,10 @@ export default ({ value, handleChange, handleClick, goToPickSubstitue, idItemsSe
           <BotonTeclado /* onClick={() => {setShowInput(true);}} */>
             <Teclado src={TecladoIcono} />
           </BotonTeclado>
-          <Siguiente onClick={goToPickSubstitue}>SIGUIENTE</Siguiente>
+          <Siguiente /* onClick={goToPickSubstitue} */ onClick={()=>Activar(8)}>SIGUIENTE</Siguiente>
         </Botones>
       </ColuDerecha>
     </Container>
+    </>
   );
 };

@@ -794,7 +794,7 @@ export const DIV8 = styled.div`
   width: 100%;
   display: flex;
   position: fixed;
-  ${(props) => (props.active === 8 ? null : `display:none`)};
+  ${(props) => props.active === 8 ? null : `display:none`};
 `;
 
 export const Advertencia = styled.div`
@@ -833,7 +833,7 @@ export const Peso = styled.div`
   justify-content: center;
   align-items: center;
 `;
-/* ${props => props.active === 8? null :`display:none`};  */
+
 
 export const Siguiente = styled.button`
   width: 40%;
@@ -847,7 +847,7 @@ export const Siguiente = styled.button`
   font-weight: bold;
   letter-spacing: 0;
   text-align: center;
-  margin-left: 5px;
+  margin-left: 15px;
   outline: none;
   cursor: pointer;
   @media ${device.mobile} {

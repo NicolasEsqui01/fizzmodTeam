@@ -151,6 +151,10 @@ export const DivLoading = styled.div`
   align-items:center;
   margin-left: 30pc;
   ${({ active }) => (active === 1 ? null : 'display:none')}
+  @media screen and (max-width: 1023px) {
+    margin-left:0px;
+    margin-top:25pc;
+  }
 `;
 
 export const Loadingg = styled.div`
