@@ -99,6 +99,7 @@ const PopUpContainer = ({
       <PopUpServiciosExtras active={active} onCloseClick={handleCloseClick} />
       <PopUpOpciones
         idSession={idSession}
+        idItems={idItems}
         active={active}
         Activar={handleBtnClick}
         onCloseClick={handleCloseClick}

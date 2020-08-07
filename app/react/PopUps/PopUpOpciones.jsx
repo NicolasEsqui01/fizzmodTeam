@@ -22,6 +22,7 @@ import {
 import X from '../../images/cross_light.svg';
 import Salir from '../../images/icn_logout.svg';
 import PickingLibre from '../../images/icn_picking-libre.svg';
+import PickingLibreRojo from '../../images/icn_picking-libreRojo.svg';
 import PrePicking from '../../images/icn_pre-pick.svg';
 import PrePick from '../../images/icn_pre-pick.svg';
 import Restart from '../../images/icn_restart.svg';
@@ -33,7 +34,15 @@ import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
 import InfoUser from '../../images/icn_picker-info.svg'
 
-export default ({active, onCloseClick, Activar ,handlePickingLibre , handleLogout, despickear, reiniciar, handleCanastos, location}) => { 
+export default ({ idItems, idSession, active, onCloseClick, Activar ,handlePickingLibre , handleLogout, despickear, reiniciar, handleCanastos}) => {
+ 
+
+let arrItems = idSession.items
+let Traido = arrItems? arrItems.filter(el => el.id == idItems) : null;
+let Sustitucion;
+arrItems? Traido.map((el)=> Sustitucion = el.substitutionCriteria): null;
+
+
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -45,6 +54,8 @@ export default ({active, onCloseClick, Activar ,handlePickingLibre , handleLogou
         </DivC>
         <DivM>
           <DivA>
+              
+            {Sustitucion !== "doNotSubstitute"? (
             <DivH>
               <ButtonM 
               onClick={()=>{
@@ -55,6 +66,16 @@ export default ({active, onCloseClick, Activar ,handlePickingLibre , handleLogou
                 <Significado>Picking Libre</Significado>
               </ButtonM>
             </DivH>
+              ): (
+                <DivH>
+                <ButtonM >
+                  <ImgO src={PickingLibreRojo} />
+                  <Significado>Picking Libre</Significado>
+                </ButtonM>
+              </DivH>
+              
+              )}
+
             <DivH>
               <ButtonM>
                 <ImgO src={PrePick} />

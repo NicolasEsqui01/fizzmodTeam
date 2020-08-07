@@ -17,7 +17,8 @@ import GlobalStyle from '../../global-styles';
 import PopUpContainer from '../PopUps/PopUpContainer';
 import Navbar from '../Navbar/NavbarContainer';
 import BuscadorContainer from "../Buscador/Loadable";
-import PickingLibreContainer from "../PickingLibre/Loadable";
+import PickingLibreContainer from '../PickingLibre/PickingLibreContainer'
+
 
 
 

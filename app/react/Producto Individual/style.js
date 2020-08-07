@@ -52,9 +52,10 @@ margin-left: auto;
 margin-right: auto;
 `;
 
+
 export const Marca = styled.h1`
 height: 21px;
-width: 69px;
+width: 95px;
 color: #273947;
 font-family: Roboto;
 font-size: 18px;
@@ -62,12 +63,16 @@ letter-spacing: 0;
   line-height: 21px;
   text-align: right;
   margin-right: 7px;
-  margin-left: 7px;
+ 
+  @media ${device.tablet} {
+    width: 50px;
+    font-size: 13px;
+  }
 `;
 
 export const Gramaje = styled.h1`
 height: 21px;
-  width: 82px;
+  width: 95px;
   color: #F13B70;
   font-family: Roboto;
   font-size: 18px;
@@ -162,7 +167,7 @@ export const DivFoto = styled.div`
   float: right;
   max-width: 450px;
   @media ${device.mobile} {
-  width: 60%;
+  width: 50%;
   max-width: 450px;
   }  
 `;
