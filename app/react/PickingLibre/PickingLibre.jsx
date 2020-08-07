@@ -63,6 +63,15 @@ import {
   LineaFina,
   CantidadSeleccionadaProdu,
   CantidadSeleccionadaProduH1,
+  DivGralBalanza,
+  ColuPesoTotal,
+  TotalTitulo,
+  ImporteDiv,
+  H1Importe,
+  IconoCuentaDiv,
+  IconoCuentaImg,
+  PesoVerde,
+  H1PesoVerde,
   DivImgTilde,
 } from './style';
 import IconoHeaderImg from '../../images/icono_Header.png';
@@ -74,18 +83,32 @@ import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
 import Tilde from '../../images/check_bold.svg';
 import Like from '../../images/like.svg';
+import IconoTotals from '../../images/totals.svg';
+import PopUpControlDePeso from '../PopUps/PopUpControlDePeso';
 
+/* isWeighable */
 export default ({
   value,
   handleChange,
   handleClick,
   goToPickSubstitue,
-  idItemsSelected,
+  itemsSelected,
   item,
   BotonOK,
   dentro,
   date,
   sustitutos,
+  acum,
+  sumar,
+  restar,
+  total,
+  valorTotal,
+  valorResta,
+  Activar,
+  active,
+  onCloseClick,
+  idItems,
+  BotonBasura
 }) => {
   const arr = [
     {
@@ -138,7 +161,6 @@ export default ({
       pickedQuantity: 0,
     },
   ];
-
   let cuadrados =
     localStorage.getItem('cuadradoChico') &&
     localStorage
@@ -146,180 +168,258 @@ export default ({
       .split(',')
       .map((Element) => (Element === 'true' ? true : false));
 
+  let items = item && item.filter((Element) => Element.id === idItems);
+
   return (
-    <Container>
-      <ColuIzquierda>
-        <PickingTituloDiv>
-          <PickingLogoDiv>
-            <PickingLogo src={IconoHeaderImg} />
-          </PickingLogoDiv>
-          <PickingTitulo>Picking Libre</PickingTitulo>
-        </PickingTituloDiv>
+    <>
+      <PopUpControlDePeso
+        acum={acum}
+        active={active}
+        onClickClose={onCloseClick}
+        principal={items[0].purchasedQuantity ? items[0].purchasedQuantity : 1}
+      />
+      <Container>
+        <ColuIzquierda>
+          <PickingTituloDiv>
+            <PickingLogoDiv>
+              <PickingLogo src={IconoHeaderImg} />
+            </PickingLogoDiv>
+            <PickingTitulo>Picking Libre</PickingTitulo>
+          </PickingTituloDiv>
 
-        <DivInfoProdu>
-          <ParteIzqDiv>
-            <Sup>
-              <ContainerGrillCuadros>
-                {cuadrados.map((Element, indice) => {
-                  return (
-                    <CuadroGrill
-                      key={Element}
-                      numeros={indice}
-                      datos={date.value}
-                    >
-                      {Element === true ? <DivImgTilde src={Tilde} /> : null}
-                    </CuadroGrill>
-                  );
-                })}
-              </ContainerGrillCuadros>
-              <NumCuadrados>{date.value + 1}</NumCuadrados>
-            </Sup>
-          </ParteIzqDiv>
-          <ParteDerDiv>
-            <ImagenProduDiv>
-              <ImagenProduImg src={item.imageUrl} />
-            </ImagenProduDiv>
-            <DescriProdu>
-              Nombre del producto largo en dos lineas lorem ipsum
-            </DescriProdu>
-          </ParteDerDiv>
-        </DivInfoProdu>
+          <DivInfoProdu>
+            <ParteIzqDiv>
+              <Sup>
+                <ContainerGrillCuadros>
+                  {cuadrados.map((Element, indice) => {
+                    return (
+                      <CuadroGrill
+                        key={Element}
+                        numeros={indice}
+                        datos={date.value}
+                      >
+                        {Element === true ? <DivImgTilde src={Tilde} /> : null}
+                      </CuadroGrill>
+                    );
+                  })}
+                </ContainerGrillCuadros>
+                <NumCuadrados>{date.value + 1}</NumCuadrados>
+              </Sup>
+            </ParteIzqDiv>
+            <ParteDerDiv>
+              <ImagenProduDiv>
+                <ImagenProduImg src={items[0].imageUrl} />
+              </ImagenProduDiv>
+              <DescriProdu>
+                Nombre del producto largo en dos lineas lorem ipsum
+              </DescriProdu>
+            </ParteDerDiv>
+          </DivInfoProdu>
+          <DivGralPrecio>
+            <DivPrecio>
+              <PrecioTachado>{items[0].purchasedPrice}</PrecioTachado>
+              <Precio>{items[0].purchasedPrice}</Precio>
+            </DivPrecio>
+            {items[0].isWeighable ? (
+              <PesoDiv>
+                <Peso>
+                  <H1Peso>{items[0].purchasedQuantity}kgs</H1Peso>
+                </Peso>
+              </PesoDiv>
+            ) : null}
+          </DivGralPrecio>
+          {items[0].isWeighable === false ? (
+            <DivCantidadStock>
+              <DivCantidadProdu>
+                <H1CantidadDeProdu>
+                  x {items[0].purchasedQuantity}
+                </H1CantidadDeProdu>
+              </DivCantidadProdu>
+              <ContStock>
+                Stock
+                <StockCien>+100</StockCien>
+              </ContStock>
+            </DivCantidadStock>
+          ) : null}
 
-        <DivGralPrecio>
-          <DivPrecio>
-            <PrecioTachado>{item.purchasedPrice}</PrecioTachado>
-            <Precio>{item.purchasedPrice}</Precio>
-          </DivPrecio>
-          <PesoDiv>
-            <Peso>
-              <H1Peso>{item.purchasedQuantity} kgs</H1Peso>
-            </Peso>
-          </PesoDiv>
-        </DivGralPrecio>
-      </ColuIzquierda>
-      <ColuDerecha>
-        {value === '' ? (
-          <>
-            {sustitutos.length ? null : (
-              <>
-                <LogoDerechoDiv>
-                  <ImagenGrandeDiv>
-                    <ImagenGrande src={ImgPickingLibre} />
-                  </ImagenGrandeDiv>
-                  <H1PickingLibre>Picking Libre</H1PickingLibre>
-                  <H1Comenzar>Comienza a pickear los productos</H1Comenzar>
-                </LogoDerechoDiv>
-              </>
-            )}
-          </>
-        ) : null}
-        <DivBuscador value={value}>
-          <DivImagenBuscador type="submit">
-            <ImagenLupa value={value} src={Lupita} />
-          </DivImagenBuscador>
-          <FormBusqueda>
-            <InputBusqueda
-              onChange={handleChange}
-              value={value}
-              type="text"
-              placeholder="Buscar productos "
-            ></InputBusqueda>
-          </FormBusqueda>
-        </DivBuscador>
-        {value !== '' ? (
-          <DivScroll>
-            {arr &&
-              arr.map((element, idx) => {
-                return (
-                  <ProductosDiv
-                    onClick={() => {
-                      handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
-                    }}
-                    selected={idItemsSelected}
-                    div={element.id}
-                  >
-                    <DivIzqProducto>
-                      <ImgProdu>
-                        <ImagenProdu src={element.imageUrl} />
-                      </ImgProdu>
-                      <DescriProducto>
-                        <H1Descri>{element.name}</H1Descri>
-                        <DivFilaBarritas>
-                          <ImagenBarritasProdu src={Barritas} />
-                          <H1codBarras>{element.ean}</H1codBarras>
-                        </DivFilaBarritas>
-                      </DescriProducto>
-                    </DivIzqProducto>
-                    <Kilos>0 kgs</Kilos>
-                    {dentro && dentro.includes(idx) ? (
-                      <TrashDiv color={true}>
-                        <TrashImagen
-                          src={Trash}
-                          onClick={() => {
-                            BotonBasura(idx);
-                            handleClick(element);
-                          }}
-                        />
-                      </TrashDiv>
-                    ) : (
-                      <TrashDiv color={false}>
-                        <TrashImagen
-                          src={Like}
-                          onClick={() => {
-                            BotonOK(idx);
-                            handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
-                          }}
-                        />
-                      </TrashDiv>
-                    )}
-                    <LineaDeColor />
-                  </ProductosDiv>
-                );
-              })}
-          </DivScroll>
-        ) : (
-          <>
-            {sustitutos.length ? (
-              <DivScroll>
-                {sustitutos.map((Element) => {
+          {items[0].isWeighable && acum !== 0 ? (
+            items[0].purchasedQuantity < acum ? (
+              <DivGralBalanza color={true}>
+                <ColuPesoTotal>
+                  <TotalTitulo>TOTAL</TotalTitulo>
+                  <ImporteDiv>
+                    <IconoCuentaDiv>
+                      <IconoCuentaImg src={IconoTotals} />
+                    </IconoCuentaDiv>
+                    <H1Importe color={true}> ${total}</H1Importe>
+                  </ImporteDiv>
+                </ColuPesoTotal>
+                <PesoVerde color={true}>
+                  <H1PesoVerde color={true}>{acum} kgs</H1PesoVerde>
+                </PesoVerde>
+              </DivGralBalanza>
+            ) : (
+              <DivGralBalanza>
+                <ColuPesoTotal>
+                  <TotalTitulo>TOTAL</TotalTitulo>
+                  <ImporteDiv>
+                    <IconoCuentaDiv>
+                      <IconoCuentaImg src={IconoTotals} />
+                    </IconoCuentaDiv>
+                    <H1Importe>${total}</H1Importe>
+                  </ImporteDiv>
+                </ColuPesoTotal>
+                <PesoVerde>
+                  <H1PesoVerde>{acum} kgs</H1PesoVerde>
+                </PesoVerde>
+              </DivGralBalanza>
+            )
+          ) : null}
+        </ColuIzquierda>
+        <ColuDerecha>
+          {value === '' ? (
+            <>
+              {sustitutos.length ? null : (
+                <>
+                  <LogoDerechoDiv>
+                    <ImagenGrandeDiv>
+                      <ImagenGrande src={ImgPickingLibre} />
+                    </ImagenGrandeDiv>
+                    <H1PickingLibre>Picking Libre</H1PickingLibre>
+                    <H1Comenzar>Comienza a pickear los productos</H1Comenzar>
+                  </LogoDerechoDiv>
+                </>
+              )}
+            </>
+          ) : null}
+          <DivBuscador value={value}>
+            <DivImagenBuscador type="submit">
+              <ImagenLupa value={value} src={Lupita} />
+            </DivImagenBuscador>
+            <FormBusqueda>
+              <InputBusqueda
+                onChange={handleChange}
+                value={value}
+                type="text"
+                placeholder="Buscar productos "
+              ></InputBusqueda>
+            </FormBusqueda>
+          </DivBuscador>
+          {value !== '' ? (
+            <DivScroll>
+              {arr &&
+                arr.map((element, idx) => {
                   return (
                     <ProductosDiv
                       onClick={() => {
-                        handleClick(Element); // CUANDO SEA REAL CAMBIARLO POR Element.id
+                        handleClick(element); // CUANDO SEA REAL CAMBIARLO POR Element.id
                       }}
-                      selected={idItemsSelected}
-                      div={Element.id}
+                      selected={itemsSelected}
+                      div={element.id}
                     >
                       <DivIzqProducto>
                         <ImgProdu>
-                          <ImagenProdu src={Element.imageUrl} />
+                          <ImagenProdu src={element.imageUrl} />
                         </ImgProdu>
                         <DescriProducto>
-                          <H1Descri>{Element.name}</H1Descri>
+                          <H1Descri>{element.name}</H1Descri>
                           <DivFilaBarritas>
                             <ImagenBarritasProdu src={Barritas} />
-                            <H1codBarras>{Element.ean}</H1codBarras>
+                            <H1codBarras>{element.ean}</H1codBarras>
                           </DivFilaBarritas>
                         </DescriProducto>
                       </DivIzqProducto>
-                      <Kilos>{Element.pickedQuantity}kgs</Kilos>
+                      {/*  { element.isWeighable ? */}
+                      <Kilos>1 kgs</Kilos>
+                      {/* 
+                    <>
+                    <LineaFina />
+                    <CantidadSeleccionadaProdu>
+                      <CantidadSeleccionadaProduH1>
+                        x 1
+                      </CantidadSeleccionadaProduH1>
+                    </CantidadSeleccionadaProdu>
+                    </>
+                    } */}
+                      {dentro && dentro.includes(idx) ? (
+                        <TrashDiv color={true}>
+                          <TrashImagen
+                            src={Trash}
+                            onClick={() => {
+                              BotonBasura(idx);
+                              handleClick(element);
+                              restar(1);
+                              valorResta(50);
+                            }}
+                          />
+                        </TrashDiv>
+                      ) : (
+                        <TrashDiv color={false}>
+                          <TrashImagen
+                            src={Like}
+                            onClick={() => {
+                              /*     element.isWeighable?  */
+                              BotonOK(idx);
+                              handleClick(element); // CUANDO SEA REAL CAMBIARLO POR element.id
+                              sumar(1);
+                              valorTotal(50);
+                            }}
+                          />
+                        </TrashDiv>
                       )}
                       <LineaDeColor />
                     </ProductosDiv>
                   );
                 })}
-              </DivScroll>
-            ) : null}
-          </>
-        )}
-        <Botones>
-          <Cancelar>CANCELAR</Cancelar>
-          <BotonTeclado /* onClick={() => {setShowInput(true);}} */>
-            <Teclado src={TecladoIcono} />
-          </BotonTeclado>
-          <Siguiente onClick={goToPickSubstitue}>SIGUIENTE</Siguiente>
-        </Botones>
-      </ColuDerecha>
-    </Container>
+            </DivScroll>
+          ) : (
+            <>
+              {sustitutos.length ? (
+                <DivScroll>
+                  {sustitutos.map((Element) => {
+                    return (
+                      <ProductosDiv
+                        // onClick={() => {
+                        //   handleClick(Element); // CUANDO SEA REAL CAMBIARLO POR Element.id
+                        // }}
+                        // selected={idItemsSelected}
+                        // div={Element.id}
+                      >
+                        <DivIzqProducto>
+                          <ImgProdu>
+                            <ImagenProdu src={Element.imageUrl} />
+                          </ImgProdu>
+                          <DescriProducto>
+                            <H1Descri>{Element.name}</H1Descri>
+                            <DivFilaBarritas>
+                              <ImagenBarritasProdu src={Barritas} />
+                              <H1codBarras>{Element.ean}</H1codBarras>
+                            </DivFilaBarritas>
+                          </DescriProducto>
+                        </DivIzqProducto>
+                        <Kilos>{Element.pickedQuantity}kgs</Kilos>
+                        )}
+                        <LineaDeColor />
+                      </ProductosDiv>
+                    );
+                  })}
+                </DivScroll>
+              ) : null}
+            </>
+          )}
+          <Botones>
+            <Cancelar>CANCELAR</Cancelar>
+            <BotonTeclado /* onClick={() => {setShowInput(true);}} */>
+              <Teclado src={TecladoIcono} />
+            </BotonTeclado>
+            <Siguiente
+                onClick={goToPickSubstitue} //onClick={() => Activar(8)}
+            >
+              SIGUIENTE
+            </Siguiente>
+          </Botones>
+        </ColuDerecha>
+      </Container>
+    </>
   );
 };

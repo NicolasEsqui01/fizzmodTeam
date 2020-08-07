@@ -67,6 +67,9 @@ import {
   DivStatus,
   StatusP,
   DivImgTilde,
+  NoSus,
+  CantiSus,
+  NumeroAzul,
 } from './style';
 import Sustituto from '../../images/substitute.svg';
 import masBlanco from '../../images/masBlanco.svg';
@@ -125,13 +128,24 @@ export default ({
                 <Img src={Sustituto} />
               </Button>
             </div>
-            <div>
-              <Marca> = Marca, </Marca>
-            </div>
-            <div>
-              <Gramaje> = Gramaje </Gramaje>
-            </div>
+            {sustituyendo ? (
+              <NoSus>No Sustituible</NoSus>
+            ) : (
+              <>
+                <div>
+                  <Marca> = Marca, </Marca>
+                </div>
+                <div>
+                  <Gramaje> = Gramaje </Gramaje>
+                </div>
+              </>
+            )}
           </Cuadro>
+          {sustituyendo ? (
+            <CantiSus>
+              <NumeroAzul>1</NumeroAzul>/<NumeroAzul>2</NumeroAzul>
+            </CantiSus>
+          ) : null}
         </Header>
 
         {session.length === 0 ? (

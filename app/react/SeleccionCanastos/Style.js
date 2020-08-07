@@ -44,9 +44,8 @@ export const DivGeneral = styled.div`
   width: 100%;
   height: 70vh;
   background-color: #e8eaf6;
-  @media screen and (max-width : 768px){
-    heigth:100%
-  }
+  @media ${device.mobile} {
+    height: 76vh;
 `;
 
 export const IconoCanasta = styled.div`
@@ -87,11 +86,11 @@ export const ColuIzquierda = styled.div`
   margin-top: 4%;
   margin-right:30px;
   align-items: center;
-  @media screen and (max-width : 768px) {
-    margin-right:15px;
-    margin-left:15px;
-    margin-top:5%;
-  }
+  @media ${device.mobile} {
+    margin-right:5px;
+    margin-left:5px;
+    margin-top:10%;
+}
 `;
 
 export const IconoDosCuadrados = styled.img`
@@ -109,6 +108,9 @@ export const DivMedio = styled.div`
   width: 100%;
   height: 100%;
   flex-direction: column;
+  @media ${device.mobile} {
+    margin-right:0%;
+}
 `;
 
 //////////////////////////////// FILA DE CAJAS UNO //////////////////////////////
@@ -119,6 +121,10 @@ export const DivFilaUno = styled.div`
   flex-wrap:wrap;
   margin-top: 20px;
   height: auto;
+  @media ${device.mobile} {
+    width:100%;
+    margin-top: 5px;
+}
 `;
 
 export const DivUno = styled.div`
@@ -203,6 +209,9 @@ export const H1Cod = styled.div`
   letter-spacing: 0;
   line-height: 14px;
   margin-left: 8%;
+  @media ${device.mobile} {
+    width: 100px;
+}
 `;
 
 export const H1Caja = styled.div`
@@ -214,6 +223,10 @@ export const H1Caja = styled.div`
   letter-spacing: 0;
   line-height: 14px;
   margin-left: 8%;
+  @media ${device.mobile} {
+    width: 100px;
+    font-size: 14px;
+}
 `;
 
 //////////////////////////////////// PRIMERA FILA CAJA DOS ///////////////////
@@ -225,14 +238,17 @@ export const DivDos = styled.div`
   margin-bottom:2%;
   height: 200px;
   width: 30%;
+  cursor:pointer;
   flex-direction: column;
   border: ${({ NumDiv, valueClick , status}) => {
       return NumDiv === valueClick && status !== true ? '2px solid #2979FF;' : null 
     }
   };
-  @media screen and (max-width : 812px) {
-    width:45%;
-  }
+  @media ${device.mobile} {
+    height: 150px;
+    width: 40%;
+    margin:5%;
+}
 `;
 
 export const EstructuraCaja = styled.div`
@@ -348,6 +364,7 @@ export const Comenzar = styled.button`
   background-color: #1db779;
   border: 1px solid #1db779;
   color: #ffffff;
+  cursor:pointer;
   font-size: 25px;
   font-weight: bold;
   letter-spacing: 0;
@@ -398,6 +415,9 @@ export const FormPopup = styled.form`
   align-items:center;
   justify-content:center;
   width:50%;
+  @media ${device.mobile} {
+    width:90%;
+  }
 
 `;
 export const Input = styled.input`
@@ -416,13 +436,14 @@ export const InputSubmit = styled.input`
   outline: none;
   width:20%;
   padding:20px;
+  cursor:pointer;
   &:hover{
     background-color:#273947;
     color:white;
     border:2px solid white;
   }
-  @media screen and (max-width : 768px) {
-    width:100%;
+  @media ${device.mobile} {
+    width:60%;
   }
 `;
 
@@ -454,6 +475,10 @@ export const LabelPopup = styled.label`
   font-size:25px;
   margin-bottom:10px;
   color:white;
+  @media ${device.mobile} {
+    width:100%;
+  }
+  
 ` 
 
 // CUADRADOS 

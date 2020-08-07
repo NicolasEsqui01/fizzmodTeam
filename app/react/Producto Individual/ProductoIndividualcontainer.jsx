@@ -35,7 +35,7 @@ const ProductoIndividualcontainer = ({
   const [wheights, setWheights] = useState([]);
   const inputRef = useRef(null);
   const date = JSON.parse(localStorage.getItem('canasto'))
-
+  
   useEffect(() => {
     if (auth !== 'null') {
       getSessionPicking(idSession);
