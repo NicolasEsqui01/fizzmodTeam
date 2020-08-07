@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import history from '../../utils/history';
 import { Desactivacion, Activacion } from '../../action/popup';
 import { getSessionPicking } from '../../action/session';
+import { Redirect } from 'react-router-dom';
 
 import Navbar from './Navbar';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     items: state.sessionReducer.sessionPicking.items,
-    itemsPicking: state.pickingReducer.ItemsPicked,
     booleano: state.sessionReducer.booleano,
     sessionId: localStorage.getItem('sessionid'),
     final: localStorage.getItem('final'),
@@ -56,19 +56,6 @@ const NavbarContainer = ({
     }
   }, [items]);
 
-
-  // useEffect(() => {
-  //   // if (itemsPicking != undefined) {
-  //   //   setPickeados(itemsPicking.length);
-  //   // }
-  //   // if(items && items.length > 0){
-  //   //   let pickeds=0;
-  //   //   items.map((item)=>item.satuts === "picked" ? pickeds+1 : null)
-  //   //   setPickeados(pickeds);
-  //   // }
-  //   getSessionPicking(sessionId)
-  // }, [itemsPicking]);
-
   return (
     <Navbar
       qtyPicked={pickeados}
@@ -86,4 +73,4 @@ const NavbarContainer = ({
   );
 };
 
-export default connect(mapStateToProps, MapDispatchToProps)(NavbarContainer);
+export default connect(mapStateToProps,MapDispatchToProps)(NavbarContainer);

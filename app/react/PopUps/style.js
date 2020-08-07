@@ -1133,6 +1133,7 @@ margin 15px;
 export const DivManual1 = styled.div`
   width: 100%;
   display: flex;
+  justify-content:center;
   margin-bottom: 15px;
   margin-top: 15px;
   border-bottom: 3px solid #e8eaf6;
@@ -1155,7 +1156,7 @@ export const DivTitleManual1 = styled.div`
 `;
 
 export const ImgManual1 = styled.img`
-width: 60%;
+width: 50%;
 margin-right: 5px;
 @media ${device.mobile} {
   width: 90%;
@@ -1177,7 +1178,7 @@ export const DivDesManual1 = styled.div`
 `;
 
 export const ImgManual2 = styled.img`
-width: 60%;
+width: 50%;
 margin-left: 5px;
 @media ${device.mobile} {
   width: 90%;

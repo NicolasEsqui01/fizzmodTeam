@@ -33,6 +33,7 @@ const ProductoIndividualcontainer = ({
   const [input, setInput] = useState(0);
   const [pesoTotal, setPesoTotal] = useState(0);
   const [wheights, setWheights] = useState([]);
+  const [arrayOmitidos, setArrayOmitidos] = useState([]);
   const inputRef = useRef(null);
   const date = JSON.parse(localStorage.getItem('canasto'))
   
@@ -55,6 +56,10 @@ const ProductoIndividualcontainer = ({
   }, [showInput]);
 
   useEffect(() => {
+    
+  }, [arrayOmitidos]);
+
+  useEffect(() => {
     if (inputRef.current && input != 0) inputRef.current.value = "";
   }, [wheights]);
 
@@ -62,18 +67,64 @@ const ProductoIndividualcontainer = ({
     Activar(n);
   };
 
-  const itemPending = (id) => {
-
+  const itemPending = (id) => { //FALTA ATAJAR SI ES EL ULTIMO
     const newSession = items.filter(element => {
       return element.id !== id
     })
     const productId = items.filter(element => element.id === id)
-    let newArray = [...newSession, ...productId]
-    let newIndice = Number(indice) + 1;
+    var newArray = [...newSession, ...productId]
+    var newIndice = Number(indice);
+    setArrayOmitidos(newArray)
     handleCloseClick()
     setItems(newArray)
+    setWheights([]);
+    setPesoTotal(0);
+    setCount(0)
+    if (bolleanDespickear === true && booleanReiniciar === false)
+      {
+        despickear(false)
+      }
+    if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
+    if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);
     return history.push(`/productoindividual/${idSession}/${newIndice}`)
   };
+
+  const itemFaltante = (id) => {
+    let data = {
+        token: token,
+        items: [
+          {
+            id: id,
+            pickedQuantity: 0,
+          },
+        ],
+    }
+    //CHEQUEA SI ES EL ULTIMO ITEM DE LA LISTA, PARA PASAR A LA PAGINA DE CONFIRMACION FINAL
+    if (Number(indice) === items.length) {
+      localStorage.setItem('final', true);
+      history.push({ //UTILIZA HISTORY PARA ENVIARLE A LA PAG DE CONFIRMACION LOS DATOS CONTRUIDOS Y TERMINAR EL PICKEO DESDE ALLI
+        pathname: '/confirmacion',
+        state: { idSession: idSession, data: data, datosCanasto: date },
+      });
+      if (bolleanDespickear==true)despickear(false);
+    } else { //SI NO ES EL ULTIMO, DISPARA EL ACTION CREATOR PARA PICKEAR EL ITEM
+      sendItemPicked(idSession, data)
+        .then(() => {
+          let newIndice = Number(indice) + 1;
+          setWheights([]);
+          setPesoTotal(0);
+          if (bolleanDespickear === true && booleanReiniciar === false){
+            despickear(false)
+          }
+          getSessionPicking(idSession);
+          if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
+          if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);
+          return history.push(`/productoindividual/${idSession}/${newIndice}`);
+        })
+        .then(() => setCount(0));
+    }
+    handleCloseClick()
+  };  
 
   const next = () => {
     if (Number(indice) === items.length) {
@@ -164,16 +215,33 @@ const ProductoIndividualcontainer = ({
     } else { //SI NO ES EL ULTIMO, DISPARA EL ACTION CREATOR PARA PICKEAR EL ITEM
       sendItemPicked(idSession, data)
         .then(() => {
+          getSessionPicking(idSession)
+          .then((res)=>{
+            if (arrayOmitidos.length) {
+              for (let i=0; i<arrayOmitidos.length ; i++){
+                for (let j=0; j<res.session.items.length ; j++){
+                  if (arrayOmitidos[i].id === res.session.items[j].id) {
+                    arrayOmitidos[i].pickedQuantity = res.session.items[j].pickedQuantity
+                    arrayOmitidos[i].status = res.session.items[j].status
+                  }
+                }
+              }
+            setItems(arrayOmitidos)
+            }
+          });
+        })
+        .then(() => {
+          setCount(0)
           let newIndice = Number(indice) + 1;
           setWheights([]);
           setPesoTotal(0);
-          if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
-          getSessionPicking(idSession);
+          if (bolleanDespickear === true && booleanReiniciar === false){
+            despickear(false)
+          }
           if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
           if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);
           return history.push(`/productoindividual/${idSession}/${newIndice}`);
-        })
-        .then(() => setCount(0));
+        });
     }
   };
 
@@ -213,6 +281,7 @@ const ProductoIndividualcontainer = ({
         <ProductoIndividual
           Activar={handleBtnClick}
           Pending={itemPending}
+          Faltente={itemFaltante}
           active={active}
           onCloseClick={handleCloseClick}
           session={items}
@@ -240,6 +309,7 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
+  console.log("state", state)
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking

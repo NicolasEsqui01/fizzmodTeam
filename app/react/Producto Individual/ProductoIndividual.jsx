@@ -110,24 +110,33 @@ export default ({
   despickear,
   sustituyendo,
   prepickear,
+  Faltente,
 }) => {
-  let  criterioSustitucion;
+  let criterioSustitucion;
   let igualGramaje;
-  
-   session[indice] && (session[indice].substitutionCriteria == "doNotSubstitute" || !session[indice].substitutionCriteria)? criterioSustitucion = "No sustituir," : null,  
-   session[indice] && session[indice].substitutionCriteria == "sameBrand"? criterioSustitucion = "= Marca," : null,
-   session[indice] && session[indice].isWeighable && (!session[indice].substitutionCriteria == "doNotSubstitute")? igualGramaje = "= Gramaje," : null
-   
-   let cuadrados =
+
+  session[indice] &&
+  (session[indice].substitutionCriteria == 'doNotSubstitute' )
+    ? (criterioSustitucion = 'No sustituir,')
+    : null,
+    session[indice] && ( session[indice].substitutionCriteria == 'sameBrand' || !session[indice].substitutionCriteria ) 
+      ? (criterioSustitucion = '= Marca,')
+      : null,
+    session[indice] &&
+    session[indice].isWeighable &&
+    !session[indice].substitutionCriteria == 'doNotSubstitute'
+      ? (igualGramaje = '= Gramaje,')
+      : null;
+
+  let cuadrados =
     localStorage.getItem('cuadradoChico') &&
     localStorage
       .getItem('cuadradoChico')
       .split(',')
       .map((Element) => (Element === 'true' ? true : false));
-  
+
   return (
-<>
-    
+    <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
       <ContGral>
         <Header>
@@ -142,25 +151,19 @@ export default ({
             ) : (
               <>
                 <div>
-                <Marca>{criterioSustitucion}</Marca>
+                  <Marca>{criterioSustitucion}</Marca>
                 </div>
                 <div>
-                <Gramaje>{igualGramaje}</Gramaje>
+                  <Gramaje>{igualGramaje}</Gramaje>
                 </div>
               </>
             )}
           </Cuadro>
-          {sustituyendo ? (
-            <CantiSus>
-              <NumeroAzul>1</NumeroAzul>/<NumeroAzul>2</NumeroAzul>
-            </CantiSus>
-          ) : null}
         </Header>
 
         {session.length === 0 ? (
           <div>Cargando</div>
-        ) : 
-        session[indice].status === 'picked' ||
+        ) : session[indice].status === 'picked' ||
           session[indice].status === 'omitido' ? (
           <DivStatus status={session[indice].status} despickear={despickear}>
             {despickear === false ? (
@@ -349,6 +352,7 @@ export default ({
                             onCloseClick={onCloseClick}
                             PendingPopUp={Pending}
                             IdProducto={session[indice].id}
+                            FaltentePopUp={Faltente}
                           />
                           <BotIzq>
                             <Omitir onClick={() => Activar(10)}>
@@ -515,7 +519,9 @@ export default ({
                             onCloseClick={onCloseClick}
                             PendingPopUp={Pending}
                             IdProducto={session[indice].id}
+                            FaltentePopUp={Faltente}
                           />
+
                           <BotIzq>
                             <Omitir onClick={() => Activar(10)}>
                               <CruzOmitir src={ImageCruzOmitir} />
@@ -527,7 +533,7 @@ export default ({
                             {sustituyendo === true ? (
                               <Siguiente
                                 onClick={() => {
-                                  prepickear(session[indice].id, count, true);
+                                  prepickear(session[indice].id, count, false);
                                 }}
                               >
                                 PRE-PICKEAR
@@ -705,6 +711,7 @@ export default ({
                     activePopUp={active}
                     onCloseClick={onCloseClick}
                     PendingPopUp={Pending}
+                    FaltentePopUp={Faltente}
                     IdProducto={session[indice].id}
                   />
                   <Botones>
@@ -856,6 +863,7 @@ export default ({
                     onCloseClick={onCloseClick}
                     PendingPopUp={Pending}
                     IdProducto={session[indice].id}
+                    FaltentePopUp={Faltente}
                   />
                   <Botones>
                     <BotIzq>

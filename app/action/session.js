@@ -29,6 +29,12 @@ export const setBooleano = (booleano) => {
   };
 };
 
+export const setFinalSession = () => {
+  return {
+    type: 'FINAL_SESSION'
+  };
+};
+
 export const setDespickear = (booleano) => {
   return {
     type: 'DESPICKEAR_ITEM',

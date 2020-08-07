@@ -46,7 +46,7 @@ export default ({ booleano,
         </ContenedorFlecha>
       ) : (
           <div title="Manual de Usuario" onClick={() => Activar(11)}>
-            <Img src={MenuHamburguesa} alt="3" />
+            <Img src={MenuHamburguesa}  alt="3" />
           </div>
         )}
       <div>

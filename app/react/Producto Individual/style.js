@@ -857,7 +857,7 @@ export const PlusCircle = styled.img`
 `;
 
 
-export const NumeroAzul = styled.p`
+export const NumeroAzul = styled.div`
   height: 19px;
   width: 33px;
   color: #2979FF;
@@ -869,6 +869,7 @@ export const NumeroAzul = styled.p`
 `
 
 export const CantiSus = styled.div`
+  justify-content:flex-end;
   display:flex;
   height: 21px;
   width: 150px;

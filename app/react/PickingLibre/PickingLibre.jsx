@@ -86,7 +86,6 @@ import IconoTotals from '../../images/totals.svg';
 import PopUpControlDePeso from '../PopUps/PopUpControlDePeso';
 import Tilde from '../../images/check_bold.svg';
 
-
 /* isWeighable */
 export default ({
   value,
@@ -313,10 +312,10 @@ export default ({
                   return (
                     <ProductosDiv
                       onClick={() => {
-                        handleClick(element.id); // CUANDO SEA REAL CAMBIARLO POR Element.id
+                        handleClick(element); // CUANDO SEA REAL CAMBIARLO POR Element.id
                       }}
-                      selected={itemsSelected}
-                      div={element.id}
+                      // selected={itemsSelected}
+                      // div={element.id}
                     >
                       <DivIzqProducto>
                         <ImgProdu>
@@ -330,18 +329,20 @@ export default ({
                           </DivFilaBarritas>
                         </DescriProducto>
                       </DivIzqProducto>
-                      {/*  { element.isWeighable ? */}
-                      <Kilos>1 kgs</Kilos>
-                      {/* 
-                    <>
-                    <LineaFina />
-                    <CantidadSeleccionadaProdu>
-                      <CantidadSeleccionadaProduH1>
-                        x 1
-                      </CantidadSeleccionadaProduH1>
-                    </CantidadSeleccionadaProdu>
-                    </>
-                    } */}
+                      {element.isWeighable ? (
+                        <>
+                          <Kilos>1 kgs</Kilos>
+                        </>
+                      ) : (
+                        <>
+                          <LineaFina />
+                          <CantidadSeleccionadaProdu>
+                            <CantidadSeleccionadaProduH1>
+                              x 1
+                            </CantidadSeleccionadaProduH1>
+                          </CantidadSeleccionadaProdu>
+                        </>
+                      )}
                       {dentro && dentro.includes(idx) ? (
                         <TrashDiv color={true}>
                           <TrashImagen
@@ -399,7 +400,6 @@ export default ({
                           </DescriProducto>
                         </DivIzqProducto>
                         <Kilos>{Element.pickedQuantity}kgs</Kilos>
-                        )}
                         <LineaDeColor />
                       </ProductosDiv>
                     );

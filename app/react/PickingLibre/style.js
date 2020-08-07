@@ -94,18 +94,21 @@ justify-content: center;
 
 export const CuadroGrill = styled.div`
   display: flex;    
-  width: 50%;
-  height: auto;
+  width: 25%;
+  height: 20px;
   flex-direction: row;
-  border: 1px solid #D1D3D4;
   border-radius:10%;
   margin: 4px 6px 4px 0px;
+  background-color:${({numeros , datos}) => numeros === datos ?  '#2979FF' : 'white'};
+  border:${({numeros , datos }) =>  numeros === datos ? '1px solid #2979FF' : '1px solid #D1D3D4'};
+  justify-content:center;
+  align-items:center;
 `;
 
 export const ContainerGrillCuadros = styled.div`
   display: flex;    
-  width: 50px;
-  height: 20px;
+  width: 90%;
+  flex-wrap:wrap;
   flex-direction: row;
   justify-content: center;
   align-content: center;
@@ -115,12 +118,11 @@ export const ContainerGrillCuadros = styled.div`
 export const NumCuadrados = styled.div`
   display: flex;
   margin-left:7px;    
-  width: 50%;
-  //height: 48px;
+  width: 60%;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border-bottom: 3px solid #A27BDB;
+  border-bottom: 3px solid #2979FF;
   font-size: 22px;
   color: #273947;
   font-family: Roboto;
@@ -129,7 +131,7 @@ export const NumCuadrados = styled.div`
   @media ${device.mobile} {
   font-size: 20px;
   height: 30px;
-}  
+  }  
 `;
 
 export const LogoCajitasDiv = styled.div`
@@ -612,9 +614,9 @@ border-left: red;
   margin-bottom: 1%;
   width: 95%;
 } 
-  ${({ selected, div }) => {
-     if(selected.includes(div)) return 'border: 4px solid #1db779 !important;'
-   }}
+  $//{({ selected, div }) => {
+  //    if(selected.includes(div)) return 'border: 4px solid #1db779 !important;'
+  //  }}
 `;
 
 export const DivIzqProducto = styled.div`
