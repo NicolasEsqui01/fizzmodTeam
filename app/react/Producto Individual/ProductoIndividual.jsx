@@ -76,10 +76,6 @@ import {
   Atencion,
   DivStatus,
   StatusP,
-  DivImgTilde,
-  NoSus,
-  CantiSus,
-  NumeroAzul
 } from './style';
 import scanner from '../../images/scanner.svg';
 import Sustituto from '../../images/substitute.svg';
@@ -101,7 +97,7 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import '../common/styles/main.scss';
 import PopUpPesables from '../PopUps/PopUpPesables';
 import PopUpOmitir from '../PopUps/PopUpOmitir';
-import Tilde from '../../images/check_bold.svg';
+import TecladoContainer from '../Tecleado/TecladoContainer';
 
 export default ({
   session,
@@ -124,11 +120,9 @@ export default ({
   date,
   next,
   despickear,
-  sustituyendo,
-  prepickear
 }) => {
   let idx = 0;
-  let cuadrados = localStorage.getItem('cuadradoChico') && localStorage.getItem('cuadradoChico').split(',').map(Element => Element === 'true' ? true : false)
+
   return (
     <>
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
@@ -140,735 +134,709 @@ export default ({
                 <Img src={Sustituto} />
               </Button>
             </div>
-            { sustituyendo ?
-            <NoSus>No Sustituible</NoSus>
-            :
-            <>
             <div>
               <Marca> = Marca, </Marca>
             </div>
             <div>
               <Gramaje> = Gramaje </Gramaje>
             </div>
-            </>
-           }
           </Cuadro>
-          {sustituyendo ? 
-          <CantiSus>
-          <NumeroAzul>1</NumeroAzul>
-          /
-          <NumeroAzul>2</NumeroAzul>
-          </CantiSus>
-          :null}
         </Header>
 
         {session.length === 0 ? (
           <div>Cargando</div>
         ) : session[indice].status === 'picked' ||
           session[indice].status === 'omitido' ? (
-              <DivStatus status={session[indice].status} despickear={despickear}>
-                {despickear === false ? <StatusP>PICKEADO</StatusP> : <StatusP>OMITIDO</StatusP>}
-                <Cont>
-                  {
-                    (session[indice].isWeighable ?
-
-                      ///////////////// PRODUCTO PESABLE /////////////////
-                      (
-                        <>
-                          <ColIzq>
-                            <PopUpPesables
-                              active={active}
-                              onCloseClick={onCloseClick}
-                              wheights={wheights}
-                              handleRemoveItem={handleRemoveItem}
-                              qtyPurch={session[indice].purchasedQuantity}
-                            />
-                            <ColuIconos>
-                              <Sup>
-                                <ContainerGrillCuadros>
-                                  {cuadrados.map((Element, indice) => {
-                                    return (
-                                      <CuadroGrill
-                                        key={indice}
-                                        numeros={indice}
-                                        datos={date.value}
-                                      >
-                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
-                                      </CuadroGrill>
-                                    )
-                                  })}
-                                </ContainerGrillCuadros>
-                                <NumCuadrados>{date.value + 1}</NumCuadrados>
-                              </Sup>
-                              <ContStock>
-                                Stock
-                        <StockCien>+100</StockCien>
-                              </ContStock>
-                            </ColuIconos>
-                            <DivFoto>
-                              <FotoProd src={session[indice].imageUrl} />
-                            </DivFoto>
-                          </ColIzq>
-                          <ColDerecha>
-                            <ContMarca>
-                              <ContDer>
-                                <MarcaH1>{session[indice].name}</MarcaH1>
-                                <Descri>
-                                  Nombre del producto con doble linea lorem ipsum dolor
-                                  sit amet
-                        </Descri>
-                                <ContInfo>
-                                  <Tachado>${session[indice].purchasedPrice}</Tachado>
-                                  <Precio>${session[indice].purchasedPrice}</Precio>
-                                </ContInfo>
-                              </ContDer>
-                              <DivGlobos>
-                                {session[indice].customerNote ? (
-                                  <Button onClick={() => Activar(2)}>
-                                    {' '}
-                                    <ImgAmarilla src={bubble} />
-                                  </Button>
-                                ) : null}
-                                <Button2 onClick={() => Activar(6)}>
-                                  <ImgAmarilla src={bubbleExc} />
-                                </Button2>
-                              </DivGlobos>
-                            </ContMarca>
-                            <ContBarras>
-                              <BarritasCont>
-                                <Barritas src={BarCode} />
-                              </BarritasCont>
-                              <CodProdu>{session[indice].ean}</CodProdu>
-                              <ImgBarrita />
-                              <ImBalanza src={ImagenBalanza} />
-                              <PesoProdu>
-                                {' '}
-                                {session[indice].purchasedQuantity}Kgs
-                      </PesoProdu>
-                            </ContBarras>
-                            {despickear === false ?
-                              <ContImagenes>
-                                <CuadritoUno>
-                                  <ImgBalanzasUno src={ImagenBalanza} />
-                                  <PesoCuadro>
-                                    {session[indice].purchasedQuantity}
-                          kgs.
-                        </PesoCuadro>
-                                </CuadritoUno>
-                              </ContImagenes>
-                              :
-                              (<>
-                                <ContImagenes>
-                                {pesoTotal > session[indice].purchasedQuantity ? (
-                                  <CuadritoUno color ={true}>
-                                    {wheights.length > 0 ? (
-                                      <QtyPesables onClick={() => Activar(3) } color ={true}>
-                                        {wheights.length}
-                                      </QtyPesables>
-                                    ) : null}
-                                    <ImgBalanzasUno src={ImagenBalanza} />
-                                      <PesoCuadroWarining>
-                                        {pesoTotal}
-                          kgs.
-                                      </PesoCuadroWarining>
-                                  </CuadritoUno>
-                                ): <CuadritoUno>
-                                {wheights.length > 0 ? (
-                                  <QtyPesables onClick={() => Activar(3)}>
-                                    {wheights.length}
-                                  </QtyPesables>
-                                ) : null}
-                                <ImgBalanzasUno src={ImagenBalanza} />
-                      
-                                    <PesoCuadro>
-                                      {pesoTotal}
-                         kgs.
-                                    </PesoCuadro>
-                              </CuadritoUno>}
-                                  <Form
-                                    onSubmit={() => {
-                                      handleSubmit(
-                                        event,
-                                        session[indice].id,
-                                        session[indice].name,
-                                        session[indice].ean,
-                                        session[indice].imageUrl
-                                      );
-                                    }}
-                                  >
-                                    <PesoCuadroInput
-                                      type="number"
-                                      step="any"
-                                      ref={inputRef}
-                                      showInput={showInput}
-                                      active={active}
-                                      placeholder="Kgs."
-                                      onChange={handleChange}
-                                    />
-                                  </Form>
-                                  <CuadritoDos>
-                                    <ImgBalanzasMas
-                                      src={ImagenBalanzaMas}
-                                      onClick={() => setShowInput(true)}
-                                    />
-                                  </CuadritoDos>
-                                </ContImagenes>
-                                {pesoTotal > session[indice].purchasedQuantity ? (
-                                  <InstruccionesWarning>
-                                    Superaste el umbral de peso por {pesoTotal - session[indice].purchasedQuantity} kgs.
-                                  </InstruccionesWarning>
-                                ) : (
-                                    <Instrucciones>
-                                      Coloca el producto sobre la balanza
-                                    </Instrucciones>
-                                  )}
-                              </>)
-                            }
-                            <Botones>
-                              {despickear === false ? (
-                                <><BotIzq>
-                                  <Siguiente onClick={() => next()}>
-                                    SIGUIENTE
-                                  </Siguiente>
-                                </BotIzq>
-                                  <BotDer onClick={() => Activar(4)}>
-                                    <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer></> )
-                                :
-                                (<>
-                                  <PopUpOmitir
-                                    activePopUp={active}
-                                    onCloseClick={onCloseClick}
-                                    PendingPopUp={Pending}
-                                    IdProducto={session[indice].id}
-                                  />
-                                  <BotIzq>
-                                    <Omitir onClick={() => Activar(10)}>
-                                      <CruzOmitir src={ImageCruzOmitir} />
-                                      OMITIR
-                                    </Omitir>
-                                    <BotonTeclado>
-                                      <Teclado src={TecladoIcono} onClick={() => setShowInput(true)} />
-                                    </BotonTeclado>
-                                    {sustituyendo === true ?
-                                      <Siguiente
-                                        onClick={() =>{
-                                          console.log("session[indice].id",session[indice].id)
-                                        
-                                        prepickear(session[indice].id,count, true )}
-                                        }>PRE-PICKEAR
-                                      </Siguiente>
-                                      :
-                                      (
-                                      <Siguiente
-                                        onClick={() =>
-                                        pickeado(session[indice].id, null,true )
-                                        }>SIGUIENTE
-                                      </Siguiente>
-                                      )
-                                    }
-                                  </BotIzq>
-                                  <BotDer onClick={() => Activar(4)}>
-                                    <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer>
-                                </>
-                                )
-                              }
-                            </Botones>
-                          </ColDerecha>
-                        </>
-                      ) : (
-                        ////////////////// PRODUCTO NORMAL //////////////////
-                        <>
-                          <ColIzq>
-                            <ColuIconos>
-                              <Sup>
-                                <ContainerGrillCuadros>
-                                  {cuadrados.map((Element, indice) => {
-                                    return (
-                                      <CuadroGrill
-                                        key={indice}
-                                        numeros={indice}
-                                        datos={date.value}
-                                      >
-                                      { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
-                                      </CuadroGrill>
-                                    )
-                                  })}
-                                </ContainerGrillCuadros>
-                                <NumCuadrados>{date.value + 1}</NumCuadrados>
-                              </Sup>
-                            </ColuIconos>
-                            {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
-                            <DivFoto>
-                              <FotoProd src={session[indice].imageUrl} />
-                            </DivFoto>
-                          </ColIzq>
-                          <ColDerecha>
-                            <ContMarca>
-                              <ContDer>
-                                <MarcaH1>{session[indice].name}</MarcaH1>
-                                <Descri>
-                                  Nombre del producto con doble linea lorem ipsum dolor
-                                  sit amet
-                        </Descri>
-                                <ContInfo>
-                                  <Tachado>${session[indice].purchasedPrice}</Tachado>
-                                  <Precio>${session[indice].purchasedPrice}</Precio>
-                                </ContInfo>
-                              </ContDer>
-                              <DivGlobos>
-                                {session[indice].customerNote ? (
-                                  <Button onClick={() => Activar(2)}>
-                                    {' '}
-                                    <ImgAmarilla src={bubble} />
-                                  </Button>
-                                ) : null}
-                                <Button2 onClick={() => Activar(6)}>
-                                  <ImgAmarilla src={bubbleExc} />
-                                </Button2>
-                              </DivGlobos>
-                            </ContMarca>
-                            <ContBarras>
-                              <BarritasCont>
-                                <Barritas src={BarCode} />
-                              </BarritasCont>
-                              <CodProdu>{session[indice].ean}</CodProdu>
-                            </ContBarras>
-                            {despickear === false ?
-                              <ContImagenes>
-                              </ContImagenes>
-                              :
-                              <ContImagenes>
-                                <RecuadroCantidadNormal>
-                                  <H1Cantidad>Cantidad</H1Cantidad>
-                                  <H1CantidadNum>{count}</H1CantidadNum>
-                                  <H1CantidadNum>
-                                    / {session[indice].purchasedQuantity}
-                                  </H1CantidadNum>
-                                  <ContFlechitas>
-                                    {count == 0 ? (
-                                      <>
-                                        <FlechitaDesplegable
-                                          src={flechaDesplegableArriba}
-                                          onClick={() => setCount(count + 1)}
-                                        />
-                                        <FlechitaDesplegableNone />
-                                      </>
-                                    ) : count >= session[indice].purchasedQuantity ? (
-                                      <>
-                                        <FlechitaDesplegableNone />
-                                        <FlechitaDesplegable
-                                          src={flechaDesplegableAbajo}
-                                          onClick={() => setCount(count - 1)}
-                                        />
-                                      </>
-                                    ) : (
-                                          <>
-                                            <FlechitaDesplegable
-                                              src={flechaDesplegableArriba}
-                                              onClick={() => setCount(count + 1)}
-                                            />
-                                            <FlechitaDesplegable
-                                              src={flechaDesplegableAbajo}
-                                              onClick={() => setCount(count - 1)}
-                                            />
-                                          </>
-                                        )}
-                                  </ContFlechitas>
-                                </RecuadroCantidadNormal>
-                                <DivImageStock>
-                                  <ContStock>
-                                    Stock
-                          <StockCien>+100</StockCien>
-                                  </ContStock>
-                                </DivImageStock>
-                              </ContImagenes>
-                            }
-
-                            <Botones>
-                              {despickear === false ?
-                                <><BotIzq>
-                                  <Siguiente onClick={() => next()}>
-                                    SIGUIENTE
-                                  </Siguiente>
-                                </BotIzq>
-                                  <BotDer onClick={() => Activar(4)}>
-                                    <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer></>
-                                :
-                                <>
-                                  <PopUpOmitir
-                                    activePopUp={active}
-                                    onCloseClick={onCloseClick}
-                                    PendingPopUp={Pending}
-                                    IdProducto={session[indice].id}
-                                  />
-                                  <BotIzq>
-                                    <Omitir onClick={() => Activar(10)}>
-                                      <CruzOmitir src={ImageCruzOmitir} />
-                                    OMITIR
-                                  </Omitir>
-                                    <BotonTeclado>
-                                      <Teclado src={TecladoIcono} />
-                                    </BotonTeclado>
-                                    {sustituyendo === true ?
-                                      <Siguiente
-                                        onClick={() =>{
-                                          console.log("session[indice].id",session[indice].id)
-                                        
-                                        prepickear(session[indice].id,count, true )}
-                                        }>PRE-PICKEAR
-                                      </Siguiente>
-                                      :
-                                      (
-                                      <Siguiente
-                                        onClick={() =>
-                                        pickeado(session[indice].id, count,false )
-                                        }>SIGUIENTE
-                                      </Siguiente>
-                                      )
-                                    }
-                                    </BotIzq>
-                                  <BotDer onClick={() => Activar(4)}>
-                                    <PlusCircle src={masBlanco}></PlusCircle>
-                                  </BotDer>
-                                </>}
-                            </Botones>
-                          </ColDerecha>
-                        </>
-                      )
-                    )
-                  }
-                </Cont>
-              </DivStatus>
+          <DivStatus status={session[indice].status} despickear={despickear}>
+            {despickear === false ? (
+              <StatusP>PICKEADO</StatusP>
             ) : (
-              <Cont>
-                {session[indice].isWeighable ? (
-                  ///////////////// PRODUCTO PESABLE /////////////////
-                  <>
-                    <ColIzq>
-                      <PopUpPesables
-                        active={active}
-                        onCloseClick={onCloseClick}
-                        wheights={wheights}
-                        handleRemoveItem={handleRemoveItem}
-                      />
-                      <ColuIconos>
-                        <Sup>
-                          <ContainerGrillCuadros>
-                            {cuadrados.map((Element, indice) => {
-                              return (
-                                <>
-                                <CuadroGrill
-                                  key={indice}
-                                  numeros={indice}
-                                  datos={date.value}
-                                >
-                                { Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
-                                </CuadroGrill>
-                                </>
-                              )
-                            })}
-                          </ContainerGrillCuadros>
-                          <NumCuadrados>{date.value + 1}</NumCuadrados>
-                        </Sup>
-                        <ContStock>
-                          Stock
-                      <StockCien>+100</StockCien>
-                        </ContStock>
-                      </ColuIconos>
-                      <DivFoto>
-                        <FotoProd src={session[indice].imageUrl} />
-                      </DivFoto>
-                    </ColIzq>
-                    <ColDerecha>
-                      <ContMarca>
-                        <ContDer>
-                          <MarcaH1>{session[indice].name}</MarcaH1>
-                          <Descri>
-                            Nombre del producto con doble linea lorem ipsum dolor
-                            sit amet
-                      </Descri>
-                          <ContInfo>
-                            <Tachado>${session[indice].purchasedPrice}</Tachado>
-                            <Precio>${session[indice].purchasedPrice}</Precio>
-                          </ContInfo>
-                        </ContDer>
-                        <DivGlobos>
-                          {session[indice].customerNote ? (
-                            <Button onClick={() => Activar(2)}>
-                              {' '}
-                              <ImgAmarilla src={bubble} />
-                            </Button>
-                          ) : null}
-                          <Button2 onClick={() => Activar(6)}>
-                            <ImgAmarilla src={bubbleExc} />
-                          </Button2>
-                        </DivGlobos>
-                      </ContMarca>
-                      <ContBarras>
-                        <BarritasCont>
-                          <Barritas src={BarCode} />
-                        </BarritasCont>
-                        <CodProdu>{session[indice].ean}</CodProdu>
-                        <ImgBarrita />
-                        <ImBalanza src={ImagenBalanza} />
-                        <PesoProdu>
-                          {' '}
-                          {session[indice].purchasedQuantity}Kgs
-                    </PesoProdu>
-                      </ContBarras>
+              <StatusP>OMITIDO</StatusP>
+            )}
+            <Cont>
+              {session[indice].isWeighable ? (
+                ///////////////// PRODUCTO PESABLE /////////////////
+                <>
+                  <ColIzq>
+                    <PopUpPesables
+                      active={active}
+                      onCloseClick={onCloseClick}
+                      wheights={wheights}
+                      handleRemoveItem={handleRemoveItem}
+                      qtyPurch={session[indice].purchasedQuantity}
+                    />
+                    <ColuIconos>
+                      <Sup>
+                        <ContainerGrillCuadros>
+                          {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                            return (
+                              <CuadroGrill
+                                key={indice}
+                                numeros={indice}
+                                datos={date.value}
+                              />
+                            );
+                          })}
+                        </ContainerGrillCuadros>
+                        <NumCuadrados>{date.value + 1}</NumCuadrados>
+                      </Sup>
+                      <ContStock>
+                        Stock
+                        <StockCien>+100</StockCien>
+                      </ContStock>
+                    </ColuIconos>
+                    <DivFoto>
+                      <FotoProd src={session[indice].imageUrl} />
+                    </DivFoto>
+                  </ColIzq>
+                  <ColDerecha>
+                    <ContMarca>
+                      <ContDer>
+                        <MarcaH1>{session[indice].name}</MarcaH1>
+                        <Descri>
+                          Nombre del producto con doble linea lorem ipsum dolor
+                          sit amet
+                        </Descri>
+                        <ContInfo>
+                          <Tachado>${session[indice].purchasedPrice}</Tachado>
+                          <Precio>${session[indice].purchasedPrice}</Precio>
+                        </ContInfo>
+                      </ContDer>
+                      <DivGlobos>
+                        {session[indice].customerNote ? (
+                          <Button onClick={() => Activar(2)}>
+                            {' '}
+                            <ImgAmarilla src={bubble} />
+                          </Button>
+                        ) : null}
+                        <Button2 onClick={() => Activar(6)}>
+                          <ImgAmarilla src={bubbleExc} />
+                        </Button2>
+                      </DivGlobos>
+                    </ContMarca>
+                    <ContBarras>
+                      <BarritasCont>
+                        <Barritas src={BarCode} />
+                      </BarritasCont>
+                      <CodProdu>{session[indice].ean}</CodProdu>
+                      <ImgBarrita />
+                      <ImBalanza src={ImagenBalanza} />
+                      <PesoProdu>
+                        {' '}
+                        {session[indice].purchasedQuantity}Kgs
+                      </PesoProdu>
+                    </ContBarras>
+                    {despickear === false ? (
                       <ContImagenes>
                         <CuadritoUno>
-                          {wheights.length > 0 ? (
-                            <QtyPesables onClick={() => Activar(3)}>
-                              {wheights.length}
-                            </QtyPesables>
-                          ) : null}
                           <ImgBalanzasUno src={ImagenBalanza} />
+                          <PesoCuadro>
+                            {session[indice].purchasedQuantity}
+                            kgs.
+                          </PesoCuadro>
+                        </CuadritoUno>
+                      </ContImagenes>
+                    ) : (
+                      <>
+                        <ContImagenes>
                           {pesoTotal > session[indice].purchasedQuantity ? (
-                            <PesoCuadroWarining>
-                              {pesoTotal}
-                          kgs.
-                            </PesoCuadroWarining>
+                            <CuadritoUno color={true}>
+                              {wheights.length > 0 ? (
+                                <QtyPesables
+                                  onClick={() => Activar(3)}
+                                  color={true}
+                                >
+                                  {wheights.length}
+                                </QtyPesables>
+                              ) : null}
+                              <ImgBalanzasUno src={ImagenBalanza} />
+                              <PesoCuadroWarining>
+                                {pesoTotal}
+                                kgs.
+                              </PesoCuadroWarining>
+                            </CuadritoUno>
                           ) : (
+                            <CuadritoUno>
+                              {wheights.length > 0 ? (
+                                <QtyPesables onClick={() => Activar(3)}>
+                                  {wheights.length}
+                                </QtyPesables>
+                              ) : null}
+                              <ImgBalanzasUno src={ImagenBalanza} />
+
                               <PesoCuadro>
                                 {pesoTotal}
-                          kgs.
+                                kgs.
                               </PesoCuadro>
-                            )}
-                        </CuadritoUno>
-                        <Form
-                          onSubmit={() => {
-                            handleSubmit(
-                              event,
-                              session[indice].id,
-                              session[indice].name,
-                              session[indice].ean,
-                              session[indice].imageUrl,
-                            );
-                          }}
-                        >
-                          <PesoCuadroInput
-                            type="number"
-                            step="any"
-                            ref={inputRef}
-                            showInput={showInput}
-                            active={active}
-                            placeholder="Kgs."
-                            onChange={handleChange}
-                          />
-                        </Form>
-                        <CuadritoDos>
-                          <ImgBalanzasMas
-                            src={ImagenBalanzaMas}
-                            onClick={() => {
-                              setShowInput(true);
+                            </CuadritoUno>
+                          )}
+                          <Form
+                            onSubmit={() => {
+                              handleSubmit(
+                                event,
+                                session[indice].id,
+                                session[indice].name,
+                                session[indice].ean,
+                                session[indice].imageUrl,
+                              );
                             }}
-                          />
-                        </CuadritoDos>
-                      </ContImagenes>
-                      {pesoTotal > session[indice].purchasedQuantity ? (
-                        <InstruccionesWarning>
-                          Superaste el umbral de peso por {pesoTotal - session[indice].purchasedQuantity} kgs.
-                        </InstruccionesWarning>
-                      ) : (
+                          >
+                            <PesoCuadroInput
+                              type="number"
+                              step="any"
+                              ref={inputRef}
+                              showInput={showInput}
+                              active={active}
+                              placeholder="Kgs."
+                              onChange={handleChange}
+                            />
+                          </Form>
+                          <CuadritoDos>
+                            <ImgBalanzasMas
+                              src={ImagenBalanzaMas}
+                              onClick={() => setShowInput(true)}
+                            />
+                          </CuadritoDos>
+                        </ContImagenes>
+                        {pesoTotal > session[indice].purchasedQuantity ? (
+                          <InstruccionesWarning>
+                            Superaste el umbral de peso por{' '}
+                            {pesoTotal - session[indice].purchasedQuantity} kgs.
+                          </InstruccionesWarning>
+                        ) : (
                           <Instrucciones>
                             Coloca el producto sobre la balanza
                           </Instrucciones>
                         )}
-                      <PopUpOmitir
-                        activePopUp={active}
-                        onCloseClick={onCloseClick}
-                        PendingPopUp={Pending}
-                        IdProducto={session[indice].id}
-                      />
-                      <Botones>
-                        <BotIzq>
-                          <Omitir onClick={() => Activar(10)}>
-                            <CruzOmitir src={ImageCruzOmitir} />
-                        OMITIR
-                      </Omitir>
-                          <BotonTeclado>
-                            <Teclado
-                              src={TecladoIcono}
-                              onClick={() => {
-                                setShowInput(true);
-                              }}
-                            />
-                          </BotonTeclado>
-                          {sustituyendo === true ?
-                            <Siguiente
-                              onClick={() =>{
-                                          console.log("session[indice].id",session[indice].id)
-                                        
-                                        prepickear(session[indice].id,count, true )}
-                              }>PRE-PICKEAR
-                            </Siguiente>
-                            :
-                            (
-                            <Siguiente
-                              onClick={() =>
-                              pickeado(session[indice].id, null,true )
-                              }>SIGUIENTE
-                            </Siguiente>
-                            )
-                          }
-                        </BotIzq>
-                        <BotDer onClick={() => Activar(4)}>
-                          <PlusCircle src={masBlanco}></PlusCircle>
-                        </BotDer>
-                      </Botones>
-                    </ColDerecha>
-                  </>
-                ) : (
-                    ////////////////// PRODUCTO NORMAL //////////////////
-                    <>
-                      <ColIzq>
-                        <ColuIconos>
-                          <Sup>
-                            <ContainerGrillCuadros>
-                              {cuadrados.map((Element, indice) => {
-                                return (
-                                  <>
-                                  <CuadroGrill
-                                    key={indice}
-                                    numeros={indice}
-                                    datos={date.value}
-                                  >
-                                  {Element === true && indice !== date.value ? <DivImgTilde src={Tilde}/> : null }
-                                  </CuadroGrill>
-                                  </>
-                                )
-                              })}
-                            </ContainerGrillCuadros>
-                            <NumCuadrados>{date.value + 1}</NumCuadrados>
-                          </Sup>
-                        </ColuIconos>
-                        {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
-                        <DivFoto>
-                          <FotoProd src={session[indice].imageUrl} />
-                        </DivFoto>
-                      </ColIzq>
-                      <ColDerecha>
-                        <ContMarca>
-                          <ContDer>
-                            <MarcaH1>{session[indice].name}</MarcaH1>
-                            <Descri>
-                              Nombre del producto con doble linea lorem ipsum dolor
-                              sit amet
-                      </Descri>
-                            <ContInfo>
-                              <Tachado>${session[indice].purchasedPrice}</Tachado>
-                              <Precio>${session[indice].purchasedPrice}</Precio>
-                            </ContInfo>
-                          </ContDer>
-                          <DivGlobos>
-                            {session[indice].customerNote ? (
-                              <Button onClick={() => Activar(2)}>
-                                {' '}
-                                <ImgAmarilla src={bubble} />
-                              </Button>
-                            ) : null}
-                            <Button2 onClick={() => Activar(6)}>
-                              <ImgAmarilla src={bubbleExc} />
-                            </Button2>
-                          </DivGlobos>
-                        </ContMarca>
-                        <ContBarras>
-                          <BarritasCont>
-                            <Barritas src={BarCode} />
-                          </BarritasCont>
-                          <CodProdu>{session[indice].ean}</CodProdu>
-                        </ContBarras>
-                        <ContImagenes>
-                          <RecuadroCantidadNormal>
-                            <H1Cantidad>Cantidad</H1Cantidad>
-                            <H1CantidadNum>{count}</H1CantidadNum>
-                            <H1CantidadNum>
-                              / {session[indice].purchasedQuantity}
-                            </H1CantidadNum>
-                            <ContFlechitas>
-                              {count == 0 ? (
-                                <>
-                                  <FlechitaDesplegable
-                                    src={flechaDesplegableArriba}
-                                    onClick={() => setCount(count + 1)}
-                                  />
-                                  <FlechitaDesplegableNone />
-                                </>
-                              ) : count >= session[indice].purchasedQuantity ? (
-                                <>
-                                  <FlechitaDesplegableNone />
-                                  <FlechitaDesplegable
-                                    src={flechaDesplegableAbajo}
-                                    onClick={() => setCount(count - 1)}
-                                  />
-                                </>
-                              ) : (
-                                    <>
-                                      <FlechitaDesplegable
-                                        src={flechaDesplegableArriba}
-                                        onClick={() => setCount(count + 1)}
-                                      />
-                                      <FlechitaDesplegable
-                                        src={flechaDesplegableAbajo}
-                                        onClick={() => setCount(count - 1)}
-                                      />
-                                    </>
-                                  )}
-                            </ContFlechitas>
-                          </RecuadroCantidadNormal>
-                          <DivImageStock>
-                            <ContStock>
-                              Stock
-                        <StockCien>+100</StockCien>
-                            </ContStock>
-                          </DivImageStock>
-                        </ContImagenes>
-                        <PopUpOmitir
-                          activePopUp={active}
-                          onCloseClick={onCloseClick}
-                          PendingPopUp={Pending}
-                          IdProducto={session[indice].id}
-                        />
-                        <Botones>
+                      </>
+                    )}
+                    <Botones>
+                      {despickear === false ? (
+                        <>
                           <BotIzq>
-                            <Omitir onClick={() => Activar(10)}>
-                              <CruzOmitir src={ImageCruzOmitir} />
-                        OMITIR
-                      </Omitir>
-                            <BotonTeclado>
-                              <Teclado src={TecladoIcono} />
-                            </BotonTeclado>
-                            {sustituyendo === true ?
-                            <Siguiente
-                              onClick={() =>{
-                                          console.log("session[indice].id",session[indice].id)
-                                        
-                                        prepickear(session[indice].id,count, true )}
-                              }>PRE-PICKEAR
-                            </Siguiente>
-                            :
-                            (
-                            <Siguiente
-                              onClick={() =>
-                              pickeado(session[indice].id, count,true )
-                              }>SIGUIENTE
-                            </Siguiente>
-                            )
-                            }
+                            <Siguiente onClick={() => next()}>
+                              {' '}
+                              SIGUIENTE
+                            </Siguiente>{' '}
                           </BotIzq>
                           <BotDer onClick={() => Activar(4)}>
                             <PlusCircle src={masBlanco}></PlusCircle>
                           </BotDer>
-                        </Botones>
-                      </ColDerecha>
-                    </>
+                        </>
+                      ) : (
+                        <>
+                          <PopUpOmitir
+                            activePopUp={active}
+                            onCloseClick={onCloseClick}
+                            PendingPopUp={Pending}
+                            IdProducto={session[indice].id}
+                          />
+
+                          <BotIzq>
+                            <Omitir onClick={() => Activar(10)}>
+                              <CruzOmitir src={ImageCruzOmitir} />
+                              OMITIR
+                            </Omitir>
+                            <BotonTeclado>
+                              <Teclado
+                                src={TecladoIcono}
+                                onClick={() => setShowInput(true)}
+                              />
+                            </BotonTeclado>
+                            <Siguiente
+                              onClick={() =>
+                                pickeado(
+                                  session[indice].id,
+                                  session[indice].purchasedQuantity,
+                                  true,
+                                )
+                              }
+                            >
+                              {' '}
+                              SIGUIENTE
+                            </Siguiente>{' '}
+                          </BotIzq>
+                          <BotDer onClick={() => Activar(4)}>
+                            <PlusCircle src={masBlanco}></PlusCircle>
+                          </BotDer>
+                        </>
+                      )}
+                    </Botones>
+                  </ColDerecha>
+                </>
+              ) : (
+                ////////////////// PRODUCTO NORMAL //////////////////
+                <>
+                  <ColIzq>
+                    <ColuIconos>
+                      <Sup>
+                        <ContainerGrillCuadros>
+                          {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                            return (
+                              <CuadroGrill
+                                key={indice}
+                                numeros={indice}
+                                datos={date.value}
+                              />
+                            );
+                          })}
+                        </ContainerGrillCuadros>
+                        <NumCuadrados>{date.value + 1}</NumCuadrados>
+                      </Sup>
+                    </ColuIconos>
+                    {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
+                    <DivFoto>
+                      <FotoProd src={session[indice].imageUrl} />
+                    </DivFoto>
+                  </ColIzq>
+                  <ColDerecha>
+                    <ContMarca>
+                      <ContDer>
+                        <MarcaH1>{session[indice].name}</MarcaH1>
+                        <Descri>
+                          Nombre del producto con doble linea lorem ipsum dolor
+                          sit amet
+                        </Descri>
+                        <ContInfo>
+                          <Tachado>${session[indice].purchasedPrice}</Tachado>
+                          <Precio>${session[indice].purchasedPrice}</Precio>
+                        </ContInfo>
+                      </ContDer>
+                      <DivGlobos>
+                        {session[indice].customerNote ? (
+                          <Button onClick={() => Activar(2)}>
+                            {' '}
+                            <ImgAmarilla src={bubble} />
+                          </Button>
+                        ) : null}
+                        <Button2 onClick={() => Activar(6)}>
+                          <ImgAmarilla src={bubbleExc} />
+                        </Button2>
+                      </DivGlobos>
+                    </ContMarca>
+                    <ContBarras>
+                      <BarritasCont>
+                        <Barritas src={BarCode} />
+                      </BarritasCont>
+                      <CodProdu>{session[indice].ean}</CodProdu>
+                    </ContBarras>
+                    {despickear === false ? (
+                      <ContImagenes></ContImagenes>
+                    ) : (
+                      <ContImagenes>
+                        <RecuadroCantidadNormal>
+                          <H1Cantidad>Cantidad</H1Cantidad>
+                          <H1CantidadNum>{count}</H1CantidadNum>
+                          <H1CantidadNum>
+                            / {session[indice].purchasedQuantity}
+                          </H1CantidadNum>
+                          <ContFlechitas>
+                            {count == 0 ? (
+                              <>
+                                <FlechitaDesplegable
+                                  src={flechaDesplegableArriba}
+                                  onClick={() => setCount(count + 1)}
+                                />
+                                <FlechitaDesplegableNone />
+                              </>
+                            ) : count >= session[indice].purchasedQuantity ? (
+                              <>
+                                <FlechitaDesplegableNone />
+                                <FlechitaDesplegable
+                                  src={flechaDesplegableAbajo}
+                                  onClick={() => setCount(count - 1)}
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <FlechitaDesplegable
+                                  src={flechaDesplegableArriba}
+                                  onClick={() => setCount(count + 1)}
+                                />
+                                <FlechitaDesplegable
+                                  src={flechaDesplegableAbajo}
+                                  onClick={() => setCount(count - 1)}
+                                />
+                              </>
+                            )}
+                          </ContFlechitas>
+                        </RecuadroCantidadNormal>
+                        <DivImageStock>
+                          <ContStock>
+                            Stock
+                            <StockCien>+100</StockCien>
+                          </ContStock>
+                        </DivImageStock>
+                      </ContImagenes>
+                    )}
+
+                    <Botones>
+                      {despickear === false ? (
+                        <>
+                          <BotIzq>
+                            <Siguiente onClick={() => next()}>
+                              {' '}
+                              SIGUIENTE
+                            </Siguiente>{' '}
+                            {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                          </BotIzq>
+                          <BotDer onClick={() => Activar(4)}>
+                            <PlusCircle src={masBlanco}></PlusCircle>
+                          </BotDer>
+                        </>
+                      ) : (
+                        <>
+                          <PopUpOmitir
+                            activePopUp={active}
+                            onCloseClick={onCloseClick}
+                            PendingPopUp={Pending}
+                            IdProducto={session[indice].id}
+                          />
+                          <BotIzq>
+                            <Omitir onClick={() => Activar(10)}>
+                              <CruzOmitir src={ImageCruzOmitir} />
+                              OMITIR
+                            </Omitir>
+                            <BotonTeclado>
+                              <Teclado src={TecladoIcono} />
+                            </BotonTeclado>
+                            <Siguiente
+                              onClick={() => {
+                                pickeado(session[indice].id, count, false);
+                              }}
+                            >
+                              {' '}
+                              SIGUIENTE
+                            </Siguiente>{' '}
+                            {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                          </BotIzq>
+                          <BotDer onClick={() => Activar(4)}>
+                            <PlusCircle src={masBlanco}></PlusCircle>
+                          </BotDer>
+                        </>
+                      )}
+                    </Botones>
+                  </ColDerecha>
+                </>
+              )}
+            </Cont>
+          </DivStatus>
+        ) : (
+          <Cont>
+            {session[indice].isWeighable ? (
+              ///////////////// PRODUCTO PESABLE /////////////////
+              <>
+                <ColIzq>
+                  <PopUpPesables
+                    active={active}
+                    onCloseClick={onCloseClick}
+                    wheights={wheights}
+                    handleRemoveItem={handleRemoveItem}
+                  />
+                  <ColuIconos>
+                    <Sup>
+                      <ContainerGrillCuadros>
+                        {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                          return (
+                            <CuadroGrill
+                              key={indice}
+                              numeros={indice}
+                              datos={date.value}
+                            />
+                          );
+                        })}
+                      </ContainerGrillCuadros>
+                      <NumCuadrados>{date.value + 1}</NumCuadrados>
+                    </Sup>
+                    <ContStock>
+                      Stock
+                      <StockCien>+100</StockCien>
+                    </ContStock>
+                  </ColuIconos>
+                  <DivFoto>
+                    <FotoProd src={session[indice].imageUrl} />
+                  </DivFoto>
+                </ColIzq>
+                <ColDerecha>
+                  <ContMarca>
+                    <ContDer>
+                      <MarcaH1>{session[indice].name}</MarcaH1>
+                      <Descri>
+                        Nombre del producto con doble linea lorem ipsum dolor
+                        sit amet
+                      </Descri>
+                      <ContInfo>
+                        <Tachado>${session[indice].purchasedPrice}</Tachado>
+                        <Precio>${session[indice].purchasedPrice}</Precio>
+                      </ContInfo>
+                    </ContDer>
+                    <DivGlobos>
+                      {session[indice].customerNote ? (
+                        <Button onClick={() => Activar(2)}>
+                          {' '}
+                          <ImgAmarilla src={bubble} />
+                        </Button>
+                      ) : null}
+                      <Button2 onClick={() => Activar(6)}>
+                        <ImgAmarilla src={bubbleExc} />
+                      </Button2>
+                    </DivGlobos>
+                  </ContMarca>
+                  <ContBarras>
+                    <BarritasCont>
+                      <Barritas src={BarCode} />
+                    </BarritasCont>
+                    <CodProdu>{session[indice].ean}</CodProdu>
+                    <ImgBarrita />
+                    <ImBalanza src={ImagenBalanza} />
+                    <PesoProdu>
+                      {' '}
+                      {session[indice].purchasedQuantity}Kgs
+                    </PesoProdu>
+                  </ContBarras>
+                  <ContImagenes>
+                    {pesoTotal > session[indice].purchasedQuantity ? (
+                      <CuadritoUno color={true}>
+                        {wheights.length > 0 ? (
+                          <QtyPesables onClick={() => Activar(3)} color={true}>
+                            {wheights.length}
+                          </QtyPesables>
+                        ) : null}
+                        <ImgBalanzasUno src={ImagenBalanza} />
+                        <PesoCuadroWarining>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadroWarining>
+                      </CuadritoUno>
+                    ) : (
+                      <CuadritoUno>
+                        {wheights.length > 0 ? (
+                          <QtyPesables onClick={() => Activar(3)}>
+                            {wheights.length}
+                          </QtyPesables>
+                        ) : null}
+                        <ImgBalanzasUno src={ImagenBalanza} />
+
+                        <PesoCuadro>
+                          {pesoTotal}
+                          kgs.
+                        </PesoCuadro>
+                      </CuadritoUno>
+                    )}
+                    <Form
+                      onSubmit={() => {
+                        handleSubmit(
+                          event,
+                          session[indice].id,
+                          session[indice].name,
+                          session[indice].ean,
+                          session[indice].imageUrl,
+                        );
+                      }}
+                    >
+                      <PesoCuadroInput
+                        type="number"
+                        step="any"
+                        ref={inputRef}
+                        showInput={showInput}
+                        active={active}
+                        placeholder="Kgs."
+                        onChange={handleChange}
+                      />
+                    </Form>
+                    <CuadritoDos>
+                      <ImgBalanzasMas
+                        src={ImagenBalanzaMas}
+                        onClick={() => {
+                          setShowInput(true);
+                        }}
+                      />
+                    </CuadritoDos>
+                  </ContImagenes>
+                  {pesoTotal > session[indice].purchasedQuantity ? (
+                    <InstruccionesWarning>
+                      Superaste el umbral de peso por{' '}
+                      {pesoTotal - session[indice].purchasedQuantity} kgs.
+                    </InstruccionesWarning>
+                  ) : (
+                    <Instrucciones>
+                      Coloca el producto sobre la balanza
+                    </Instrucciones>
                   )}
-              </Cont>
+                  <PopUpOmitir
+                    activePopUp={active}
+                    onCloseClick={onCloseClick}
+                    PendingPopUp={Pending}
+                    IdProducto={session[indice].id}
+                  />
+                  <Botones>
+                    <BotIzq>
+                      <Omitir onClick={() => Activar(10)}>
+                        <CruzOmitir src={ImageCruzOmitir} />
+                        OMITIR
+                      </Omitir>
+                      <BotonTeclado>
+                        <Teclado
+                          src={TecladoIcono}
+                          onClick={() => {
+                            setShowInput(true);
+                          }}
+                        />
+                      </BotonTeclado>
+                      <Siguiente
+                        onClick={() =>
+                          pickeado(
+                            session[indice].id,
+                            session[indice].purchasedQuantity,
+                            true,
+                          )
+                        }
+                      >
+                        {' '}
+                        SIGUIENTE
+                      </Siguiente>{' '}
+                    </BotIzq>
+                    <BotDer onClick={() => Activar(4)}>
+                      <PlusCircle src={masBlanco}></PlusCircle>
+                    </BotDer>
+                  </Botones>
+                </ColDerecha>
+              </>
+            ) : (
+              ////////////////// PRODUCTO NORMAL //////////////////
+              <>
+                <ColIzq>
+                  <ColuIconos>
+                    <Sup>
+                      <ContainerGrillCuadros>
+                        {[1, 2, 3, 4, 5, 6].map((Element, indice) => {
+                          return (
+                            <CuadroGrill
+                              key={indice}
+                              numeros={indice}
+                              datos={date.value}
+                            />
+                          );
+                        })}
+                      </ContainerGrillCuadros>
+                      <NumCuadrados>{date.value + 1}</NumCuadrados>
+                    </Sup>
+                  </ColuIconos>
+                  {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
+                  <DivFoto>
+                    <FotoProd src={session[indice].imageUrl} />
+                  </DivFoto>
+                </ColIzq>
+                <ColDerecha>
+                  <ContMarca>
+                    <ContDer>
+                      <MarcaH1>{session[indice].name}</MarcaH1>
+                      <Descri>
+                        Nombre del producto con doble linea lorem ipsum dolor
+                        sit amet
+                      </Descri>
+                      <ContInfo>
+                        <Tachado>${session[indice].purchasedPrice}</Tachado>
+                        <Precio>${session[indice].purchasedPrice}</Precio>
+                      </ContInfo>
+                    </ContDer>
+                    <DivGlobos>
+                      {session[indice].customerNote ? (
+                        <Button onClick={() => Activar(2)}>
+                          {' '}
+                          <ImgAmarilla src={bubble} />
+                        </Button>
+                      ) : null}
+                      <Button2 onClick={() => Activar(6)}>
+                        <ImgAmarilla src={bubbleExc} />
+                      </Button2>
+                    </DivGlobos>
+                  </ContMarca>
+                  <ContBarras>
+                    <BarritasCont>
+                      <Barritas src={BarCode} />
+                    </BarritasCont>
+                    <CodProdu>{session[indice].ean}</CodProdu>
+                  </ContBarras>
+                  <ContImagenes>
+                    <RecuadroCantidadNormal>
+                      <H1Cantidad>Cantidad</H1Cantidad>
+                      <H1CantidadNum>{count}</H1CantidadNum>
+                      <H1CantidadNum>
+                        / {session[indice].purchasedQuantity}
+                      </H1CantidadNum>
+                      <ContFlechitas>
+                        {count == 0 ? (
+                          <>
+                            <FlechitaDesplegable
+                              src={flechaDesplegableArriba}
+                              onClick={() => setCount(count + 1)}
+                            />
+                            <FlechitaDesplegableNone />
+                          </>
+                        ) : count >= session[indice].purchasedQuantity ? (
+                          <>
+                            <FlechitaDesplegableNone />
+                            <FlechitaDesplegable
+                              src={flechaDesplegableAbajo}
+                              onClick={() => setCount(count - 1)}
+                            />
+                          </>
+                        ) : (
+                          <>
+                            <FlechitaDesplegable
+                              src={flechaDesplegableArriba}
+                              onClick={() => setCount(count + 1)}
+                            />
+                            <FlechitaDesplegable
+                              src={flechaDesplegableAbajo}
+                              onClick={() => setCount(count - 1)}
+                            />
+                          </>
+                        )}
+                      </ContFlechitas>
+                    </RecuadroCantidadNormal>
+                    <DivImageStock>
+                      <ContStock>
+                        Stock
+                        <StockCien>+100</StockCien>
+                      </ContStock>
+                    </DivImageStock>
+                  </ContImagenes>
+                  <PopUpOmitir
+                    activePopUp={active}
+                    onCloseClick={onCloseClick}
+                    PendingPopUp={Pending}
+                    IdProducto={session[indice].id}
+                  />
+                  <Botones>
+                    <BotIzq>
+                      <Omitir onClick={() => Activar(10)}>
+                        <CruzOmitir src={ImageCruzOmitir} />
+                        OMITIR
+                      </Omitir>
+                      <BotonTeclado>
+                        <Teclado src={TecladoIcono} />
+                      </BotonTeclado>
+                      <Siguiente
+                        onClick={() => {
+                          pickeado(session[indice].id, count, false);
+                        }}
+                      >
+                        {' '}
+                        SIGUIENTE
+                      </Siguiente>{' '}
+                      {/*CHEQUEAR QUE SUME 1 BIEN*/}
+                    </BotIzq>
+                    <BotDer onClick={() => Activar(4)}>
+                      <PlusCircle src={masBlanco}></PlusCircle>
+                    </BotDer>
+                  </Botones>
+                </ColDerecha>
+              </>
             )}
+          </Cont>
+        )}
       </ContGral>
     </>
   );

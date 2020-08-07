@@ -76,22 +76,18 @@ export default ({ Idsession }) => {
             </ParteSuperior>
           </ContainerIzquierdo>
           <ParteInferior>
-            {Idsession.orderIds ? (
-              <Pedidos>
-                <ImageBox src={box} />
-                <TitlePedidos>Pedidos</TitlePedidos>
-                <BorderNumeroPedido>
-                  <NumeroPedidos>{Idsession.orderIds.length}</NumeroPedidos>
-                </BorderNumeroPedido>
-              </Pedidos>
-            ) : null}
+            <Pedidos>
+              <ImageBox src={box} />
+              <TitlePedidos>Pedidos</TitlePedidos>
+              <BorderNumeroPedido>
+                <NumeroPedidos>6</NumeroPedidos>
+              </BorderNumeroPedido>
+            </Pedidos>
             <Pedidos>
               <ImageTriangle src={triangleCircle} />
               <TitlePedidos>Productos</TitlePedidos>
               <BorderNumeroPedido>
-                <NumeroPedidos>
-                  {Idsession.items && Idsession.items.length}
-                </NumeroPedidos>
+                <NumeroPedidos>{ Idsession.items && Idsession.items.length}</NumeroPedidos>
               </BorderNumeroPedido>
             </Pedidos>
             <Pedidos>
@@ -107,36 +103,35 @@ export default ({ Idsession }) => {
           </HeaderDiv>
 
           <DivScroll>
-            {Idsession.items &&
-              Idsession.items.map((elem) => {
-                return (
-                  <Productos key={elem.id} estado={elem.status}>
-                    <DivR>
-                      <Img src={elem.imageUrl} />
-                      <DivX>
-                        <Descripcion>{elem.name}</Descripcion>
+            { Idsession.items && Idsession.items.map((elem) => {
+              return (
+                <Productos key={elem.id} estado={elem.status}>
+                  <DivR>
+                    <Img src={elem.imageUrl} />
+                    <DivX>
+                      <Descripcion>{elem.name}</Descripcion>
 
-                        <DivZ>
-                          <Icono2 src={scanner} />
-                          <Ean>{elem.ean}</Ean>
-                          <Cantidad>{elem.pickedQuantity ? `0${elem.pickedQuantity}`: '00'} / {`0${elem.purchasedQuantity}`}</Cantidad>
-                        </DivZ>
-                      </DivX>
-                    </DivR>
-                    <DivK></DivK>
-                    <DivP>
-                      <Icono src={basket} />
-                      <Num> 1. </Num>
-                      <Icono3 src={box} />
-                      <Num2>{elem.orderId}</Num2>
-                      <DivB>
-                        <Icono4 src={balance} />
-                        <Icono4 src={substitute} />
-                      </DivB>
-                    </DivP>
-                  </Productos>
-                );
-              })}
+                      <DivZ>
+                        <Icono2 src={scanner} />
+                        <Ean>{elem.ean}</Ean>
+                        <Cantidad>30 / 30</Cantidad>
+                      </DivZ>
+                    </DivX>
+                  </DivR>
+                  <DivK></DivK>
+                  <DivP>
+                    <Icono src={basket} />
+                    <Num> 1. </Num>
+                    <Icono3 src={box} />
+                    <Num2>{Idsession.id}</Num2>
+                    <DivB>
+                      <Icono4 src={balance} />
+                      <Icono4 src={substitute} />
+                    </DivB>
+                  </DivP>
+                </Productos>
+              );
+            })}
           </DivScroll>
         </LDerecho>
       </Container>

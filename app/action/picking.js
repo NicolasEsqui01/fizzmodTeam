@@ -21,13 +21,6 @@ const listProduct = (items) => {
   };
 };
 
-const listSustitutos = (items) => {
-  return {
-    type: 'SUSTITUIR',
-    items,
-  };
-};
-
 export const itemPicked = (sessionId, obj) => {
   return (dispatch) => {
     return axios
@@ -44,12 +37,6 @@ export const itemPicked = (sessionId, obj) => {
 export const itemFinalPick = () => {
   return (dispatch) => {
     dispatch(pickFinal())
-  }
-};
-
-export const itemParaSustituir = (items) => {
-  return (dispatch) => {
-    dispatch(listSustitutos(items))
   }
 };
 

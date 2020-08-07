@@ -40,14 +40,7 @@ const PopUpContainer = ({
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('auth');
-    localStorage.removeItem('sessionid')
-    localStorage.removeItem('canasto')
-    localStorage.removeItem('cronometro')
-    localStorage.removeItem('cuadradoChico')
-    localStorage.removeItem('cuadradoGrande')
-    localStorage.removeItem('token')
-    handleCloseClick()
+    localStorage.removeItem('auth', 'sessionid');
     return history.push('/');
   };
   const handleCanastos = () => {
@@ -95,7 +88,6 @@ const PopUpContainer = ({
         active={active}
         onCloseClick={handleCloseClick}
         datosPicker={datosPicker}
-        handleLogout={handleLogout}
       />
       <PopUpObservacion
         active={active}
@@ -112,7 +104,7 @@ const PopUpContainer = ({
         onCloseClick={handleCloseClick}
         handleLogout={handleLogout}
         handleCanastos={handleCanastos}
-        handlePickingLibre={handlePickingLibre}
+        handlePickingLibre = {handlePickingLibre}
         despickear={despickear}
         reiniciar={reinicio}
         location={location}

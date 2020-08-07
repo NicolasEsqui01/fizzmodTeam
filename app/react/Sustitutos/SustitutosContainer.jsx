@@ -212,7 +212,7 @@ const SustitucionContainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
-  console.log("state",state)
+  
   return {
     idSession: localStorage.getItem('sessionid'),
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking

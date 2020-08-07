@@ -30,12 +30,8 @@ export default ({
   datosCanasto,
   canastos,
   handleChange,
-  cuadrados,
-  ordenSession,
-  booleano,
-  cantidadOrders
+  cuadrados
 }) => {
-
   return (
     <div>
       <Header>
@@ -78,9 +74,6 @@ export default ({
                     activarPopUp={activar}
                     handleSubmit={handleSubmit}
                     handleChange={handleChange}
-                    ordenes={ordenSession}
-                    cantidad={cantidadOrders}
-                    canastos={canastos}
                   />
                 </>
               );
@@ -89,7 +82,7 @@ export default ({
         </DivMedio>
       </DivGeneral>
       <Footer>
-        <Comenzar onClick={() => !booleano ? null : handleStartSession()}>COMENZAR</Comenzar>
+        <Comenzar onClick={handleStartSession}>COMENZAR</Comenzar>
       </Footer>
     </div>
   );

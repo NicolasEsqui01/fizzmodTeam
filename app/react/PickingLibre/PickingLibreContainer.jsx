@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import history from '../../utils/history';
 import PickingLibre from './PickingLibre';
 import {Activacion, Desactivacion } from '../../action/popup';
-import {itemParaSustituir} from '../../action/picking'
+
 const PickingLibreContainer = ({ items, IdItem, Activar, active, handleCloseClick }) => {
   console.log(items)
 
@@ -60,23 +60,33 @@ let item = Items[0]
      
   }, [dentro]);
 
-  const handleClick = (itemSelect) => {
-    if (idItems.length >0 && idItems.includes(itemSelect.id)) {
-      setIdItems(idItems.filter((item)=> item != itemSelect.id))
-      setItemsSelected(itemsSelected.filter((item)=> item.id != itemSelect.id))
-      } else {
-        setIdItems(oldArray => [...oldArray, itemSelect.id])
-        setItemsSelected(oldArray => [...oldArray, itemSelect])
-      }
-  }
+
+
+
+
+
+
+
+  const handleClick = (itemId) => {
+    if (itemsSelected.length > 0 && itemsSelected.includes(itemId)) {
+      setItemsSelected(itemsSelected.filter((item) => item != itemId));
+    } else setItemsSelected((oldArray) => [...oldArray, itemId]);
+  };
 
   const goToPickSubstitue = () => {
-    console.log("estoy por ir al action de pick. con;  ", itemsSelected)
-    itemsSustituir(itemsSelected)
     //localStorage.setItem('substitutes',JSON.stringify(itemsSelected))
-    localStorage.setItem('withSubstitute', true)
-    return history.push(`/sustitutos/${idSession}/1`)
-  }
+    history.push({
+      //UTILIZA HISTORY PARA ENVIARLE A LA PAG DE CONFIRMACION LOS DATOS CONTRUIDOS Y TERMINAR EL PICKEO DESDE ALLI
+      pathname: '/productoindividual',
+      state: { idSession: idSession, data: itemsSelected, datosCanasto: date },
+    });
+  };
+
+  /*    useEffect(() => {
+    if (showInput) inputRef.current.focus();
+  }, [showInput]);
+ */
+
   return (
     
     <PickingLibre
@@ -99,6 +109,8 @@ let item = Items[0]
       item = {item}
       active ={active}
       onCloseClick={handleCloseClick}
+      /*  showInput={showInput}
+         setShowInput={setShowInput} */
     />
   );
 };
@@ -116,7 +128,6 @@ const mapDispatchToProps = (dispatch) => {
   return{
     Activar: (n) => dispatch(Activacion(n)),
     handleCloseClick: () => dispatch(Desactivacion()),
-    itemsSustituir: (obj) => dispatch(itemParaSustituir(obj))
   }
 };
 

@@ -28,11 +28,6 @@ background-color: white;
   }
 `;
 
-export const DivImgTilde = styled.img`
-  width:20px;
-  height:20px;
-`
-
 export const PickingTituloDiv = styled.div`
 display: flex;
 height: 15%;
@@ -99,21 +94,18 @@ justify-content: center;
 
 export const CuadroGrill = styled.div`
   display: flex;    
-  width: 25%;
-  height: 20px;
+  width: 50%;
+  height: auto;
   flex-direction: row;
+  border: 1px solid #D1D3D4;
   border-radius:10%;
   margin: 4px 6px 4px 0px;
-  background-color:${({numeros , datos}) => numeros === datos ?  '#2979FF' : 'white'};
-  border:${({numeros , datos }) =>  numeros === datos ? '1px solid #2979FF' : '1px solid #D1D3D4'};
-  justify-content:center;
-  align-items:center;
 `;
 
 export const ContainerGrillCuadros = styled.div`
   display: flex;    
-  width: 90%;
-  flex-wrap:wrap;
+  width: 50px;
+  height: 20px;
   flex-direction: row;
   justify-content: center;
   align-content: center;
@@ -123,11 +115,12 @@ export const ContainerGrillCuadros = styled.div`
 export const NumCuadrados = styled.div`
   display: flex;
   margin-left:7px;    
-  width: 60%;
+  width: 50%;
+  //height: 48px;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border-bottom: 3px solid #2979FF;
+  border-bottom: 3px solid #A27BDB;
   font-size: 22px;
   color: #273947;
   font-family: Roboto;
