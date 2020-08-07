@@ -12,6 +12,11 @@ export const Container = styled.div`
   }
 `;
 
+export const DivScroll = styled.div`
+  overflow:auto;
+  
+`
+
 
 export const Derecho = styled.div`
   background-color: #f4f5fb;

@@ -8,12 +8,6 @@ const Picked = (items) => {
   };
 };
 
-const pickFinal = () => {
-  return {
-    type: 'FINAL',
-  };
-};
-
 const listProduct = (items) => {
   return {
     type: 'LIST_ITEMS_SEARCHED',
@@ -21,7 +15,14 @@ const listProduct = (items) => {
   };
 };
 
-const listSustitutos = (items) => {
+export const itemFinalPick = () => {
+  return {
+    type: 'FINAL',
+  };
+};
+
+
+export const itemParaSustituir = (items) => {
   return {
     type: 'SUSTITUIR',
     items,
@@ -41,18 +42,6 @@ export const itemPicked = (sessionId, obj) => {
   };
 };
 
-export const itemFinalPick = () => {
-  return (dispatch) => {
-    dispatch(pickFinal())
-  }
-};
-
-export const itemParaSustituir = (items) => {
-  return (dispatch) => {
-    dispatch(listSustitutos(items))
-  }
-};
-
 export const itemSearch = (sku) => {
   return (dispatch) => {
     return axios
@@ -60,4 +49,6 @@ export const itemSearch = (sku) => {
       .then((list) => dispatch(listProduct(list)))
   }
 };
+
+
 

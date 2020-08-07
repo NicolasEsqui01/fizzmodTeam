@@ -151,19 +151,16 @@ const SeleccionContainer = ({
     </>
   );
 };
-
 const MapStateToProps = (state) => {
   return {
     session: state.sessionReducer.sessionPicking.orderIds,
     auth: JSON.stringify(localStorage.getItem('auth')),
   };
 };
-
 const mapDispatchToProps = (dispatch) => {
   return {
     getStartSession: (id) => dispatch(getStartSession(id)),
     getSessionPicking: (id) => dispatch(getSessionPicking(id)),
   };
 };
-
 export default connect(MapStateToProps, mapDispatchToProps)(SeleccionContainer);

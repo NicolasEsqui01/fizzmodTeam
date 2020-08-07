@@ -37,6 +37,7 @@ import BoxGris from '../../images/box_gris.svg';
 import barCode from '../../images/bar_code.svg';
 import X from '../../images/cross_light.svg';
 
+
 export default ({
   handleClick,
   valor,

@@ -28,11 +28,6 @@ background-color: white;
   }
 `;
 
-export const DivImgTilde = styled.img`
-  width:20px;
-  height:20px;
-`
-
 export const PickingTituloDiv = styled.div`
 display: flex;
 height: 15%;
@@ -136,7 +131,7 @@ export const NumCuadrados = styled.div`
   @media ${device.mobile} {
   font-size: 20px;
   height: 30px;
-}  
+  }  
 `;
 
 export const LogoCajitasDiv = styled.div`
@@ -619,9 +614,9 @@ border-left: red;
   margin-bottom: 1%;
   width: 95%;
 } 
-  ${({ selected, div }) => {
-      if(selected.includes(div)) return 'border: 4px solid #1db779 !important;'
-  }}
+  $//{({ selected, div }) => {
+  //    if(selected.includes(div)) return 'border: 4px solid #1db779 !important;'
+  //  }}
 `;
 
 export const DivIzqProducto = styled.div`
@@ -638,6 +633,11 @@ margin: 10px;
   } 
 
 `;
+
+export const DivImgTilde = styled.img`
+  width:20px;
+  height:20px;
+`
 
 export const ImgProdu = styled.div`
 //width: 50%;

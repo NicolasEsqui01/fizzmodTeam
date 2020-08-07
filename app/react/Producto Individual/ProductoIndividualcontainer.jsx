@@ -36,10 +36,7 @@ const ProductoIndividualcontainer = ({
   const [arrayOmitidos, setArrayOmitidos] = useState([]);
   const inputRef = useRef(null);
   const date = JSON.parse(localStorage.getItem('canasto'))
-
- 
-  console.log(items, 'items')
-
+  
   useEffect(() => {
     if (auth !== 'null') {
       getSessionPicking(idSession);
@@ -205,7 +202,6 @@ const ProductoIndividualcontainer = ({
         ],
       };
       data = dataNoPesable;
-      console.log("data",data)
     }
 
     //CHEQUEA SI ES EL ULTIMO ITEM DE LA LISTA, PARA PASAR A LA PAGINA DE CONFIRMACION FINAL

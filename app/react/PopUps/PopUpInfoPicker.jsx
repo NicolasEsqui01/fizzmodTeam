@@ -24,7 +24,7 @@ import catalogo from '../../images/catalogue.svg';
 import exit from '../../images/arrow_alt_from_left.svg';
 import store from '../../images/store.svg';
 
-export default ({ active, onCloseClick, datosPicker , handleLogout}) => {
+export default ({ active, onCloseClick, datosPicker , handleLogout }) => {
   return (
     <>
       <DIV7 active={active}>

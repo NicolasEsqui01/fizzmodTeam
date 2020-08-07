@@ -35,6 +35,7 @@ import {
   Pickeados,
   TotalesGris,
   ImgLineaRoja,
+  DivScroll,
 } from './style';
 import ProgressBarContainer from '../ProgressBar/ProgressBarContainer';
 import basket from '../../images/basket_gris.svg';
@@ -84,25 +85,27 @@ export default ({ handleClick, idSession, datosCanasto }) => {
             <IconoCanastoOscuro src={basket} />
             <TituloCanasto>CANASTOS</TituloCanasto>
           </ParteSuperior>
-          {datosCanasto &&
-            Object.values(datosCanasto.nameCanasto)
-              .filter((Element) => Element !== '')
-              .map((Element) => {
-                return (
-                  <>
-                    <ParteCentral1>
-                      <ParteCentralIzq>
-                        <IconoCanastoVerde src={basketVerde} />
-                        <NombreCanasto>Canasto {Element}</NombreCanasto>
-                      </ParteCentralIzq>
-                      <DivIconoAprobado>
-                        <IconoAprobado src={Aprobado} />
-                      </DivIconoAprobado>
-                    </ParteCentral1>
-                    <LineaBlanca />
-                  </>
-                );
-              })}
+          <DivScroll>
+            {datosCanasto &&
+              Object.values(datosCanasto.nameCanasto)
+                .filter((Element) => Element !== '')
+                .map((Element) => {
+                  return (
+                    <>
+                      <ParteCentral1>
+                        <ParteCentralIzq>
+                          <IconoCanastoVerde src={basketVerde} />
+                          <NombreCanasto>Canasto {Element}</NombreCanasto>
+                        </ParteCentralIzq>
+                        <DivIconoAprobado>
+                          <IconoAprobado src={Aprobado} />
+                        </DivIconoAprobado>
+                      </ParteCentral1>
+                      <LineaBlanca />
+                    </>
+                  );
+                })}
+          </DivScroll>
           <ParteCentral2>
             <ParteCentral2Izq>
               <IconoCanastoGris src={basketNegro} />

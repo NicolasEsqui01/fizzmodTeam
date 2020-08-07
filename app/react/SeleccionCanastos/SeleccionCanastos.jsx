@@ -35,7 +35,6 @@ export default ({
   booleano,
   cantidadOrders
 }) => {
-
   return (
     <div>
       <Header>

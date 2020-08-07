@@ -68,6 +68,9 @@ font-weight: bold;
 letter-spacing: 0;
 line-height: 19px;
 margin-top:10px;
+@media ${device.mobile} {
+  font-size: 18px;
+}
 `
 
 export const IconoCanasta = styled.div`
@@ -110,6 +113,7 @@ align-items: center;
 //justify-content:space-around;
 margin-left:5px;
 padding-top: 30px;
+
 `
 
 export const ImageBox = styled.img`
@@ -117,12 +121,20 @@ margin-right: 2%;
 margin-left: 5%;
 height: 50px;
 width: 50px;
+@media ${device.mobile} {
+height: 40px;
+width: 40px;
+}
 `
 export const ImageTriangle = styled.img`
 margin-right: 2%;
 margin-left: 5%;
 height: 50px;
 width: 50px;
+@media ${device.mobile} {
+  height: 40px;
+  width: 40px;
+  }
 `
 
 
@@ -134,6 +146,9 @@ font-family: Roboto;
 font-size: 25px;
 letter-spacing: 0;
 line-height: 16px;
+@media ${device.mobile} {
+  font-size: 22px;
+  }
 `
 
 export const TitlePedidos = styled.div`
@@ -144,6 +159,9 @@ font-family: Roboto;
 font-size: 25px;
 letter-spacing: 0;
 line-height: 16px;
+@media ${device.mobile} {
+  font-size: 22px;
+}
 
 `
 
@@ -224,7 +242,7 @@ background-color:#FFFFFF;
 height:33%;
 display: flex;
 flex-direction: column;
-border-right: ${({estado}) => estado === 'picked' ? '15px solid rgb(8, 196, 196)' : '15px solid #2979FF'};
+border-right: ${({ estado }) => estado === 'picked' ? '15px solid rgb(8, 196, 196)' : '15px solid #2979FF'};
 border-top-right-radius: 5px;
 border-bottom-right-radius:5px;
 `
