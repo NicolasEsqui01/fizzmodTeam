@@ -23,7 +23,6 @@ const PickingLibreContainer = ({
   const [total, setTotal] = useState(0);
   const [acum, setAcum] = useState(0);
   const [idItems, setIdItems] = useState([]);
-  /*  const [showInput, setShowInput] = useState(false); */
 
   if (items === undefined) return history.push(`/productoindividual/${idSession}/1`);
   let Items = items.filter((element) => element.id === IdItem);

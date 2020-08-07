@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Container,
   ColuIzquierda,
@@ -74,6 +73,7 @@ import {
   H1PesoVerde,
   DivImgTilde,
 } from './style';
+
 import IconoHeaderImg from '../../images/icono_Header.png';
 import ImgPickingLibre from '../../images/icn_picking-libreVerde.svg';
 import Lupita from '../../images/search.svg';
@@ -81,21 +81,23 @@ import TecladoIcono from '../../images/tecladoIcono.png';
 import Carne from '../../images/carne.png';
 import Trash from '../../images/trash.svg';
 import Barritas from '../../images/bar_code.svg';
-import Tilde from '../../images/check_bold.svg';
 import Like from '../../images/like.svg';
 import IconoTotals from '../../images/totals.svg';
 import PopUpControlDePeso from '../PopUps/PopUpControlDePeso';
+import Tilde from '../../images/check_bold.svg';
+
 
 /* isWeighable */
 export default ({
   value,
   handleChange,
+  BotonOK,
+  dentro,
+  BotonBasura /* showInput, setShowInput */,
   handleClick,
   goToPickSubstitue,
   itemsSelected,
   item,
-  BotonOK,
-  dentro,
   date,
   sustitutos,
   acum,
@@ -108,7 +110,6 @@ export default ({
   active,
   onCloseClick,
   idItems,
-  BotonBasura
 }) => {
   const arr = [
     {
@@ -312,7 +313,7 @@ export default ({
                   return (
                     <ProductosDiv
                       onClick={() => {
-                        handleClick(element); // CUANDO SEA REAL CAMBIARLO POR Element.id
+                        handleClick(element.id); // CUANDO SEA REAL CAMBIARLO POR Element.id
                       }}
                       selected={itemsSelected}
                       div={element.id}
@@ -379,11 +380,11 @@ export default ({
                   {sustitutos.map((Element) => {
                     return (
                       <ProductosDiv
-                        // onClick={() => {
-                        //   handleClick(Element); // CUANDO SEA REAL CAMBIARLO POR Element.id
-                        // }}
-                        // selected={idItemsSelected}
-                        // div={Element.id}
+                      // onClick={() => {
+                      //   handleClick(Element); // CUANDO SEA REAL CAMBIARLO POR Element.id
+                      // }}
+                      // selected={idItemsSelected}
+                      // div={Element.id}
                       >
                         <DivIzqProducto>
                           <ImgProdu>
@@ -413,7 +414,7 @@ export default ({
               <Teclado src={TecladoIcono} />
             </BotonTeclado>
             <Siguiente
-                onClick={goToPickSubstitue} //onClick={() => Activar(8)}
+              onClick={goToPickSubstitue} //onClick={() => Activar(8)}
             >
               SIGUIENTE
             </Siguiente>

@@ -111,14 +111,23 @@ export default ({
   sustituyendo,
   prepickear,
 }) => {
-  let cuadrados =
+  let  criterioSustitucion;
+  let igualGramaje;
+  
+   session[indice] && (session[indice].substitutionCriteria == "doNotSubstitute" || !session[indice].substitutionCriteria)? criterioSustitucion = "No sustituir," : null,  
+   session[indice] && session[indice].substitutionCriteria == "sameBrand"? criterioSustitucion = "= Marca," : null,
+   session[indice] && session[indice].isWeighable && (!session[indice].substitutionCriteria == "doNotSubstitute")? igualGramaje = "= Gramaje," : null
+   
+   let cuadrados =
     localStorage.getItem('cuadradoChico') &&
     localStorage
       .getItem('cuadradoChico')
       .split(',')
       .map((Element) => (Element === 'true' ? true : false));
+  
   return (
-    <>
+<>
+    
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
       <ContGral>
         <Header>
@@ -133,10 +142,10 @@ export default ({
             ) : (
               <>
                 <div>
-                  <Marca> = Marca, </Marca>
+                <Marca>{criterioSustitucion}</Marca>
                 </div>
                 <div>
-                  <Gramaje> = Gramaje </Gramaje>
+                <Gramaje>{igualGramaje}</Gramaje>
                 </div>
               </>
             )}
@@ -150,7 +159,8 @@ export default ({
 
         {session.length === 0 ? (
           <div>Cargando</div>
-        ) : session[indice].status === 'picked' ||
+        ) : 
+        session[indice].status === 'picked' ||
           session[indice].status === 'omitido' ? (
           <DivStatus status={session[indice].status} despickear={despickear}>
             {despickear === false ? (
@@ -248,25 +258,37 @@ export default ({
                     ) : (
                       <>
                         <ContImagenes>
-                          <CuadritoUno>
-                            {wheights.length > 0 ? (
-                              <QtyPesables onClick={() => Activar(3)}>
-                                {wheights.length}
-                              </QtyPesables>
-                            ) : null}
-                            <ImgBalanzasUno src={ImagenBalanza} />
-                            {pesoTotal > session[indice].purchasedQuantity ? (
+                          {pesoTotal > session[indice].purchasedQuantity ? (
+                            <CuadritoUno color={true}>
+                              {wheights.length > 0 ? (
+                                <QtyPesables
+                                  onClick={() => Activar(3)}
+                                  color={true}
+                                >
+                                  {wheights.length}
+                                </QtyPesables>
+                              ) : null}
+                              <ImgBalanzasUno src={ImagenBalanza} />
                               <PesoCuadroWarining>
                                 {pesoTotal}
                                 kgs.
                               </PesoCuadroWarining>
-                            ) : (
+                            </CuadritoUno>
+                          ) : (
+                            <CuadritoUno>
+                              {wheights.length > 0 ? (
+                                <QtyPesables onClick={() => Activar(3)}>
+                                  {wheights.length}
+                                </QtyPesables>
+                              ) : null}
+                              <ImgBalanzasUno src={ImagenBalanza} />
+
                               <PesoCuadro>
                                 {pesoTotal}
                                 kgs.
                               </PesoCuadro>
-                            )}
-                          </CuadritoUno>
+                            </CuadritoUno>
+                          )}
                           <Form
                             onSubmit={() => {
                               handleSubmit(
@@ -312,8 +334,9 @@ export default ({
                         <>
                           <BotIzq>
                             <Siguiente onClick={() => next()}>
+                              {' '}
                               SIGUIENTE
-                            </Siguiente>
+                            </Siguiente>{' '}
                           </BotIzq>
                           <BotDer onClick={() => Activar(4)}>
                             <PlusCircle src={masBlanco}></PlusCircle>
@@ -388,7 +411,6 @@ export default ({
                         <NumCuadrados>{date.value + 1}</NumCuadrados>
                       </Sup>
                     </ColuIconos>
-                    {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
                     <DivFoto>
                       <FotoProd src={session[indice].imageUrl} />
                     </DivFoto>
@@ -611,25 +633,34 @@ export default ({
                     </PesoProdu>
                   </ContBarras>
                   <ContImagenes>
-                    <CuadritoUno>
-                      {wheights.length > 0 ? (
-                        <QtyPesables onClick={() => Activar(3)}>
-                          {wheights.length}
-                        </QtyPesables>
-                      ) : null}
-                      <ImgBalanzasUno src={ImagenBalanza} />
-                      {pesoTotal > session[indice].purchasedQuantity ? (
+                    {pesoTotal > session[indice].purchasedQuantity ? (
+                      <CuadritoUno color={true}>
+                        {wheights.length > 0 ? (
+                          <QtyPesables onClick={() => Activar(3)} color={true}>
+                            {wheights.length}
+                          </QtyPesables>
+                        ) : null}
+                        <ImgBalanzasUno src={ImagenBalanza} />
                         <PesoCuadroWarining>
                           {pesoTotal}
                           kgs.
                         </PesoCuadroWarining>
-                      ) : (
+                      </CuadritoUno>
+                    ) : (
+                      <CuadritoUno>
+                        {wheights.length > 0 ? (
+                          <QtyPesables onClick={() => Activar(3)}>
+                            {wheights.length}
+                          </QtyPesables>
+                        ) : null}
+                        <ImgBalanzasUno src={ImagenBalanza} />
+
                         <PesoCuadro>
                           {pesoTotal}
                           kgs.
                         </PesoCuadro>
-                      )}
-                    </CuadritoUno>
+                      </CuadritoUno>
+                    )}
                     <Form
                       onSubmit={() => {
                         handleSubmit(
@@ -740,7 +771,6 @@ export default ({
                       <NumCuadrados>{date.value + 1}</NumCuadrados>
                     </Sup>
                   </ColuIconos>
-                  {/*<DivFoto><FotoProd src ={ImagenSancor}/></DivFoto>*/}
                   <DivFoto>
                     <FotoProd src={session[indice].imageUrl} />
                   </DivFoto>

@@ -167,9 +167,7 @@ const ProductoIndividualcontainer = ({
           let newIndice = Number(indice) + 1;
           setWheights([]);
           setPesoTotal(0);
-          if (bolleanDespickear === true && booleanReiniciar === false){
-            despickear(false)
-          }
+          if (bolleanDespickear === true && booleanReiniciar === false) despickear(false);
           getSessionPicking(idSession);
           if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
           if (localStorage.getItem('withSubstitute')== true )localStorage.setItem('withSubstitute', false);

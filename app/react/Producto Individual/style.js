@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { device } from '../../utils/mediaQuerys';
-import { stubArray } from "lodash";
 
 ///////// HEADER ////////////////
 export const Header = styled.div`
@@ -16,7 +15,7 @@ export const DivStatus = styled.div`
   align-items:center;
   justify-content:center;
   height:86vh;
-  background-color:${({status, despickear}) => status === 'picked' && despickear !== true ? '#2979FF' : '#FFFFFF'};
+  background-color:${({ status, despickear }) => status === 'picked' && despickear !== true ? '#2979FF' : '#FFFFFF'};
   @media ${device.mobile} {
     height:87vh;
   }
@@ -53,9 +52,10 @@ margin-left: auto;
 margin-right: auto;
 `;
 
+
 export const Marca = styled.h1`
 height: 21px;
-width: 69px;
+width: 95px;
 color: #273947;
 font-family: Roboto;
 font-size: 18px;
@@ -63,12 +63,16 @@ letter-spacing: 0;
   line-height: 21px;
   text-align: right;
   margin-right: 7px;
-  margin-left: 7px;
+ 
+  @media ${device.tablet} {
+    width: 50px;
+    font-size: 13px;
+  }
 `;
 
 export const Gramaje = styled.h1`
 height: 21px;
-  width: 82px;
+  width: 95px;
   color: #F13B70;
   font-family: Roboto;
   font-size: 18px;
@@ -119,8 +123,8 @@ export const CuadroGrill = styled.div`
   flex-direction: row;
   border-radius:10%;
   margin: 4px 6px 4px 0px;
-  background-color:${({numeros , datos}) => numeros === datos ?  '#2979FF' : 'white'};
-  border:${({numeros , datos }) =>  numeros === datos ? '1px solid #2979FF' : '1px solid #D1D3D4'};
+  background-color:${({ numeros, datos }) => numeros === datos ? '#2979FF' : 'white'};
+  border:${({ numeros, datos }) => numeros === datos ? '1px solid #2979FF' : '1px solid #D1D3D4'};
   justify-content:center;
   align-items:center;
 `
@@ -163,7 +167,7 @@ export const DivFoto = styled.div`
   float: right;
   max-width: 450px;
   @media ${device.mobile} {
-  width: 60%;
+  width: 50%;
   max-width: 450px;
   }  
 `;
@@ -347,42 +351,11 @@ export const MarcaH1 = styled.h1`
   margin-top:15px;
   margin-bottom:15px;
   font-size: 15px;
-  height: 2px;
-  width:100%;
+  height: 30px;
+  width:50%;
 }
 
 `;
-export const NoSus = styled.h1`
-height: 21px;
-width: 150px;
-color: #273947;
-font-family: Roboto;
-font-size: 18px;
-letter-spacing: 0;
-  line-height: 21px;
-  text-align: right;
-  margin-right: 7px;
-  margin-left: 7px;
-
-`
-export const CantiSus = styled.div`
-display:flex;
-height: 21px;
-width: 150px;
-font-size: 15px;
-border-radius: 15px;
-background-color:#FFFFFF
-`
-export const NumeroAzul = styled.p`
-height: 19px;
-width: 33px;
-color: #2979FF;
-font-family: Roboto;
-font-size: 16px;
-font-weight: bold;
-letter-spacing: 0;
-line-height: 19px;
-`
 
 export const Descri = styled.div`
   margin-top:20px;
@@ -571,7 +544,7 @@ export const PesoCuadroInput = styled.input`
   margin-left:20px;
   border: 2px solid #0368FF;
   ${props => props.showInput == false ? `display:none` : null};
-  ${props => props.active == 2 || props.active == 6  || props.active == 1 || props.active == 4 || props.active == 7 ? `display:none` : null};
+  ${props => props.active == 2 || props.active == 6 || props.active == 1 || props.active == 4 || props.active == 7 ? `display:none` : null};
   @media ${device.tablet} {
 
 } 
@@ -656,6 +629,12 @@ font-family: Roboto;
 font-size: 16px;
 font-weight: bold;
 `;
+
+
+export const DivImgTilde = styled.img`
+  width:20px;
+  height:20px;
+`
 
 
 /////////// RECUADRO CON CANTIDAD PRODUCTO NORMAL Y STOCK///////////
@@ -784,7 +763,7 @@ export const BotDer = styled.button`
   outline:none;
   cursor: pointer;
 `;
-export const Button = styled.button `
+export const Button = styled.button`
 width:70px;
 height:70px;
 border: 1px solid transparent;
@@ -793,7 +772,7 @@ outline:none;
 border-radius: 50px;
 cursor: pointer;
 `
-export const Button2 = styled.button `
+export const Button2 = styled.button`
 width:70px;
 height:70px;
 border: 1px solid transparent;
@@ -877,13 +856,36 @@ export const PlusCircle = styled.img`
   padding: 6px;
 `;
 
-export const DivImgTilde = styled.img`
-  width:20px;
-  height:20px;
+
+export const NumeroAzul = styled.p`
+  height: 19px;
+  width: 33px;
+  color: #2979FF;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: bold;  
+  letter-spacing: 0;
+  line-height: 19px;
 `
 
+export const CantiSus = styled.div`
+  display:flex;
+  height: 21px;
+  width: 150px;
+  font-size: 15px;
+  border-radius: 15px;
+  background-color:#FFFFFF
+`
 
-
-
- 
-
+export const NoSus = styled.h1`
+  height: 21px;
+  width: 150px;
+  color: #273947;
+  font-family: Roboto;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 21px;
+  text-align: right;
+  margin-right: 7px;
+  margin-left: 7px;
+  `
