@@ -56,7 +56,6 @@ export default ({
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
-
   return (
     <DivContenedor>
       <DivImage>
@@ -133,7 +132,7 @@ export default ({
                   <TagA href="#">Forgot Password</TagA>{' '}
                 </Link>
               </Forgot>
-              <Button onClick={handleClick}>Enter</Button>
+              <Button onClick={() => handleClick()}>Enter</Button>
             </FormButtom>
           </Form>
         </DivForm>
