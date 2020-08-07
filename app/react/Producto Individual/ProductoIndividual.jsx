@@ -122,9 +122,17 @@ export default ({
   despickear,
 }) => {
   let idx = 0;
-
+  let  criterioSustitucion;
+  let igualGramaje;
+  
+   session[indice] && (session[indice].substitutionCriteria == "doNotSubstitute" || !session[indice].substitutionCriteria)? criterioSustitucion = "No sustituir," : null,  
+   session[indice] && session[indice].substitutionCriteria == "sameBrand"? criterioSustitucion = "= Marca," : null,
+   session[indice] && session[indice].isWeighable && (!session[indice].substitutionCriteria == "doNotSubstitute")? igualGramaje = "= Gramaje," : null
+   
+  
   return (
-    <>
+<>
+    
       {/*   /////////////////////////////// vista producto normal //////////////////////////////////////// */}
       <ContGral>
         <Header>
@@ -135,22 +143,24 @@ export default ({
               </Button>
             </div>
             <div>
-              <Marca> = Marca, </Marca>
+              <Marca>{criterioSustitucion}</Marca>
             </div>
             <div>
-              <Gramaje> = Gramaje </Gramaje>
+              <Gramaje>{igualGramaje}</Gramaje>
             </div>
           </Cuadro>
         </Header>
 
         {session.length === 0 ? (
           <div>Cargando</div>
-        ) : session[indice].status === 'picked' ||
+        ) : 
+        session[indice].status === 'picked' ||
           session[indice].status === 'omitido' ? (
+
               <DivStatus status={session[indice].status} despickear={despickear}>
                 {despickear === false ? <StatusP>PICKEADO</StatusP> : <StatusP>OMITIDO</StatusP>}
                 <Cont>
-                  {
+                  {  
                     (session[indice].isWeighable ?
 
                       ///////////////// PRODUCTO PESABLE /////////////////
@@ -507,6 +517,8 @@ export default ({
                 </Cont>
               </DivStatus>
             ) : (
+              
+              
               <Cont>
                 {session[indice].isWeighable ? (
                   ///////////////// PRODUCTO PESABLE /////////////////

@@ -37,10 +37,15 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
   let duration;
   let durationDias;
   let tiempo;
+  let hoy = new Date().toISOString();
   let arrFractionable = 0;
   let arrWeighable = 0;
   let arrFresh = 0;
   let arrFrozen = 0;
+  let IgualMarca=0;
+  let NoSustituir=0;
+
+
   return (
     <>
       <DivScroll>
@@ -53,7 +58,9 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
             start = moment(element.startPickingTime);
             end = moment(element.endPickingTime);
             duration = moment.duration(end.diff(start)).asMinutes();
-
+            
+              IgualMarca=0;
+              NoSustituir=0;  
 
             element.items.map((el) => {
 
@@ -61,7 +68,9 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
               el.isWeighable == true ? arrWeighable += 1 : null;
               el.isFractionable == true ? arrFractionable += 1 : null;
               el.isFrozen == true ? arrFrozen += 1 : null;
-
+              
+              el.substitutionCriteria == "sameBrand"? IgualMarca+= 1 : null;
+              el.substitutionCriteria == "doNotSubstitute"? NoSustituir+= 1 : null;
             })
 
             return (
@@ -104,7 +113,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                   <DivS>
                     <Marca>
                       <ImgP src={substitute} />
-                      <Info>= Marca, = Gramage</Info>
+                       <Info>{IgualMarca>0? " = Marca, " : null}{NoSustituir>0? " = No sustituir, " : null}</Info>
                     </Marca>
                   </DivS>
                   <DivS>
@@ -124,6 +133,10 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
             arrWeighable = 0;
             arrFresh = 0;
             arrFrozen = 0;
+             
+            
+              IgualMarca=0;
+              NoSustituir=0;  
 
             element.items.map((el) => {
               el.isFresh == true ? arrFresh += 1 : null;
@@ -131,13 +144,16 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
               el.isFractionable == true ? arrFractionable += 1 : null;
               el.isFrozen == true ? arrFrozen += 1 : null;
 
+              el.substitutionCriteria == "sameBrand"? IgualMarca+= 1 : null;
+              el.substitutionCriteria == "doNotSubstitute"? NoSustituir+= 1 : null;
+
             })
 
             start = moment(element.startPickingTime);
-            end = moment(element.endPickingTime);
+            end = moment(element.endPickingTime? element.endPickingTime : hoy);
             duration = moment.duration(end.diff(start)).asMinutes();
             durationDias = moment.duration(end.diff(start)).asDays();
-            parseInt(duration * 10, 10) < 1440 ? tiempo = parseInt(duration * 10, 10) + " min" : tiempo = parseInt(durationDias * 10, 10) + " días"
+            parseInt(duration * 10, 10) < 1440 ? tiempo = parseInt(duration * 10, 10) + " min" : tiempo = Math.ceil(durationDias) + " días"
 
             return (
               <ListOrdenes
@@ -180,7 +196,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                   <DivS>
                     <Marca>
                       <ImgP src={substitute} />
-                      <Info>= Marca, = Gramage</Info>
+                      <Info>{IgualMarca>0? " = Marca, " : null}{NoSustituir>0? " = No sustituir, " : null}</Info>
                     </Marca>
                   </DivS>
                   <DivS>
