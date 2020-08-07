@@ -197,7 +197,7 @@ export default ({ pendSessions, pickSessiones, status, handleClick, valor }) => 
                   <DivS>
                     <Marca>
                       <ImgP src={substitute} />
-                      <Info>{IgualMarca>0? " = Marca, " : null}{NoSustituir>0? " = No sustituir, " : null}</Info>
+                      <Info> = Marca, = Gramaje </Info>
                     </Marca>
                   </DivS>
                   <DivS>
