@@ -46,7 +46,6 @@ const PickingLibreContainer = ({items, itemsSustituir, IdItem})=> {
   }
 
   const goToPickSubstitue = () => {
-    console.log("estoy por ir al action de pick. con;  ", itemsSelected)
     itemsSustituir(itemsSelected)
     //localStorage.setItem('substitutes',JSON.stringify(itemsSelected))
     localStorage.setItem('withSubstitute', true)

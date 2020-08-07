@@ -140,7 +140,6 @@ const ProductoIndividualcontainer = ({
   }
 
   const ItemPicked = (iditems, qty, pesable) => {
-    console.log("qty",qty)
     let data = {};
     // CHEQUEA SI SE ACTIVO EN LOCALSTORAGE LA ALARMA DE ITEM SUSTITUIDO
     let objSubs = JSON.parse(localStorage.getItem('withSubstitute'))
@@ -157,7 +156,6 @@ const ProductoIndividualcontainer = ({
         ],
       };
       data = dataPesable;
-      console.log("data",data)
     }
     //CONSTRUCCION DEL OBJETO PESABLE CON SUSTITUTO, PARA ENVIAR AL BACKEND
     if (pesable == true && objSubs == true) {
@@ -174,7 +172,6 @@ const ProductoIndividualcontainer = ({
         ],
       };
       data = dataNoPesable;
-      console.log("data",data)
     }
     //CONSTRUCCION DEL OBJETO SUELTO CON SUSTITUTO, PARA ENVIAR AL BACKEND
     if (pesable == false && objSubs == true) {
@@ -191,7 +188,6 @@ const ProductoIndividualcontainer = ({
         ],
       };
       data = dataWithSubs;
-      console.log("data",data)
     }
     //CONSTRUCCION DEL OBJETO SUELTO CON SUSTITUTO, PARA ENVIAR AL BACKEND
     if (pesable == false && objSubs == false) {
@@ -227,6 +223,7 @@ const ProductoIndividualcontainer = ({
                 for (let j=0; j<res.session.items.length ; j++){
                   if (arrayOmitidos[i].id === res.session.items[j].id) {
                     arrayOmitidos[i].pickedQuantity = res.session.items[j].pickedQuantity
+                    arrayOmitidos[i].status = res.session.items[j].status
                   }
                 }
               }
@@ -313,6 +310,7 @@ const ProductoIndividualcontainer = ({
 };
 
 const MapStateToProps = (state, ownProps) => {
+  console.log("state", state)
   return {
     idSession: ownProps.match.params.id, // id de la sesssion
     token: localStorage.getItem('token'), // token de la session cuando inicia el picking

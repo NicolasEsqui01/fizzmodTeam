@@ -29,6 +29,12 @@ export const setBooleano = (booleano) => {
   };
 };
 
+export const setFinalSession = () => {
+  return {
+    type: 'FINAL_SESSION'
+  };
+};
+
 export const setDespickear = (booleano) => {
   return {
     type: 'DESPICKEAR_ITEM',
@@ -59,7 +65,6 @@ export const setIdItems = (id) => {
 };
 
 export const setItems = (productos) => {
-  console.log("estoy en action de SetItems con", productos)
   return {
     type: 'PRODUCTOS',
     productos
