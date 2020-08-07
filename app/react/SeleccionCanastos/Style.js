@@ -240,9 +240,9 @@ export const DivDos = styled.div`
   width: 30%;
   cursor:pointer;
   flex-direction: column;
-  border: ${({ NumDiv, valueClick , status}) => {
-      return NumDiv === valueClick && status !== true ? '2px solid #2979FF;' : null 
-    }
+  border: ${({ NumDiv, valueClick, status }) => {
+    return NumDiv === valueClick && status !== true ? '2px solid #2979FF;' : null
+  }
   };
   @media ${device.mobile} {
     height: 150px;
@@ -310,7 +310,7 @@ export const NumCanasto = styled.h1`
   margin-top: auto;
   margin-bottom: auto;
   height: 90px;
-  color: ${({NumDiv , boolean , valueClick})=>  NumDiv === valueClick ? '#2979FF' : '#d5d7db'};
+  color: ${({ NumDiv, boolean, valueClick }) => NumDiv === valueClick ? '#2979FF' : '#d5d7db'};
   font-size: 32px;
   justify-content: center;
   align-items: center;
@@ -398,7 +398,7 @@ export const DivPopup = styled.div`
   left:0;
   right:0;
   overflow: hidden;
-  ${({ activar }) => ( activar === 1 ? null : 'display:none')};
+  ${({ activar }) => (activar === 1 ? null : 'display:none')};
 `;
 
 export const DivForm = styled.div`
@@ -472,6 +472,8 @@ export const ImgCruz = styled.img`
   border-radius:30px;
 `
 export const LabelPopup = styled.label`
+  display:flex;
+  text-align: center;
   font-size:25px;
   margin-bottom:10px;
   color:white;
@@ -503,9 +505,10 @@ export const CuadroGrill = styled.div`
   width: 25%;
   height: 20px;
   flex-direction: row;
-  background-color:${({valor , numeros , status}) => {
-    return valor === numeros && status === false ? '#2979FF' : 'white' }};
-  border: ${({valor , numeros , status}) => valor === numeros && status === false? '1px solid #2979FF' : '1px solid white'};
+  background-color:${({ valor, numeros, status }) => {
+    return valor === numeros && status === false ? '#2979FF' : 'white'
+  }};
+  border: ${({ valor, numeros, status }) => valor === numeros && status === false ? '1px solid #2979FF' : '1px solid white'};
   border-radius:10%;
   margin: 4px 6px 4px 0px;
   justify-content:center;

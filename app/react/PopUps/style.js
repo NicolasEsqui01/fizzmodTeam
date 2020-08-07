@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { device } from '../../utils/mediaQuerys';
 
+
 const slideRight = keyframes`
 0% {
   transform: scaleX(0.4);
@@ -17,6 +18,16 @@ const ScaleUp = keyframes`
   transform-origin: 0% 100%;}
   100% {transform: scaleY(1); 
   transform-origin: 0% 100%;   }
+`
+const Scaleleft = keyframes`
+0% {
+  transform: scaleX(0.4);
+  transform-origin: 0% 0%;
+}
+100% {
+  transform: scaleX(1);
+  transform-origin: 0% 0%;
+}
 `
 
 const ScaleCenter = keyframes`
@@ -524,7 +535,7 @@ opacity: 95%;
 margin-top:-6%;
 height:75%;
 animation: ${ScaleDown} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-${props => props.active === 3? null: `display:none`};
+${props => props.active === 3 ? null : `display:none`};
 @media ${device.mobile} {
 width: 90%;
 margin-top: 0%;
@@ -610,6 +621,7 @@ export const DivN = styled.div`
   @media ${device.mobile} {
     justify-content: space-around;
     align-items: center;
+    place-self: center;
     width: 100%;
   }
 `;
@@ -1076,5 +1088,112 @@ margin: 2%;
   margin-top: 5%;
   height: 40%;
   font-size: 20px;
+  }
+`;
+//////MANUAL DE USUARIO
+
+export const DIV11 = styled.div`
+  width: 100%;
+  display: flex;
+  position: fixed;
+  ${(props) => (props.active === 11 ? null : `display:none`)};
+`;
+//  ${(props) => (props.active === 11 ? null : `display:none`)};
+
+export const TituloManual = styled.h1`
+  margin-left: 3%;
+  width: 100%;
+  font-size: 30px;
+  color:#273947;
+  @media ${device.mobile} {
+    font-size: 20px;
+    width: 70%;
+  }
+`;
+
+export const DivContenedorManual = styled.div`
+  display: flex;
+  position: fixed;
+  right: 0px;
+  background-color: #ffffff;
+  width: 60%;
+  height: 100vh;
+  flex-direction: column;
+  overflow: auto;
+  animation: ${Scaleleft} 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  @media ${device.mobile} {
+    width: 90%;
+  }
+`;
+export const DivInferior = styled.div`
+overflow: auto;
+margin 15px;
+`;
+
+export const DivManual1 = styled.div`
+  width: 100%;
+  display: flex;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  border-bottom: 3px solid #e8eaf6;
+  @media ${device.mobile} {
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  `;
+export const DivTitleManual1 = styled.div`
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 28px;
+  width: 90%;
+  color:#273947;
+  margin-top: 15px;
+  @media ${device.mobile} {
+    font-size: 18px;
+    width: 70%;
+  }
+`;
+
+export const ImgManual1 = styled.img`
+width: 60%;
+margin-right: 5px;
+@media ${device.mobile} {
+  width: 90%;
+  margin-right: 2px;
+}
+`;
+
+export const DivDesManual1 = styled.div`
+  width: 40%;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  text-align: center;
+  align-self: center;
+  font-size:22px;
+  color:#273947;
+  @media ${device.mobile} {
+    width: 90%;
+    font-size:14px;
+  }
+`;
+
+export const ImgManual2 = styled.img`
+width: 60%;
+margin-left: 5px;
+@media ${device.mobile} {
+  width: 90%;
+  margin-left: 2px;
+}
+`;
+
+export const DivDesManual2 = styled.div`
+  width: 40%;
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  text-align: center;
+  align-self: center;
+  font-size:22px;
+  color:#273947;
+  @media ${device.mobile} {
+    width: 90%;
+    font-size:14px;
   }
 `;

@@ -15,7 +15,7 @@ export const DivStatus = styled.div`
   align-items:center;
   justify-content:center;
   height:86vh;
-  background-color:${({status, despickear}) => status === 'picked' && despickear !== true ? '#2979FF' : '#FFFFFF'};
+  background-color:${({ status, despickear }) => status === 'picked' && despickear !== true ? '#2979FF' : '#FFFFFF'};
   @media ${device.mobile} {
     height:87vh;
   }
@@ -123,8 +123,8 @@ export const CuadroGrill = styled.div`
   flex-direction: row;
   border-radius:10%;
   margin: 4px 6px 4px 0px;
-  background-color:${({numeros , datos}) => numeros === datos ?  '#2979FF' : 'white'};
-  border:${({numeros , datos }) =>  numeros === datos ? '1px solid #2979FF' : '1px solid #D1D3D4'};
+  background-color:${({ numeros, datos }) => numeros === datos ? '#2979FF' : 'white'};
+  border:${({ numeros, datos }) => numeros === datos ? '1px solid #2979FF' : '1px solid #D1D3D4'};
   justify-content:center;
   align-items:center;
 `
@@ -351,8 +351,8 @@ export const MarcaH1 = styled.h1`
   margin-top:15px;
   margin-bottom:15px;
   font-size: 15px;
-  height: 2px;
-  width:100%;
+  height: 30px;
+  width:50%;
 }
 
 `;
@@ -544,7 +544,7 @@ export const PesoCuadroInput = styled.input`
   margin-left:20px;
   border: 2px solid #0368FF;
   ${props => props.showInput == false ? `display:none` : null};
-  ${props => props.active == 2 || props.active == 6  || props.active == 1 || props.active == 4 || props.active == 7 ? `display:none` : null};
+  ${props => props.active == 2 || props.active == 6 || props.active == 1 || props.active == 4 || props.active == 7 ? `display:none` : null};
   @media ${device.tablet} {
 
 } 
@@ -757,7 +757,7 @@ export const BotDer = styled.button`
   outline:none;
   cursor: pointer;
 `;
-export const Button = styled.button `
+export const Button = styled.button`
 width:70px;
 height:70px;
 border: 1px solid transparent;
@@ -766,7 +766,7 @@ outline:none;
 border-radius: 50px;
 cursor: pointer;
 `
-export const Button2 = styled.button `
+export const Button2 = styled.button`
 width:70px;
 height:70px;
 border: 1px solid transparent;
@@ -855,5 +855,5 @@ export const PlusCircle = styled.img`
 
 
 
- 
+
 

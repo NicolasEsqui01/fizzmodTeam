@@ -6,6 +6,7 @@ import PopUpSustitucion from './PopUpSustitucion';
 import PopUpOpciones from './PopUpOpciones';
 import PopUpOrden from './PopUpOrden';
 import PopUpServiciosExtras from './PopUpServiciosExtras';
+import PopUpManualUsuario from './PopUpManualUsuario';
 import PopUpInfoPicker from './PopUpInfoPicker';
 import PopUpControlDePeso from './PopUpControlDePeso';
 import PopUpBaterry from './PopUpBaterry';
@@ -97,6 +98,7 @@ const PopUpContainer = ({
       />
       <PopUpSustitucion active={active} onCloseClick={handleCloseClick} />
       <PopUpServiciosExtras active={active} onCloseClick={handleCloseClick} />
+      <PopUpManualUsuario active={active} onCloseClick={handleCloseClick} />
       <PopUpOpciones
         idSession={idSession}
         idItems={idItems}
@@ -105,11 +107,11 @@ const PopUpContainer = ({
         onCloseClick={handleCloseClick}
         handleLogout={handleLogout}
         handleCanastos={handleCanastos}
-        handlePickingLibre = {handlePickingLibre}
+        handlePickingLibre={handlePickingLibre}
         despickear={despickear}
         reiniciar={reinicio}
         location={location}
-        idItems = { idItems}
+        idItems={idItems}
       />
     </>
   );
