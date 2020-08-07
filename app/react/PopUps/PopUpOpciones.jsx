@@ -33,8 +33,7 @@ import BoxCircle from '../../images/icn_order-info.svg';
 import LogOut from '../../images/icn_logout.svg';
 import InfoUser from '../../images/icn_picker-info.svg'
 
-export default ({active, onCloseClick, Activar , handleLogout, despickear, reiniciar, handleCanastos}) => {
-  
+export default ({active, onCloseClick, Activar ,handlePickingLibre , handleLogout, despickear, reiniciar, handleCanastos, location}) => { 
   return (
     <DIV4 active={active}>
       <Color></Color>
@@ -47,7 +46,11 @@ export default ({active, onCloseClick, Activar , handleLogout, despickear, reini
         <DivM>
           <DivA>
             <DivH>
-              <ButtonM>
+              <ButtonM 
+              onClick={()=>{
+               handlePickingLibre();
+                localStorage.setItem("nextItem", location)
+                onCloseClick()}}>
                 <ImgO src={PickingLibre} />
                 <Significado>Picking Libre</Significado>
               </ButtonM>
@@ -59,7 +62,9 @@ export default ({active, onCloseClick, Activar , handleLogout, despickear, reini
               </ButtonM>
             </DivH>
             <DivH>
-              <ButtonM onClick={reiniciar}>
+              <ButtonM onClick={()=>{
+                reiniciar() 
+                onCloseClick()}}>
                 <ImgO src={Restart} />
                 <Significado>Reiniciar</Significado>
               </ButtonM>
@@ -94,19 +99,23 @@ export default ({active, onCloseClick, Activar , handleLogout, despickear, reini
         <Espacio4></Espacio4>
         <DivN>
         <DivH>
-            <ButtonM onClick={() => Activar(7)}>
+            <ButtonM onClick={() =>{
+               onCloseClick()
+               Activar(7)}}>
               <ImgO src={InfoUser} />
               <Significado>Informacion del picker</Significado>
             </ButtonM>
           </DivH>
           <DivH>
-            <ButtonM onClick={() => Activar(5)}>
+            <ButtonM onClick={() =>Activar(5)}>
               <ImgO src={BoxCircle} />
               <Significado>Informacion de la Orden</Significado>
             </ButtonM>
           </DivH>
           <DivH>
-            <ButtonM onClick={()=>despickear(true)}>
+            <ButtonM onClick={()=>{
+            despickear(true)
+            onCloseClick()}}>
               <ImgO src={unPick} />
               <Significado>Despickear</Significado>
             </ButtonM>

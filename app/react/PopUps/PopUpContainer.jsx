@@ -6,6 +6,7 @@ import PopUpSustitucion from './PopUpSustitucion';
 import PopUpOpciones from './PopUpOpciones';
 import PopUpOrden from './PopUpOrden';
 import PopUpServiciosExtras from './PopUpServiciosExtras';
+import PopUpManualUsuario from './PopUpManualUsuario';
 import PopUpInfoPicker from './PopUpInfoPicker';
 import PopUpControlDePeso from './PopUpControlDePeso';
 import PopUpBaterry from './PopUpBaterry';
@@ -25,6 +26,7 @@ const PopUpContainer = ({
   idItems,
   despickear,
   datosPicker,
+  location
 }) => {
   const [battery, setBattery] = useState(null);
   const [cerrar, setCerrar] = useState(true);
@@ -44,6 +46,9 @@ const PopUpContainer = ({
   };
   const handleCanastos = () => {
     return history.push('/seleccion');
+  };
+  const handlePickingLibre = () => {
+    return history.push(`/pickinglibre/${idItems}`);
   };
 
   const reinicio = () => {
@@ -93,6 +98,7 @@ const PopUpContainer = ({
       />
       <PopUpSustitucion active={active} onCloseClick={handleCloseClick} />
       <PopUpServiciosExtras active={active} onCloseClick={handleCloseClick} />
+      <PopUpManualUsuario active={active} onCloseClick={handleCloseClick} />
       <PopUpOpciones
         idSession={idSession}
         active={active}
@@ -100,25 +106,29 @@ const PopUpContainer = ({
         onCloseClick={handleCloseClick}
         handleLogout={handleLogout}
         handleCanastos={handleCanastos}
+        handlePickingLibre={handlePickingLibre}
         despickear={despickear}
         reiniciar={reinicio}
+        location={location}
+        idItems={idItems}
       />
       <PopUpControlDePeso onCloseClick={handleCloseClick} />
     </>
   );
 };
 
-const mapStateToProps = (state, ownProp) => {
+const mapStateToProps = (state) => {
   return {
     token: localStorage.getItem('token'),
     active: state.popupReducer.numero,
     idSession: state.sessionReducer.sessionPicking,
     idItems: state.sessionReducer.idItems,
     datosPicker: state.loginReducer.datos,
+    location: state.router.location.pathname
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProp) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     Activar: (n) => dispatch(Activacion(n)),
     handleCloseClick: () => dispatch(Desactivacion()),

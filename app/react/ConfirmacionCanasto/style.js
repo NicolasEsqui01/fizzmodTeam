@@ -11,6 +11,7 @@ export const Container = styled.div`
   }
 `;
 
+
 export const Derecho = styled.div`
   background-color: #f4f5fb;
   width: 50%;

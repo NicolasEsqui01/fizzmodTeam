@@ -71,8 +71,8 @@ export default ({handleClick, idSession , datosCanasto}) => {
           </IconoIzqDiv>
           <ColuInfoDerecha>
             <TituloTotales>TOTALES</TituloTotales>
-            <Pickeados>Pickeados: 738</Pickeados>
-            <TotalesGris>Totales: 1000</TotalesGris>
+            <Pickeados>Pickeados:{largo + 1}</Pickeados>
+            <TotalesGris>Totales: {total}</TotalesGris>
           </ColuInfoDerecha>
         </ParteInferiorIzq>
            <ProgressBarContainer/>

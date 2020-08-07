@@ -242,6 +242,7 @@ export const Button = styled.button`
   border-radius: 3px;
   background-color: #6B8A96;
   outline:none;
+  cursor: pointer; 
 `;
 
 export const OrdenFooter = styled.div`

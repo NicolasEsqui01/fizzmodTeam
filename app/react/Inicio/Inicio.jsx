@@ -53,6 +53,7 @@ import '../common/styles/main.scss';
 import moment from 'moment';
 import NotFoundPage from '../NotFoundPage/Loadable';
 
+
 export default ({
   sessions,
   picker,
@@ -88,8 +89,8 @@ export default ({
                 ) : sessions === 1 ? (
                   <Orders>ORDEN</Orders>
                 ) : (
-                  <Orders>ORDENES</Orders>
-                )}
+                      <Orders>ORDENES</Orders>
+                    )}
               </OvalInt>
             </Oval>
             <Indicadores>
@@ -124,7 +125,7 @@ export default ({
                 ) : (
                   <Time>0</Time>
                 )*/}
-                  
+
                 <ContNumGreen>
                   <Percentage>7%</Percentage>
                   <LogoStad src={down} alt="clock" />
@@ -141,7 +142,7 @@ export default ({
                 ) : (
                   <Time>0</Time>
                 )*/}
-                  
+
                 <ContNumRed>
                   <Percentage>7%</Percentage>
                   <LogoStad src={up} alt="clock" />
@@ -171,10 +172,10 @@ export default ({
           <OrdersContainer />
 
           <OrdenFooter>
-            { status == 'picking' ? 
-            (<ButtonRetomar onClick={handleClickSession}>Retomar</ButtonRetomar>)
-            :
-            (<Button onClick={handleClickSession}>Comenzar</Button>)
+            {status == 'picking' ?
+              (<ButtonRetomar onClick={handleClickSession}>Retomar</ButtonRetomar>)
+              :
+              (<Button onClick={handleClickSession}>Comenzar</Button>)
             }
           </OrdenFooter>
         </LDerecho>

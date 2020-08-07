@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import ConfirmacionCanasto from './ConfirmacionCanasto';
 import { setBooleano , setReiniciar} from '../../action/session';
@@ -8,6 +8,9 @@ import history from '../../utils/history'
 
 
 const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location, sendFinal, reiniciar}) => {
+  
+  
+  
   let datos = JSON.parse(localStorage.getItem('canasto'))
   const handleClick = () =>{
     setBooleano(false);
@@ -18,9 +21,10 @@ const ConfirmacionContainer = ({idSession, setBooleano, sendItemPicked, location
       localStorage.removeItem('final');
       localStorage.removeItem('cronometro')
       localStorage.removeItem('canasto')
+      if (localStorage.getItem('substitutes'))localStorage.removeItem('substitutes');
+      if (localStorage.getItem('withSubstitute'))localStorage.removeItem('withSubstitute');
       sendFinal();
       reiniciar(false)
-
       return history.push('/inicio')
     })
   };
